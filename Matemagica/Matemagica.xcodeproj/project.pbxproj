@@ -17,6 +17,10 @@
 		B324150D1B052BB700C1378B /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = B324150C1B052BB700C1378B /* Player.swift */; };
 		B32415111B052C2200C1378B /* PlayerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B32415101B052C2200C1378B /* PlayerManager.swift */; };
 		B32415171B0531C600C1378B /* TutorialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B32415161B0531C600C1378B /* TutorialViewController.swift */; };
+		B324151B1B05330500C1378B /* DIYViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B324151A1B05330500C1378B /* DIYViewController.swift */; };
+		B324151D1B05331C00C1378B /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B324151C1B05331C00C1378B /* GameViewController.swift */; };
+		B324151F1B05335B00C1378B /* PlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B324151E1B05335B00C1378B /* PlayerViewController.swift */; };
+		B32415211B0535D800C1378B /* PlayerTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B32415201B0535D800C1378B /* PlayerTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -44,6 +48,10 @@
 		B324150C1B052BB700C1378B /* Player.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
 		B32415101B052C2200C1378B /* PlayerManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayerManager.swift; sourceTree = "<group>"; };
 		B32415161B0531C600C1378B /* TutorialViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TutorialViewController.swift; sourceTree = "<group>"; };
+		B324151A1B05330500C1378B /* DIYViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DIYViewController.swift; sourceTree = "<group>"; };
+		B324151C1B05331C00C1378B /* GameViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
+		B324151E1B05335B00C1378B /* PlayerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayerViewController.swift; sourceTree = "<group>"; };
+		B32415201B0535D800C1378B /* PlayerTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayerTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -88,6 +96,10 @@
 				B32414E91B051B6600C1378B /* AppDelegate.swift */,
 				B32414EE1B051B6600C1378B /* ViewController.swift */,
 				B32415161B0531C600C1378B /* TutorialViewController.swift */,
+				B324151C1B05331C00C1378B /* GameViewController.swift */,
+				B324151E1B05335B00C1378B /* PlayerViewController.swift */,
+				B32415201B0535D800C1378B /* PlayerTableViewCell.swift */,
+				B324151A1B05330500C1378B /* DIYViewController.swift */,
 				B32415101B052C2200C1378B /* PlayerManager.swift */,
 				B324150C1B052BB700C1378B /* Player.swift */,
 				B32414F01B051B6600C1378B /* Main.storyboard */,
@@ -226,10 +238,14 @@
 			files = (
 				B32415111B052C2200C1378B /* PlayerManager.swift in Sources */,
 				B324150D1B052BB700C1378B /* Player.swift in Sources */,
+				B32415211B0535D800C1378B /* PlayerTableViewCell.swift in Sources */,
 				B32414EF1B051B6600C1378B /* ViewController.swift in Sources */,
 				B32414ED1B051B6600C1378B /* Matemagica.xcdatamodeld in Sources */,
+				B324151D1B05331C00C1378B /* GameViewController.swift in Sources */,
+				B324151F1B05335B00C1378B /* PlayerViewController.swift in Sources */,
 				B32415171B0531C600C1378B /* TutorialViewController.swift in Sources */,
 				B32414EA1B051B6600C1378B /* AppDelegate.swift in Sources */,
+				B324151B1B05330500C1378B /* DIYViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

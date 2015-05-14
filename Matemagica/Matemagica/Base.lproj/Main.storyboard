@@ -4,10 +4,10 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7701"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Title-->
         <scene sceneID="ent-SG-bSI">
             <objects>
-                <viewController id="d0Q-qb-8LC" sceneMemberID="viewController">
+                <viewController id="d0Q-qb-8LC" customClass="PlayerViewController" customModule="Matemagica" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="sef-uJ-6CG"/>
                         <viewControllerLayoutGuide type="bottom" id="jng-yg-Phg"/>
@@ -16,27 +16,84 @@
                         <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="iav-l0-RjE">
-                                <rect key="frame" x="264" y="368" width="240" height="128"/>
-                            </imageView>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Q7S-EH-HkV">
                                 <rect key="frame" x="186" y="235" width="396" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="98" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="771-ex-soq">
+                                <rect key="frame" x="0.0" y="656" width="768" height="368"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="98" id="RRI-Yi-h2I" customClass="PlayerTableViewCell" customModule="Matemagica" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="768" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="RRI-Yi-h2I" id="6EV-Sf-WOK">
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Nome" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UmB-XP-4yZ">
+                                                    <rect key="frame" x="121" y="38" width="46" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="o7j-0S-ENf">
+                                                    <rect key="frame" x="18" y="8" width="51" height="76"/>
+                                                </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Score" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IWL-9y-BG1">
+                                                    <rect key="frame" x="644" y="24" width="45" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Nível" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZyZ-qD-ZN7">
+                                                    <rect key="frame" x="644" y="58" width="38" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="foto" destination="o7j-0S-ENf" id="3je-b1-80X"/>
+                                            <outlet property="nivel" destination="ZyZ-qD-ZN7" id="MYN-a8-H7I"/>
+                                            <outlet property="nome" destination="UmB-XP-4yZ" id="Fho-DN-I2M"/>
+                                            <outlet property="score" destination="IWL-9y-BG1" id="B8q-5M-uGP"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YHi-Xg-x02">
+                                <rect key="frame" x="361" y="618" width="43" height="30"/>
+                                <state key="normal" title="Salvar">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="iav-l0-RjE">
+                                <rect key="frame" x="264" y="336" width="240" height="128"/>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
+                    <navigationItem key="navigationItem" title="Title" id="5c8-11-mZD">
+                        <barButtonItem key="leftBarButtonItem" title="Editar" id="L78-At-W9c"/>
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="qQP-0d-Zfk"/>
+                    </navigationItem>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="iPad"/>
+                    <connections>
+                        <outlet property="foto" destination="iav-l0-RjE" id="EKJ-CM-iUj"/>
+                        <outlet property="nome" destination="Q7S-EH-HkV" id="fmk-l4-f9O"/>
+                        <outlet property="tableView" destination="771-ex-soq" id="5Hd-53-o4K"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="AT1-15-lvR" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1020" y="-483"/>
         </scene>
-        <!--View Controller-->
+        <!--Game View Controller-->
         <scene sceneID="8j2-Lg-If2">
             <objects>
-                <viewController id="Nwf-ld-bDv" sceneMemberID="viewController">
+                <viewController id="Nwf-ld-bDv" customClass="GameViewController" customModule="Matemagica" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="aqz-ky-WrZ"/>
                         <viewControllerLayoutGuide type="bottom" id="ZhI-fg-Gtz"/>
@@ -61,6 +118,10 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="iPad"/>
+                    <connections>
+                        <outlet property="multiplayer" destination="NBP-kS-GcO" id="LaM-hT-HAe"/>
+                        <outlet property="singleplayer" destination="kkp-pl-1tl" id="9GW-IY-ASo"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ylv-sU-KF7" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -141,6 +202,11 @@
                     </view>
                     <navigationItem key="navigationItem" id="Bax-UQ-U74"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="iPad"/>
+                    <connections>
+                        <outlet property="diy" destination="6pH-Rm-1bO" id="SJH-Ms-huF"/>
+                        <outlet property="jogar" destination="KeW-y4-zlc" id="2Es-RC-8PC"/>
+                        <outlet property="tutorial" destination="hFQ-6W-cPu" id="rhw-sN-mCj"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
@@ -148,7 +214,7 @@
         <!--View Controller-->
         <scene sceneID="b0L-6W-84F">
             <objects>
-                <viewController id="Cyb-PC-TSL" sceneMemberID="viewController">
+                <viewController id="Cyb-PC-TSL" customClass="DIYViewController" customModule="Matemagica" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="RgP-cQ-H3d"/>
                         <viewControllerLayoutGuide type="bottom" id="B06-MF-yhM"/>
@@ -162,11 +228,6 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                             </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="bezel" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="YcU-eM-skE">
-                                <rect key="frame" x="507" y="304" width="165" height="280"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
-                            </textField>
                             <pickerView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dOJ-nk-pq3">
                                 <rect key="frame" x="334" y="353" width="100" height="162"/>
                             </pickerView>
@@ -176,19 +237,30 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="bezel" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="YcU-eM-skE">
+                                <rect key="frame" x="507" y="304" width="165" height="280"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
+                            </textField>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="iPad"/>
+                    <connections>
+                        <outlet property="operacoes" destination="dOJ-nk-pq3" id="jhY-r1-E0l"/>
+                        <outlet property="operando1" destination="5pd-rT-klt" id="aQ8-tj-NLj"/>
+                        <outlet property="operando2" destination="YcU-eM-skE" id="jfb-ux-0VN"/>
+                        <outlet property="resultado" destination="8tB-s6-qR8" id="TSS-ge-7HR"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5u8-ID-RLS" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1020" y="2007"/>
         </scene>
-        <!--View Controller-->
+        <!--Tutorial View Controller-->
         <scene sceneID="ddl-Ky-uMc">
             <objects>
-                <viewController id="kY1-2w-9Dq" sceneMemberID="viewController">
+                <viewController id="kY1-2w-9Dq" customClass="TutorialViewController" customModule="Matemagica" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="hhL-m1-mIv"/>
                         <viewControllerLayoutGuide type="bottom" id="6ck-yH-KCY"/>
@@ -229,6 +301,12 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="iPad"/>
+                    <connections>
+                        <outlet property="adicao" destination="DYU-IM-WHB" id="cV5-hI-q0J"/>
+                        <outlet property="divisao" destination="AYV-RE-NPZ" id="HbF-nW-Jl5"/>
+                        <outlet property="multiplicacao" destination="AYe-5y-vd4" id="4fM-Sz-BQO"/>
+                        <outlet property="subtracao" destination="fnX-6V-DDd" id="Gar-qe-40D"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="TqS-fO-9e1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

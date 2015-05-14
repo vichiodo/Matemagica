@@ -1,5 +1,5 @@
 //
-//  TutorialViewController.swift
+//  PlayerViewController.swift
 //  Matemagica
 //
 //  Created by Vivian Chiodo Dias on 14/05/15.
@@ -8,21 +8,20 @@
 
 import UIKit
 
-class TutorialViewController: UIViewController {
+class PlayerViewController: UIViewController {
 
-    @IBOutlet weak var adicao: UIButton!
-    @IBOutlet weak var subtracao: UIButton!
-    @IBOutlet weak var multiplicacao: UIButton!
-    @IBOutlet weak var divisao: UIButton!
+    @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var nome: UITextField!
+    @IBOutlet weak var foto: UIImageView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        
+
     }
     
 

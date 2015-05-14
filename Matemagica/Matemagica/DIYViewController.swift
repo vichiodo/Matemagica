@@ -1,5 +1,5 @@
 //
-//  TutorialViewController.swift
+//  DIYViewController.swift
 //  Matemagica
 //
 //  Created by Vivian Chiodo Dias on 14/05/15.
@@ -8,13 +8,12 @@
 
 import UIKit
 
-class TutorialViewController: UIViewController {
+class DIYViewController: UIViewController {
 
-    @IBOutlet weak var adicao: UIButton!
-    @IBOutlet weak var subtracao: UIButton!
-    @IBOutlet weak var multiplicacao: UIButton!
-    @IBOutlet weak var divisao: UIButton!
-    
+    @IBOutlet weak var operacoes: UIPickerView!
+    @IBOutlet weak var operando1: UITextField!
+    @IBOutlet weak var operando2: UITextField!
+    @IBOutlet weak var resultado: UILabel!
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -22,7 +21,6 @@ class TutorialViewController: UIViewController {
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        
     }
     
 
