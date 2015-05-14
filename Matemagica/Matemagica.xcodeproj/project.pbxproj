@@ -1,0 +1,443 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		B32414EA1B051B6600C1378B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B32414E91B051B6600C1378B /* AppDelegate.swift */; };
+		B32414ED1B051B6600C1378B /* Matemagica.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = B32414EB1B051B6600C1378B /* Matemagica.xcdatamodeld */; };
+		B32414EF1B051B6600C1378B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B32414EE1B051B6600C1378B /* ViewController.swift */; };
+		B32414F21B051B6600C1378B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B32414F01B051B6600C1378B /* Main.storyboard */; };
+		B32414F41B051B6600C1378B /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B32414F31B051B6600C1378B /* Images.xcassets */; };
+		B32414F71B051B6600C1378B /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = B32414F51B051B6600C1378B /* LaunchScreen.xib */; };
+		B32415031B051B6600C1378B /* MatemagicaTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B32415021B051B6600C1378B /* MatemagicaTests.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		B32414FD1B051B6600C1378B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B32414DC1B051B6600C1378B /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = B32414E31B051B6600C1378B;
+			remoteInfo = Matemagica;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		B32414E41B051B6600C1378B /* Matemagica.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Matemagica.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		B32414E81B051B6600C1378B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B32414E91B051B6600C1378B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		B32414EC1B051B6600C1378B /* Matemagica.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Matemagica.xcdatamodel; sourceTree = "<group>"; };
+		B32414EE1B051B6600C1378B /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		B32414F11B051B6600C1378B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		B32414F31B051B6600C1378B /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		B32414F61B051B6600C1378B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
+		B32414FC1B051B6600C1378B /* MatemagicaTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MatemagicaTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		B32415011B051B6600C1378B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B32415021B051B6600C1378B /* MatemagicaTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatemagicaTests.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		B32414E11B051B6600C1378B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B32414F91B051B6600C1378B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		B32414DB1B051B6600C1378B = {
+			isa = PBXGroup;
+			children = (
+				B32414E61B051B6600C1378B /* Matemagica */,
+				B32414FF1B051B6600C1378B /* MatemagicaTests */,
+				B32414E51B051B6600C1378B /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		B32414E51B051B6600C1378B /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				B32414E41B051B6600C1378B /* Matemagica.app */,
+				B32414FC1B051B6600C1378B /* MatemagicaTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		B32414E61B051B6600C1378B /* Matemagica */ = {
+			isa = PBXGroup;
+			children = (
+				B32414E91B051B6600C1378B /* AppDelegate.swift */,
+				B32414EE1B051B6600C1378B /* ViewController.swift */,
+				B32414F01B051B6600C1378B /* Main.storyboard */,
+				B32414F31B051B6600C1378B /* Images.xcassets */,
+				B32414F51B051B6600C1378B /* LaunchScreen.xib */,
+				B32414EB1B051B6600C1378B /* Matemagica.xcdatamodeld */,
+				B32414E71B051B6600C1378B /* Supporting Files */,
+			);
+			path = Matemagica;
+			sourceTree = "<group>";
+		};
+		B32414E71B051B6600C1378B /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				B32414E81B051B6600C1378B /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		B32414FF1B051B6600C1378B /* MatemagicaTests */ = {
+			isa = PBXGroup;
+			children = (
+				B32415021B051B6600C1378B /* MatemagicaTests.swift */,
+				B32415001B051B6600C1378B /* Supporting Files */,
+			);
+			path = MatemagicaTests;
+			sourceTree = "<group>";
+		};
+		B32415001B051B6600C1378B /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				B32415011B051B6600C1378B /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		B32414E31B051B6600C1378B /* Matemagica */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B32415061B051B6600C1378B /* Build configuration list for PBXNativeTarget "Matemagica" */;
+			buildPhases = (
+				B32414E01B051B6600C1378B /* Sources */,
+				B32414E11B051B6600C1378B /* Frameworks */,
+				B32414E21B051B6600C1378B /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Matemagica;
+			productName = Matemagica;
+			productReference = B32414E41B051B6600C1378B /* Matemagica.app */;
+			productType = "com.apple.product-type.application";
+		};
+		B32414FB1B051B6600C1378B /* MatemagicaTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B32415091B051B6600C1378B /* Build configuration list for PBXNativeTarget "MatemagicaTests" */;
+			buildPhases = (
+				B32414F81B051B6600C1378B /* Sources */,
+				B32414F91B051B6600C1378B /* Frameworks */,
+				B32414FA1B051B6600C1378B /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				B32414FE1B051B6600C1378B /* PBXTargetDependency */,
+			);
+			name = MatemagicaTests;
+			productName = MatemagicaTests;
+			productReference = B32414FC1B051B6600C1378B /* MatemagicaTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		B32414DC1B051B6600C1378B /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0630;
+				ORGANIZATIONNAME = "Vivian Chiodo Dias";
+				TargetAttributes = {
+					B32414E31B051B6600C1378B = {
+						CreatedOnToolsVersion = 6.3.1;
+					};
+					B32414FB1B051B6600C1378B = {
+						CreatedOnToolsVersion = 6.3.1;
+						TestTargetID = B32414E31B051B6600C1378B;
+					};
+				};
+			};
+			buildConfigurationList = B32414DF1B051B6600C1378B /* Build configuration list for PBXProject "Matemagica" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = B32414DB1B051B6600C1378B;
+			productRefGroup = B32414E51B051B6600C1378B /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				B32414E31B051B6600C1378B /* Matemagica */,
+				B32414FB1B051B6600C1378B /* MatemagicaTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		B32414E21B051B6600C1378B /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B32414F21B051B6600C1378B /* Main.storyboard in Resources */,
+				B32414F71B051B6600C1378B /* LaunchScreen.xib in Resources */,
+				B32414F41B051B6600C1378B /* Images.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B32414FA1B051B6600C1378B /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		B32414E01B051B6600C1378B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B32414EF1B051B6600C1378B /* ViewController.swift in Sources */,
+				B32414ED1B051B6600C1378B /* Matemagica.xcdatamodeld in Sources */,
+				B32414EA1B051B6600C1378B /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B32414F81B051B6600C1378B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B32415031B051B6600C1378B /* MatemagicaTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		B32414FE1B051B6600C1378B /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = B32414E31B051B6600C1378B /* Matemagica */;
+			targetProxy = B32414FD1B051B6600C1378B /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		B32414F01B051B6600C1378B /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				B32414F11B051B6600C1378B /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		B32414F51B051B6600C1378B /* LaunchScreen.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				B32414F61B051B6600C1378B /* Base */,
+			);
+			name = LaunchScreen.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		B32415041B051B6600C1378B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = 2;
+			};
+			name = Debug;
+		};
+		B32415051B051B6600C1378B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = 2;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		B32415071B051B6600C1378B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = Matemagica/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		B32415081B051B6600C1378B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = Matemagica/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		B324150A1B051B6600C1378B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = MatemagicaTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Matemagica.app/Matemagica";
+			};
+			name = Debug;
+		};
+		B324150B1B051B6600C1378B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = MatemagicaTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Matemagica.app/Matemagica";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		B32414DF1B051B6600C1378B /* Build configuration list for PBXProject "Matemagica" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B32415041B051B6600C1378B /* Debug */,
+				B32415051B051B6600C1378B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		B32415061B051B6600C1378B /* Build configuration list for PBXNativeTarget "Matemagica" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B32415071B051B6600C1378B /* Debug */,
+				B32415081B051B6600C1378B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		B32415091B051B6600C1378B /* Build configuration list for PBXNativeTarget "MatemagicaTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B324150A1B051B6600C1378B /* Debug */,
+				B324150B1B051B6600C1378B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		B32414EB1B051B6600C1378B /* Matemagica.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				B32414EC1B051B6600C1378B /* Matemagica.xcdatamodel */,
+			);
+			currentVersion = B32414EC1B051B6600C1378B /* Matemagica.xcdatamodel */;
+			path = Matemagica.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
+	};
+	rootObject = B32414DC1B051B6600C1378B /* Project object */;
+}
