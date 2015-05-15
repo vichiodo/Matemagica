@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7702" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="EJ0-NA-bhs">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7701"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--Title-->
@@ -34,7 +35,7 @@
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Nome" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UmB-XP-4yZ">
                                                     <rect key="frame" x="121" y="38" width="46" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="o7j-0S-ENf">
@@ -43,13 +44,13 @@
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Score" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IWL-9y-BG1">
                                                     <rect key="frame" x="644" y="24" width="45" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Nível" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZyZ-qD-ZN7">
                                                     <rect key="frame" x="644" y="58" width="38" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
@@ -158,7 +159,7 @@
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="MATEMAGICA" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="K69-up-OhW">
                                 <rect key="frame" x="265" y="127" width="227" height="77"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KeW-y4-zlc">
@@ -234,7 +235,7 @@
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8tB-s6-qR8">
                                 <rect key="frame" x="363" y="839" width="42" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="bezel" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="YcU-eM-skE">
@@ -269,36 +270,74 @@
                         <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DYU-IM-WHB">
-                                <rect key="frame" x="218" y="303" width="30" height="30"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="35"/>
-                                <state key="normal" title="+">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fnX-6V-DDd">
-                                <rect key="frame" x="554" y="303" width="30" height="30"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="38"/>
+                            <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fnX-6V-DDd">
+                                <rect key="frame" x="477" y="243" width="150" height="150"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="150" id="JJk-FP-Yj6"/>
+                                    <constraint firstAttribute="height" constant="150" id="gj9-tg-pHg"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="100"/>
                                 <state key="normal" title="-">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <segue destination="3b2-vQ-mFf" kind="show" identifier="subtracaoIdentifier" id="7MB-0c-Biv"/>
+                                </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AYe-5y-vd4">
-                                <rect key="frame" x="218" y="601" width="30" height="30"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="34"/>
-                                <state key="normal" title="X">
+                            <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AYe-5y-vd4">
+                                <rect key="frame" x="141" y="695" width="150" height="150"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="150" id="4NI-xD-Uaf"/>
+                                    <constraint firstAttribute="height" constant="150" id="LXF-qf-VBy"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="100"/>
+                                <state key="normal" title="x">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <segue destination="3b2-vQ-mFf" kind="show" identifier="multiplicacaoIdentifier" id="bUb-my-r7L"/>
+                                </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AYV-RE-NPZ">
-                                <rect key="frame" x="549" y="601" width="30" height="30"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="34"/>
+                            <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DYU-IM-WHB">
+                                <rect key="frame" x="141" y="243" width="150" height="150"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="150" id="0KW-sd-OB8"/>
+                                    <constraint firstAttribute="height" constant="150" id="b7E-2d-5ca"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="100"/>
+                                <state key="normal" title="+">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="3b2-vQ-mFf" kind="show" identifier="adicaoIdentifier" id="UMF-jZ-hGV"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" tag="4" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AYV-RE-NPZ">
+                                <rect key="frame" x="477" y="695" width="150" height="150"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="150" id="2sB-3W-vlP"/>
+                                    <constraint firstAttribute="width" constant="150" id="DZX-Fg-wnK"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="100"/>
                                 <state key="normal" title="/">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <segue destination="3b2-vQ-mFf" kind="show" identifier="divisaoIdentifier" id="VnQ-Gw-Ogh"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="6ck-yH-KCY" firstAttribute="top" secondItem="AYV-RE-NPZ" secondAttribute="bottom" constant="179" id="08q-aF-Bn0"/>
+                            <constraint firstItem="6ck-yH-KCY" firstAttribute="top" secondItem="AYe-5y-vd4" secondAttribute="bottom" constant="179" id="OPT-7V-SzY"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="AYV-RE-NPZ" secondAttribute="trailing" constant="125" id="ZTw-dd-hux"/>
+                            <constraint firstItem="AYe-5y-vd4" firstAttribute="leading" secondItem="6Wd-Hk-Zbc" secondAttribute="leadingMargin" constant="125" id="b9D-zY-DYy"/>
+                            <constraint firstItem="fnX-6V-DDd" firstAttribute="top" secondItem="hhL-m1-mIv" secondAttribute="bottom" constant="179" id="pY3-6P-3NH"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="fnX-6V-DDd" secondAttribute="trailing" constant="125" id="ppq-e1-O7H"/>
+                            <constraint firstItem="DYU-IM-WHB" firstAttribute="top" secondItem="hhL-m1-mIv" secondAttribute="bottom" constant="179" id="tOW-L8-OcE"/>
+                            <constraint firstItem="DYU-IM-WHB" firstAttribute="leading" secondItem="6Wd-Hk-Zbc" secondAttribute="leadingMargin" constant="125" id="yPm-BH-B78"/>
+                        </constraints>
                     </view>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="iPad"/>
                     <connections>
@@ -310,7 +349,29 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="TqS-fO-9e1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1932" y="1057"/>
+            <point key="canvasLocation" x="1879" y="937"/>
+        </scene>
+        <!--Tutorial Detail View Controller-->
+        <scene sceneID="eB4-dX-ftJ">
+            <objects>
+                <viewController id="3b2-vQ-mFf" customClass="TutorialDetailViewController" customModule="Matemagica" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="oOi-3z-xr0"/>
+                        <viewControllerLayoutGuide type="bottom" id="yHS-wH-zCX"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Ncz-hU-Gaa">
+                        <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="iPad"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ojg-jG-3ez" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2735" y="937"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="bUb-my-r7L"/>
+    </inferredMetricsTieBreakers>
 </document>

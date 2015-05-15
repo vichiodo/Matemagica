@@ -17,6 +17,7 @@ class TutorialViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.navigationItem.title = "Tutorial"
 
     }
 
@@ -25,6 +26,31 @@ class TutorialViewController: UIViewController {
         
     }
     
+
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if (segue.identifier == "adicaoIdentifier") {
+            var tutorialVC : TutorialDetailViewController = segue.destinationViewController as! TutorialDetailViewController
+            tutorialVC.buttonTag = sender!.tag
+            
+        }
+        
+        if (segue.identifier == "subtracaoIdentifier") {
+            var tutorialVC : TutorialDetailViewController = segue.destinationViewController as! TutorialDetailViewController
+            tutorialVC.buttonTag = sender!.tag
+        }
+        
+        if (segue.identifier == "multiplicacaoIdentifier") {
+            var tutorialVC : TutorialDetailViewController = segue.destinationViewController as! TutorialDetailViewController
+            tutorialVC.buttonTag = sender!.tag
+            
+        }
+        
+        if (segue.identifier == "divisaoIdentifier") {
+            var tutorialVC : TutorialDetailViewController = segue.destinationViewController as! TutorialDetailViewController
+            tutorialVC.buttonTag = sender!.tag
+        }
+
+    }
 
     /*
     // MARK: - Navigation
