@@ -15,9 +15,18 @@ class PlayerViewController: UIViewController, UIImagePickerControllerDelegate, U
     @IBOutlet weak var foto: UIImageView!
     @IBOutlet weak var btnES: UIBarButtonItem!
     
+    lazy var players:Array<Player> = {
+        return PlayerManager.instance.buscarPlayer()
+        }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         btnES.possibleTitles = Set(["Editar", "Salvar"])
+        nome.userInteractionEnabled = false
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        self.tableView.reloadData()
     }
 
     override func didReceiveMemoryWarning() {
@@ -27,14 +36,19 @@ class PlayerViewController: UIViewController, UIImagePickerControllerDelegate, U
     
     @IBAction func adicionarPlayer(sender: AnyObject) {
         btnES.title = "Salvar"
+        
+        nome.userInteractionEnabled = true
     }
     
     @IBAction func salvar(sender: AnyObject) {
         
+        salvarBanco(nome.text, foto: foto.image!)
         
         
-        
+        nome.userInteractionEnabled = false
+        nome.text = ""
         btnES.title = "Editar"
+        self.tableView.reloadData()
     }
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
@@ -43,11 +57,14 @@ class PlayerViewController: UIViewController, UIImagePickerControllerDelegate, U
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        return 5
+        return players.count
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("player", forIndexPath: indexPath) as! PlayerTableViewCell
+        
+        cell.nome.text = players[indexPath.row].nomePlayer
+        cell.foto.image = UIImage(data: players[indexPath.row].fotoPlayer)
         
         return cell
     }
@@ -79,13 +96,25 @@ class PlayerViewController: UIViewController, UIImagePickerControllerDelegate, U
                         
                         self.presentViewController(imagePicker, animated: true, completion: nil)
 
-                        println("teste")
                     })
                     [alerta.addAction(camera)]
                     
+                    let galeria:UIAlertAction = UIAlertAction(title: "Escolher da galeria", style: .Default, handler: { (ACTION) -> Void in
+                        let imagePicker:UIImagePickerController = UIImagePickerController()
+                        imagePicker.sourceType = .PhotoLibrary
+                        imagePicker.delegate = self
+                        imagePicker.allowsEditing = true
+                        
+                        
+                        self.presentViewController(imagePicker, animated: true, completion: nil)
+                        
+                    })
+                    [alerta.addAction(galeria)]
+
+                    
+                    
                     
                     self.presentViewController(alerta, animated: true, completion: nil)
-                    println("Funciona?")
                 }
             }
         }
@@ -96,6 +125,16 @@ class PlayerViewController: UIViewController, UIImagePickerControllerDelegate, U
         foto.image = imagem
         
         self.dismissViewControllerAnimated(true, completion: nil)
+    }
+    
+    func salvarBanco(nome: String, foto: UIImage){
+        let player = PlayerManager.instance.novoPlayer()
+        let imagem = UIImageJPEGRepresentation(foto, 1)
+        
+        player.setValue(nome, forKey: "nomePlayer")
+        player.setValue(imagem, forKey: "fotoPlayer")
+        
+        PlayerManager.instance.salvarPlayer()
     }
     /*
     // MARK: - Navigation
