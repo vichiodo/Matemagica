@@ -9,7 +9,7 @@
 import UIKit
 
 class PlayerViewController: UIViewController, UIImagePickerControllerDelegate, UITableViewDataSource, UITableViewDelegate, UINavigationControllerDelegate {
-
+    
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var nome: UITextField!
     @IBOutlet weak var foto: UIImageView!
@@ -28,10 +28,10 @@ class PlayerViewController: UIViewController, UIImagePickerControllerDelegate, U
     override func viewWillAppear(animated: Bool) {
         self.tableView.reloadData()
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-
+        
     }
     
     @IBAction func adicionarPlayer(sender: AnyObject) {
@@ -43,12 +43,11 @@ class PlayerViewController: UIViewController, UIImagePickerControllerDelegate, U
     @IBAction func salvar(sender: AnyObject) {
         
         salvarBanco(nome.text, foto: foto.image!)
-        
+        self.tableView.reloadData()
         
         nome.userInteractionEnabled = false
         nome.text = ""
         btnES.title = "Editar"
-        self.tableView.reloadData()
     }
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
@@ -68,13 +67,13 @@ class PlayerViewController: UIViewController, UIImagePickerControllerDelegate, U
         
         return cell
     }
-
+    
     func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
         if editingStyle == UITableViewCellEditingStyle.Delete{
             
         }
     }
-
+    
     
     override func touchesBegan(touches: Set<NSObject>, withEvent event: UIEvent) {
         let touch = (touches as NSSet).allObjects[0] as! UITouch
@@ -89,13 +88,15 @@ class PlayerViewController: UIViewController, UIImagePickerControllerDelegate, U
                     alerta.popoverPresentationController?.sourceRect = CGRectMake(touchLocation.x, touchLocation.y, 0, 0)
                     let camera:UIAlertAction = UIAlertAction(title: "Tirar foto", style: .Default, handler: { (ACTION) -> Void in
                         let imagePicker:UIImagePickerController = UIImagePickerController()
-                        imagePicker.sourceType = .Camera
-                        imagePicker.delegate = self
-                        imagePicker.allowsEditing = true
-                        
-                        
-                        self.presentViewController(imagePicker, animated: true, completion: nil)
-
+                        if UIImagePickerController.isSourceTypeAvailable(.Camera) {
+                            
+                            imagePicker.sourceType = .Camera
+                            imagePicker.delegate = self
+                            imagePicker.allowsEditing = true
+                            
+                            
+                            self.presentViewController(imagePicker, animated: true, completion: nil)
+                        }
                     })
                     [alerta.addAction(camera)]
                     
@@ -110,7 +111,7 @@ class PlayerViewController: UIViewController, UIImagePickerControllerDelegate, U
                         
                     })
                     [alerta.addAction(galeria)]
-
+                    
                     
                     
                     
@@ -138,12 +139,12 @@ class PlayerViewController: UIViewController, UIImagePickerControllerDelegate, U
     }
     /*
     // MARK: - Navigation
-
+    
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    // Get the new view controller using segue.destinationViewController.
+    // Pass the selected object to the new view controller.
     }
     */
-
+    
 }
