@@ -28,7 +28,7 @@ class PlayerManager{
 
     
     
-    func buscarPlayer() ->Array<Player> {
+    func buscarPlayers() ->Array<Player> {
         
         let buscaRequest = NSFetchRequest(entityName: PlayerManager.entityName)
         var erro: NSError?
@@ -57,7 +57,7 @@ class PlayerManager{
     }
     
     func removerTodos() {
-        var arrayPlay: Array<Player> = buscarPlayer()
+        var arrayPlay: Array<Player> = buscarPlayers()
         
         for player: Player in arrayPlay {
             managedContext.deleteObject(player)
@@ -65,8 +65,8 @@ class PlayerManager{
     }
     
     func removerJogador(index: Int) {
-        var arrayPlay: Array<Player> = buscarPlayer()
-        managedContext.deleteObject((arrayPlay[index] as? NSManagedObject)!)
+        var arrayPlay: Array<Player> = buscarPlayers()
+        managedContext.deleteObject(arrayPlay[index] as NSManagedObject)
         salvarPlayer()
         
         
