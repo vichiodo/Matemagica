@@ -30,19 +30,20 @@ class PlayerViewController: UIViewController, UIImagePickerControllerDelegate, U
         
         imagePicker.delegate = self
         imagePicker.allowsEditing = true
-        
-        var playerSelecionado = players[userDef.integerForKey("index")]
-        
-        nome.text = playerSelecionado.nomePlayer
-        foto.image = UIImage(data: playerSelecionado.fotoPlayer)
-
+        if userDef.objectForKey("index") != nil {
+            var playerSelecionado = players[userDef.integerForKey("index")]
+            
+            
+            nome.text = playerSelecionado.nomePlayer
+            foto.image = UIImage(data: playerSelecionado.fotoPlayer)
+        }
     }
     
     override func viewWillAppear(animated: Bool) {
         self.tableView.reloadData()
         var index = userDef.objectForKey("index") as? Int
-        let rowToSelect:NSIndexPath = NSIndexPath(forRow: index!, inSection: 0)
-        if index != nil {
+        if index != nil && index >= 0 {
+            let rowToSelect:NSIndexPath = NSIndexPath(forRow: index!, inSection: 0)
             tableView.selectRowAtIndexPath(rowToSelect, animated: true, scrollPosition: UITableViewScrollPosition.None)
         }
     }
@@ -58,6 +59,7 @@ class PlayerViewController: UIViewController, UIImagePickerControllerDelegate, U
         
         nome.userInteractionEnabled = true
         foto.userInteractionEnabled = true
+        tableView.allowsSelection = false
     }
     
     @IBAction func salvar(sender: AnyObject) {
@@ -98,8 +100,18 @@ class PlayerViewController: UIViewController, UIImagePickerControllerDelegate, U
                 self.tableView.reloadData()
                 
                 nome.userInteractionEnabled = false
-                nome.text = ""
                 foto.userInteractionEnabled = false
+                tableView.allowsSelection = true
+
+                var index = players.count - 1
+                var playerSelecionado = players[index]
+                userDef.setObject(index, forKey: "index")
+                
+                nome.text = playerSelecionado.nomePlayer
+                foto.image = UIImage(data: playerSelecionado.fotoPlayer)
+                let rowToSelect:NSIndexPath = NSIndexPath(forRow: index, inSection: 0)
+                tableView.selectRowAtIndexPath(rowToSelect, animated: true, scrollPosition: UITableViewScrollPosition.None)
+                
                 
                 btnES.title = "Editar"
                 
@@ -128,10 +140,23 @@ class PlayerViewController: UIViewController, UIImagePickerControllerDelegate, U
         if editingStyle == UITableViewCellEditingStyle.Delete{
             PlayerManager.instance.removerJogador(indexPath.row)
             players = PlayerManager.instance.buscarPlayers()
-            if indexPath.row < (userDef.objectForKey("index") as! Int){
-                userDef.setObject((userDef.objectForKey("index") as! Int)-1, forKey: "index")
+            if indexPath.row == 0 {
+                userDef.setObject(0, forKey: "index")
+            }
+            else {
+                if indexPath.row < (userDef.objectForKey("index") as! Int) {
+                    userDef.setObject((userDef.objectForKey("index") as! Int)-1, forKey: "index")
+                }
+                if indexPath.row == (userDef.objectForKey("index") as! Int) {
+                    userDef.setObject(-1, forKey: "index")
+                }
             }
         }
+        
+        if indexPath.row >= 0 {
+            tableView.selectRowAtIndexPath(indexPath, animated: true, scrollPosition: UITableViewScrollPosition.None)
+        }
+        
         
         self.tableView.reloadData()
     }
@@ -144,24 +169,26 @@ class PlayerViewController: UIViewController, UIImagePickerControllerDelegate, U
             let pontoFrame = self.view.convertRect(ponto.frame, toView: ponto.superview)
             if CGRectContainsPoint(pontoFrame, touchLocation){
                 if ponto.tag == 1 {
-                    let alerta: UIAlertController = UIAlertController(title: nil, message: nil, preferredStyle: .ActionSheet)
-                    alerta.popoverPresentationController?.sourceView = self.view
-                    alerta.popoverPresentationController?.sourceRect = CGRectMake(touchLocation.x, touchLocation.y, 0, 0)
-                    let camera:UIAlertAction = UIAlertAction(title: "Tirar foto", style: .Default, handler: { (ACTION) -> Void in
-                        if UIImagePickerController.isSourceTypeAvailable(.Camera) {
-                            self.imagePicker.sourceType = .Camera
+                    if foto.userInteractionEnabled {
+                        let alerta: UIAlertController = UIAlertController(title: nil, message: nil, preferredStyle: .ActionSheet)
+                        alerta.popoverPresentationController?.sourceView = self.view
+                        alerta.popoverPresentationController?.sourceRect = CGRectMake(touchLocation.x, touchLocation.y, 0, 0)
+                        let camera:UIAlertAction = UIAlertAction(title: "Tirar foto", style: .Default, handler: { (ACTION) -> Void in
+                            if UIImagePickerController.isSourceTypeAvailable(.Camera) {
+                                self.imagePicker.sourceType = .Camera
+                                self.presentViewController(self.imagePicker, animated: true, completion: nil)
+                            }
+                        })
+                        [alerta.addAction(camera)]
+                        
+                        let galeria:UIAlertAction = UIAlertAction(title: "Escolher da galeria", style: .Default, handler: { (ACTION) -> Void in
+                            self.imagePicker.sourceType = .PhotoLibrary
                             self.presentViewController(self.imagePicker, animated: true, completion: nil)
-                        }
-                    })
-                    [alerta.addAction(camera)]
-                    
-                    let galeria:UIAlertAction = UIAlertAction(title: "Escolher da galeria", style: .Default, handler: { (ACTION) -> Void in
-                        self.imagePicker.sourceType = .PhotoLibrary
-                        self.presentViewController(self.imagePicker, animated: true, completion: nil)
-                    })
-                    [alerta.addAction(galeria)]
-                    
-                    self.presentViewController(alerta, animated: true, completion: nil)
+                        })
+                        [alerta.addAction(galeria)]
+                        
+                        self.presentViewController(alerta, animated: true, completion: nil)
+                    }
                 }
             }
         }
@@ -183,7 +210,7 @@ class PlayerViewController: UIViewController, UIImagePickerControllerDelegate, U
         
         PlayerManager.instance.salvarPlayer()
     }
-
+    
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         var playerSelecionado = players[indexPath.row]
         userDef.setObject(indexPath.row, forKey: "index")
