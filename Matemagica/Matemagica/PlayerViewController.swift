@@ -33,7 +33,6 @@ class PlayerViewController: UIViewController, UIImagePickerControllerDelegate, U
         if userDef.objectForKey("index") != nil {
             var playerSelecionado = players[userDef.integerForKey("index")]
             
-            
             nome.text = playerSelecionado.nomePlayer
             foto.image = UIImage(data: playerSelecionado.fotoPlayer)
         }
@@ -55,7 +54,7 @@ class PlayerViewController: UIViewController, UIImagePickerControllerDelegate, U
     @IBAction func adicionarPlayer(sender: AnyObject) {
         btnES.title = "Salvar"
         nome.text = ""
-        foto.image = nil
+        foto.image = UIImage(named: "imgdefault")
         
         nome.userInteractionEnabled = true
         foto.userInteractionEnabled = true
@@ -63,6 +62,10 @@ class PlayerViewController: UIViewController, UIImagePickerControllerDelegate, U
     }
     
     @IBAction func salvar(sender: AnyObject) {
+        if btnES.title == "Salvar" {
+            
+        }
+
         if nome.text == "" {
             let alerta: UIAlertController = UIAlertController(title: "Atenção", message: "Digite um nome", preferredStyle:.Alert)
             let al1: UIAlertAction = UIAlertAction(title: "OK", style: .Default, handler: nil)
@@ -73,7 +76,7 @@ class PlayerViewController: UIViewController, UIImagePickerControllerDelegate, U
             self.presentViewController(alerta, animated: true, completion: nil)
         }
         else {
-            if foto.image == nil {
+            if foto.image == UIImage(named: "imgdefault") {
                 let alerta: UIAlertController = UIAlertController(title: "Escolha uma foto", message: nil, preferredStyle: .ActionSheet)
                 alerta.popoverPresentationController?.sourceView = self.view
                 alerta.popoverPresentationController?.sourceRect = CGRectMake(self.view.frame.width / 2, self.view.frame.height / 2, 0, 0)
