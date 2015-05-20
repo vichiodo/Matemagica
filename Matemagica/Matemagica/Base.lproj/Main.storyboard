@@ -326,20 +326,6 @@
                                     <segue destination="3b2-vQ-mFf" kind="show" identifier="multiplicacaoIdentifier" id="bUb-my-r7L"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DYU-IM-WHB">
-                                <rect key="frame" x="141" y="243" width="150" height="150"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="150" id="0KW-sd-OB8"/>
-                                    <constraint firstAttribute="height" constant="150" id="b7E-2d-5ca"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="100"/>
-                                <state key="normal" title="+">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <segue destination="3b2-vQ-mFf" kind="show" identifier="adicaoIdentifier" id="UMF-jZ-hGV"/>
-                                </connections>
-                            </button>
                             <button opaque="NO" tag="4" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AYV-RE-NPZ">
                                 <rect key="frame" x="477" y="695" width="150" height="150"/>
                                 <constraints>
@@ -352,6 +338,20 @@
                                 </state>
                                 <connections>
                                     <segue destination="3b2-vQ-mFf" kind="show" identifier="divisaoIdentifier" id="VnQ-Gw-Ogh"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DYU-IM-WHB">
+                                <rect key="frame" x="141" y="243" width="150" height="150"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="150" id="0KW-sd-OB8"/>
+                                    <constraint firstAttribute="height" constant="150" id="b7E-2d-5ca"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="100"/>
+                                <state key="normal" title="+">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="3b2-vQ-mFf" kind="show" identifier="adicaoIdentifier" id="iaf-Ge-OUd"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -403,6 +403,6 @@
         <image name="imgdefault" width="1024" height="1024"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="VnQ-Gw-Ogh"/>
+        <segue reference="iaf-Ge-OUd"/>
     </inferredMetricsTieBreakers>
 </document>
