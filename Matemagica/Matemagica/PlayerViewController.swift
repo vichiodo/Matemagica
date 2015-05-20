@@ -52,7 +52,10 @@ class PlayerViewController: UIViewController, UIImagePickerControllerDelegate, U
     }
     
     @IBAction func adicionarPlayer(sender: AnyObject) {
-        btnES.title = "Salvar"
+        self.navigationItem.rightBarButtonItem?.title = "Salvar"
+        
+        self.navigationItem.setLeftBarButtonItem(UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Cancel, target: self, action: "cancelar:"), animated: true)
+        
         nome.text = ""
         foto.image = UIImage(named: "imgdefault")
         
@@ -61,10 +64,19 @@ class PlayerViewController: UIViewController, UIImagePickerControllerDelegate, U
         tableView.allowsSelection = false
     }
     
+    func cancelar(sender: AnyObject){
+        nome.text = ""
+        foto.image = UIImage(named: "imgdefault")
+        
+        nome.userInteractionEnabled = false
+        foto.userInteractionEnabled = false
+        tableView.allowsSelection = true
+        
+        self.navigationItem.setRightBarButtonItem(UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Add, target: self, action: "adicionarPlayer:"), animated: true)
+    
+    }
+    
     @IBAction func salvar(sender: AnyObject) {
-        if btnES.title == "Salvar" {
-            
-        }
 
         if nome.text == "" {
             let alerta: UIAlertController = UIAlertController(title: "Atenção", message: "Digite um nome", preferredStyle:.Alert)
@@ -115,11 +127,11 @@ class PlayerViewController: UIViewController, UIImagePickerControllerDelegate, U
                 let rowToSelect:NSIndexPath = NSIndexPath(forRow: index, inSection: 0)
                 tableView.selectRowAtIndexPath(rowToSelect, animated: true, scrollPosition: UITableViewScrollPosition.None)
                 
-                
-                btnES.title = "Editar"
+                self.navigationItem.setRightBarButtonItem(UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Add, target: self, action: "adicionarPlayer:"), animated: true)
                 
             }
         }
+        
     }
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
