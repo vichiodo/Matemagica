@@ -17,9 +17,10 @@ class TutorialDetailViewController: UIViewController {
         super.viewDidLoad()
         let scene = Tutorial(size: view.bounds.size)
         scene.tag = buttonTag
-        let skView:SKView = SKView()
+        let skView:SKView = SKView(frame: self.view.frame)
         self.view.addSubview(skView)
-        scene.scaleMode = .ResizeFill
+        scene.scaleMode = .AspectFill
+        scene.vC = self
         skView.presentScene(scene)
 
     }

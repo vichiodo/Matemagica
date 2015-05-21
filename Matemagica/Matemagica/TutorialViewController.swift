@@ -26,12 +26,15 @@ class TutorialViewController: UIViewController {
         
     }
     
+    override func viewWillAppear(animated: Bool) {
+        var notification: NSNotificationCenter = NSNotificationCenter.defaultCenter()
+        notification.postNotificationName("pauseView", object: self)
+    }
 
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if (segue.identifier == "adicaoIdentifier") {
             var tutorialVC : TutorialDetailViewController = segue.destinationViewController as! TutorialDetailViewController
             tutorialVC.buttonTag = sender!.tag
-            
         }
         
         if (segue.identifier == "subtracaoIdentifier") {

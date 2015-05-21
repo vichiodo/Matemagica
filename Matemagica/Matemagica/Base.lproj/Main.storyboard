@@ -319,7 +319,7 @@
                                     <constraint firstAttribute="height" constant="150" id="LXF-qf-VBy"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="100"/>
-                                <state key="normal" title="x">
+                                <state key="normal" title="×">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
@@ -333,7 +333,7 @@
                                     <constraint firstAttribute="width" constant="150" id="DZX-Fg-wnK"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="100"/>
-                                <state key="normal" title="/">
+                                <state key="normal" title="÷">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
@@ -382,7 +382,7 @@
         <!--Tutorial Detail View Controller-->
         <scene sceneID="eB4-dX-ftJ">
             <objects>
-                <viewController id="3b2-vQ-mFf" customClass="TutorialDetailViewController" customModule="Matemagica" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="tutorial" useStoryboardIdentifierAsRestorationIdentifier="YES" id="3b2-vQ-mFf" customClass="TutorialDetailViewController" customModule="Matemagica" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="oOi-3z-xr0"/>
                         <viewControllerLayoutGuide type="bottom" id="yHS-wH-zCX"/>
@@ -390,7 +390,6 @@
                     <view key="view" contentMode="scaleToFill" id="Ncz-hU-Gaa">
                         <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="iPad"/>
                 </viewController>

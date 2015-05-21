@@ -10,115 +10,365 @@
 import SpriteKit
 
 class Tutorial: SKScene {
-
+    
+    // tag para verificar qual a operacao que foi clicada na tela anterior
     var tag:Int!
-
-    override init(size: CGSize) {
-        super.init(size: size)
-        
-    }
-
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
+    
+    var vC: TutorialDetailViewController!
+    var lblTitulo: SKLabelNode = SKLabelNode()
+    
+    // numeros que serao usados para fazer a conta
+    var n1: Int!
+    var n2: Int!
+    
+    // adiciona os nodes dos numeros
+    var numero1Img: SKSpriteNode = SKSpriteNode()
+    var numero2Img: SKSpriteNode = SKSpriteNode()
+    var numero3Img: SKSpriteNode = SKSpriteNode()
+    
+    let imgToque = SKSpriteNode(imageNamed: "toque1")
+    
+    // flag para verificar qual a ordem que vai aparecer as funcoes
+    var rodou1: Bool! = false
+    var rodou2: Bool! = false
+    var rodou3: Bool! = false
+    
+    // animacoes de fade in e fade out
+    let fadeIn = SKAction.fadeInWithDuration(2.0)
+    let fadeOut = SKAction.fadeOutWithDuration(2.0)
     
     override func didMoveToView(view: SKView) {
         backgroundColor = SKColor.whiteColor()
+        
+        var notification:NSNotificationCenter = NSNotificationCenter.defaultCenter()
+        notification.addObserver(self, selector: "pause", name: "pauseView", object: nil)
+        
+        imgToque.position = CGPointMake(size.width - 100, size.height - 200)
+        imgToque.size = CGSize(width: 100, height: 100)
+        addChild(imgToque)
+        
+        tocando(imgToque)
 
-        // declaração da label conta
-        var lblTitulo = SKLabelNode()
+        
         lblTitulo.fontName = "Noteworthy-Bold"
         lblTitulo.fontSize = 100
-//        lblTitulo.position = CGPoint(x: self.size.width * 0.5, y: self.size.height * 0.2)
-        lblTitulo.text = "4dashuidasuiusiadhsuadiu "
+        lblTitulo.position = CGPoint(x: size.width * 0.5, y: size.height * 0.8)
         lblTitulo.fontColor = SKColor.blackColor()
-        lblTitulo.position = CGPoint(x: size.width/2, y: size.height/2)
-        lblTitulo.zPosition = 100000000000
-
         addChild(lblTitulo)
-        println("\(lblTitulo.text)")
         
-//        UILabel(frame: CGRectMake(0, 0, self.view!.frame.size.width * 0.8, self.view!.frame.height * 0.2))
-//        lblTitulo.adjustsFontSizeToFitWidth = true
-//        lblTitulo.font = UIFont(name: "Noteworthy-Bold", size: 100)
-//        lblTitulo.textAlignment = NSTextAlignment.Center
-//        lblTitulo.center = CGPointMake(self.view!.frame.size.width * 0.5, self.view!.frame.size.height * 0.2)
-//        lblTitulo.text = "4 + 5"
-//
-//        self.scene?.view!.addSubview(lblTitulo)
-//
-//        // declaração da label conta
-//        var lblConta = UILabel(frame: CGRectMake(0, 0, self.view!.frame.size.width * 0.5, self.view!.frame.height * 0.5))
-//        lblConta.adjustsFontSizeToFitWidth = true
-//        lblConta.numberOfLines = 3
-//        lblConta.font = UIFont(name: "Noteworthy-Bold", size: 100)
-//        lblConta.textAlignment = NSTextAlignment.Center
-//        lblConta.center = CGPointMake(self.view.frame.size.width * 0.25, self.view.frame.size.height * 0.5)
-//        self.view.addSubview(lblConta)
-//        
+        numero1Img.position = CGPoint(x: size.width * 0.25, y: size.height * 0.65)
+        numero1Img.size = CGSize(width: size.width * 0.1, height: size.height * 0.15)
+        numero1Img.alpha = 0.0
+        addChild(numero1Img)
+        
+        numero2Img.position = CGPoint(x: size.width * 0.25, y: size.height * 0.45)
+        numero2Img.size = CGSize(width: size.width * 0.1, height: size.height * 0.15)
+        numero2Img.alpha = 0.0
+        addChild(numero2Img)
+        
+        var ref = CGPathCreateMutable()
+        var linha = SKShapeNode()
+        CGPathMoveToPoint(ref, nil, size.width * 0.05, size.height * 0.325)
+        CGPathAddLineToPoint(ref, nil, size.width * 0.37, size.height * 0.325)
+        linha.path = ref
+        linha.lineWidth = 8
+        linha.fillColor = UIColor.blackColor()
+        linha.strokeColor = UIColor.blackColor()
+        addChild(linha)
+        
+        numero3Img.position = CGPoint(x: size.width * 0.25, y: size.height * 0.20)
+        numero3Img.size = CGSize(width: size.width * 0.1, height: size.height * 0.15)
+        numero3Img.alpha = 0.0
+        addChild(numero3Img)
+        
+        
+        
         switch tag {
         case 1:
-            println("hfahafsuihfuaihiauh")
-            println("fooooooiiiiiii =D")
-//            self.navigationItem.title = "SOMA"
+            vC.navigationItem.title = "SOMA"
             lblTitulo.text = "4 + 5"
-            var numero1Img: UIImage = UIImage(named: "4")!
-            let imageView1 = UIImageView(image: numero1Img)
-            imageView1.frame = CGRectMake(self.view!.frame.size.width * 0.2, self.view!.frame.size.height * 0.35, self.view!.frame.size.width * 0.1, self.view!.frame.size.height * 0.15)
-            self.view!.addSubview(imageView1)
             
-            var numero2Img: UIImage = UIImage(named: "5")!
-            let imageView2 = UIImageView(image: numero2Img)
-            imageView2.frame = CGRectMake(self.view!.frame.size.width * 0.2, self.view!.frame.size.height * 0.55, self.view!.frame.size.width * 0.1, self.view!.frame.size.height * 0.15)
-            self.view!.addSubview(imageView2)
+            numero1Img.texture = SKTexture(imageNamed: "4")
+            numero2Img.texture = SKTexture(imageNamed: "5")
+            numero3Img.texture = SKTexture(imageNamed: "9")
             
-            var numero3Img: UIImage = UIImage(named: "9")!
-            let imageView3 = UIImageView(image: numero3Img)
-            imageView3.frame = CGRectMake(self.view!.frame.size.width * 0.2, self.view!.frame.size.height * 0.75, self.view!.frame.size.width * 0.1, self.view!.frame.size.height * 0.15)
-            self.view!.addSubview(imageView3)
+            n1 = 4
+            n2 = 5
             
-//            var dist = 0.1
-//            for var i = 0; i < 4; i++ {
-//                
-//                //                let delayTime3 = dispatch_time(DISPATCH_TIME_NOW, Int64(2 * Double(NSEC_PER_SEC)))
-//                //                dispatch_after(delayTime3, dispatch_get_main_queue()) {
-//                var exemplo1Img: UIImage = UIImage(named: "4")!
-//                let imageViewEx1 = UIImageView(image: exemplo1Img)
-//                imageViewEx1.frame = CGRectMake(self.view.frame.size.width * CGFloat(0.3 + dist), self.view.frame.size.height * 0.35, self.view.frame.size.width * 0.1, self.view.frame.size.height * 0.15)
-//                imageViewEx1.alpha = 0.0
-//                self.view.addSubview(imageViewEx1)
-//                
-//                UIView.animateWithDuration(2, animations: { () -> Void in
-//                    
-//                    imageViewEx1.alpha = 1.0
-//                })
-//                
-//                //                    }
-//                dist += 0.1
-//            }
+        case 2:
+            vC.navigationItem.title = "SUBTRAÇÃO"
+            lblTitulo.text = "8 - 3"
             
-
+            numero1Img.texture = SKTexture(imageNamed: "8")
+            numero2Img.texture = SKTexture(imageNamed: "3")
+            numero3Img.texture = SKTexture(imageNamed: "5")
+            
+            n1 = 5
+            n2 = 3
+            
+        case 3:
+            vC.navigationItem.title = "MULTIPLICAÇÃO"
+            lblTitulo.text = "2 × 3"
+            
+            numero1Img.texture = SKTexture(imageNamed: "2")
+            numero2Img.texture = SKTexture(imageNamed: "3")
+            numero3Img.texture = SKTexture(imageNamed: "6")
+            
+            n1 = 2
+            n2 = 2
+        case 4:
+            vC.navigationItem.title = "DIVISÃO"
+            lblTitulo.text = "10 ÷ 5"
         default:
             break
         }
-//        if tag == 1 {
-//        }
-//        if buttonTag == 2 {
-//            self.navigationItem.title = "SUBTRAÇÃO"
-//            lblTitulo.text = "Vamos aprender a subtrair?"
-//        }
-//        if buttonTag == 3 {
-//            self.navigationItem.title = "MULTIPLICAÇÃO"
-//            lblTitulo.text = "Vamos aprender a multiplicar?"
-//        }
-//        if buttonTag == 4 {
-//            self.navigationItem.title = "DIVISÃO"
-//            lblTitulo.text = "Vamos aprender a dividir?"
-//        }
-
     }
     
+    override func touchesBegan(touches: Set<NSObject>, withEvent event: UIEvent) {
+        let touch = (touches as NSSet).allObjects[0] as! UITouch
+        let touchLocation = touch.locationInNode(self)
+        switch tag {
+        case 1: // adicao
+            if rodou1 == false {
+                imgToque.alpha = 0.0
+                self.userInteractionEnabled = false
+                numero1Img.runAction(SKAction.sequence([fadeIn]), completion: { () -> Void in
+                    self.imgToque.alpha = 1.0
+                    self.userInteractionEnabled = true
+                })
+                addImg1(numero1Img)
+                rodou1 = true
+            }
+            else {
+                if rodou2 == false {
+                    imgToque.alpha = 0.0
+                    self.userInteractionEnabled = false
+                    numero2Img.runAction(SKAction.sequence([fadeIn]), completion: { () -> Void in
+                        self.imgToque.alpha = 1.0
+                        self.userInteractionEnabled = true
+                    })
+                    addImg2(numero2Img)
+                    rodou2 = true
+                }
+                else {
+                    if rodou3 == false {
+                        imgToque.alpha = 0.0
+                        self.userInteractionEnabled = false
+                        numero3Img.runAction(SKAction.sequence([fadeIn]))
+                        
+                        self.enumerateChildNodesWithName("4") {
+                            node, stop in
+                            let actionMove = SKAction.moveBy(CGVector(dx: 0.0, dy: -self.size.height * 0.4), duration: 2.0)
+                            node.runAction(SKAction.sequence([actionMove]))
+                        }
+                        
+                        self.enumerateChildNodesWithName("5") {
+                            node, stop in
+                            let actionMove = SKAction.moveBy(CGVector(dx: 0.0, dy: -self.size.height * 0.3), duration: 2.0)
+                            node.runAction(SKAction.sequence([actionMove]))
+                        }
+                        rodou3 = true
+                        self.userInteractionEnabled = true
+                    }
+                }
+            }
+            
+        case 2: // subtracao
+            if rodou1 == false {
+                imgToque.alpha = 0.0
+                self.userInteractionEnabled = false
+                numero1Img.runAction(SKAction.sequence([fadeIn]), completion: { () -> Void in
+                    self.imgToque.alpha = 1.0
+                    self.userInteractionEnabled = true
+                })
+                addImg1(numero1Img)
+                addImg2(numero2Img)
+                rodou1 = true
+            }
+            else {
+                if rodou2 == false {
+                    imgToque.alpha = 0.0
+                    self.userInteractionEnabled = false
+                    numero2Img.runAction(SKAction.sequence([fadeIn]), completion: { () -> Void in
+                        self.imgToque.alpha = 1.0
+                        self.userInteractionEnabled = true
+                    })
+                    moveImg2()
+                    rodou2 = true
+                }
+                else {
+                    if rodou3 == false {
+                        imgToque.alpha = 0.0
+                        self.userInteractionEnabled = false
+                        numero3Img.runAction(SKAction.sequence([fadeIn]))
+                        removeImg2()
+                        self.enumerateChildNodesWithName("4") {
+                            node, stop in
+                            let actionMove = SKAction.moveToY(self.numero3Img.position.y, duration: 2.0)
+                            node.runAction(SKAction.sequence([actionMove]))
+                        }
+                        rodou3 = true
+                        self.userInteractionEnabled = true
+                    }
+                }
+            }
+        case 3: // multiplicacao
+            if rodou1 == false {
+                imgToque.alpha = 0.0
+                self.userInteractionEnabled = false
+                numero1Img.runAction(SKAction.sequence([fadeIn]), completion: { () -> Void in
+                    self.imgToque.alpha = 1.0
+                    self.userInteractionEnabled = true
+                })
+                addImg1(numero1Img)
+                rodou1 = true
+            }
+            else {
+                if rodou2 == false {
+                    imgToque.alpha = 0.0
+                    self.userInteractionEnabled = false
+                    numero2Img.runAction(SKAction.sequence([fadeIn]), completion: { () -> Void in
+                        self.imgToque.alpha = 1.0
+                        self.userInteractionEnabled = true
+                    })
+
+                    self.enumerateChildNodesWithName("4") {
+                        node, stop in
+                        var no: SKNode = node
+                        self.addImgRepetida(no)
+                    }
+                    rodou2 = true
+                }
+                else {
+                    if rodou3 == false {
+                        imgToque.alpha = 0.0
+                        self.userInteractionEnabled = false
+                        numero3Img.runAction(SKAction.sequence([fadeIn]))
+                        self.enumerateChildNodesWithName("7") {
+                            node, stop in
+                            let actionMove = SKAction.moveBy(CGVector(dx: 0.0, dy: -self.size.height * 0.3), duration: 2.0)
+                            node.runAction(SKAction.sequence([actionMove]))
+                        }
+                        
+                        self.enumerateChildNodesWithName("4") {
+                            node, stop in
+                            let actionMove = SKAction.moveBy(CGVector(dx: 0.0, dy: -self.size.height * 0.3), duration: 2.0)
+                            
+                            node.runAction(SKAction.sequence([actionMove]))
+                        }
+                        rodou3 = true
+                        self.userInteractionEnabled = false
+
+                    }
+                }
+            }
+        case 4:
+            var bla = 0
+        default:
+            break
+        }
+        
+    }
     
+    // adiciona o primeiro conjunto de imagens na adicao, subtracao e multiplicacao
+    func addImg1(img: SKSpriteNode) {
+        for var i = 0; i < n1; i++ {
+            let exemplo1Img = SKSpriteNode(imageNamed: "4")
+            exemplo1Img.name = "4"
+            exemplo1Img.physicsBody = SKPhysicsBody(rectangleOfSize: exemplo1Img.frame.size)
+            exemplo1Img.physicsBody!.dynamic = false
+            
+            var xPos1 = (CGFloat(self.size.width * 2) * CGFloat(Double(i) / 20) + CGFloat(self.size.width))
+            exemplo1Img.position = CGPointMake(xPos1, img.position.y)
+            exemplo1Img.size = CGSize(width: size.width * 0.1, height: size.height * 0.15)
+            self.addChild(exemplo1Img)
+            
+            let actionMove = SKAction.moveBy(CGVector(dx: -self.size.width / 2, dy: 0.0), duration: 2.0)
+            exemplo1Img.runAction(SKAction.sequence([actionMove]))
+        }
+    }
     
+    // adiciona o segundo conjunto de imagens na adicao e na subtracao
+    func addImg2(img: SKSpriteNode) {
+        for var i = 0; i < n2; i++ {
+            let exemplo2Img = SKSpriteNode(imageNamed: "5")
+            exemplo2Img.name = "5"
+            exemplo2Img.physicsBody = SKPhysicsBody(rectangleOfSize: exemplo2Img.frame.size)
+            exemplo2Img.physicsBody!.dynamic = false
+            
+            var xPos2 = (CGFloat(self.size.width * 2) * CGFloat(Double(i) / 20) + CGFloat(self.size.width))
+            exemplo2Img.position = CGPointMake(xPos2, img.position.y)
+            exemplo2Img.size = CGSize(width: size.width * 0.1, height: size.height * 0.15)
+            self.addChild(exemplo2Img)
+            
+            let actionMove = SKAction.moveBy(CGVector(dx: -self.size.width / 2, dy: 0.0), duration: 2.0)
+            exemplo2Img.runAction(SKAction.sequence([actionMove]))
+        }
+    }
     
+    // move o segundo conjunto de imagens na subtracao
+    func moveImg2() {
+        self.enumerateChildNodesWithName("5") {
+            node, stop in
+            let actionMove = SKAction.moveBy(CGVector(dx: 0.0, dy: -self.size.height * 0.1), duration: 2.0)
+            node.runAction(SKAction.sequence([actionMove]))
+        }
+    }
+    
+    // remove da tela o segundo conjunto de imagens da subtracao
+    func removeImg2() {
+        self.enumerateChildNodesWithName("5") {
+            node, stop in
+            node.runAction(SKAction.sequence([self.fadeOut]))
+        }
+    }
+    
+    // adiciona o segundo conjunto de imagens na multiplicacao
+    func addImgRepetida(img: SKNode) {
+        for var i = 0; i < n2; i++ {
+            let exemplo2Img = SKSpriteNode(imageNamed: "7")
+            exemplo2Img.name = "7"
+            exemplo2Img.physicsBody = SKPhysicsBody(rectangleOfSize: exemplo2Img.frame.size)
+            exemplo2Img.physicsBody!.dynamic = false
+            
+            exemplo2Img.position = CGPointMake(img.position.x, img.position.y)
+            exemplo2Img.size = CGSize(width: size.width * 0.1, height: size.height * 0.15)
+            self.addChild(exemplo2Img)
+            
+            let actionMove2 = SKAction.moveBy(CGVector(dx: 0.0, dy: -self.size.width * 0.2), duration: 2.0)
+            exemplo2Img.runAction(SKAction.sequence([actionMove2]))
+            
+            
+            let exemplo3Img = SKSpriteNode(imageNamed: "7")
+            exemplo3Img.name = "7"
+            exemplo3Img.physicsBody = SKPhysicsBody(rectangleOfSize: exemplo3Img.frame.size)
+            exemplo3Img.physicsBody!.dynamic = false
+            
+            exemplo3Img.position = CGPointMake(img.position.x, img.position.y)
+            exemplo3Img.size = CGSize(width: size.width * 0.1, height: size.height * 0.15)
+            self.addChild(exemplo3Img)
+            
+            let actionMove3 = SKAction.moveBy(CGVector(dx: 0.0, dy: -self.size.width * 0.4), duration: 2.0)
+            exemplo3Img.runAction(SKAction.sequence([actionMove3]))
+
+        }
+    }
+    
+    // pausa o jogo
+    func pause() {
+        self.view?.paused = true
+    }
+    
+    // animacao do toque
+    func tocando(object: SKSpriteNode) {
+        
+        let toqueNaTela = SKAction.animateWithTextures([
+            SKTexture(imageNamed: "toque1"),
+            SKTexture(imageNamed: "toque2"),
+            ], timePerFrame: 0.5)
+        
+        let run = SKAction.repeatActionForever(toqueNaTela)
+        object.runAction(run, withKey: "tocando")
+    }
+
 }
