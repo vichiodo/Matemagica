@@ -54,7 +54,6 @@ class PlayerViewController: UIViewController, UIImagePickerControllerDelegate, U
     @IBAction func adicionarPlayer(sender: AnyObject) {
         self.navigationItem.rightBarButtonItem?.title = "Salvar"
         
-        self.navigationItem.setLeftBarButtonItem(UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Cancel, target: self, action: "cancelar:"), animated: true)
         
         nome.text = ""
         foto.image = UIImage(named: "imgdefault")

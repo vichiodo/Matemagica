@@ -107,12 +107,12 @@
 				B32415201B0535D800C1378B /* PlayerTableViewCell.swift */,
 				B324151A1B05330500C1378B /* DIYViewController.swift */,
 				B32415101B052C2200C1378B /* PlayerManager.swift */,
+				B37736341B07C84B00C74E88 /* Player.swift */,
 				B32414F01B051B6600C1378B /* Main.storyboard */,
 				B32414F31B051B6600C1378B /* Images.xcassets */,
 				B32414F51B051B6600C1378B /* LaunchScreen.xib */,
 				B32414EB1B051B6600C1378B /* Matemagica.xcdatamodeld */,
 				B32414E71B051B6600C1378B /* Supporting Files */,
-				B37736341B07C84B00C74E88 /* Player.swift */,
 			);
 			path = Matemagica;
 			sourceTree = "<group>";
@@ -191,7 +191,7 @@
 				TargetAttributes = {
 					B32414E31B051B6600C1378B = {
 						CreatedOnToolsVersion = 6.3.1;
-						DevelopmentTeam = Y5568WY3X8;
+						DevelopmentTeam = YUL27X4ZWF;
 					};
 					B32414FB1B051B6600C1378B = {
 						CreatedOnToolsVersion = 6.3.1;
