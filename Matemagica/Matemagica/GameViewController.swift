@@ -7,31 +7,42 @@
 //
 
 import UIKit
+import SpriteKit
 
 class GameViewController: UIViewController {
 
-    @IBOutlet weak var singleplayer: UIButton!
-    @IBOutlet weak var multiplayer: UIButton!
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
     }
 
+    @IBAction func jogoSingle(sender: AnyObject) {
+//        let scene = GameScene(size: view.bounds.size)
+//        scene.scaleMode = .ResizeFill
+//        let skView:SKView = SKView(frame: self.view.frame)
+//        self.view.addSubview(skView)
+//        skView.presentScene(scene)
+        
+    }
+    
+    
+    @IBAction func jogoMulti(sender: AnyObject) {
+        let scene = MultiGameScene(size: view.bounds.size)
+        scene.scaleMode = .ResizeFill
+        let skView:SKView = SKView(frame: self.view.frame)
+        self.view.addSubview(skView)
+        skView.presentScene(scene)
+        
+    }
+    
+    override func prefersStatusBarHidden() -> Bool {
+        return true
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
 
     }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }

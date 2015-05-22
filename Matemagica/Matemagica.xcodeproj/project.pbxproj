@@ -23,6 +23,8 @@
 		B324151F1B05335B00C1378B /* PlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B324151E1B05335B00C1378B /* PlayerViewController.swift */; };
 		B32415211B0535D800C1378B /* PlayerTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B32415201B0535D800C1378B /* PlayerTableViewCell.swift */; };
 		B37736351B07C84B00C74E88 /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = B37736341B07C84B00C74E88 /* Player.swift */; };
+		B3E50FE71B0F992A00E79E78 /* SingleGameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3E50FE61B0F992A00E79E78 /* SingleGameScene.swift */; };
+		B3E50FE91B0F993E00E79E78 /* MultiGameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3E50FE81B0F993E00E79E78 /* MultiGameScene.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -56,6 +58,8 @@
 		B324151E1B05335B00C1378B /* PlayerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayerViewController.swift; sourceTree = "<group>"; };
 		B32415201B0535D800C1378B /* PlayerTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayerTableViewCell.swift; sourceTree = "<group>"; };
 		B37736341B07C84B00C74E88 /* Player.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
+		B3E50FE61B0F992A00E79E78 /* SingleGameScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SingleGameScene.swift; sourceTree = "<group>"; };
+		B3E50FE81B0F993E00E79E78 /* MultiGameScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MultiGameScene.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,6 +107,8 @@
 				8C45993F1B065A9400EFB872 /* TutorialDetailViewController.swift */,
 				8CEB90F61B0BB17F004AB1BF /* Tutorial.swift */,
 				B324151C1B05331C00C1378B /* GameViewController.swift */,
+				B3E50FE61B0F992A00E79E78 /* SingleGameScene.swift */,
+				B3E50FE81B0F993E00E79E78 /* MultiGameScene.swift */,
 				B324151E1B05335B00C1378B /* PlayerViewController.swift */,
 				B32415201B0535D800C1378B /* PlayerTableViewCell.swift */,
 				B324151A1B05330500C1378B /* DIYViewController.swift */,
@@ -249,7 +255,9 @@
 				B32415211B0535D800C1378B /* PlayerTableViewCell.swift in Sources */,
 				B32414EF1B051B6600C1378B /* ViewController.swift in Sources */,
 				B32414ED1B051B6600C1378B /* Matemagica.xcdatamodeld in Sources */,
+				B3E50FE91B0F993E00E79E78 /* MultiGameScene.swift in Sources */,
 				B324151D1B05331C00C1378B /* GameViewController.swift in Sources */,
+				B3E50FE71B0F992A00E79E78 /* SingleGameScene.swift in Sources */,
 				B324151F1B05335B00C1378B /* PlayerViewController.swift in Sources */,
 				8C4599401B065A9400EFB872 /* TutorialDetailViewController.swift in Sources */,
 				B32415171B0531C600C1378B /* TutorialViewController.swift in Sources */,
