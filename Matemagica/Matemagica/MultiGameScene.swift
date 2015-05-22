@@ -21,8 +21,7 @@ class MultiGameScene: SKScene {
     var alternativa22 = SKLabelNode()
     var alternativa23 = SKLabelNode()
     var alternativa24 = SKLabelNode()
-    
-    
+        
     override func didMoveToView(view: SKView) {
         backgroundColor = SKColor.whiteColor()
         

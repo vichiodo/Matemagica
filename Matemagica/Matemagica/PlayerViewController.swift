@@ -15,6 +15,11 @@ class PlayerViewController: UIViewController, UIImagePickerControllerDelegate, U
     @IBOutlet weak var foto: UIImageView!
     @IBOutlet weak var btnES: UIBarButtonItem!
     
+    let notificacao:NSNotificationCenter = NSNotificationCenter.defaultCenter()
+
+    
+    var tipoView: Int!
+    
     let imagePicker:UIImagePickerController = UIImagePickerController()
     var userDef: NSUserDefaults = NSUserDefaults.standardUserDefaults()
     
@@ -27,7 +32,10 @@ class PlayerViewController: UIViewController, UIImagePickerControllerDelegate, U
         btnES.possibleTitles = Set(["Editar", "Salvar"])
         nome.userInteractionEnabled = false
         foto.userInteractionEnabled = false
+        tipoView = 0
         
+        notificacao.addObserver(self, selector: "mudarView:", name: "mudarView", object: nil)
+
         imagePicker.delegate = self
         imagePicker.allowsEditing = true
         if userDef.objectForKey("index") != nil {
@@ -49,6 +57,15 @@ class PlayerViewController: UIViewController, UIImagePickerControllerDelegate, U
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
+    }
+    
+    func mudarView(n: NSNotification){
+        let info = n.userInfo as! Dictionary<String, AnyObject>
+        
+        let msg: AnyObject? = info ["mensagem"]
+        
+        tipoView = msg as! Int
+        
     }
     
     @IBAction func adicionarPlayer(sender: AnyObject) {
