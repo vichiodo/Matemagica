@@ -21,9 +21,7 @@ class MultiGameScene: SKScene {
     var alternativa22 = SKLabelNode()
     var alternativa23 = SKLabelNode()
     var alternativa24 = SKLabelNode()
-    
-    let bloco = SKSpriteNode(imageNamed: "bloco")
-    
+        
     override func didMoveToView(view: SKView) {
         backgroundColor = SKColor.whiteColor()
         
@@ -68,9 +66,6 @@ class MultiGameScene: SKScene {
     }
     
     func addAlternativas(){
-        for var i = 0; i<4; ++i{
-            
-        }
         
         //////////////////////////////de cabeça para baixo
         alternativa11.position = CGPoint(x: size.width/2+200, y: size.height/2+400)
@@ -125,6 +120,48 @@ class MultiGameScene: SKScene {
         alternativa23.fontColor = UIColor.blackColor()
         alternativa23.fontSize = 50
         addChild(alternativa23)
+        
+        
+        for var i = 0; i<8; ++i {
+            let bloco = SKSpriteNode(imageNamed: "bloco")
+
+            if i == 0 {
+                bloco.position = CGPoint(x: alternativa11.position.x, y: alternativa11.position.y-20)
+            }
+            if i == 1 {
+                bloco.position = CGPoint(x: alternativa12.position.x, y: alternativa12.position.y-20)
+            }
+            if i == 2 {
+                bloco.position = CGPoint(x: alternativa13.position.x, y: alternativa13.position.y-20)
+            }
+            if i == 3 {
+                bloco.position = CGPoint(x: alternativa14.position.x, y: alternativa14.position.y-20)
+            }
+            if i == 4 {
+                bloco.position = CGPoint(x: alternativa21.position.x, y: alternativa21.position.y+20)
+            }
+            if i == 5 {
+                bloco.position = CGPoint(x: alternativa22.position.x, y: alternativa22.position.y+20)
+            }
+            if i == 6 {
+                bloco.position = CGPoint(x: alternativa23.position.x, y: alternativa23.position.y+20)
+            }
+            if i == 7 {
+                bloco.position = CGPoint(x: alternativa24.position.x, y: alternativa24.position.y+20)
+            }
+            
+            bloco.name = "bloco\(i+1)"
+            bloco.size = CGSize(width: 300, height: 80)
+            bloco.zPosition = -100
+            addChild(bloco)
+        }
+
+    }
+    
+    override func touchesBegan(touches: Set<NSObject>, withEvent event: UIEvent) {
+        let touch = (touches as NSSet).allObjects[0] as! UITouch
+        let touchLocation = touch.locationInNode(self)
+
         
     }
 

@@ -15,11 +15,16 @@ class PlayerViewController: UIViewController, UIImagePickerControllerDelegate, U
     @IBOutlet weak var foto: UIImageView!
     @IBOutlet weak var btnES: UIBarButtonItem!
     
+    let notificacao:NSNotificationCenter = NSNotificationCenter.defaultCenter()
+
+    
+    var tipoView: Int!
+    
     let imagePicker:UIImagePickerController = UIImagePickerController()
     var userDef: NSUserDefaults = NSUserDefaults.standardUserDefaults()
     
     lazy var players:Array<Player> = {
-        return PlayerManager.instance.buscarPlayers()
+        return PlayerManager.sharedInstance.buscarPlayers()
         }()
     
     override func viewDidLoad() {
@@ -27,7 +32,10 @@ class PlayerViewController: UIViewController, UIImagePickerControllerDelegate, U
         btnES.possibleTitles = Set(["Editar", "Salvar"])
         nome.userInteractionEnabled = false
         foto.userInteractionEnabled = false
+        tipoView = 0
         
+        notificacao.addObserver(self, selector: "mudarView:", name: "mudarView", object: nil)
+
         imagePicker.delegate = self
         imagePicker.allowsEditing = true
         if userDef.objectForKey("index") != nil {
@@ -49,6 +57,15 @@ class PlayerViewController: UIViewController, UIImagePickerControllerDelegate, U
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
+    }
+    
+    func mudarView(n: NSNotification){
+        let info = n.userInfo as! Dictionary<String, AnyObject>
+        
+        let msg: AnyObject? = info ["mensagem"]
+        
+        tipoView = msg as! Int
+        
     }
     
     @IBAction func adicionarPlayer(sender: AnyObject) {
@@ -110,7 +127,7 @@ class PlayerViewController: UIViewController, UIImagePickerControllerDelegate, U
             }
             else {
                 salvarBanco(nome.text, foto: foto.image!)
-                players = PlayerManager.instance.buscarPlayers()
+                players = PlayerManager.sharedInstance.buscarPlayers()
                 self.tableView.reloadData()
                 
                 nome.userInteractionEnabled = false
@@ -152,8 +169,8 @@ class PlayerViewController: UIViewController, UIImagePickerControllerDelegate, U
     
     func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
         if editingStyle == UITableViewCellEditingStyle.Delete{
-            PlayerManager.instance.removerJogador(indexPath.row)
-            players = PlayerManager.instance.buscarPlayers()
+            PlayerManager.sharedInstance.removerJogador(indexPath.row)
+            players = PlayerManager.sharedInstance.buscarPlayers()
             if indexPath.row == 0 {
                 userDef.setObject(0, forKey: "index")
             }
@@ -216,13 +233,13 @@ class PlayerViewController: UIViewController, UIImagePickerControllerDelegate, U
     }
     
     func salvarBanco(nome: String, foto: UIImage){
-        let player = PlayerManager.instance.novoPlayer()
+        let player = PlayerManager.sharedInstance.novoPlayer()
         let imagem = UIImageJPEGRepresentation(foto, 1)
         
         player.setValue(nome, forKey: "nomePlayer")
         player.setValue(imagem, forKey: "fotoPlayer")
         
-        PlayerManager.instance.salvarPlayer()
+        PlayerManager.sharedInstance.salvarPlayer()
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {

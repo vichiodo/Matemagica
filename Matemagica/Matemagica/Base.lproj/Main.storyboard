@@ -8,7 +8,7 @@
         <!--Jogador-->
         <scene sceneID="ent-SG-bSI">
             <objects>
-                <viewController id="d0Q-qb-8LC" customClass="PlayerViewController" customModule="Matemagica" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="playerView" useStoryboardIdentifierAsRestorationIdentifier="YES" id="d0Q-qb-8LC" customClass="PlayerViewController" customModule="Matemagica" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="sef-uJ-6CG"/>
                         <viewControllerLayoutGuide type="bottom" id="jng-yg-Phg"/>
