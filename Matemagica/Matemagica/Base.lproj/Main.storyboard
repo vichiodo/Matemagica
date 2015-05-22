@@ -273,34 +273,62 @@
                         <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="bezel" placeholder="Número 1" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="5pd-rT-klt">
-                                <rect key="frame" x="104" y="304" width="165" height="280"/>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="Número 1" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="5pd-rT-klt">
+                                <rect key="frame" x="104" y="164" width="165" height="280"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="90"/>
                                 <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Resposta" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8tB-s6-qR8">
-                                <rect key="frame" x="165" y="738" width="439" height="132"/>
+                                <rect key="frame" x="16" y="738" width="736" height="132"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="85"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="bezel" placeholder="Número 2" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="YcU-eM-skE">
-                                <rect key="frame" x="507" y="304" width="165" height="280"/>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="Número 2" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="YcU-eM-skE">
+                                <rect key="frame" x="507" y="164" width="165" height="280"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="90"/>
                                 <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                             </textField>
                             <pickerView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dOJ-nk-pq3">
-                                <rect key="frame" x="309" y="328" width="151" height="231"/>
+                                <rect key="frame" x="309" y="194" width="151" height="231"/>
                             </pickerView>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="Sua resposta" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="jiw-Ns-Pqv">
+                                <rect key="frame" x="315" y="485" width="138" height="132"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="90"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="G1e-XZ-0Mg">
+                                <rect key="frame" x="277" y="643" width="215" height="73"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="28"/>
+                                <state key="normal" title="Está certo?">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="verificacao:" destination="Cyb-PC-TSL" eventType="touchUpInside" id="ABm-sJ-9bN"/>
+                                </connections>
+                            </button>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="Quociente" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="IwU-20-LEr">
+                                <rect key="frame" x="117" y="485" width="138" height="132"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="90"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="Resto" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="g5U-iE-gam">
+                                <rect key="frame" x="520" y="485" width="138" height="132"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="90"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="0.67871592422623905" green="0.81568627449999997" blue="0.81204167722480269" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="iPad"/>
                     <connections>
                         <outlet property="operacoes" destination="dOJ-nk-pq3" id="jhY-r1-E0l"/>
                         <outlet property="operando1" destination="5pd-rT-klt" id="aQ8-tj-NLj"/>
                         <outlet property="operando2" destination="YcU-eM-skE" id="jfb-ux-0VN"/>
+                        <outlet property="quocienteDivisao" destination="IwU-20-LEr" id="u61-AV-zvi"/>
+                        <outlet property="restoDivisao" destination="g5U-iE-gam" id="YEe-FM-HEc"/>
                         <outlet property="resultado" destination="8tB-s6-qR8" id="TSS-ge-7HR"/>
+                        <outlet property="resultadoUsuario" destination="jiw-Ns-Pqv" id="tko-ER-bLV"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5u8-ID-RLS" userLabel="First Responder" sceneMemberID="firstResponder"/>
