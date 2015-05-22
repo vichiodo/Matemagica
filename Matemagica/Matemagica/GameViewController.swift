@@ -21,11 +21,11 @@ class GameViewController: UIViewController {
     }
 
     @IBAction func jogoSingle(sender: AnyObject) {
-//        let scene = GameScene(size: view.bounds.size)
-//        scene.scaleMode = .ResizeFill
-//        let skView:SKView = SKView(frame: self.view.frame)
-//        self.view.addSubview(skView)
-//        skView.presentScene(scene)
+        let singleScene = SingleGameScene(size: view.bounds.size)
+        singleScene.scaleMode = .ResizeFill
+        let skView:SKView = SKView(frame: self.view.frame)
+        self.view.addSubview(skView)
+        skView.presentScene(singleScene)
         
     }
     
