@@ -40,32 +40,38 @@ class Tutorial: SKScene {
     override func didMoveToView(view: SKView) {
         backgroundColor = SKColor.whiteColor()
         
+        // notificationCenter para verificar quando voltar para a view anterior ele para o jogo
         var notification:NSNotificationCenter = NSNotificationCenter.defaultCenter()
         notification.addObserver(self, selector: "pause", name: "pauseView", object: nil)
         
+        // adiciona a imagem do toque
         imgToque.position = CGPointMake(size.width - 100, size.height - 200)
         imgToque.size = CGSize(width: 100, height: 100)
         addChild(imgToque)
         
+        // anima a imagem do toque
         tocando(imgToque)
 
-        
+        // label mostrando a conta do exercicio
         lblTitulo.fontName = "Noteworthy-Bold"
         lblTitulo.fontSize = 100
         lblTitulo.position = CGPoint(x: size.width * 0.5, y: size.height * 0.8)
         lblTitulo.fontColor = SKColor.blackColor()
         addChild(lblTitulo)
         
+        // imagem do primeiro numero da conta
         numero1Img.position = CGPoint(x: size.width * 0.25, y: size.height * 0.65)
         numero1Img.size = CGSize(width: size.width * 0.1, height: size.height * 0.15)
         numero1Img.alpha = 0.0
         addChild(numero1Img)
         
+        // imagem do segundo numero da conta
         numero2Img.position = CGPoint(x: size.width * 0.25, y: size.height * 0.45)
         numero2Img.size = CGSize(width: size.width * 0.1, height: size.height * 0.15)
         numero2Img.alpha = 0.0
         addChild(numero2Img)
         
+        // adiciona uma linha para separar a conta do resultado
         var ref = CGPathCreateMutable()
         var linha = SKShapeNode()
         CGPathMoveToPoint(ref, nil, size.width * 0.05, size.height * 0.325)
@@ -76,13 +82,13 @@ class Tutorial: SKScene {
         linha.strokeColor = UIColor.blackColor()
         addChild(linha)
         
+        // imagem do terceiro numero (resultado)
         numero3Img.position = CGPoint(x: size.width * 0.25, y: size.height * 0.20)
         numero3Img.size = CGSize(width: size.width * 0.1, height: size.height * 0.15)
         numero3Img.alpha = 0.0
         addChild(numero3Img)
         
-        
-        
+        // switch para verificar de qual operacao ele veio
         switch tag {
         case 1:
             vC.navigationItem.title = "SOMA"

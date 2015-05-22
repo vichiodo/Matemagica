@@ -8,7 +8,7 @@
 
 import UIKit
 
-class DIYViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
+class DIYViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource, UINavigationControllerDelegate {
     
     @IBOutlet weak var operacoes: UIPickerView!
     @IBOutlet weak var operando1: UITextField!
@@ -33,6 +33,11 @@ class DIYViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDat
         
         pickerData = ["+", "-", "×", "÷"]
         
+//        self.navigationItem.leftBarButtonItem
+//        self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "< Voltar", style:.Plain, target:self, action:"voltar")
+    }
+    func voltar() {
+        navigationController?.popViewControllerAnimated(true)
     }
     
     override func didReceiveMemoryWarning() {
@@ -52,6 +57,10 @@ class DIYViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDat
     //MARK: Delegates
     func pickerView(pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String! {
         return pickerData[row] as! String
+    }
+    
+    func pickerView(pickerView: UIPickerView, rowHeightForComponent component: Int) -> CGFloat {
+        return 50
     }
     
     func pickerView(pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
@@ -125,9 +134,7 @@ class DIYViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDat
                     resultado.text = "Errado. O certo é \(respConta) resto \(respResto)"
                     resultado.adjustsFontSizeToFitWidth = true
                     resultado.textColor = UIColor.redColor()
-                    
                 }
-
             }
             else {
                 if respUsuario == respConta {
@@ -138,14 +145,32 @@ class DIYViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDat
                     resultado.text = "Errado. O certo é \(respConta)"
                     resultado.adjustsFontSizeToFitWidth = true
                     resultado.textColor = UIColor.redColor()
-                    
+                }
+            }
+        }
+        else {
+            var txtAlert = "Preencha todos os campos:\n\n"
+            if n1 == nil {
+                txtAlert += " - Primeiro número\n"
+            }
+            if n2 == nil {
+                txtAlert += " - Segundo número\n"
+            }
+            if operacaoSelecionada == 3 {
+                if respUsuarioQuociente == nil {
+                    txtAlert += " - Resposta do quociente\n"
+                }
+                if respUsuarioResto == nil {
+                    txtAlert += " - Resposta do resto\n"
+                }
+            }
+            else {
+                if respUsuario == nil {
+                    txtAlert += " - Sua resposta\n"
                 }
             }
             
-            
-        }
-        else {
-            let alerta: UIAlertController = UIAlertController(title: "Atenção", message: "Preencha todos os campos", preferredStyle:.Alert)
+            let alerta: UIAlertController = UIAlertController(title: "Atenção", message: txtAlert, preferredStyle:.Alert)
             let al1: UIAlertAction = UIAlertAction(title: "OK", style: .Default, handler: nil)
             // adiciona a ação no alertController
             [alerta.addAction(al1)]
