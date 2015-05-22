@@ -17,7 +17,9 @@ class GameViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
+        var notification: NSNotificationCenter = NSNotificationCenter.defaultCenter()
+        notification.postNotificationName("pauseView", object: self)
     }
 
     @IBAction func jogoSingle(sender: AnyObject) {
