@@ -11,7 +11,7 @@ import UIKit
 
 
 class PlayerManager{
-    static let instance = PlayerManager()
+    static let sharedInstance = PlayerManager()
     static let entityName: String = "Player"
     
     lazy var managedContext:NSManagedObjectContext = {

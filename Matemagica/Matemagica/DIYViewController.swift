@@ -13,14 +13,25 @@ class DIYViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDat
     @IBOutlet weak var operacoes: UIPickerView!
     @IBOutlet weak var operando1: UITextField!
     @IBOutlet weak var operando2: UITextField!
+    @IBOutlet weak var resultadoUsuario: UITextField!
+    
+    @IBOutlet weak var quocienteDivisao: UITextField!
+    @IBOutlet weak var restoDivisao: UITextField!
+    
     @IBOutlet weak var resultado: UILabel!
     var pickerData: NSArray = NSArray()
+    var operacaoSelecionada: Int! = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
         operacoes.delegate = self
         operacoes.dataSource = self
-        pickerData = ["+", "-", "*", "/"]
+        
+        resultadoUsuario.hidden = false
+        quocienteDivisao.hidden = true
+        restoDivisao.hidden = true
+        
+        pickerData = ["+", "-", "×", "÷"]
         
     }
     
@@ -44,40 +55,104 @@ class DIYViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDat
     }
     
     func pickerView(pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        var n1 = operando1.text.toInt()
-        var n2 = operando2.text.toInt()
+        resultadoUsuario.text = ""
+        quocienteDivisao.text = ""
+        restoDivisao.text = ""
+        resultado.text = "Resposta"
         
         switch (row) {
         case 0:
-            var n = Double(n1!) + Double(n2!)
-            resultado.text = "\(n)"
-            break;
+            operacaoSelecionada = 0
+            resultadoUsuario.hidden = false
+            quocienteDivisao.hidden = true
+            restoDivisao.hidden = true
         case 1:
-            var n = Double(n1!) - Double(n2!)
-            resultado.text = "\(n)"
-            break;
+            operacaoSelecionada = 1
+            resultadoUsuario.hidden = false
+            quocienteDivisao.hidden = true
+            restoDivisao.hidden = true
         case 2:
-            var n = Double(n1!) * Double(n2!)
-            resultado.text = "\(n)"
-            break;
+            operacaoSelecionada = 2
+            resultadoUsuario.hidden = false
+            quocienteDivisao.hidden = true
+            restoDivisao.hidden = true
         case 3:
-            var n = Double(n1!) / Double(n2!)
-            resultado.text = "\(n)"
-            break;
+            operacaoSelecionada = 3
+            resultadoUsuario.hidden = true
+            quocienteDivisao.hidden = false
+            restoDivisao.hidden = false
+            
         default:
             break;
         }
     }
     
-    
-    /*
-    // MARK: - Navigation
-    
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-    // Get the new view controller using segue.destinationViewController.
-    // Pass the selected object to the new view controller.
+    @IBAction func verificacao(sender: AnyObject) {
+        var n1 = operando1.text.toInt()
+        var n2 = operando2.text.toInt()
+        var respUsuario = resultadoUsuario.text.toInt()
+        var respUsuarioQuociente = quocienteDivisao.text.toInt()
+        var respUsuarioResto = restoDivisao.text.toInt()
+        
+        var respConta:Int!
+        var respResto:Int!
+        
+        if n1 != nil && n2 != nil && (respUsuario != nil ||  (respUsuarioResto != nil && respUsuarioQuociente != nil)) {
+            switch (operacaoSelecionada) {
+            case 0:
+                respConta = n1! + n2!
+                break;
+            case 1:
+                respConta = n1! - n2!
+                break;
+            case 2:
+                respConta = n1! * n2!
+                break;
+            case 3:
+                respConta = n1! / n2!
+                respResto = n1! % n2!
+                break;
+            default:
+                break;
+            }
+            
+            if operacaoSelecionada == 3 {
+                if respUsuarioQuociente == respConta && respUsuarioResto == respResto {
+                    resultado.text = "Correto! 😄"
+                    resultado.textColor = UIColor.greenColor()
+                }
+                else {
+                    resultado.text = "Errado. O certo é \(respConta) resto \(respResto)"
+                    resultado.adjustsFontSizeToFitWidth = true
+                    resultado.textColor = UIColor.redColor()
+                    
+                }
+
+            }
+            else {
+                if respUsuario == respConta {
+                    resultado.text = "Correto! 😄"
+                    resultado.textColor = UIColor.greenColor()
+                }
+                else {
+                    resultado.text = "Errado. O certo é \(respConta)"
+                    resultado.adjustsFontSizeToFitWidth = true
+                    resultado.textColor = UIColor.redColor()
+                    
+                }
+            }
+            
+            
+        }
+        else {
+            let alerta: UIAlertController = UIAlertController(title: "Atenção", message: "Preencha todos os campos", preferredStyle:.Alert)
+            let al1: UIAlertAction = UIAlertAction(title: "OK", style: .Default, handler: nil)
+            // adiciona a ação no alertController
+            [alerta.addAction(al1)]
+            
+            // adiciona o alertController na view
+            self.presentViewController(alerta, animated: true, completion: nil)
+        }
     }
-    */
     
 }
