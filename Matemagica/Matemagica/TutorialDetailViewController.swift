@@ -18,9 +18,9 @@ class TutorialDetailViewController: UIViewController {
         let scene = Tutorial(size: view.bounds.size)
         scene.tag = buttonTag
         let skView:SKView = SKView(frame: self.view.frame)
+        scene.vC = self
         self.view.addSubview(skView)
         scene.scaleMode = .AspectFill
-        scene.vC = self
         skView.presentScene(scene)
 
     }
@@ -28,6 +28,9 @@ class TutorialDetailViewController: UIViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    func voltar(){
+        self.dismissViewControllerAnimated(true, completion: nil)
     }
     
 }

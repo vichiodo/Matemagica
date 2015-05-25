@@ -179,5 +179,9 @@ class DIYViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDat
             self.presentViewController(alerta, animated: true, completion: nil)
         }
     }
+    @IBAction func voltar(sender: AnyObject) {
+        self.dismissViewControllerAnimated(true, completion: nil)
+    }
+
     
 }

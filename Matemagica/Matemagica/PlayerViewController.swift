@@ -250,4 +250,7 @@ class PlayerViewController: UIViewController, UIImagePickerControllerDelegate, U
         foto.image = UIImage(data: playerSelecionado.fotoPlayer)
         
     }
+    @IBAction func voltar(sender: AnyObject) {
+        self.dismissViewControllerAnimated(true, completion: nil)
+    }
 }

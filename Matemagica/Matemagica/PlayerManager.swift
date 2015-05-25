@@ -44,7 +44,10 @@ class PlayerManager{
         return Array<Player>()
     }
 
-    
+    func buscarPlayer(index: Int) -> Player{
+        var player: Player = buscarPlayers()[index]
+        return player
+    }
     
     func salvarPlayer() {
         
@@ -68,7 +71,6 @@ class PlayerManager{
         var arrayPlay: Array<Player> = buscarPlayers()
         managedContext.deleteObject(arrayPlay[index] as NSManagedObject)
         salvarPlayer()
-        
         
     }
     

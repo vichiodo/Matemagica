@@ -56,4 +56,9 @@ class GameViewController: UIViewController {
         super.didReceiveMemoryWarning()
 
     }
+    
+    @IBAction func voltar(sender: AnyObject) {
+        self.dismissViewControllerAnimated(true, completion: nil)
+    }
+
 }
