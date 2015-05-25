@@ -102,6 +102,7 @@ class SingleGameScene: SKScene {
     var represa: SKSpriteNode!
     var nuvemTocada: SKNode!
     var solSaindo: SKSpriteNode!
+    var bloco: SKSpriteNode!
     
     //declaração de outras variáveis necessárias
     var posicao: Int = 0
@@ -145,6 +146,7 @@ class SingleGameScene: SKScene {
         
         //tirar os textos da página
         labelPergunta.text = " "
+        bloco.hidden = true
         
         //adicionar na label o texto que será mostrado
         if nuvemTocada.name == "certa" {
@@ -264,10 +266,10 @@ class SingleGameScene: SKScene {
         nuvem3.zPosition = 1
         
         //instanciação das labels resposta e pergunta
-        labelResposta1 = SKLabelNode()
-        labelResposta2 = SKLabelNode()
-        labelResposta3 = SKLabelNode()
-        labelPergunta = SKLabelNode()
+        labelResposta1 = SKLabelNode(fontNamed:"Macker Felt Wide")
+        labelResposta2 = SKLabelNode(fontNamed:"Macker Felt Wide")
+        labelResposta3 = SKLabelNode(fontNamed:"Macker Felt Wide")
+        labelPergunta = SKLabelNode(fontNamed:"Macker Felt Wide")
         
         //faz a label ficar no primeiro plano
         labelResposta1.zPosition = 1
@@ -323,10 +325,20 @@ class SingleGameScene: SKScene {
         represa.position = CGPointMake(384, 320)
         represa.size = CGSizeMake(UIScreen.mainScreen().bounds.size.width, UIScreen.mainScreen().bounds.size.height)
         addChild(represa)
+        
+        //instanciação e posicionamento do retangulo da label pergunta
+        bloco = SKSpriteNode(imageNamed: "bloco")
+        bloco.size = CGSize(width: 300, height: 100)
+        bloco.position = CGPoint(x: nuvem2.size.width * 1.2, y: nuvem3.size.width * 1.09)
+        bloco.zPosition = 0
+        addChild(bloco)
+
     }
     
     //metodo que cria um novo jogo
     func novoJogo() {
+        
+        bloco.hidden = false
         
         //caso exista solSaindo
         if solSaindo != nil {
@@ -518,7 +530,7 @@ class SingleGameScene: SKScene {
         for var i = 0; i < random(10, 20); i++ {
             let gota: SKSpriteNode = SKSpriteNode(imageNamed: "gota")
             let posicaoX = random(Int(nuvemChovendo.position.x - nuvemChovendo.size.width / 3), Int(nuvemChovendo.position.x + nuvemChovendo.size.width / 3))
-            let posicaoY = random(Int(nuvemChovendo.position.y), Int(nuvemChovendo.position.y + nuvemChovendo.size.height / 2))
+            let posicaoY = random(Int(nuvemChovendo.position.y - 80), Int((nuvemChovendo.position.y + nuvemChovendo.size.height / 2) - 20))
             gota.position = CGPointMake(CGFloat(posicaoX), CGFloat(posicaoY))
             gota.xScale = 0.75
             gota.yScale = 0.75
@@ -529,7 +541,7 @@ class SingleGameScene: SKScene {
         addChild(chuva)
         
         //animação de fazer chover
-        let chover: SKAction = SKAction.moveTo(CGPointMake(chuva.position.x, UIScreen.mainScreen().bounds.height * -2), duration: 1.5)
+        let chover: SKAction = SKAction.moveTo(CGPointMake(chuva.position.x, UIScreen.mainScreen().bounds.height * -2), duration: 2.0)
         chuva.runAction(chover, completion: { () -> Void in
             chuva.removeFromParent()
         })
@@ -538,7 +550,7 @@ class SingleGameScene: SKScene {
         if represa.position.y != 500 {
             represa.position.y = represa.position.y + 10
         }else {
-            represa.position.y = 100
+            represa.position.y = 320
         }
     }
     
