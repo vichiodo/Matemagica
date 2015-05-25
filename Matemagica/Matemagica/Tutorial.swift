@@ -34,8 +34,8 @@ class Tutorial: SKScene {
     var rodou3: Bool! = false
     
     // animacoes de fade in e fade out
-    let fadeIn = SKAction.fadeInWithDuration(2.0)
-    let fadeOut = SKAction.fadeOutWithDuration(2.0)
+    let fadeIn = SKAction.fadeInWithDuration(1.5)
+    let fadeOut = SKAction.fadeOutWithDuration(1.5)
     
     override func didMoveToView(view: SKView) {
         backgroundColor = SKColor.whiteColor()
@@ -164,13 +164,13 @@ class Tutorial: SKScene {
                         
                         self.enumerateChildNodesWithName("4") {
                             node, stop in
-                            let actionMove = SKAction.moveBy(CGVector(dx: 0.0, dy: -self.size.height * 0.4), duration: 2.0)
+                            let actionMove = SKAction.moveBy(CGVector(dx: 0.0, dy: -self.size.height * 0.4), duration: 1.5)
                             node.runAction(SKAction.sequence([actionMove]))
                         }
                         
                         self.enumerateChildNodesWithName("5") {
                             node, stop in
-                            let actionMove = SKAction.moveBy(CGVector(dx: 0.0, dy: -self.size.height * 0.3), duration: 2.0)
+                            let actionMove = SKAction.moveBy(CGVector(dx: 0.0, dy: -self.size.height * 0.3), duration: 1.5)
                             node.runAction(SKAction.sequence([actionMove]))
                         }
                         rodou3 = true
@@ -210,7 +210,7 @@ class Tutorial: SKScene {
                         removeImg2()
                         self.enumerateChildNodesWithName("4") {
                             node, stop in
-                            let actionMove = SKAction.moveToY(self.numero3Img.position.y, duration: 2.0)
+                            let actionMove = SKAction.moveToY(self.numero3Img.position.y, duration: 1.5)
                             node.runAction(SKAction.sequence([actionMove]))
                         }
                         rodou3 = true
@@ -252,13 +252,13 @@ class Tutorial: SKScene {
                         numero3Img.runAction(SKAction.sequence([fadeIn]))
                         self.enumerateChildNodesWithName("7") {
                             node, stop in
-                            let actionMove = SKAction.moveBy(CGVector(dx: 0.0, dy: -self.size.height * 0.3), duration: 2.0)
+                            let actionMove = SKAction.moveBy(CGVector(dx: 0.0, dy: -self.size.height * 0.3), duration: 1.5)
                             node.runAction(SKAction.sequence([actionMove]))
                         }
                         
                         self.enumerateChildNodesWithName("4") {
                             node, stop in
-                            let actionMove = SKAction.moveBy(CGVector(dx: 0.0, dy: -self.size.height * 0.3), duration: 2.0)
+                            let actionMove = SKAction.moveBy(CGVector(dx: 0.0, dy: -self.size.height * 0.3), duration: 1.5)
                             
                             node.runAction(SKAction.sequence([actionMove]))
                         }
@@ -289,7 +289,7 @@ class Tutorial: SKScene {
             exemplo1Img.size = CGSize(width: size.width * 0.1, height: size.height * 0.15)
             self.addChild(exemplo1Img)
             
-            let actionMove = SKAction.moveBy(CGVector(dx: -self.size.width / 2, dy: 0.0), duration: 2.0)
+            let actionMove = SKAction.moveBy(CGVector(dx: -self.size.width / 2, dy: 0.0), duration: 1.5)
             exemplo1Img.runAction(SKAction.sequence([actionMove]))
         }
     }
@@ -307,7 +307,7 @@ class Tutorial: SKScene {
             exemplo2Img.size = CGSize(width: size.width * 0.1, height: size.height * 0.15)
             self.addChild(exemplo2Img)
             
-            let actionMove = SKAction.moveBy(CGVector(dx: -self.size.width / 2, dy: 0.0), duration: 2.0)
+            let actionMove = SKAction.moveBy(CGVector(dx: -self.size.width / 2, dy: 0.0), duration: 1.5)
             exemplo2Img.runAction(SKAction.sequence([actionMove]))
         }
     }
@@ -316,7 +316,7 @@ class Tutorial: SKScene {
     func moveImg2() {
         self.enumerateChildNodesWithName("5") {
             node, stop in
-            let actionMove = SKAction.moveBy(CGVector(dx: 0.0, dy: -self.size.height * 0.1), duration: 2.0)
+            let actionMove = SKAction.moveBy(CGVector(dx: 0.0, dy: -self.size.height * 0.1), duration: 1.5)
             node.runAction(SKAction.sequence([actionMove]))
         }
     }
@@ -341,7 +341,7 @@ class Tutorial: SKScene {
             exemplo2Img.size = CGSize(width: size.width * 0.1, height: size.height * 0.15)
             self.addChild(exemplo2Img)
             
-            let actionMove2 = SKAction.moveBy(CGVector(dx: 0.0, dy: -self.size.width * 0.2), duration: 2.0)
+            let actionMove2 = SKAction.moveBy(CGVector(dx: 0.0, dy: -self.size.width * 0.2), duration: 1.5)
             exemplo2Img.runAction(SKAction.sequence([actionMove2]))
             
             
@@ -354,7 +354,7 @@ class Tutorial: SKScene {
             exemplo3Img.size = CGSize(width: size.width * 0.1, height: size.height * 0.15)
             self.addChild(exemplo3Img)
             
-            let actionMove3 = SKAction.moveBy(CGVector(dx: 0.0, dy: -self.size.width * 0.4), duration: 2.0)
+            let actionMove3 = SKAction.moveBy(CGVector(dx: 0.0, dy: -self.size.width * 0.4), duration: 1.5)
             exemplo3Img.runAction(SKAction.sequence([actionMove3]))
 
         }

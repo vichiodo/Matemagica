@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7702" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="EJ0-NA-bhs">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="EJ0-NA-bhs">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7701"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
@@ -204,12 +204,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="MATEMAGICA" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="K69-up-OhW">
-                                <rect key="frame" x="265" y="127" width="227" height="77"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KeW-y4-zlc">
                                 <rect key="frame" x="166" y="392" width="85" height="46"/>
                                 <state key="normal" title="JOGAR">
@@ -237,8 +231,38 @@
                                     <segue destination="Cyb-PC-TSL" kind="show" id="0EN-ed-0jH"/>
                                 </connections>
                             </button>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="M1" translatesAutoresizingMaskIntoConstraints="NO" id="A8z-DN-r2T">
+                                <rect key="frame" x="134" y="-150" width="500" height="150"/>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="A1" translatesAutoresizingMaskIntoConstraints="NO" id="eFl-Bn-XUh">
+                                <rect key="frame" x="134" y="-150" width="500" height="150"/>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="T" translatesAutoresizingMaskIntoConstraints="NO" id="mVE-1f-oZ0">
+                                <rect key="frame" x="134" y="-150" width="500" height="150"/>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="E" translatesAutoresizingMaskIntoConstraints="NO" id="lkZ-Kb-cfS">
+                                <rect key="frame" x="134" y="-150" width="500" height="150"/>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="M2" translatesAutoresizingMaskIntoConstraints="NO" id="q7Q-5b-tNg">
+                                <rect key="frame" x="134" y="-150" width="500" height="150"/>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="G" translatesAutoresizingMaskIntoConstraints="NO" id="xjF-4u-fmS">
+                                <rect key="frame" x="134" y="-150" width="500" height="150"/>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="A2(icon)" translatesAutoresizingMaskIntoConstraints="NO" id="k4m-dJ-veX">
+                                <rect key="frame" x="134" y="130" width="500" height="150"/>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="I" translatesAutoresizingMaskIntoConstraints="NO" id="LvR-j4-Zeb">
+                                <rect key="frame" x="134" y="-150" width="500" height="150"/>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="C" translatesAutoresizingMaskIntoConstraints="NO" id="SaK-Mq-SZI">
+                                <rect key="frame" x="134" y="-150" width="500" height="150"/>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="A3" translatesAutoresizingMaskIntoConstraints="NO" id="V4U-8a-ZKt">
+                                <rect key="frame" x="134" y="-150" width="500" height="150"/>
+                            </imageView>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Rru-ST-GqZ">
-                                <rect key="frame" x="632" y="127" width="51" height="30"/>
+                                <rect key="frame" x="673" y="133" width="51" height="30"/>
                                 <state key="normal" title="PERFIL">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -254,6 +278,16 @@
                     <connections>
                         <outlet property="diy" destination="6pH-Rm-1bO" id="SJH-Ms-huF"/>
                         <outlet property="jogar" destination="KeW-y4-zlc" id="2Es-RC-8PC"/>
+                        <outlet property="logoA1" destination="eFl-Bn-XUh" id="Bdb-oU-E1c"/>
+                        <outlet property="logoA2" destination="k4m-dJ-veX" id="upa-j9-i8Z"/>
+                        <outlet property="logoA3" destination="V4U-8a-ZKt" id="Thm-Zz-34d"/>
+                        <outlet property="logoC" destination="SaK-Mq-SZI" id="wDl-Hf-pc7"/>
+                        <outlet property="logoE" destination="lkZ-Kb-cfS" id="alB-ar-OEP"/>
+                        <outlet property="logoG" destination="xjF-4u-fmS" id="OAX-Co-X7G"/>
+                        <outlet property="logoI" destination="LvR-j4-Zeb" id="qqR-S5-jAm"/>
+                        <outlet property="logoM1" destination="A8z-DN-r2T" id="gbG-Vd-YpE"/>
+                        <outlet property="logoM2" destination="q7Q-5b-tNg" id="ZL3-5J-zIb"/>
+                        <outlet property="logoT" destination="mVE-1f-oZ0" id="nVl-gu-Ieg"/>
                         <outlet property="tutorial" destination="hFQ-6W-cPu" id="rhw-sN-mCj"/>
                     </connections>
                 </viewController>
@@ -448,6 +482,16 @@
         </scene>
     </scenes>
     <resources>
+        <image name="A1" width="1000" height="300"/>
+        <image name="A2(icon)" width="1000" height="300"/>
+        <image name="A3" width="1000" height="300"/>
+        <image name="C" width="1000" height="300"/>
+        <image name="E" width="1000" height="300"/>
+        <image name="G" width="1000" height="300"/>
+        <image name="I" width="1000" height="300"/>
+        <image name="M1" width="1000" height="300"/>
+        <image name="M2" width="1000" height="300"/>
+        <image name="T" width="1000" height="300"/>
         <image name="imgdefault" width="1024" height="1024"/>
     </resources>
     <inferredMetricsTieBreakers>
