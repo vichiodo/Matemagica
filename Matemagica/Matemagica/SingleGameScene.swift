@@ -121,6 +121,15 @@ class SingleGameScene: SKScene {
     }
     
     override func touchesBegan(touches: Set<NSObject>, withEvent event: UIEvent) {
+        
+        //desabilita as labels
+        nuvem1.userInteractionEnabled = true
+        nuvem2.userInteractionEnabled = true
+        nuvem3.userInteractionEnabled = true
+        labelResposta1.userInteractionEnabled = true
+        labelResposta2.userInteractionEnabled = true
+        labelResposta3.userInteractionEnabled = true
+        
         //pegar primeiro toque na tela
         let touch = touches.first as! UITouch
         let toucheLocation = touch.locationInNode(self)
@@ -130,9 +139,12 @@ class SingleGameScene: SKScene {
         
         //cria e posiciona label que aparece o texto (feedback ao usuário)
         var labelWin = SKLabelNode(fontNamed: "Macker Felt Wide")
-        labelWin.position = CGPoint(x: 500, y: 300)
-        labelWin.fontSize = 80
+        labelWin.position = CGPoint(x: 400, y: 300)
+        labelWin.fontSize = 120
         labelWin.fontColor = SKColor(red: 238/255, green: 130/25, blue: 238/255, alpha: 1)
+        
+        //tirar os textos da página
+        labelPergunta.text = " "
         
         //adicionar na label o texto que será mostrado
         if nuvemTocada.name == "certa" {
@@ -315,6 +327,7 @@ class SingleGameScene: SKScene {
     
     //metodo que cria um novo jogo
     func novoJogo() {
+        
         //caso exista solSaindo
         if solSaindo != nil {
             if solSaindo.name == "saiu1" {
@@ -339,7 +352,7 @@ class SingleGameScene: SKScene {
         }
         // instanciação e posicionamento da label nivel
         labelNivel = SKLabelNode(fontNamed: "Marker Felt Wide")
-        labelNivel.position = CGPoint(x: 400, y: 300)
+        labelNivel.position = CGPoint(x: 400, y: 390)
         labelNivel.fontSize = 140
         labelNivel.fontColor = SKColor(red: 238/255, green: 130/255, blue: 238/255, alpha: 1)
         labelNivel.text = "NIVEL \(nivel)"
@@ -356,7 +369,7 @@ class SingleGameScene: SKScene {
         
         //inicia a animação
         labelNivel.runAction(sequencia)
-        
+
         //random para escolha da nuvem
         posicao = random(0, 2)
         var num1 = 0
@@ -475,6 +488,14 @@ class SingleGameScene: SKScene {
             labelResposta3.name = "certa"
         }
         println("\(resposta) e \(num1) e \(num2) e \(posicao)")
+        
+        //habilita as labels
+        nuvem1.userInteractionEnabled = false
+        nuvem2.userInteractionEnabled = false
+        nuvem3.userInteractionEnabled = false
+        labelResposta1.userInteractionEnabled = false
+        labelResposta2.userInteractionEnabled = false
+        labelResposta3.userInteractionEnabled = false
     }
     
     //faz chover quando acerta a resposta
@@ -508,7 +529,7 @@ class SingleGameScene: SKScene {
         addChild(chuva)
         
         //animação de fazer chover
-        let chover: SKAction = SKAction.moveTo(CGPointMake(chuva.position.x, UIScreen.mainScreen().bounds.height * -2), duration: 0.5)
+        let chover: SKAction = SKAction.moveTo(CGPointMake(chuva.position.x, UIScreen.mainScreen().bounds.height * -2), duration: 1.5)
         chuva.runAction(chover, completion: { () -> Void in
             chuva.removeFromParent()
         })
