@@ -213,8 +213,8 @@ class SingleGameScene: SKScene {
             }
             
         }else if operador == "*" {
-            n1 = random(1, 20)
-            n2 = random(1, 20)
+            n1 = random(1, 10)
+            n2 = random(1, 10)
             operacao = " \(n1) × \(n2)"
             
         }else if operador == "/" {
