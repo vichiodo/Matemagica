@@ -97,7 +97,7 @@ class SingleGameScene: SKScene {
     
     //declaração do background
     var background: SKSpriteNode!
-
+    
     //declaração de outros nodes necessario
     var represa: SKSpriteNode!
     var nuvemTocada: SKNode!
@@ -175,7 +175,7 @@ class SingleGameScene: SKScene {
             self.novoJogo()
         })
     }
-
+    
     //obtem as operações de acordo com a String passada e retorna o resultado da operação
     func obterOperacoes(operador: String) -> Int {
         var n1: Int = 0
@@ -332,7 +332,7 @@ class SingleGameScene: SKScene {
         bloco.position = CGPoint(x: nuvem2.size.width * 1.2, y: nuvem3.size.width * 1.09)
         bloco.zPosition = 0
         addChild(bloco)
-
+        
     }
     
     //metodo que cria um novo jogo
@@ -381,7 +381,7 @@ class SingleGameScene: SKScene {
         
         //inicia a animação
         labelNivel.runAction(sequencia)
-
+        
         //random para escolha da nuvem
         posicao = random(0, 2)
         var num1 = 0
@@ -541,17 +541,18 @@ class SingleGameScene: SKScene {
         addChild(chuva)
         
         //animação de fazer chover
-        let chover: SKAction = SKAction.moveTo(CGPointMake(chuva.position.x, UIScreen.mainScreen().bounds.height * -2), duration: 2.0)
+        let chover: SKAction = SKAction.moveTo(CGPointMake(chuva.position.x, UIScreen.mainScreen().bounds.height * -1), duration: 2.0)
         chuva.runAction(chover, completion: { () -> Void in
             chuva.removeFromParent()
+            //fazer a represa subir
+            if self.represa.position.y != 500 {
+                self.represa.position.y = self.represa.position.y + 10
+            }else {
+                self.represa.position.y = 320
+            }
+            
         })
         
-        //fazer a represa subir 
-        if represa.position.y != 500 {
-            represa.position.y = represa.position.y + 10
-        }else {
-            represa.position.y = 320
-        }
     }
     
     //caso erre a operação
@@ -581,8 +582,11 @@ class SingleGameScene: SKScene {
         
         //diminui a represa
         if represa.position.y != 320 {
-            represa.position.y = represa.position.y - 10
+            represa.position.y = 320
         }
+        
+        //zera o nível
+        nivel = 1
     }
     
     // pausa o jogo
