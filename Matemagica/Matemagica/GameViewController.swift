@@ -34,17 +34,17 @@ class GameViewController: UIViewController {
     
     @IBAction func jogoMulti(sender: AnyObject) {
 
-        var mensagem:NSDictionary = NSDictionary(object: 1, forKey: "mensagem")
-
-        notificacao.postNotificationName("mudarView", object: self, userInfo: mensagem as? [NSObject : AnyObject])
-
-        self.presentViewController(viewPerfil, animated: true, completion: nil)
+//        var mensagem:NSDictionary = NSDictionary(object: 1, forKey: "mensagem")
+//
+//        notificacao.postNotificationName("mudarView", object: self, userInfo: mensagem as? [NSObject : AnyObject])
+//
+//        self.presentViewController(viewPerfil, animated: true, completion: nil)
         
-//        let scene = MultiGameScene(size: view.bounds.size)
-//        scene.scaleMode = .ResizeFill
-//        let skView:SKView = SKView(frame: self.view.frame)
-//        self.view.addSubview(skView)
-//        skView.presentScene(scene)
+        let scene = MultiGameScene(size: view.bounds.size)
+        scene.scaleMode = .ResizeFill
+        let skView:SKView = SKView(frame: self.view.frame)
+        self.view.addSubview(skView)
+        skView.presentScene(scene)
         
     }
     
