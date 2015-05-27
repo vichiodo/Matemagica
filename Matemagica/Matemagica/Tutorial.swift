@@ -27,6 +27,7 @@ class Tutorial: SKScene {
     var numero1Img: SKSpriteNode = SKSpriteNode()
     var numero2Img: SKSpriteNode = SKSpriteNode()
     var numero3Img: SKSpriteNode = SKSpriteNode()
+    var sinal: SKSpriteNode = SKSpriteNode()
     
     let imgToque = SKSpriteNode(imageNamed: "toque1")
     
@@ -98,6 +99,12 @@ class Tutorial: SKScene {
         linha.strokeColor = UIColor.blackColor()
         addChild(linha)
         
+        // imagem sinal
+        sinal.position = CGPoint(x: size.width * 0.105, y: size.height * 0.45)
+        sinal.size = CGSize(width: size.width * 0.1, height: size.height * 0.1)
+        sinal.alpha = 0.0
+        addChild(sinal)
+
         // imagem do terceiro numero (resultado)
         numero3Img.position = CGPoint(x: size.width * 0.25, y: size.height * 0.20)
         numero3Img.size = CGSize(width: size.width * 0.1, height: size.height * 0.15)
@@ -112,6 +119,7 @@ class Tutorial: SKScene {
             numero1Img.texture = SKTexture(imageNamed: "4")
             numero2Img.texture = SKTexture(imageNamed: "5")
             numero3Img.texture = SKTexture(imageNamed: "9")
+            sinal.texture = SKTexture(imageNamed: "adicao")
             
             bg.texture = SKTexture(imageNamed: "fazenda")
             
@@ -124,6 +132,7 @@ class Tutorial: SKScene {
             numero1Img.texture = SKTexture(imageNamed: "8")
             numero2Img.texture = SKTexture(imageNamed: "3")
             numero3Img.texture = SKTexture(imageNamed: "5")
+            sinal.texture = SKTexture(imageNamed: "subtracao")
             
             bg.texture = SKTexture(imageNamed: "fazenda")
             
@@ -173,6 +182,7 @@ class Tutorial: SKScene {
                         imgToque.alpha = 0.0
                         self.userInteractionEnabled = false
                         numero2Img.runAction(SKAction.sequence([fadeIn]))
+                        sinal.runAction(SKAction.sequence([fadeIn]))
                         addImg2(numero2Img, nome: "vaca2")
                         self.enumerateChildNodesWithName("vaca2") {
                             node, stop in

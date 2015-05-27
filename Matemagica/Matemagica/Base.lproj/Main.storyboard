@@ -391,56 +391,52 @@
                         <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" tag="2" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fnX-6V-DDd">
-                                <rect key="frame" x="477" y="243" width="150" height="150"/>
+                            <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fnX-6V-DDd">
+                                <rect key="frame" x="477" y="199" width="150" height="150"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="150" id="JJk-FP-Yj6"/>
                                     <constraint firstAttribute="height" constant="150" id="gj9-tg-pHg"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="100"/>
-                                <state key="normal" title="-">
+                                <state key="normal" title="-" image="subtracao">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
                                     <segue destination="3b2-vQ-mFf" kind="show" identifier="subtracaoIdentifier" id="7MB-0c-Biv"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AYe-5y-vd4">
+                            <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AYe-5y-vd4">
                                 <rect key="frame" x="141" y="695" width="150" height="150"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="150" id="4NI-xD-Uaf"/>
                                     <constraint firstAttribute="height" constant="150" id="LXF-qf-VBy"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="100"/>
-                                <state key="normal" title="×">
+                                <state key="normal" title="×" image="multiplicacao">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
                                     <segue destination="3b2-vQ-mFf" kind="show" identifier="multiplicacaoIdentifier" id="bUb-my-r7L"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" tag="4" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AYV-RE-NPZ">
+                            <button opaque="NO" tag="4" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AYV-RE-NPZ">
                                 <rect key="frame" x="477" y="695" width="150" height="150"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="150" id="2sB-3W-vlP"/>
                                     <constraint firstAttribute="width" constant="150" id="DZX-Fg-wnK"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="100"/>
-                                <state key="normal" title="÷">
+                                <state key="normal" title="÷" image="divisao">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
                                     <segue destination="3b2-vQ-mFf" kind="show" identifier="divisaoIdentifier" id="VnQ-Gw-Ogh"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" tag="1" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DYU-IM-WHB">
-                                <rect key="frame" x="141" y="243" width="150" height="150"/>
+                            <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DYU-IM-WHB">
+                                <rect key="frame" x="141" y="199" width="150" height="150"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="150" id="0KW-sd-OB8"/>
                                     <constraint firstAttribute="height" constant="150" id="b7E-2d-5ca"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="100"/>
-                                <state key="normal" title="+">
+                                <state key="normal" title="+" image="adicao">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
@@ -511,7 +507,11 @@
         <image name="M1" width="1000" height="300"/>
         <image name="M2" width="1000" height="300"/>
         <image name="T" width="1000" height="300"/>
+        <image name="adicao" width="128" height="128"/>
+        <image name="divisao" width="128" height="128"/>
         <image name="imgdefault" width="1024" height="1024"/>
+        <image name="multiplicacao" width="128" height="128"/>
+        <image name="subtracao" width="128" height="128"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="iaf-Ge-OUd"/>
