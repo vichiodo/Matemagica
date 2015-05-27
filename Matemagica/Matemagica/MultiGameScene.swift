@@ -27,7 +27,21 @@ class MultiGameScene: SKScene {
     var alternativa22 = SKLabelNode()
     var alternativa23 = SKLabelNode()
     var alternativa24 = SKLabelNode()
-        
+    
+    var alternativaTocada: SKNode!
+    
+    var scoreGamer1: Int = 0
+    var scoreGamer2: Int = 0
+    
+    
+    
+    var contasArray: Array<Contas> = Array<Contas>()
+//    var alternativas1: Array<Int>!
+//    var alternativas2: Array<Int>!
+//    var alternativas3: Array<Int>!
+//    var alternativas4: Array<Int>!
+//    var respostas: Array<Int>!
+    
     override func didMoveToView(view: SKView) {
         backgroundColor = SKColor.whiteColor()
         
@@ -40,271 +54,201 @@ class MultiGameScene: SKScene {
         line.strokeColor = UIColor.blackColor()
         
         self.addChild(line)
-        
-        
-        addConta()
+
         posicaoAlternativas()
+        addOperacao()
+        addContasGamer1()
+        addContasGamer2()
         
-    }
-    
-    func addConta(){
+        addChild(conta)
+        addChild(conta2)
         
-        switch operacao {
-        case 0: // operação +
-            let veioDaConta = obterOperacoes("+")
-            resposta = veioDaConta.resultado
-            conta.text = veioDaConta.operacao
-            conta2.text = conta.text
-
-        case 1: // operação -
-            let veioDaConta = obterOperacoes("-")
-            resposta = veioDaConta.resultado
-            conta.text = veioDaConta.operacao
-            conta2.text = conta.text
-        case 2: // operação *
-            let veioDaConta = obterOperacoes("*")
-            resposta = veioDaConta.resultado
-            conta.text = veioDaConta.operacao
-            conta2.text = conta.text
-
-        default: // operação /
-            let veioDaConta = obterOperacoes("/")
-            resposta = veioDaConta.resultado
-            conta.text = veioDaConta.operacao
-            conta2.text = conta.text
-        }
-        
-        
-        for var i = 0; i < 2; ++i{
-
-            if i == 0{
-                conta.position = CGPoint(x: size.width/2, y: size.height/2+120)
-                conta.fontColor = UIColor.blackColor()
-                conta.zRotation = CGFloat(M_1_PI*9.85)
-                conta.fontSize = 120
-                conta.name = "conta\(i+1)"
-            }
-            else{
-                conta2.position = CGPoint(x: size.width/2, y: size.height/2-120)
-                conta2.fontColor = UIColor.blackColor()
-                conta2.fontSize = 120
-                conta2.name = "conta\(i+1)"
-            }
-            
-        }
-        self.addChild(conta)
-        self.addChild(conta2)
-    }
-    
-    func addAlternativas(){
-        
-        posicao = random(0, 3)
-        var num1 = 0
-        var num2 = 0
-        var num3 = 0
-        var num4 = 0
-        
-        alternativa11.name = "errado"
-        alternativa12.name = "errado"
-        alternativa13.name = "errado"
-        alternativa14.name = "errado"
-        alternativa21.name = "errado"
-        alternativa22.name = "errado"
-        alternativa23.name = "errado"
-        alternativa24.name = "errado"
-
-
-        // inserir valores nas labels
-        switch posicao {
-        case 0: //nuvem1
-            num2 = random(resposta - 20, resposta - 1)
-            if num2 < 0 {
-                num2 = (num2) * (-1) + 2
-            }
-            num3 = random(resposta + 1, resposta + 20)
-            
-            if num2 == resposta || num2 == num3 {
-                num2++
-            }
-            if num3 == resposta || num3 == num2 {
-                num3++
-            }
-            
-            num4 = random(resposta + 1, resposta + 20)
-            if num4 == resposta || num2 == num4 || num3 == num4{
-                num4++
-            }
-        
-            
-            alternativa11.text = "\(resposta)"
-            alternativa12.text = "\(num2)"
-            alternativa13.text = "\(num3)"
-            alternativa14.text = "\(num4)"
-            alternativa21.text = "\(resposta)"
-            alternativa22.text = "\(num2)"
-            alternativa23.text = "\(num3)"
-            alternativa24.text = "\(num4)"
-            alternativa11.name = "certa1"
-            alternativa21.name = "certa2"
-        case 1: //nuvem2
-            num1 = random(resposta - 20, resposta)
-            if num1 < 0 {
-                num1 = (num1 + num1) * (-1) + 2
-            }
-            
-            num3 = random(resposta, resposta + 20)
-            if num1 == resposta || num1 == num3 {
-                num1++
-            }
-            if num3 == resposta || num1 == num3{
-                num3++
-            }
-            num4 = random(resposta + 1, resposta + 20)
-            if num4 == resposta || num1 == num4 || num3 == num4{
-                num4++
-            }
-            
-            alternativa11.text = "\(num1)"
-            alternativa12.text = "\(resposta)"
-            alternativa13.text = "\(num3)"
-            alternativa14.text = "\(num4)"
-            alternativa21.text = "\(num1)"
-            alternativa22.text = "\(resposta)"
-            alternativa23.text = "\(num3)"
-            alternativa24.text = "\(num4)"
-            alternativa12.name = "certa1"
-            alternativa22.name = "certa2"
-
-        case 2: // nuvem3
-            num1 = random(resposta - 20, resposta)
-            if num1 < 0 {
-                num1 = (num1 - num1) * (-1) + 2
-            }
-            
-            num2 = random(resposta, resposta + 20)
-            
-            if num1 == resposta || num1 == num2{
-                num1++
-            }
-            if num2 == resposta || num1 == num2 {
-                num2++
-            }
-            num4 = random(resposta + 1, resposta + 20)
-            if num4 == resposta || num2 == num4 || num1 == num4{
-                num4++
-            }
-            
-            alternativa11.text = "\(num1)"
-            alternativa12.text = "\(num2)"
-            alternativa13.text = "\(resposta)"
-            alternativa14.text = "\(num4)"
-            alternativa21.text = "\(num1)"
-            alternativa22.text = "\(num2)"
-            alternativa23.text = "\(resposta)"
-            alternativa24.text = "\(num4)"
-            alternativa13.name = "certa1"
-            alternativa23.name = "certa2"
-            
-        default:
-            num1 = random(resposta - 20, resposta)
-            if num1 < 0 {
-                num1 = (num1 - num1) * (-1) + 2
-            }
-            
-            num2 = random(resposta, resposta + 20)
-            
-            if num1 == resposta || num1 == num2{
-                num1++
-            }
-            if num2 == resposta || num1 == num2 {
-                num2++
-            }
-            num3 = random(resposta + 1, resposta + 20)
-            if num3 == resposta || num2 == num3 || num3 == num1{
-                num3++
-            }
-
-            alternativa11.text = "\(num1)"
-            alternativa12.text = "\(num2)"
-            alternativa13.text = "\(num3)"
-            alternativa14.text = "\(resposta)"
-            alternativa21.text = "\(num1)"
-            alternativa22.text = "\(num2)"
-            alternativa23.text = "\(num3)"
-            alternativa24.text = "\(resposta)"
-            alternativa14.name = "certa1"
-            alternativa24.name = "certa2"
-        }
-
     }
     
     override func touchesBegan(touches: Set<NSObject>, withEvent event: UIEvent) {
         let touch = (touches as NSSet).allObjects[0] as! UITouch
         let touchLocation = touch.locationInNode(self)
+        
+        alternativaTocada = self.nodeAtPoint(touchLocation)
+        
+        if alternativaTocada.name == "certa1" {
+            scoreGamer1++
+            addOperacao()
+            addContasGamer1()
+            println("Gamer1: \(scoreGamer1)")
+        }else if alternativaTocada.name == "certa2" {
+            scoreGamer2++
+            addOperacao()
+            addContasGamer2()
+            println("Gamer2: \(scoreGamer2)")
+        }
+    }
 
+    func addOperacao(){
+        var op: String!
         
         
+        for i in 0...10 {
+            switch operacao {
+            case 0: // operação +
+                op = "+"
+                
+            case 1: // operação -
+                op = "-"
+                
+            case 2: // operação *
+                op = "*"
+                
+            default: // operação /
+                op = "/"
+                
+            }
+            
+            var fazConta = Contas(operacao: op)
+            contasArray.append(fazConta) 
+        }
+    }
+
+    func addContasGamer1() {
+//        var conta = SKLabelNode()
+        conta.position = CGPoint(x: size.width/2, y: size.height/2+120)
+        conta.fontColor = UIColor.blackColor()
+        conta.zRotation = CGFloat(M_1_PI*9.85)
+        conta.fontSize = 120
+        conta.name = "conta1"
+        conta.text = "\(contasArray[scoreGamer1].conta)"
+        addAlternativasGame1()
     }
     
-    //obtem as operações de acordo com a String passada e retorna o resultado da operação
-    func obterOperacoes(operador: String) -> (resultado: Int, operacao: String) {
-        var n1: Int = 0
-        var n2: Int = 0
+    func addContasGamer2(){
+//        var conta2 = SKLabelNode()
+        conta2.position = CGPoint(x: size.width/2, y: size.height/2-120)
+        conta2.fontColor = UIColor.blackColor()
+        conta2.fontSize = 120
+        conta2.name = "conta2"
+        conta2.text = "\(contasArray[scoreGamer2].conta)"
+        addAlternativasGame2()
+    }
+    
+    
+    func addAlternativasGame1(){
         
-        //randons de acordo com os níveis
-        n1 = random(0, 50)
-        n2 = random(0, 50)
+        posicao = random(0, 3)
         
-        var operacao: String = ""
+        alternativa11.name = "errado"
+        alternativa12.name = "errado"
+        alternativa13.name = "errado"
+        alternativa14.name = "errado"
+
+
+
+        // inserir valores nas labels
+        switch posicao {
+        case 0: //nuvem1
+            
+            alternativa11.text = "\(contasArray[scoreGamer1].resposta)"
+            alternativa12.text = "\(contasArray[scoreGamer1].alternativa1)"
+            alternativa13.text = "\(contasArray[scoreGamer1].alternativa2)"
+            alternativa14.text = "\(contasArray[scoreGamer1].alternativa2)"
+            
+            alternativa11.name = "certa1"
+            
+        case 1: //nuvem2
+          
+            
+            alternativa11.text = "\(contasArray[scoreGamer1].alternativa1)"
+            alternativa12.text = "\(contasArray[scoreGamer1].resposta)"
+            alternativa13.text = "\(contasArray[scoreGamer1].alternativa2)"
+            alternativa14.text = "\(contasArray[scoreGamer1].alternativa3)"
+          
+            alternativa12.name = "certa1"
+         
+
+        case 2: // nuvem3
+         
+            
+            
+            alternativa11.text = "\(contasArray[scoreGamer1].alternativa1)"
+            alternativa12.text = "\(contasArray[scoreGamer1].alternativa2)"
+            alternativa13.text = "\(contasArray[scoreGamer1].resposta)"
+            alternativa14.text = "\(contasArray[scoreGamer1].alternativa3)"
+           
+            alternativa13.name = "certa1"
+       
+            
+        default:
+           
+
+            alternativa11.text = "\(contasArray[scoreGamer1].alternativa1)"
+            alternativa12.text = "\(contasArray[scoreGamer1].alternativa2)"
+            alternativa13.text = "\(contasArray[scoreGamer1].alternativa3)"
+            alternativa14.text = "\(contasArray[scoreGamer1].resposta)"
+         
+            alternativa14.name = "certa1"
+      
+        }
+
+    }
+    
+    func addAlternativasGame2(){
         
-        //imprime na tela as operações
-        if(operador == "+"){
-            operacao = " \(n1) + \(n2)"
-        }else if operador == "-"{
-            if n1 > n2{
-            operacao = " \(n1) - \(n2)"
-            }else {
-            operacao = " \(n2) - \(n1)"
-            }
-        }else if operador == "*" {
-            n1 = random(1, 10)
-            n2 = random(1, 10)
-            operacao = " \(n1) × \(n2)"
+        posicao = random(0, 3)
+        
+        alternativa21.name = "errado"
+        alternativa22.name = "errado"
+        alternativa23.name = "errado"
+        alternativa24.name = "errado"
+        
+        
+        
+        // inserir valores nas labels
+        switch posicao {
+        case 0: //nuvem1
             
-        }else if operador == "/" {
+            alternativa21.text = "\(contasArray[scoreGamer2].resposta)"
+            alternativa22.text = "\(contasArray[scoreGamer2].alternativa1)"
+            alternativa23.text = "\(contasArray[scoreGamer2].alternativa2)"
+            alternativa24.text = "\(contasArray[scoreGamer2].alternativa2)"
             
-            var array = random(0, 9)
-            n2 = numeros[array]
+            alternativa21.name = "certa2"
             
-            do{
-                n1 = random(n2, 20)
-            }while n1 % n2 != 0
+        case 1: //nuvem2
             
-            operacao = "\(n1) ÷ \(n2)"
+            
+            alternativa21.text = "\(contasArray[scoreGamer2].alternativa1)"
+            alternativa22.text = "\(contasArray[scoreGamer2].resposta)"
+            alternativa23.text = "\(contasArray[scoreGamer2].alternativa2)"
+            alternativa24.text = "\(contasArray[scoreGamer2].alternativa3)"
+            
+            alternativa22.name = "certa2"
+            
+            
+        case 2: // nuvem3
+            
+            
+            
+            alternativa21.text = "\(contasArray[scoreGamer2].alternativa1)"
+            alternativa22.text = "\(contasArray[scoreGamer2].alternativa2)"
+            alternativa23.text = "\(contasArray[scoreGamer2].resposta)"
+            alternativa24.text = "\(contasArray[scoreGamer2].alternativa3)"
+            
+            alternativa23.name = "certa2"
+            
+            
+        default:
+            
+            
+            alternativa21.text = "\(contasArray[scoreGamer2].alternativa1)"
+            alternativa22.text = "\(contasArray[scoreGamer2].alternativa2)"
+            alternativa23.text = "\(contasArray[scoreGamer2].alternativa3)"
+            alternativa24.text = "\(contasArray[scoreGamer2].resposta)"
+            
+            alternativa24.name = "certa2"
+            
         }
         
-        return (resolveOperacao(n1, n2: n2, op: operador), operacao)
     }
-    
-    //resolve as operações
-    func resolveOperacao(n1: Int, n2: Int, op: String) -> Int{
-        var resultado: Int = 0
-        if op == "+" {
-            resultado = n1 + n2
-        }else if op == "-" {
-            if n1 > n2 {
-                resultado = n1 - n2
-            }else{
-                resultado = n2 - n1
-            }
-        }else if op == "*" {
-            resultado = n1 * n2
-        }else if op == "/" {
-            resultado = n1 / n2
-        }
-        return resultado
-    }
-    
+
     func posicaoAlternativas(){
         
         ////////////// cabeça pra baixo
@@ -387,8 +331,6 @@ class MultiGameScene: SKScene {
             bloco.zPosition = -100
             addChild(bloco)
         }
-        
-        addAlternativas()
 
     }
     
