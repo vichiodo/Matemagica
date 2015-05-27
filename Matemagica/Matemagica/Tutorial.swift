@@ -353,7 +353,7 @@ class Tutorial: SKScene {
                         }
                     }
                 }
-            case 4:
+            case 4: // divisão
                 if rodou1 == false {
                     imgToque.hidden = true
                     self.userInteractionEnabled = false

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7702" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7701"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
@@ -102,29 +102,46 @@
                                     <action selector="voltar:" destination="d0Q-qb-8LC" eventType="touchUpInside" id="xHF-pY-5Iw"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="c8Y-iW-c5w">
+                                <rect key="frame" x="42" y="509" width="86" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <state key="normal" title="Cancelar">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="cancelar:" destination="d0Q-qb-8LC" eventType="touchUpInside" id="aSi-Jn-712"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" tag="1" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kBL-GP-3bp">
+                                <rect key="frame" x="667" y="505" width="85" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <state key="normal" title="+">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="adicionarPlayer:" destination="d0Q-qb-8LC" eventType="touchUpInside" id="TxE-GH-g9d"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" title="Jogador" id="5c8-11-mZD">
-                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="6QS-fI-Tfk">
-                            <connections>
-                                <action selector="adicionarPlayer:" destination="d0Q-qb-8LC" id="O0H-q0-CfH"/>
-                            </connections>
-                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="6QS-fI-Tfk"/>
                     </navigationItem>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="iPad"/>
                     <connections>
-                        <outlet property="btnES" destination="6QS-fI-Tfk" id="elR-0f-JAu"/>
-                        <outlet property="foto" destination="iav-l0-RjE" id="GAY-Pv-c1Y"/>
-                        <outlet property="nome" destination="Q7S-EH-HkV" id="fmk-l4-f9O"/>
-                        <outlet property="tableView" destination="771-ex-soq" id="5Hd-53-o4K"/>
+                        <outlet property="add" destination="kBL-GP-3bp" id="Wa6-4I-JpQ"/>
+                        <outlet property="cancelar" destination="c8Y-iW-c5w" id="2Ea-Ur-s0H"/>
+                        <outlet property="foto" destination="iav-l0-RjE" id="eGc-GW-M6u"/>
+                        <outlet property="nome" destination="Q7S-EH-HkV" id="MJL-iD-Ycj"/>
+                        <outlet property="tableView" destination="771-ex-soq" id="3LZ-kA-gBk"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="AT1-15-lvR" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1431" y="2194"/>
+            <point key="canvasLocation" x="-1425" y="2194"/>
         </scene>
         <!--Game View Controller-->
         <scene sceneID="8j2-Lg-If2">
@@ -147,13 +164,22 @@
                                     <action selector="jogoSingle:" destination="Nwf-ld-bDv" eventType="touchUpInside" id="1ba-bk-D8J"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pnU-nu-V2k">
+                                <rect key="frame" x="73" y="74" width="39" height="30"/>
+                                <state key="normal" title="Voltar">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="voltar:" destination="Nwf-ld-bDv" eventType="touchUpInside" id="nyV-NA-GyP"/>
+                                </connections>
+                            </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NBP-kS-GcO">
-                                <rect key="frame" x="484" y="571" width="101" height="30"/>
+                                <rect key="frame" x="482" y="568" width="101" height="30"/>
                                 <state key="normal" title="MULTIPLAYER">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="jogoMulti:" destination="Nwf-ld-bDv" eventType="touchUpInside" id="651-2B-0AD"/>
+                                    <segue destination="IQb-sp-1OO" kind="show" id="UUH-3L-yg2"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pnU-nu-V2k">
@@ -162,22 +188,53 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="voltar:" destination="Nwf-ld-bDv" eventType="touchUpInside" id="nyV-NA-GyP"/>
+                                    <action selector="voltar:" destination="IQb-sp-1OO" eventType="touchUpInside" id="suS-2j-dO4"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bG0-fJ-O9I">
+                                <rect key="frame" x="73" y="134" width="250" height="50"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="33"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView userInteractionEnabled="NO" tag="1" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="imgdefault" translatesAutoresizingMaskIntoConstraints="NO" id="DmP-sO-Y24">
+                                <rect key="frame" x="445" y="216" width="250" height="250"/>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BZy-gQ-yQR">
+                                <rect key="frame" x="445" y="134" width="250" height="50"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="33"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="U3O-1Z-rQv">
+                                <rect key="frame" x="574" y="47" width="112" height="79"/>
+                                <state key="normal" title="JOGAR">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="9fK-my-khX" kind="show" id="UDe-Nl-uiO"/>
                                 </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="iPad"/>
+                    <connections>
+                        <outlet property="img1" destination="uPG-CL-1Uz" id="V7c-B1-a0y"/>
+                        <outlet property="img2" destination="DmP-sO-Y24" id="hwE-44-2DX"/>
+                        <outlet property="jogador1" destination="bG0-fJ-O9I" id="TgM-l0-akG"/>
+                        <outlet property="jogador2" destination="BZy-gQ-yQR" id="GQV-EC-c12"/>
+                        <outlet property="tableView" destination="899-qZ-jId" id="np5-79-yXs"/>
+                    </connections>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="ylv-sU-KF7" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="sRr-og-3u6" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="471" y="2194"/>
+            <point key="canvasLocation" x="471" y="3350"/>
         </scene>
-        <!--View Controller-->
+        <!--Middle View Controller-->
         <scene sceneID="EhL-OI-I7q">
             <objects>
-                <viewController id="9fK-my-khX" sceneMemberID="viewController">
+                <viewController id="9fK-my-khX" customClass="MiddleViewController" customModule="Matemagica" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="JhB-hb-EEH"/>
                         <viewControllerLayoutGuide type="bottom" id="pEW-1X-PUu"/>
@@ -191,7 +248,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="CWb-Rl-tGO" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="471" y="3475"/>
+            <point key="canvasLocation" x="471" y="4514"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
