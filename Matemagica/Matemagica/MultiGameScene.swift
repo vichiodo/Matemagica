@@ -241,7 +241,6 @@ class MultiGameScene: SKScene {
     override func touchesBegan(touches: Set<NSObject>, withEvent event: UIEvent) {
         let touch = (touches as NSSet).allObjects[0] as! UITouch
         let touchLocation = touch.locationInNode(self)
-
         
         
     }
