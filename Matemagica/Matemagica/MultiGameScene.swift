@@ -14,7 +14,7 @@ class MultiGameScene: SKScene {
     var line = SKShapeNode()
     var resposta: Int = 0
     var numeros:Array<Int> = [1,2,3,4,5,6,7,8,9,10]
-    var operacao = random(0, 3)
+    
     var posicao: Int = 0
     var conta = SKLabelNode()
     var conta2 = SKLabelNode()
@@ -71,24 +71,39 @@ class MultiGameScene: SKScene {
         
         alternativaTocada = self.nodeAtPoint(touchLocation)
         
-        if alternativaTocada.name == "certa1" {
-            scoreGamer1++
-            addOperacao()
-            addContasGamer1()
-            println("Gamer1: \(scoreGamer1)")
-        }else if alternativaTocada.name == "certa2" {
-            scoreGamer2++
-            addOperacao()
-            addContasGamer2()
-            println("Gamer2: \(scoreGamer2)")
+        if scoreGamer1 < 10 && scoreGamer2 < 10 {
+            if alternativaTocada.name == "certa1" {
+                scoreGamer1++
+                addOperacao()
+                addContasGamer1()
+                println("Gamer1: \(scoreGamer1)")
+            }else if alternativaTocada.name == "certa2" {
+                scoreGamer2++
+                addOperacao()
+                addContasGamer2()
+                println("Gamer2: \(scoreGamer2)")
+            }
         }
-    }
+        else{
+            //MOSTRAR QUEM GANHOU!
+            //FAZER O SCORE NA LABEL
+            //SALVAR NO COREDATA(SINGLE TAMBEM)
+            //MOSTRAR O NOME E FOTO DO JOGADOR
+            
+            println("GANHOU")
+
+        }
+        
+        
+    
+            }
 
     func addOperacao(){
         var op: String!
         
         
         for i in 0...10 {
+            var operacao = random(0, 3)
             switch operacao {
             case 0: // operação +
                 op = "+"
