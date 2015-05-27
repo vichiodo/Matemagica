@@ -13,7 +13,8 @@ class PlayerViewController: UIViewController, UIImagePickerControllerDelegate, U
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var nome: UITextField!
     @IBOutlet weak var foto: UIImageView!
-    @IBOutlet weak var btnES: UIBarButtonItem!
+    @IBOutlet weak var add: UIButton!
+    @IBOutlet weak var cancelar: UIButton!
     
     let notificacao:NSNotificationCenter = NSNotificationCenter.defaultCenter()
 
@@ -29,12 +30,14 @@ class PlayerViewController: UIViewController, UIImagePickerControllerDelegate, U
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        btnES.possibleTitles = Set(["Editar", "Salvar"])
+        println("foi aqui")
         nome.userInteractionEnabled = false
         foto.userInteractionEnabled = false
         tipoView = 0
         
         notificacao.addObserver(self, selector: "mudarView:", name: "mudarView", object: nil)
+        add.setTitle("+", forState: UIControlState.Normal)
+
 
         imagePicker.delegate = self
         imagePicker.allowsEditing = true
@@ -69,85 +72,89 @@ class PlayerViewController: UIViewController, UIImagePickerControllerDelegate, U
     }
     
     @IBAction func adicionarPlayer(sender: AnyObject) {
-        self.navigationItem.rightBarButtonItem?.title = "Salvar"
         
-        
-        nome.text = ""
-        foto.image = UIImage(named: "imgdefault")
-        
-        nome.userInteractionEnabled = true
-        foto.userInteractionEnabled = true
-        tableView.allowsSelection = false
+        if add.tag == 1{
+            
+            nome.text = ""
+            foto.image = UIImage(named: "imgdefault")
+            
+            nome.userInteractionEnabled = true
+            foto.userInteractionEnabled = true
+            tableView.allowsSelection = false
+            add.tag = 0
+            add.setTitle("Salvar", forState: UIControlState.Normal)
+            
+        }
+        else if add.tag == 0{
+            
+            if nome.text == "" {
+                let alerta: UIAlertController = UIAlertController(title: "Atenção", message: "Digite um nome", preferredStyle:.Alert)
+                let al1: UIAlertAction = UIAlertAction(title: "OK", style: .Default, handler: nil)
+                // adiciona a ação no alertController
+                [alerta.addAction(al1)]
+                
+                // adiciona o alertController na view
+                self.presentViewController(alerta, animated: true, completion: nil)
+            }
+            else {
+                if foto.image == UIImage(named: "imgdefault") {
+                    let alerta: UIAlertController = UIAlertController(title: "Escolha uma foto", message: nil, preferredStyle: .ActionSheet)
+                    alerta.popoverPresentationController?.sourceView = self.view
+                    alerta.popoverPresentationController?.sourceRect = CGRectMake(self.view.frame.width / 2, self.view.frame.height / 2, 0, 0)
+                    let camera:UIAlertAction = UIAlertAction(title: "Tirar foto", style: .Default, handler: { (ACTION) -> Void in
+                        let imagePicker:UIImagePickerController = UIImagePickerController()
+                        if UIImagePickerController.isSourceTypeAvailable(.Camera) {
+                            self.imagePicker.sourceType = .Camera
+                            self.presentViewController(self.imagePicker, animated: true, completion: nil)
+                        }
+                    })
+                    [alerta.addAction(camera)]
+                    
+                    let galeria:UIAlertAction = UIAlertAction(title: "Escolher da galeria", style: .Default, handler: { (ACTION) -> Void in
+                        self.imagePicker.sourceType = .PhotoLibrary
+                        self.presentViewController(self.imagePicker, animated: true, completion: nil)
+                    })
+                    [alerta.addAction(galeria)]
+                    
+                    self.presentViewController(alerta, animated: true, completion: nil)
+                }
+                else {
+                    PlayerManager.sharedInstance.salvarBanco(nome.text, foto: foto.image!)
+                    players = PlayerManager.sharedInstance.buscarPlayers()
+                    self.tableView.reloadData()
+                    
+                    nome.userInteractionEnabled = false
+                    foto.userInteractionEnabled = false
+                    tableView.allowsSelection = true
+                    
+                    var index = players.count - 1
+                    var playerSelecionado = players[index]
+                    userDef.setObject(index, forKey: "index")
+                    
+                    nome.text = playerSelecionado.nomePlayer
+                    foto.image = UIImage(data: playerSelecionado.fotoPlayer)
+                    let rowToSelect:NSIndexPath = NSIndexPath(forRow: index, inSection: 0)
+                    tableView.selectRowAtIndexPath(rowToSelect, animated: true, scrollPosition: UITableViewScrollPosition.None)
+                    
+                    self.navigationItem.setRightBarButtonItem(UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Add, target: self, action: "adicionarPlayer:"), animated: true)
+                }
+            }
+            add.tag = 1
+            add.setTitle("+", forState: UIControlState.Normal)
+        }
+
     }
     
-    func cancelar(sender: AnyObject){
+    @IBAction func cancelar(sender: AnyObject){
         nome.text = ""
         foto.image = UIImage(named: "imgdefault")
         
         nome.userInteractionEnabled = false
         foto.userInteractionEnabled = false
         tableView.allowsSelection = true
-        
-        self.navigationItem.setRightBarButtonItem(UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Add, target: self, action: "adicionarPlayer:"), animated: true)
-    
-    }
-    
-    @IBAction func salvar(sender: AnyObject) {
+        add.tag = 1
+        add.setTitle("+", forState: UIControlState.Normal)
 
-        if nome.text == "" {
-            let alerta: UIAlertController = UIAlertController(title: "Atenção", message: "Digite um nome", preferredStyle:.Alert)
-            let al1: UIAlertAction = UIAlertAction(title: "OK", style: .Default, handler: nil)
-            // adiciona a ação no alertController
-            [alerta.addAction(al1)]
-            
-            // adiciona o alertController na view
-            self.presentViewController(alerta, animated: true, completion: nil)
-        }
-        else {
-            if foto.image == UIImage(named: "imgdefault") {
-                let alerta: UIAlertController = UIAlertController(title: "Escolha uma foto", message: nil, preferredStyle: .ActionSheet)
-                alerta.popoverPresentationController?.sourceView = self.view
-                alerta.popoverPresentationController?.sourceRect = CGRectMake(self.view.frame.width / 2, self.view.frame.height / 2, 0, 0)
-                let camera:UIAlertAction = UIAlertAction(title: "Tirar foto", style: .Default, handler: { (ACTION) -> Void in
-                    let imagePicker:UIImagePickerController = UIImagePickerController()
-                    if UIImagePickerController.isSourceTypeAvailable(.Camera) {
-                        self.imagePicker.sourceType = .Camera
-                        self.presentViewController(self.imagePicker, animated: true, completion: nil)
-                    }
-                })
-                [alerta.addAction(camera)]
-                
-                let galeria:UIAlertAction = UIAlertAction(title: "Escolher da galeria", style: .Default, handler: { (ACTION) -> Void in
-                    self.imagePicker.sourceType = .PhotoLibrary
-                    self.presentViewController(self.imagePicker, animated: true, completion: nil)
-                })
-                [alerta.addAction(galeria)]
-                
-                self.presentViewController(alerta, animated: true, completion: nil)
-            }
-            else {
-                salvarBanco(nome.text, foto: foto.image!)
-                players = PlayerManager.sharedInstance.buscarPlayers()
-                self.tableView.reloadData()
-                
-                nome.userInteractionEnabled = false
-                foto.userInteractionEnabled = false
-                tableView.allowsSelection = true
-
-                var index = players.count - 1
-                var playerSelecionado = players[index]
-                userDef.setObject(index, forKey: "index")
-                
-                nome.text = playerSelecionado.nomePlayer
-                foto.image = UIImage(data: playerSelecionado.fotoPlayer)
-                let rowToSelect:NSIndexPath = NSIndexPath(forRow: index, inSection: 0)
-                tableView.selectRowAtIndexPath(rowToSelect, animated: true, scrollPosition: UITableViewScrollPosition.None)
-                
-                self.navigationItem.setRightBarButtonItem(UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Add, target: self, action: "adicionarPlayer:"), animated: true)
-                
-            }
-        }
-        
     }
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
@@ -230,16 +237,6 @@ class PlayerViewController: UIViewController, UIImagePickerControllerDelegate, U
         foto.image = imagem
         
         self.dismissViewControllerAnimated(true, completion: nil)
-    }
-    
-    func salvarBanco(nome: String, foto: UIImage){
-        let player = PlayerManager.sharedInstance.novoPlayer()
-        let imagem = UIImageJPEGRepresentation(foto, 1)
-        
-        player.setValue(nome, forKey: "nomePlayer")
-        player.setValue(imagem, forKey: "fotoPlayer")
-        
-        PlayerManager.sharedInstance.salvarPlayer()
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {

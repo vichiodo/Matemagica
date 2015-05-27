@@ -93,13 +93,33 @@
                             <imageView userInteractionEnabled="NO" tag="1" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="imgdefault" translatesAutoresizingMaskIntoConstraints="NO" id="iav-l0-RjE">
                                 <rect key="frame" x="259" y="189" width="250" height="250"/>
                             </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XEo-xx-eJX">
-                                <rect key="frame" x="16" y="28" width="98" height="88"/>
-                                <state key="normal" title="Voltar">
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XEo-xx-eJX">
+                                <rect key="frame" x="16" y="28" width="75" height="75"/>
+                                <state key="normal" image="voltar">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
                                     <action selector="voltar:" destination="d0Q-qb-8LC" eventType="touchUpInside" id="xHF-pY-5Iw"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="c8Y-iW-c5w">
+                                <rect key="frame" x="42" y="509" width="86" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <state key="normal" title="Cancelar">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="cancelar:" destination="d0Q-qb-8LC" eventType="touchUpInside" id="aSi-Jn-712"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" tag="1" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kBL-GP-3bp">
+                                <rect key="frame" x="667" y="505" width="85" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <state key="normal" title="+">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="adicionarPlayer:" destination="d0Q-qb-8LC" eventType="touchUpInside" id="TxE-GH-g9d"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -107,24 +127,21 @@
                     </view>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" title="Jogador" id="5c8-11-mZD">
-                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="6QS-fI-Tfk">
-                            <connections>
-                                <action selector="adicionarPlayer:" destination="d0Q-qb-8LC" id="O0H-q0-CfH"/>
-                            </connections>
-                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="6QS-fI-Tfk"/>
                     </navigationItem>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="iPad"/>
                     <connections>
-                        <outlet property="btnES" destination="6QS-fI-Tfk" id="elR-0f-JAu"/>
-                        <outlet property="foto" destination="iav-l0-RjE" id="GAY-Pv-c1Y"/>
-                        <outlet property="nome" destination="Q7S-EH-HkV" id="fmk-l4-f9O"/>
-                        <outlet property="tableView" destination="771-ex-soq" id="5Hd-53-o4K"/>
+                        <outlet property="add" destination="kBL-GP-3bp" id="Wa6-4I-JpQ"/>
+                        <outlet property="cancelar" destination="c8Y-iW-c5w" id="2Ea-Ur-s0H"/>
+                        <outlet property="foto" destination="iav-l0-RjE" id="eGc-GW-M6u"/>
+                        <outlet property="nome" destination="Q7S-EH-HkV" id="MJL-iD-Ycj"/>
+                        <outlet property="tableView" destination="771-ex-soq" id="3LZ-kA-gBk"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="AT1-15-lvR" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1431" y="2194"/>
+            <point key="canvasLocation" x="-1425" y="2194"/>
         </scene>
         <!--Game View Controller-->
         <scene sceneID="8j2-Lg-If2">
@@ -147,15 +164,6 @@
                                     <action selector="jogoSingle:" destination="Nwf-ld-bDv" eventType="touchUpInside" id="1ba-bk-D8J"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NBP-kS-GcO">
-                                <rect key="frame" x="484" y="571" width="101" height="30"/>
-                                <state key="normal" title="MULTIPLAYER">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="jogoMulti:" destination="Nwf-ld-bDv" eventType="touchUpInside" id="651-2B-0AD"/>
-                                </connections>
-                            </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pnU-nu-V2k">
                                 <rect key="frame" x="73" y="74" width="39" height="30"/>
                                 <state key="normal" title="Voltar">
@@ -165,19 +173,31 @@
                                     <action selector="voltar:" destination="Nwf-ld-bDv" eventType="touchUpInside" id="nyV-NA-GyP"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NBP-kS-GcO">
+                                <rect key="frame" x="482" y="568" width="101" height="30"/>
+                                <state key="normal" title="MULTIPLAYER">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="azB-Oo-N6L" kind="show" id="o5D-Sw-ix0"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="iPad"/>
+                    <connections>
+                        <outlet property="img2" destination="DmP-sO-Y24" id="hwE-44-2DX"/>
+                    </connections>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="ylv-sU-KF7" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="sRr-og-3u6" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="471" y="2194"/>
+            <point key="canvasLocation" x="495" y="2194"/>
         </scene>
-        <!--View Controller-->
+        <!--Middle View Controller-->
         <scene sceneID="EhL-OI-I7q">
             <objects>
-                <viewController id="9fK-my-khX" sceneMemberID="viewController">
+                <viewController id="9fK-my-khX" customClass="MiddleViewController" customModule="Matemagica" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="JhB-hb-EEH"/>
                         <viewControllerLayoutGuide type="bottom" id="pEW-1X-PUu"/>
@@ -191,7 +211,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="CWb-Rl-tGO" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="471" y="3475"/>
+            <point key="canvasLocation" x="495" y="4779"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
@@ -352,9 +372,9 @@
                             <pickerView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dOJ-nk-pq3">
                                 <rect key="frame" x="336" y="193" width="97" height="231"/>
                             </pickerView>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XVJ-5o-w5f">
-                                <rect key="frame" x="51" y="70" width="39" height="30"/>
-                                <state key="normal" title="Voltar">
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XVJ-5o-w5f">
+                                <rect key="frame" x="16" y="28" width="75" height="75"/>
+                                <state key="normal" image="voltar">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
@@ -391,65 +411,61 @@
                         <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" tag="2" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fnX-6V-DDd">
-                                <rect key="frame" x="477" y="243" width="150" height="150"/>
+                            <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fnX-6V-DDd">
+                                <rect key="frame" x="477" y="199" width="150" height="150"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="150" id="JJk-FP-Yj6"/>
                                     <constraint firstAttribute="height" constant="150" id="gj9-tg-pHg"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="100"/>
-                                <state key="normal" title="-">
+                                <state key="normal" title="-" image="subtracao">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
                                     <segue destination="3b2-vQ-mFf" kind="show" identifier="subtracaoIdentifier" id="7MB-0c-Biv"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AYe-5y-vd4">
+                            <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AYe-5y-vd4">
                                 <rect key="frame" x="141" y="695" width="150" height="150"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="150" id="4NI-xD-Uaf"/>
                                     <constraint firstAttribute="height" constant="150" id="LXF-qf-VBy"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="100"/>
-                                <state key="normal" title="×">
+                                <state key="normal" title="×" image="multiplicacao">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
                                     <segue destination="3b2-vQ-mFf" kind="show" identifier="multiplicacaoIdentifier" id="bUb-my-r7L"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" tag="4" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AYV-RE-NPZ">
+                            <button opaque="NO" tag="4" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AYV-RE-NPZ">
                                 <rect key="frame" x="477" y="695" width="150" height="150"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="150" id="2sB-3W-vlP"/>
                                     <constraint firstAttribute="width" constant="150" id="DZX-Fg-wnK"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="100"/>
-                                <state key="normal" title="÷">
+                                <state key="normal" title="÷" image="divisao">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
                                     <segue destination="3b2-vQ-mFf" kind="show" identifier="divisaoIdentifier" id="VnQ-Gw-Ogh"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" tag="1" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DYU-IM-WHB">
-                                <rect key="frame" x="141" y="243" width="150" height="150"/>
+                            <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DYU-IM-WHB">
+                                <rect key="frame" x="141" y="199" width="150" height="150"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="150" id="0KW-sd-OB8"/>
                                     <constraint firstAttribute="height" constant="150" id="b7E-2d-5ca"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="100"/>
-                                <state key="normal" title="+">
+                                <state key="normal" title="+" image="adicao">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
                                     <segue destination="3b2-vQ-mFf" kind="show" identifier="adicaoIdentifier" id="iaf-Ge-OUd"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gWW-cq-yG6">
-                                <rect key="frame" x="75" y="71" width="39" height="30"/>
-                                <state key="normal" title="Voltar">
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gWW-cq-yG6">
+                                <rect key="frame" x="16" y="28" width="75" height="75"/>
+                                <state key="normal" image="voltar">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
@@ -499,6 +515,139 @@
             </objects>
             <point key="canvasLocation" x="-525" y="3539"/>
         </scene>
+        <!--Player Game View Controller-->
+        <scene sceneID="DKL-bN-df5">
+            <objects>
+                <viewController id="azB-Oo-N6L" customClass="PlayerGameViewController" customModule="Matemagica" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="3XS-Cx-EPE"/>
+                        <viewControllerLayoutGuide type="bottom" id="T8F-HT-KVd"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Iuj-Fr-xks">
+                        <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" tag="1" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="imgdefault" translatesAutoresizingMaskIntoConstraints="NO" id="DmP-sO-Y24">
+                                <rect key="frame" x="435" y="167" width="250" height="250"/>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" tag="1" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="imgdefault" translatesAutoresizingMaskIntoConstraints="NO" id="qq2-Up-0uX">
+                                <rect key="frame" x="92" y="167" width="250" height="250"/>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1fA-J4-ui3">
+                                <rect key="frame" x="92" y="89" width="250" height="50"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="33"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dAk-bq-WJj">
+                                <rect key="frame" x="435" y="89" width="250" height="50"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="33"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="afV-xx-TGF">
+                                <rect key="frame" x="51" y="28" width="39" height="30"/>
+                                <state key="normal" title="Voltar">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="voltar:" destination="Nwf-ld-bDv" eventType="touchUpInside" id="69q-qv-rPq"/>
+                                    <action selector="voltar:" destination="azB-Oo-N6L" eventType="touchUpInside" id="KPE-oG-aaz"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="t9q-el-8LB">
+                                <rect key="frame" x="594" y="20" width="112" height="79"/>
+                                <state key="normal" title="JOGAR">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="9fK-my-khX" kind="show" id="vHa-Uo-te1"/>
+                                </connections>
+                            </button>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="98" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="kWq-yY-Zlh">
+                                <rect key="frame" x="0.0" y="543" width="768" height="481"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="player" rowHeight="98" id="Oxw-56-Psc" customClass="PlayerTableViewCell" customModule="Matemagica" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="768" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Oxw-56-Psc" id="uok-Xq-Kr1">
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Nome" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2uV-xQ-X3i">
+                                                    <rect key="frame" x="102" y="26" width="520" height="46"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="520" id="cHT-8G-EXO"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Nível" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zuf-Vd-4Sd">
+                                                    <rect key="frame" x="644" y="54" width="80" height="30"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Score" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rV0-Ec-BpS">
+                                                    <rect key="frame" x="644" y="13" width="80" height="30"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="30" id="arZ-AX-nNX"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Dh8-vb-ncl">
+                                                    <rect key="frame" x="13" y="14" width="70" height="70"/>
+                                                </imageView>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="Dh8-vb-ncl" firstAttribute="leading" secondItem="uok-Xq-Kr1" secondAttribute="leadingMargin" constant="5" id="2Tz-oT-T2v"/>
+                                                <constraint firstItem="zuf-Vd-4Sd" firstAttribute="trailing" secondItem="rV0-Ec-BpS" secondAttribute="trailing" id="3VM-4z-YlX"/>
+                                                <constraint firstItem="rV0-Ec-BpS" firstAttribute="top" secondItem="uok-Xq-Kr1" secondAttribute="topMargin" constant="5" id="7d9-ej-fwZ"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="zuf-Vd-4Sd" secondAttribute="bottom" constant="5" id="Bdm-uQ-Rw4"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="Dh8-vb-ncl" secondAttribute="bottom" constant="5" id="BnW-9o-Hk2"/>
+                                                <constraint firstItem="zuf-Vd-4Sd" firstAttribute="leading" secondItem="rV0-Ec-BpS" secondAttribute="leading" id="C2N-Gh-PMn"/>
+                                                <constraint firstItem="rV0-Ec-BpS" firstAttribute="leading" secondItem="2uV-xQ-X3i" secondAttribute="trailing" constant="22" id="GM9-xV-sEV"/>
+                                                <constraint firstItem="zuf-Vd-4Sd" firstAttribute="top" secondItem="rV0-Ec-BpS" secondAttribute="bottom" constant="11" id="GzS-5J-jpY"/>
+                                                <constraint firstItem="2uV-xQ-X3i" firstAttribute="leading" secondItem="uok-Xq-Kr1" secondAttribute="leading" constant="102" id="HgW-b5-Dxx"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="rV0-Ec-BpS" secondAttribute="trailing" constant="36" id="NNc-P6-H3X"/>
+                                                <constraint firstItem="Dh8-vb-ncl" firstAttribute="top" secondItem="uok-Xq-Kr1" secondAttribute="topMargin" constant="6" id="QtH-NG-AwE"/>
+                                                <constraint firstItem="2uV-xQ-X3i" firstAttribute="centerY" secondItem="Dh8-vb-ncl" secondAttribute="centerY" id="VzZ-AG-kWU"/>
+                                                <constraint firstItem="2uV-xQ-X3i" firstAttribute="leading" secondItem="Dh8-vb-ncl" secondAttribute="trailing" constant="19" id="cG6-at-30c"/>
+                                                <constraint firstItem="2uV-xQ-X3i" firstAttribute="top" secondItem="uok-Xq-Kr1" secondAttribute="topMargin" constant="18" id="ytu-M7-ROk"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="foto" destination="Dh8-vb-ncl" id="bJX-yv-Ux7"/>
+                                            <outlet property="nivel" destination="zuf-Vd-4Sd" id="EjX-K2-a1m"/>
+                                            <outlet property="nome" destination="2uV-xQ-X3i" id="uH2-VH-BHX"/>
+                                            <outlet property="score" destination="rV0-Ec-BpS" id="aXM-UK-4Ik"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="azB-Oo-N6L" id="cXy-tQ-sWk"/>
+                                    <outlet property="delegate" destination="azB-Oo-N6L" id="ShM-ys-cMN"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="iPad"/>
+                    <connections>
+                        <outlet property="img1" destination="qq2-Up-0uX" id="qNX-8q-ckA"/>
+                        <outlet property="img2" destination="DmP-sO-Y24" id="GOO-8o-DPk"/>
+                        <outlet property="jogador1" destination="1fA-J4-ui3" id="ZgN-2F-aVU"/>
+                        <outlet property="jogador2" destination="dAk-bq-WJj" id="GVC-iE-oTG"/>
+                        <outlet property="tableView" destination="kWq-yY-Zlh" id="Bsn-Xc-Ldx"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="tFG-l4-wgF" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="495" y="3528"/>
+        </scene>
     </scenes>
     <resources>
         <image name="A1" width="1000" height="300"/>
@@ -511,7 +660,12 @@
         <image name="M1" width="1000" height="300"/>
         <image name="M2" width="1000" height="300"/>
         <image name="T" width="1000" height="300"/>
+        <image name="adicao" width="128" height="128"/>
+        <image name="divisao" width="128" height="128"/>
         <image name="imgdefault" width="1024" height="1024"/>
+        <image name="multiplicacao" width="128" height="128"/>
+        <image name="subtracao" width="128" height="128"/>
+        <image name="voltar" width="128" height="128"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="iaf-Ge-OUd"/>
