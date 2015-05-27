@@ -40,7 +40,7 @@ class ViewController: UIViewController {
         logoA3.alpha = 0.0
         
         
-        let delayTime3 = dispatch_time(DISPATCH_TIME_NOW, Int64(1 * Double(NSEC_PER_SEC)))
+        let delayTime3 = dispatch_time(DISPATCH_TIME_NOW, Int64(0.5 * Double(NSEC_PER_SEC)))
         dispatch_after(delayTime3, dispatch_get_main_queue()) {
             UIView.animateWithDuration(1.5, animations: { () -> Void in
                 self.logoM1.transform = CGAffineTransformMakeTranslation(0, 280)
@@ -58,7 +58,7 @@ class ViewController: UIViewController {
             })
         }
         
-        let delayTime2 = dispatch_time(DISPATCH_TIME_NOW, Int64(1.5 * Double(NSEC_PER_SEC)))
+        let delayTime2 = dispatch_time(DISPATCH_TIME_NOW, Int64(1.0 * Double(NSEC_PER_SEC)))
         dispatch_after(delayTime2, dispatch_get_main_queue()) {
             UIView.animateWithDuration(1.5, animations: { () -> Void in
                 self.logoM2.transform = CGAffineTransformMakeTranslation(0, 280)
@@ -76,7 +76,7 @@ class ViewController: UIViewController {
             })
         }
         
-        let delayTime1 = dispatch_time(DISPATCH_TIME_NOW, Int64(2.0 * Double(NSEC_PER_SEC)))
+        let delayTime1 = dispatch_time(DISPATCH_TIME_NOW, Int64(1.5 * Double(NSEC_PER_SEC)))
         dispatch_after(delayTime1, dispatch_get_main_queue()) {
             UIView.animateWithDuration(1.5, animations: { () -> Void in
                 self.logoE.transform = CGAffineTransformMakeTranslation(0, 280)

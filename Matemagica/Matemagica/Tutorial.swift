@@ -22,7 +22,7 @@ class Tutorial: SKScene {
     
     // background
     var bg: SKSpriteNode = SKSpriteNode()
-
+    
     // adiciona os nodes dos numeros
     var numero1Img: SKSpriteNode = SKSpriteNode()
     var numero2Img: SKSpriteNode = SKSpriteNode()
@@ -42,6 +42,13 @@ class Tutorial: SKScene {
     // animacoes de fade in e fade out
     let fadeIn = SKAction.fadeInWithDuration(1.5)
     let fadeOut = SKAction.fadeOutWithDuration(1.5)
+    
+    var ref1 = CGPathCreateMutable()
+    var ref2 = CGPathCreateMutable()
+    var linha = SKShapeNode()
+    var linha1Div = SKShapeNode()
+    var linha2Div = SKShapeNode()
+
     
     override func didMoveToView(view: SKView) {
         backgroundColor = SKColor.whiteColor()
@@ -63,7 +70,7 @@ class Tutorial: SKScene {
         bg.position = CGPoint(x: size.width * 0.5, y: size.height * 0.5)
         bg.size = CGSize(width: size.width, height: size.height)
         addChild(bg)
-
+        
         // adicionando o "botao" voltar
         voltar.position = CGPoint(x: 100, y: size.height-50)
         voltar.size = CGSize(width: 100, height: 40)
@@ -89,14 +96,13 @@ class Tutorial: SKScene {
         addChild(numero2Img)
         
         // adiciona uma linha para separar a conta do resultado
-        var ref = CGPathCreateMutable()
-        var linha = SKShapeNode()
-        CGPathMoveToPoint(ref, nil, size.width * 0.05, size.height * 0.325)
-        CGPathAddLineToPoint(ref, nil, size.width * 0.37, size.height * 0.325)
-        linha.path = ref
+        CGPathMoveToPoint(ref1, nil, size.width * 0.05, size.height * 0.325)
+        CGPathAddLineToPoint(ref1, nil, size.width * 0.37, size.height * 0.325)
+        linha.path = ref1
         linha.lineWidth = 8
         linha.fillColor = UIColor.blackColor()
         linha.strokeColor = UIColor.blackColor()
+        linha.alpha = 0.0
         addChild(linha)
         
         // imagem sinal
@@ -146,10 +152,40 @@ class Tutorial: SKScene {
             numero2Img.texture = SKTexture(imageNamed: "3")
             numero3Img.texture = SKTexture(imageNamed: "6")
             
+            // COLOCAR BACKGROUND PARA MULTIPLICACAO (CHOCOLATE)
+            
             n1 = 2
             n2 = 2
         case 4:
-            lblTitulo.text = "10 ÷ 5"
+            lblTitulo.text = "4 ÷ 2"
+            
+            numero1Img.texture = SKTexture(imageNamed: "4")
+            numero2Img.texture = SKTexture(imageNamed: "2")
+            numero3Img.texture = SKTexture(imageNamed: "2")
+            
+            CGPathMoveToPoint(ref2, nil, size.width * 0.5, size.height * 0.75)
+            CGPathAddLineToPoint(ref2, nil, size.width * 0.5, size.height * 0.55)
+            linha1Div.path = ref2
+            linha1Div.lineWidth = 8
+            linha1Div.fillColor = UIColor.blackColor()
+            linha1Div.strokeColor = UIColor.blackColor()
+            linha1Div.alpha = 0.0
+            addChild(linha1Div)
+            
+            CGPathMoveToPoint(ref2, nil, size.width * 0.495, size.height * 0.55)
+            CGPathAddLineToPoint(ref2, nil, size.width * 0.9, size.height * 0.55)
+            linha2Div.path = ref2
+            linha2Div.lineWidth = 8
+            linha2Div.fillColor = UIColor.blackColor()
+            linha2Div.strokeColor = UIColor.blackColor()
+            linha2Div.alpha = 0.0
+            addChild(linha2Div)
+            
+            numero2Img.position = CGPoint(x: size.width * 0.70, y: numero1Img.position.y)
+            numero3Img.position = CGPoint(x: size.width * 0.70, y: size.height * 0.45)
+            
+            // COLOCAR BACKGROUND PARA MULTIPLICACAO (CHOCOLATE)
+            
         default:
             break
         }
@@ -158,14 +194,15 @@ class Tutorial: SKScene {
     override func touchesBegan(touches: Set<NSObject>, withEvent event: UIEvent) {
         let touch = (touches as NSSet).allObjects[0] as! UITouch
         let touchLocation = touch.locationInNode(self)
+        
         if voltar.containsPoint(touchLocation){
             vC.voltar()
         }
-        else{
+        else {
             switch tag {
             case 1: // adicao
                 if rodou1 == false {
-                    imgToque.alpha = 0.0
+                    imgToque.hidden = true
                     self.userInteractionEnabled = false
                     numero1Img.runAction(SKAction.sequence([fadeIn]))
                     addImg1(numero1Img, nome: "vaca1")
@@ -174,12 +211,11 @@ class Tutorial: SKScene {
                         var no: SKNode = node
                         self.animacaoVaca(no)
                     }
-                    
                     rodou1 = true
                 }
                 else {
                     if rodou2 == false {
-                        imgToque.alpha = 0.0
+                        imgToque.hidden = true
                         self.userInteractionEnabled = false
                         numero2Img.runAction(SKAction.sequence([fadeIn]))
                         sinal.runAction(SKAction.sequence([fadeIn]))
@@ -193,7 +229,7 @@ class Tutorial: SKScene {
                     }
                     else {
                         if rodou3 == false {
-                            imgToque.alpha = 0.0
+                            imgToque.hidden = true
                             self.userInteractionEnabled = false
                             numero3Img.runAction(SKAction.sequence([fadeIn]))
                             
@@ -216,36 +252,41 @@ class Tutorial: SKScene {
                 
             case 2: // subtracao
                 if rodou1 == false {
-                    imgToque.alpha = 0.0
+                    imgToque.hidden = true
                     self.userInteractionEnabled = false
-                    numero1Img.runAction(SKAction.sequence([fadeIn]), completion: { () -> Void in
-                        self.imgToque.alpha = 1.0
-                        self.userInteractionEnabled = true
-                    })
+                    numero1Img.runAction(SKAction.sequence([fadeIn]))
                     addImg1(numero1Img, nome: "ovelha1")
-                    addImg2(numero2Img, nome: "ovelha1")
+                    addImg2(numero2Img, nome: "ovelha2")
+                    self.enumerateChildNodesWithName("ovelha1") {
+                        node, stop in
+                        var no: SKNode = node
+                        self.animacaoOvelha(no)
+                    }
+                    self.enumerateChildNodesWithName("ovelha2") {
+                        node, stop in
+                        var no: SKNode = node
+                        self.animacaoOvelha(no)
+                    }
                     rodou1 = true
                 }
                 else {
                     if rodou2 == false {
-                        imgToque.alpha = 0.0
+                        imgToque.hidden = true
                         self.userInteractionEnabled = false
-                        numero2Img.runAction(SKAction.sequence([fadeIn]), completion: { () -> Void in
-                            self.imgToque.alpha = 1.0
-                            self.userInteractionEnabled = true
-                        })
-                        moveImg2()
+                        numero2Img.runAction(SKAction.sequence([fadeIn]))
+                        linha.runAction(SKAction.sequence([fadeIn]))
+                        moveImg2("ovelha2")
                         rodou2 = true
                     }
                     else {
                         if rodou3 == false {
-                            imgToque.alpha = 0.0
+                            imgToque.hidden = true
                             self.userInteractionEnabled = false
                             numero3Img.runAction(SKAction.sequence([fadeIn]))
-                            removeImg2()
-                            self.enumerateChildNodesWithName("4") {
+                            removeImg2("ovelha2")
+                            self.enumerateChildNodesWithName("ovelha1") {
                                 node, stop in
-                                let actionMove = SKAction.moveToY(self.numero3Img.position.y, duration: 1.5)
+                                let actionMove = SKAction.moveToY(self.numero3Img.position.y, duration: 2.0)
                                 node.runAction(SKAction.sequence([actionMove]))
                             }
                             rodou3 = true
@@ -253,63 +294,133 @@ class Tutorial: SKScene {
                         }
                     }
                 }
+                
             case 3: // multiplicacao
                 if rodou1 == false {
-                    imgToque.alpha = 0.0
+                    imgToque.hidden = true
                     self.userInteractionEnabled = false
-                    numero1Img.runAction(SKAction.sequence([fadeIn]), completion: { () -> Void in
-                        self.imgToque.alpha = 1.0
-                        self.userInteractionEnabled = true
-                    })
-                    //                addImg1(numero1Img)
+                    numero1Img.runAction(SKAction.sequence([fadeIn]))
+                    addImg1Multiplicacao(numero1Img, nome: "chocolate")
                     rodou1 = true
                 }
                 else {
                     if rodou2 == false {
-                        imgToque.alpha = 0.0
+                        imgToque.hidden = true
                         self.userInteractionEnabled = false
-                        numero2Img.runAction(SKAction.sequence([fadeIn]), completion: { () -> Void in
-                            self.imgToque.alpha = 1.0
-                            self.userInteractionEnabled = true
-                        })
-                        
-                        self.enumerateChildNodesWithName("4") {
+                        numero2Img.runAction(SKAction.sequence([fadeIn]))
+                        linha.runAction(SKAction.sequence([fadeIn]))
+                        self.enumerateChildNodesWithName("chocolate") {
                             node, stop in
                             var no: SKNode = node
-                            self.addImgRepetida(no)
+                            self.addImgRepetida(no, nomeImagem: "chocolate", nomeNo1: "chocolate1",  nomeNo2: "chocolate2")
                         }
                         rodou2 = true
                     }
                     else {
                         if rodou3 == false {
-                            imgToque.alpha = 0.0
+                            imgToque.hidden = true
                             self.userInteractionEnabled = false
                             numero3Img.runAction(SKAction.sequence([fadeIn]))
-                            self.enumerateChildNodesWithName("7") {
+                            self.enumerateChildNodesWithName("chocolate") {
                                 node, stop in
-                                let actionMove = SKAction.moveBy(CGVector(dx: 0.0, dy: -self.size.height * 0.3), duration: 1.5)
+                                let actionMove = SKAction.moveBy(CGVector(dx: 0.0, dy: -self.size.height * 0.40), duration: 2.0)
                                 node.runAction(SKAction.sequence([actionMove]))
                             }
-                            
-                            self.enumerateChildNodesWithName("4") {
+                            self.enumerateChildNodesWithName("chocolate1") {
                                 node, stop in
-                                let actionMove = SKAction.moveBy(CGVector(dx: 0.0, dy: -self.size.height * 0.3), duration: 1.5)
-                                
+                                let actionMove = SKAction.moveBy(CGVector(dx: 0.0, dy: -self.size.height * 0.35), duration: 2.0)
+                                node.runAction(SKAction.sequence([actionMove]))
+                            }
+                            self.enumerateChildNodesWithName("chocolate2") {
+                                node, stop in
+                                let actionMove = SKAction.moveBy(CGVector(dx: 0.0, dy: -self.size.height * 0.30), duration: 2.0)
                                 node.runAction(SKAction.sequence([actionMove]))
                             }
                             rodou3 = true
-                            self.userInteractionEnabled = false
-                            
+                            self.userInteractionEnabled = true
                         }
                     }
                 }
             case 4:
-                var bla = 0
+                if rodou1 == false {
+                    imgToque.hidden = true
+                    self.userInteractionEnabled = false
+                    numero1Img.runAction(SKAction.sequence([fadeIn]))
+                    addImgDivisao()
+                    rodou1 = true
+                }
+                else {
+                    if rodou2 == false {
+                        imgToque.hidden = true
+                        self.userInteractionEnabled = false
+                        numero2Img.runAction(SKAction.sequence([fadeIn]))
+                        
+                        linha1Div.runAction(SKAction.sequence([fadeIn]))
+                        linha2Div.runAction(SKAction.sequence([fadeIn]))
+
+                        
+                        let zoomIn = SKAction.scaleTo(1.5, duration: 1.5)
+                        let zoomOut = SKAction.scaleTo(1.0, duration: 1.5)
+                        
+                        self.enumerateChildNodesWithName("pizza2") {
+                            node, stop in
+                            var no: SKNode = node
+                            no.runAction(SKAction.sequence([zoomIn]), completion: { () -> Void in
+                                no.runAction(SKAction.sequence([zoomOut]))
+                            })
+                        }
+                        self.enumerateChildNodesWithName("pizza3") {
+                            node, stop in
+                            var no: SKNode = node
+                            no.runAction(SKAction.sequence([zoomIn]), completion: { () -> Void in
+                                no.runAction(SKAction.sequence([zoomOut]), completion: { () -> Void in
+                                    self.imgToque.hidden = false
+                                    self.userInteractionEnabled = true
+                                })
+                            })
+                        }
+                        rodou2 = true
+                    }
+                    else {
+                        if rodou3 == false {
+                            imgToque.hidden = true
+                            self.userInteractionEnabled = false
+                            numero3Img.runAction(SKAction.sequence([fadeIn]))
+                            let actionMove = SKAction.moveBy(CGVector(dx: -self.size.width * 0.10, dy: 0.0), duration: 2.0)
+                            let waitSomeTime1 = SKAction.waitForDuration(2)
+                            let waitSomeTime2 = SKAction.waitForDuration(2)
+                            
+                            self.enumerateChildNodesWithName("pizza2") {
+                                node, stop in
+                                node.runAction(SKAction.sequence([actionMove, waitSomeTime1]))
+                            }
+                            self.enumerateChildNodesWithName("pizza3") {
+                                node, stop in
+                                node.runAction(SKAction.sequence([actionMove, waitSomeTime1]), completion: { () -> Void in
+                                    self.adicionarNumeroMenosDivisao()
+                                    self.linha.runAction(SKAction.sequence([self.fadeIn]))
+                                    self.enumerateChildNodesWithName("divisaoMenos") {
+                                        node, stop in
+                                        node.runAction(SKAction.sequence([self.fadeIn, waitSomeTime2]), completion: { () -> Void in
+                                            self.adicionarNumeroRestoDivisao()
+                                            self.enumerateChildNodesWithName("divisaoResto") {
+                                                node, stop in
+                                                node.runAction(SKAction.sequence([self.fadeIn]), completion: { () -> Void in
+                                                    self.userInteractionEnabled = true
+                                                })
+                                            }
+                                        })
+                                    }
+                                })
+                            }
+                            rodou3 = true
+                        }
+                    }
+                }
             default:
                 break
             }
         }
-        
     }
     
     // adiciona o primeiro conjunto de imagens na adicao, subtracao e multiplicacao
@@ -327,7 +438,28 @@ class Tutorial: SKScene {
             
             let actionMove = SKAction.moveBy(CGVector(dx: -self.size.width / 2, dy: 0.0), duration: 5.0)
             exemplo1Img.runAction(SKAction.sequence([actionMove]), completion: { () -> Void in
-                self.imgToque.alpha = 1.0
+                self.imgToque.hidden = false
+                self.userInteractionEnabled = true
+            })
+        }
+    }
+    
+    // adiciona o primeiro conjunto de imagens na adicao, subtracao e multiplicacao
+    func addImg1Multiplicacao(img: SKSpriteNode, nome: String) {
+        for var i = 0; i < n1; i++ {
+            let exemplo1Img = SKSpriteNode(imageNamed: nome)
+            exemplo1Img.name = nome
+            exemplo1Img.physicsBody = SKPhysicsBody(rectangleOfSize: exemplo1Img.frame.size)
+            exemplo1Img.physicsBody!.dynamic = false
+            
+            var xPos1 = (CGFloat(self.size.width * 1.5) * CGFloat(Double(i) / 8) + CGFloat(self.size.width))
+            exemplo1Img.position = CGPointMake(xPos1, img.position.y)
+            exemplo1Img.size = CGSize(width: size.width * 0.2, height: size.height * 0.1)
+            self.addChild(exemplo1Img)
+            
+            let actionMove = SKAction.moveBy(CGVector(dx: -self.size.width / 2, dy: 0.0), duration: 5.0)
+            exemplo1Img.runAction(SKAction.sequence([actionMove]), completion: { () -> Void in
+                self.imgToque.hidden = false
                 self.userInteractionEnabled = true
             })
         }
@@ -348,59 +480,128 @@ class Tutorial: SKScene {
             
             let actionMove = SKAction.moveBy(CGVector(dx: -self.size.width / 2, dy: 0.0), duration: 5.0)
             exemplo2Img.runAction(SKAction.sequence([actionMove]), completion: { () -> Void in
-                self.imgToque.alpha = 1.0
+                self.imgToque.hidden = false
                 self.userInteractionEnabled = true
             })
         }
     }
     
     // move o segundo conjunto de imagens na subtracao
-    func moveImg2() {
-        self.enumerateChildNodesWithName("5") {
+    func moveImg2(nome: String) {
+        self.enumerateChildNodesWithName(nome) {
             node, stop in
             let actionMove = SKAction.moveBy(CGVector(dx: 0.0, dy: -self.size.height * 0.1), duration: 1.5)
-            node.runAction(SKAction.sequence([actionMove]))
+            node.runAction(SKAction.sequence([actionMove]), completion: { () -> Void in
+                self.imgToque.hidden = false
+                self.userInteractionEnabled = true
+            })
         }
     }
     
     // remove da tela o segundo conjunto de imagens da subtracao
-    func removeImg2() {
-        self.enumerateChildNodesWithName("5") {
+    func removeImg2(nome: String) {
+        self.enumerateChildNodesWithName(nome) {
             node, stop in
             node.runAction(SKAction.sequence([self.fadeOut]))
         }
     }
     
     // adiciona o segundo conjunto de imagens na multiplicacao
-    func addImgRepetida(img: SKNode) {
+    func addImgRepetida(img: SKNode, nomeImagem: String, nomeNo1: String, nomeNo2: String) {
         for var i = 0; i < n2; i++ {
-            let exemplo2Img = SKSpriteNode(imageNamed: "7")
-            exemplo2Img.name = "7"
+            let exemplo2Img = SKSpriteNode(imageNamed: nomeImagem)
+            exemplo2Img.name = nomeNo1
             exemplo2Img.physicsBody = SKPhysicsBody(rectangleOfSize: exemplo2Img.frame.size)
             exemplo2Img.physicsBody!.dynamic = false
             
             exemplo2Img.position = CGPointMake(img.position.x, img.position.y)
-            exemplo2Img.size = CGSize(width: size.width * 0.1, height: size.height * 0.15)
+            exemplo2Img.size = CGSize(width: size.width * 0.2, height: size.height * 0.1)
             self.addChild(exemplo2Img)
             
-            let actionMove2 = SKAction.moveBy(CGVector(dx: 0.0, dy: -self.size.width * 0.2), duration: 1.5)
+            let actionMove2 = SKAction.moveBy(CGVector(dx: 0.0, dy: -self.size.width * 0.15), duration: 2.0)
             exemplo2Img.runAction(SKAction.sequence([actionMove2]))
             
-            
-            let exemplo3Img = SKSpriteNode(imageNamed: "7")
-            exemplo3Img.name = "7"
+            let exemplo3Img = SKSpriteNode(imageNamed: nomeImagem)
+            exemplo3Img.name = nomeNo2
             exemplo3Img.physicsBody = SKPhysicsBody(rectangleOfSize: exemplo3Img.frame.size)
             exemplo3Img.physicsBody!.dynamic = false
             
             exemplo3Img.position = CGPointMake(img.position.x, img.position.y)
-            exemplo3Img.size = CGSize(width: size.width * 0.1, height: size.height * 0.15)
+            exemplo3Img.size = CGSize(width: size.width * 0.2, height: size.height * 0.1)
             self.addChild(exemplo3Img)
             
-            let actionMove3 = SKAction.moveBy(CGVector(dx: 0.0, dy: -self.size.width * 0.4), duration: 1.5)
-            exemplo3Img.runAction(SKAction.sequence([actionMove3]))
-
+            let actionMove3 = SKAction.moveBy(CGVector(dx: 0.0, dy: -self.size.width * 0.30), duration: 2.0)
+            exemplo3Img.runAction(SKAction.sequence([actionMove3]), completion: { () -> Void in
+                self.imgToque.hidden = false
+                self.userInteractionEnabled = true
+            })
         }
     }
+    
+    // adiciona imagem na divisao
+    func addImgDivisao() {
+        let exemploImgPizza1 = SKSpriteNode(imageNamed: "pizza1")
+        exemploImgPizza1.name = "pizza1"
+        exemploImgPizza1.physicsBody = SKPhysicsBody(rectangleOfSize: exemploImgPizza1.frame.size)
+        exemploImgPizza1.physicsBody!.dynamic = false
+        exemploImgPizza1.position = CGPointMake(size.width * 0.755, size.height * 0.205)
+        exemploImgPizza1.size = CGSize(width: size.width * 0.30, height: size.height * 0.30)
+        exemploImgPizza1.alpha = 0.0
+        self.addChild(exemploImgPizza1)
+        exemploImgPizza1.runAction(SKAction.sequence([fadeIn]))
+        
+        let exemploImgPizza2 = SKSpriteNode(imageNamed: "pizza2")
+        exemploImgPizza2.name = "pizza2"
+        exemploImgPizza2.physicsBody = SKPhysicsBody(rectangleOfSize: exemploImgPizza2.frame.size)
+        exemploImgPizza2.physicsBody!.dynamic = false
+        exemploImgPizza2.position = CGPointMake(size.width * 0.745, size.height * 0.205)
+        exemploImgPizza2.size = CGSize(width: size.width * 0.30, height: size.height * 0.30)
+        exemploImgPizza2.alpha = 0.0
+        self.addChild(exemploImgPizza2)
+        exemploImgPizza2.runAction(SKAction.sequence([fadeIn]))
+        
+        let exemploImgPizza3 = SKSpriteNode(imageNamed: "pizza3")
+        exemploImgPizza3.name = "pizza3"
+        exemploImgPizza3.physicsBody = SKPhysicsBody(rectangleOfSize: exemploImgPizza3.frame.size)
+        exemploImgPizza3.physicsBody!.dynamic = false
+        exemploImgPizza3.position = CGPointMake(size.width * 0.745, size.height * 0.195)
+        exemploImgPizza3.size = CGSize(width: size.width * 0.30, height: size.height * 0.30)
+        exemploImgPizza3.alpha = 0.0
+        self.addChild(exemploImgPizza3)
+        exemploImgPizza3.runAction(SKAction.sequence([fadeIn]))
+        
+        let exemploImgPizza4 = SKSpriteNode(imageNamed: "pizza4")
+        exemploImgPizza4.name = "pizza4"
+        exemploImgPizza4.physicsBody = SKPhysicsBody(rectangleOfSize: exemploImgPizza4.frame.size)
+        exemploImgPizza4.physicsBody!.dynamic = false
+        exemploImgPizza4.position = CGPointMake(size.width * 0.755, size.height * 0.195)
+        exemploImgPizza4.size = CGSize(width: size.width * 0.30, height: size.height * 0.30)
+        exemploImgPizza4.alpha = 0.0
+        self.addChild(exemploImgPizza4)
+        exemploImgPizza4.runAction(SKAction.sequence([fadeIn]), completion: { () -> Void in
+            self.imgToque.hidden = false
+            self.userInteractionEnabled = true
+        })
+    }
+    
+    func adicionarNumeroMenosDivisao() {
+        let numeroDivisaoMenos = SKSpriteNode(imageNamed: "4")
+        numeroDivisaoMenos.name = "divisaoMenos"
+        numeroDivisaoMenos.position = CGPoint(x: size.width * 0.25, y: size.height * 0.45)
+        numeroDivisaoMenos.size = CGSize(width: size.width * 0.1, height: size.height * 0.15)
+        numeroDivisaoMenos.alpha = 0.0
+        addChild(numeroDivisaoMenos)
+    }
+    
+    func adicionarNumeroRestoDivisao() {
+        let numeroDivisaoResto = SKSpriteNode(imageNamed: "0")
+        numeroDivisaoResto.name = "divisaoResto"
+        numeroDivisaoResto.position = CGPoint(x: size.width * 0.25, y: size.height * 0.20)
+        numeroDivisaoResto.size = CGSize(width: size.width * 0.1, height: size.height * 0.15)
+        numeroDivisaoResto.alpha = 0.0
+        addChild(numeroDivisaoResto)
+    }
+    
     
     // pausa o jogo
     func pause() {
@@ -409,7 +610,6 @@ class Tutorial: SKScene {
     
     // animacao do toque
     func tocando(object: SKSpriteNode) {
-        
         let toqueNaTela = SKAction.animateWithTextures([
             SKTexture(imageNamed: "toque1"),
             SKTexture(imageNamed: "toque2"),
@@ -419,8 +619,7 @@ class Tutorial: SKScene {
         object.runAction(run, withKey: "tocando")
     }
     
-    
-    
+    // animacao da vaca
     func animacaoVaca(object: SKNode) {
         let vacaAnimada = SKAction.animateWithTextures([
             SKTexture(imageNamed: "vaca3"),
@@ -433,7 +632,8 @@ class Tutorial: SKScene {
         object.runAction(run, withKey: "vacaAnimada")
     }
     
-    func animacaoOvelha(object: SKSpriteNode) {
+    // animacao do ovelha
+    func animacaoOvelha(object: SKNode) {
         let ovelhaAnimada = SKAction.animateWithTextures([
             SKTexture(imageNamed: "ovelha1"),
             SKTexture(imageNamed: "ovelha2"),
@@ -444,9 +644,4 @@ class Tutorial: SKScene {
         let run = SKAction.repeatActionForever(ovelhaAnimada)
         object.runAction(run, withKey: "ovelhaAnimada")
     }
-
-    
-    
-    
-
 }
