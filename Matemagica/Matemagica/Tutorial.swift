@@ -14,25 +14,26 @@ class Tutorial: SKScene {
     // tag para verificar qual a operacao que foi clicada na tela anterior
     var tag:Int!
     var vC: TutorialDetailViewController!
-    var lblTitulo: SKLabelNode = SKLabelNode()
+    let lblTitulo: SKLabelNode = SKLabelNode()
     
     // numeros que serao usados para fazer a conta
     var n1: Int!
     var n2: Int!
     
     // background
-    var bg: SKSpriteNode = SKSpriteNode()
+    let bg: SKSpriteNode = SKSpriteNode()
     
     // adiciona os nodes dos numeros
-    var numero1Img: SKSpriteNode = SKSpriteNode()
-    var numero2Img: SKSpriteNode = SKSpriteNode()
-    var numero3Img: SKSpriteNode = SKSpriteNode()
-    var sinal: SKSpriteNode = SKSpriteNode()
+    let numero1Img: SKSpriteNode = SKSpriteNode()
+    let numero2Img: SKSpriteNode = SKSpriteNode()
+    let numero3Img: SKSpriteNode = SKSpriteNode()
+    let sinal: SKSpriteNode = SKSpriteNode()
+    let quadroNegro: SKSpriteNode = SKSpriteNode()
     
     let imgToque = SKSpriteNode(imageNamed: "toque1")
     
     // "botao" voltar
-    let voltar = SKSpriteNode(imageNamed: "bloco")
+    let voltar = SKSpriteNode(imageNamed: "voltar")
     
     // flag para verificar qual a ordem que vai aparecer as funcoes
     var rodou1: Bool! = false
@@ -73,7 +74,7 @@ class Tutorial: SKScene {
         
         // adicionando o "botao" voltar
         voltar.position = CGPoint(x: 100, y: size.height-50)
-        voltar.size = CGSize(width: 100, height: 40)
+        voltar.size = CGSize(width: 100, height: 100)
         addChild(voltar)
         
         // label mostrando a conta do exercicio
@@ -83,6 +84,12 @@ class Tutorial: SKScene {
         lblTitulo.fontColor = SKColor.blackColor()
         addChild(lblTitulo)
         
+        // imagem do quadro negro
+        quadroNegro.position = CGPoint(x: size.width * 0.20, y: size.height * 0.43)
+        quadroNegro.size = CGSize(width: size.width * 0.40, height: size.height * 0.7)
+        quadroNegro.texture = SKTexture(imageNamed: "quadro")
+        addChild(quadroNegro)
+
         // imagem do primeiro numero da conta
         numero1Img.position = CGPoint(x: size.width * 0.25, y: size.height * 0.65)
         numero1Img.size = CGSize(width: size.width * 0.1, height: size.height * 0.15)
@@ -151,8 +158,9 @@ class Tutorial: SKScene {
             numero1Img.texture = SKTexture(imageNamed: "2")
             numero2Img.texture = SKTexture(imageNamed: "3")
             numero3Img.texture = SKTexture(imageNamed: "6")
+            sinal.texture = SKTexture(imageNamed: "multiplicacao")
             
-            // COLOCAR BACKGROUND PARA MULTIPLICACAO (CHOCOLATE)
+            bg.texture = SKTexture(imageNamed: "bgchocolate")
             
             n1 = 2
             n2 = 2
@@ -162,6 +170,7 @@ class Tutorial: SKScene {
             numero1Img.texture = SKTexture(imageNamed: "4")
             numero2Img.texture = SKTexture(imageNamed: "2")
             numero3Img.texture = SKTexture(imageNamed: "2")
+            sinal.texture = SKTexture(imageNamed: "subtracao")
             
             CGPathMoveToPoint(ref2, nil, size.width * 0.5, size.height * 0.75)
             CGPathAddLineToPoint(ref2, nil, size.width * 0.5, size.height * 0.55)
@@ -218,6 +227,7 @@ class Tutorial: SKScene {
                         imgToque.hidden = true
                         self.userInteractionEnabled = false
                         numero2Img.runAction(SKAction.sequence([fadeIn]))
+                        linha.runAction(SKAction.sequence([fadeIn]))
                         sinal.runAction(SKAction.sequence([fadeIn]))
                         addImg2(numero2Img, nome: "vaca2")
                         self.enumerateChildNodesWithName("vaca2") {
@@ -275,6 +285,7 @@ class Tutorial: SKScene {
                         self.userInteractionEnabled = false
                         numero2Img.runAction(SKAction.sequence([fadeIn]))
                         linha.runAction(SKAction.sequence([fadeIn]))
+                        sinal.runAction(SKAction.sequence([fadeIn]))
                         moveImg2("ovelha2")
                         rodou2 = true
                     }
@@ -309,6 +320,7 @@ class Tutorial: SKScene {
                         self.userInteractionEnabled = false
                         numero2Img.runAction(SKAction.sequence([fadeIn]))
                         linha.runAction(SKAction.sequence([fadeIn]))
+                        sinal.runAction(SKAction.sequence([fadeIn]))
                         self.enumerateChildNodesWithName("chocolate") {
                             node, stop in
                             var no: SKNode = node
@@ -399,6 +411,7 @@ class Tutorial: SKScene {
                                 node.runAction(SKAction.sequence([actionMove, waitSomeTime1]), completion: { () -> Void in
                                     self.adicionarNumeroMenosDivisao()
                                     self.linha.runAction(SKAction.sequence([self.fadeIn]))
+                                    self.sinal.runAction(SKAction.sequence([self.fadeIn]))
                                     self.enumerateChildNodesWithName("divisaoMenos") {
                                         node, stop in
                                         node.runAction(SKAction.sequence([self.fadeIn, waitSomeTime2]), completion: { () -> Void in

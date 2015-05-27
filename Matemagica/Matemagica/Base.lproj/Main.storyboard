@@ -93,9 +93,9 @@
                             <imageView userInteractionEnabled="NO" tag="1" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="imgdefault" translatesAutoresizingMaskIntoConstraints="NO" id="iav-l0-RjE">
                                 <rect key="frame" x="259" y="189" width="250" height="250"/>
                             </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XEo-xx-eJX">
-                                <rect key="frame" x="16" y="28" width="98" height="88"/>
-                                <state key="normal" title="Voltar">
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XEo-xx-eJX">
+                                <rect key="frame" x="16" y="28" width="75" height="75"/>
+                                <state key="normal" image="voltar">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
@@ -156,9 +156,9 @@
                                     <action selector="jogoMulti:" destination="Nwf-ld-bDv" eventType="touchUpInside" id="651-2B-0AD"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pnU-nu-V2k">
-                                <rect key="frame" x="73" y="74" width="39" height="30"/>
-                                <state key="normal" title="Voltar">
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pnU-nu-V2k">
+                                <rect key="frame" x="16" y="28" width="75" height="75"/>
+                                <state key="normal" image="voltar">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
@@ -352,9 +352,9 @@
                             <pickerView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dOJ-nk-pq3">
                                 <rect key="frame" x="336" y="193" width="97" height="231"/>
                             </pickerView>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XVJ-5o-w5f">
-                                <rect key="frame" x="51" y="70" width="39" height="30"/>
-                                <state key="normal" title="Voltar">
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XVJ-5o-w5f">
+                                <rect key="frame" x="16" y="28" width="75" height="75"/>
+                                <state key="normal" image="voltar">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
@@ -443,9 +443,9 @@
                                     <segue destination="3b2-vQ-mFf" kind="show" identifier="adicaoIdentifier" id="iaf-Ge-OUd"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gWW-cq-yG6">
-                                <rect key="frame" x="75" y="71" width="39" height="30"/>
-                                <state key="normal" title="Voltar">
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gWW-cq-yG6">
+                                <rect key="frame" x="16" y="28" width="75" height="75"/>
+                                <state key="normal" image="voltar">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
@@ -512,6 +512,7 @@
         <image name="imgdefault" width="1024" height="1024"/>
         <image name="multiplicacao" width="128" height="128"/>
         <image name="subtracao" width="128" height="128"/>
+        <image name="voltar" width="128" height="128"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="iaf-Ge-OUd"/>
