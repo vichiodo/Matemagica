@@ -37,6 +37,7 @@ class PlayerGameViewController: UIViewController, UITableViewDelegate, UITableVi
         userDef.setObject("-1", forKey: "jogador1")
         userDef.setObject("-1", forKey: "jogador2")
     }
+    
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 1
     }
@@ -93,8 +94,6 @@ class PlayerGameViewController: UIViewController, UITableViewDelegate, UITableVi
                 img2.image = UIImage(data: playerSelecionado.fotoPlayer)
             }
         }
-        
-        
     }
     
     override func touchesBegan(touches: Set<NSObject>, withEvent event: UIEvent) {
@@ -119,6 +118,7 @@ class PlayerGameViewController: UIViewController, UITableViewDelegate, UITableVi
     @IBAction func voltar(sender: AnyObject) {
         self.dismissViewControllerAnimated(true, completion: nil)
     }
+    
     override func shouldPerformSegueWithIdentifier(identifier: String?, sender: AnyObject?) -> Bool {
         if identifier == "jogar" {
             if jogador1.text != "Jogador 1" && jogador2.text != "Jogador 2" {

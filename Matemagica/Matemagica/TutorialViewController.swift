@@ -17,18 +17,15 @@ class TutorialViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.navigationItem.title = "Tutorial"
-
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        
     }
     
     override func viewWillAppear(animated: Bool) {
         var notification: NSNotificationCenter = NSNotificationCenter.defaultCenter()
-        notification.postNotificationName("pauseView", object: self)
+        notification.postNotificationName("pauseTutorial", object: self)
     }
 
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
@@ -45,18 +42,16 @@ class TutorialViewController: UIViewController {
         if (segue.identifier == "multiplicacaoIdentifier") {
             var tutorialVC : TutorialDetailViewController = segue.destinationViewController as! TutorialDetailViewController
             tutorialVC.buttonTag = sender!.tag
-            
         }
         
         if (segue.identifier == "divisaoIdentifier") {
             var tutorialVC : TutorialDetailViewController = segue.destinationViewController as! TutorialDetailViewController
             tutorialVC.buttonTag = sender!.tag
         }
-
     }
+    
     @IBAction func voltar(sender: AnyObject) {
         self.dismissViewControllerAnimated(true, completion: nil)
     }
-
    
 }

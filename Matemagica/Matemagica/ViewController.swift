@@ -14,7 +14,6 @@ class ViewController: UIViewController {
     @IBOutlet weak var tutorial: UIButton!
     @IBOutlet weak var diy: UIButton!
     
-    
     @IBOutlet weak var logoM1: UIImageView!
     @IBOutlet weak var logoA1: UIImageView!
     @IBOutlet weak var logoT: UIImageView!
@@ -38,7 +37,6 @@ class ViewController: UIViewController {
         logoI.alpha = 0.0
         logoC.alpha = 0.0
         logoA3.alpha = 0.0
-        
         
         let delayTime3 = dispatch_time(DISPATCH_TIME_NOW, Int64(0.5 * Double(NSEC_PER_SEC)))
         dispatch_after(delayTime3, dispatch_get_main_queue()) {
@@ -109,8 +107,6 @@ class ViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
-    
     
 }
 

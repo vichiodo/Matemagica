@@ -12,7 +12,7 @@ import SpriteKit
 class MultiGameScene: SKScene {
     var vC: MiddleViewController!
     var userDef: NSUserDefaults = NSUserDefaults.standardUserDefaults()
-
+    
     var ref = CGPathCreateMutable()
     var line = SKShapeNode()
     var resposta: Int = 0
@@ -55,7 +55,8 @@ class MultiGameScene: SKScene {
     
     let lblNomeJogador1 = SKLabelNode(fontNamed: "ChalkboardSE-Light")
     let lblNomeJogador2 = SKLabelNode(fontNamed: "ChalkboardSE-Light")
-
+    
+    let voltar = SKSpriteNode(imageNamed: "voltar")
     
     //animação
     let aparecer = SKAction.fadeInWithDuration(0.5)
@@ -64,6 +65,14 @@ class MultiGameScene: SKScene {
     
     override func didMoveToView(view: SKView) {
         backgroundColor = SKColor.whiteColor()
+        // "botao" voltar
+        voltar.position = CGPoint(x: 53.5, y: size.height - 65.6)
+        voltar.size = CGSize(width: 75, height: 75)
+        addChild(voltar)
+        
+        // notificationCenter para verificar quando voltar para a view anterior ele para o jogo
+        var notification:NSNotificationCenter = NSNotificationCenter.defaultCenter()
+        notification.addObserver(self, selector: "pause", name: "pauseMulti", object: nil)
         
         CGPathMoveToPoint(ref, nil, 0, size.height/2)
         CGPathAddLineToPoint(ref, nil, size.width, size.height/2)
@@ -99,7 +108,6 @@ class MultiGameScene: SKScene {
         lblResultadoJogador2.alpha = 0
         addChild(lblResultadoJogador2)
         
-        
         // instanciação e posicionamento da label do jogador 1
         let lblTextPontuacao1 = SKLabelNode(fontNamed: "ChalkboardSE-Light")
         lblTextPontuacao1.position = CGPoint(x: size.width * 0.1, y: size.height * 0.55)
@@ -108,7 +116,7 @@ class MultiGameScene: SKScene {
         lblTextPontuacao1.fontColor = SKColor.blackColor()
         lblTextPontuacao1.text = "Pontuação"
         addChild(lblTextPontuacao1)
-
+        
         lblPontuacaoJogador1.position = CGPoint(x: size.width * 0.1, y: size.height * 0.6)
         lblPontuacaoJogador1.fontSize = 60
         lblPontuacaoJogador1.zRotation = CGFloat(M_1_PI*9.85)
@@ -122,7 +130,7 @@ class MultiGameScene: SKScene {
         lblNomeJogador1.fontColor = SKColor.blackColor()
         lblNomeJogador1.text = "\(players[index1].nomePlayer)"
         addChild(lblNomeJogador1)
-
+        
         vitoriasJogador1 = (players[index1].scorePlayer).toInt()!
         lblVitoriasJogador1.position = CGPoint(x: size.width * 0.9, y: size.height * 0.6)
         lblVitoriasJogador1.fontSize = 60
@@ -130,7 +138,7 @@ class MultiGameScene: SKScene {
         lblVitoriasJogador1.fontColor = SKColor.blackColor()
         lblVitoriasJogador1.text = "\(vitoriasJogador1)"
         addChild(lblVitoriasJogador1)
-
+        
         
         // instanciação e posicionamento da label do jogador 2
         let lblTextPontuacao2 = SKLabelNode(fontNamed: "ChalkboardSE-Light")
@@ -139,7 +147,7 @@ class MultiGameScene: SKScene {
         lblTextPontuacao2.fontColor = SKColor.blackColor()
         lblTextPontuacao2.text = "Pontuação"
         addChild(lblTextPontuacao2)
-
+        
         lblPontuacaoJogador2.position = CGPoint(x: size.width * 0.9, y: size.height * 0.4)
         lblPontuacaoJogador2.fontSize = 60
         lblPontuacaoJogador2.fontColor = SKColor.blackColor()
@@ -151,15 +159,13 @@ class MultiGameScene: SKScene {
         lblNomeJogador2.fontColor = SKColor.blackColor()
         lblNomeJogador2.text = "\(players[index2].nomePlayer)"
         addChild(lblNomeJogador2)
-
+        
         vitoriasJogador2 = (players[index2].scorePlayer).toInt()!
         lblVitoriasJogador2.position = CGPoint(x: size.width * 0.1, y: size.height * 0.4)
         lblVitoriasJogador2.fontSize = 60
         lblVitoriasJogador2.fontColor = SKColor.blackColor()
         lblVitoriasJogador2.text = "\(vitoriasJogador2)"
-        addChild(lblVitoriasJogador2)
-
-
+        addChild(lblVitoriasJogador2)        
     }
     
     override func touchesBegan(touches: Set<NSObject>, withEvent event: UIEvent) {
@@ -167,13 +173,14 @@ class MultiGameScene: SKScene {
         let touchLocation = touch.locationInNode(self)
         alternativaTocada = self.nodeAtPoint(touchLocation)
         
-        ////////// TROCAR PARA 10 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-        if scoreGamer1 < 2 && scoreGamer2 < 2 {
+        if voltar.containsPoint(touchLocation){
+            vC.voltar()
+        }
+        if scoreGamer1 < 10 && scoreGamer2 < 10 {
             if alternativaTocada.name == "certa1" {
-                println("tocou na certa 1")
                 scoreGamer1++
                 lblPontuacaoJogador1.text = "\(scoreGamer1)"
-                if scoreGamer1 == 2 {
+                if scoreGamer1 == 10 {
                     lblResultadoJogador1.hidden = false
                     lblResultadoJogador2.hidden = false
                     lblResultadoJogador1.text = "VENCEU"
@@ -207,21 +214,19 @@ class MultiGameScene: SKScene {
                     })
                     [alerta.addAction(al2)]
                     vC.presentViewController(alerta, animated: true, completion: nil)
-
                 }
                 else {
                     addContasGamer1()
                     println("Gamer1: \(scoreGamer1)")
                 }
             }
-//            else if alternativaTocada.name == "errado1" {
-//                println("errooooouuuu primeiro")
-//            }
+                //            else if alternativaTocada.name == "errado1" {
+                //                println("errooooouuuu primeiro")
+                //            }
             else if alternativaTocada.name == "certa2" {
-                println("tocou na certa 2")
                 scoreGamer2++
                 lblPontuacaoJogador2.text = "\(scoreGamer2)"
-                if scoreGamer2 == 2 {
+                if scoreGamer2 == 10 {
                     lblResultadoJogador1.hidden = false
                     lblResultadoJogador2.hidden = false
                     lblResultadoJogador1.text = "PERDEU"
@@ -249,14 +254,13 @@ class MultiGameScene: SKScene {
                         self.scoreGamer2 = 0
                         self.lblPontuacaoJogador1.text = "\(self.scoreGamer1)"
                         self.lblPontuacaoJogador2.text = "\(self.scoreGamer2)"
-
+                        
                         self.addOperacao()
                         self.addContasGamer1()
                         self.addContasGamer2()
                     })
                     [alerta.addAction(al2)]
                     vC.presentViewController(alerta, animated: true, completion: nil)
-
                 }
                 else {
                     addContasGamer2()
@@ -264,11 +268,7 @@ class MultiGameScene: SKScene {
                 }
             }
         }
-        
-        //SALVAR NO COREDATA(SINGLE TAMBEM)
-        //MOSTRAR O NOME E FOTO DO JOGADOR
         PlayerManager.sharedInstance.salvarPlayer()
-        
     }
     
     func addOperacao(){
@@ -280,16 +280,12 @@ class MultiGameScene: SKScene {
             switch operacao {
             case 0: // operação +
                 op = "+"
-                
             case 1: // operação -
                 op = "-"
-                
             case 2: // operação *
                 op = "*"
-                
             default: // operação /
                 op = "/"
-                
             }
             
             var fazConta = Contas(operacao: op)
@@ -315,7 +311,6 @@ class MultiGameScene: SKScene {
         conta2.text = "\(contasArray[scoreGamer2].conta)"
         addAlternativasGame2()
     }
-    
     
     func addAlternativasGame1(){
         posicao = random(0, 3)
@@ -372,7 +367,6 @@ class MultiGameScene: SKScene {
                 node.name = "certa1"
             }
         }
-        
     }
     
     func addAlternativasGame2(){
@@ -514,4 +508,10 @@ class MultiGameScene: SKScene {
             addChild(bloco)
         }
     }
+    
+    // pausa o jogo
+    func pause() {
+        self.view?.paused = true
+    }
+    
 }

@@ -30,10 +30,8 @@ class PlayerViewController: UIViewController, UIImagePickerControllerDelegate, U
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        println("foi aqui")
         nome.userInteractionEnabled = false
         foto.userInteractionEnabled = false
-        tipoView = 0
         
         notificacao.addObserver(self, selector: "mudarView:", name: "mudarView", object: nil)
         add.setTitle("+", forState: UIControlState.Normal)
@@ -41,7 +39,7 @@ class PlayerViewController: UIViewController, UIImagePickerControllerDelegate, U
 
         imagePicker.delegate = self
         imagePicker.allowsEditing = true
-        if userDef.objectForKey("index") != nil {
+        if userDef.objectForKey("index") != nil && userDef.objectForKey("index") as! Int != -1 {
             var playerSelecionado = players[userDef.integerForKey("index")]
             
             nome.text = playerSelecionado.nomePlayer
@@ -120,6 +118,9 @@ class PlayerViewController: UIViewController, UIImagePickerControllerDelegate, U
                     self.presentViewController(alerta, animated: true, completion: nil)
                 }
                 else {
+                    cancelar.alpha = 0.0
+                    add.tag = 1
+                    add.setTitle("+", forState: UIControlState.Normal)
                     PlayerManager.sharedInstance.salvarNovoPlayer(nome.text, foto: foto.image!)
                     players = PlayerManager.sharedInstance.buscarPlayers()
                     self.tableView.reloadData()
@@ -181,7 +182,7 @@ class PlayerViewController: UIViewController, UIImagePickerControllerDelegate, U
             PlayerManager.sharedInstance.removerJogador(indexPath.row)
             players = PlayerManager.sharedInstance.buscarPlayers()
             if indexPath.row == 0 {
-                userDef.setObject(0, forKey: "index")
+                userDef.setObject(-1, forKey: "index")
             }
             else {
                 if indexPath.row < (userDef.objectForKey("index") as! Int) {
@@ -189,6 +190,7 @@ class PlayerViewController: UIViewController, UIImagePickerControllerDelegate, U
                 }
                 if indexPath.row == (userDef.objectForKey("index") as! Int) {
                     userDef.setObject(-1, forKey: "index")
+                    tableView.deselectRowAtIndexPath(indexPath, animated: true)
                 }
             }
         }

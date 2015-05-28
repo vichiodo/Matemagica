@@ -77,7 +77,12 @@ func random(lo: Int, hi : Int) -> Int {
 
 
 class SingleGameScene: SKScene {
-    
+    var vC: SingleGameViewController!
+    var userDef: NSUserDefaults = NSUserDefaults.standardUserDefaults()
+    lazy var players:Array<Player> = {
+        return PlayerManager.sharedInstance.buscarPlayers()
+        }()
+
     //respostas
     var num1: Int = 0
     var num2: Int = 0
@@ -108,9 +113,20 @@ class SingleGameScene: SKScene {
     var posicao: Int = 0
     var numeros: Array<Int> = [1,2,3,4,5,6,7,8,9,10]
     var nivel: Int = 1
+    var index: Int = -1
+    
+    let voltar = SKSpriteNode(imageNamed: "voltar")
     
     override func didMoveToView(view: SKView) {
+        index = userDef.objectForKey("index") as! Int
+        nivel = players[index].nivelPlayer.toInt()!
         
+        // "botao" voltar
+        voltar.position = CGPoint(x: 53.5, y: size.height - 65.6)
+        voltar.size = CGSize(width: 75, height: 75)
+        voltar.zPosition = 100
+        addChild(voltar)
+
         //chama método para montar a scene
         montarScene()
         
@@ -118,11 +134,22 @@ class SingleGameScene: SKScene {
         novoJogo()
         
         var notification:NSNotificationCenter = NSNotificationCenter.defaultCenter()
-        notification.addObserver(self, selector: "pause", name: "pauseView", object: nil)
+        notification.addObserver(self, selector: "pause", name: "pauseSingle", object: nil)
     }
     
     override func touchesBegan(touches: Set<NSObject>, withEvent event: UIEvent) {
+        //pegar primeiro toque na tela
+        let touch = touches.first as! UITouch
+        let touchLocation = touch.locationInNode(self)
+
+        if voltar.containsPoint(touchLocation){
+            PlayerManager.sharedInstance.salvarPlayer()
+            vC.voltar()
+        }
         
+        //descobre qual opção foi tocado
+        nuvemTocada = self.nodeAtPoint(touchLocation)
+
         //desabilita as labels
         nuvem1.userInteractionEnabled = true
         nuvem2.userInteractionEnabled = true
@@ -130,13 +157,6 @@ class SingleGameScene: SKScene {
         labelResposta1.userInteractionEnabled = true
         labelResposta2.userInteractionEnabled = true
         labelResposta3.userInteractionEnabled = true
-        
-        //pegar primeiro toque na tela
-        let touch = touches.first as! UITouch
-        let toucheLocation = touch.locationInNode(self)
-        
-        //descobre qual opção foi tocado
-        nuvemTocada = self.nodeAtPoint(toucheLocation)
         
         //cria e posiciona label que aparece o texto (feedback ao usuário)
         var labelWin = SKLabelNode(fontNamed: "Macker Felt Wide")
@@ -153,10 +173,12 @@ class SingleGameScene: SKScene {
             fazerChover()
             labelWin.text = "PARABÉNS!!"
             nivel++
-        }else {
+            players[index].nivelPlayer = String(nivel)
+        }else if nuvemTocada.name == "errado" {
             sairSol()
             labelWin.text = "Você errou!"
         }
+        
         
         //animação do sol aparecendo
         let aparecer = SKAction.fadeInWithDuration(0.5)
@@ -174,6 +196,7 @@ class SingleGameScene: SKScene {
             //chama novo nível
             self.novoJogo()
         })
+        PlayerManager.sharedInstance.salvarPlayer()
     }
     
     //obtem as operações de acordo com a String passada e retorna o resultado da operação
@@ -254,7 +277,6 @@ class SingleGameScene: SKScene {
     
     //monta a scene
     func montarScene() {
-        
         //instanciação dos SKSpriteNode
         nuvem1 = SKSpriteNode(imageNamed: "nuvem")
         nuvem2 = SKSpriteNode(imageNamed: "nuvem")
@@ -332,7 +354,6 @@ class SingleGameScene: SKScene {
         bloco.position = CGPoint(x: nuvem2.size.width * 1.2, y: nuvem3.size.width * 1.09)
         bloco.zPosition = 0
         addChild(bloco)
-        
     }
     
     //metodo que cria um novo jogo
@@ -558,7 +579,6 @@ class SingleGameScene: SKScene {
     //caso erre a operação
     func sairSol() {
         solSaindo = SKSpriteNode(imageNamed: "sol")
-        
         switch posicao {
         case 0:
             solSaindo.position = nuvem1.position
@@ -587,6 +607,7 @@ class SingleGameScene: SKScene {
         
         //zera o nível
         nivel = 1
+        players[index].nivelPlayer = String(nivel)
     }
     
     // pausa o jogo

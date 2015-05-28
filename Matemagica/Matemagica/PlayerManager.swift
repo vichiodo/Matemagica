@@ -25,11 +25,10 @@ class PlayerManager{
     func novoPlayer() ->Player {
         return NSEntityDescription.insertNewObjectForEntityForName(PlayerManager.entityName, inManagedObjectContext: managedContext) as! Player
     }
-
+    
     
     
     func buscarPlayers() ->Array<Player> {
-        
         let buscaRequest = NSFetchRequest(entityName: PlayerManager.entityName)
         var erro: NSError?
         let buscaResultados = managedContext.executeFetchRequest(buscaRequest, error: &erro) as? [NSManagedObject]
@@ -43,14 +42,13 @@ class PlayerManager{
         
         return Array<Player>()
     }
-
+    
     func buscarPlayer(index: Int) -> Player{
         var player: Player = buscarPlayers()[index]
         return player
     }
     
     func salvarPlayer() {
-        
         var erro: NSError?
         managedContext.save(&erro)
         
@@ -61,7 +59,6 @@ class PlayerManager{
     
     func removerTodos() {
         var arrayPlay: Array<Player> = buscarPlayers()
-        
         for player: Player in arrayPlay {
             managedContext.deleteObject(player)
         }
@@ -71,7 +68,6 @@ class PlayerManager{
         var arrayPlay: Array<Player> = buscarPlayers()
         managedContext.deleteObject(arrayPlay[index] as NSManagedObject)
         salvarPlayer()
-        
     }
     
     func salvarNovoPlayer(nome: String, foto: UIImage){
@@ -80,9 +76,9 @@ class PlayerManager{
         
         player.setValue(nome, forKey: "nomePlayer")
         player.setValue(imagem, forKey: "fotoPlayer")
-        player.setValue("0", forKey: "nivelPlayer")
+        player.setValue("1", forKey: "nivelPlayer")
         player.setValue("0", forKey: "scorePlayer")
         salvarPlayer()
     }
-
+    
 }

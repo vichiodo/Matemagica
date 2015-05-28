@@ -170,7 +170,7 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="jogoSingle:" destination="Nwf-ld-bDv" eventType="touchUpInside" id="1ba-bk-D8J"/>
+                                    <segue destination="iC7-dq-BfK" kind="show" identifier="singleGame" id="von-27-4zb"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NBP-kS-GcO">
@@ -712,6 +712,25 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tFG-l4-wgF" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="495" y="3528"/>
+        </scene>
+        <!--Single Game View Controller-->
+        <scene sceneID="r7Q-Qd-R1G">
+            <objects>
+                <viewController id="iC7-dq-BfK" customClass="SingleGameViewController" customModule="Matemagica" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="16A-a6-u7D"/>
+                        <viewControllerLayoutGuide type="bottom" id="6lQ-zK-Do9"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="UFA-Hf-FsK">
+                        <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="iPad"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="PLO-CO-Jah" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1302" y="3539"/>
         </scene>
     </scenes>
     <resources>

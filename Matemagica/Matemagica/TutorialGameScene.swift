@@ -32,9 +32,6 @@ class TutorialGameScene: SKScene {
     
     let imgToque = SKSpriteNode(imageNamed: "toque1")
     
-    // "botao" voltar
-    let voltar = SKSpriteNode(imageNamed: "voltar")
-    
     // flag para verificar qual a ordem que vai aparecer as funcoes
     var rodou1: Bool! = false
     var rodou2: Bool! = false
@@ -49,14 +46,15 @@ class TutorialGameScene: SKScene {
     var linha = SKShapeNode()
     var linha1Div = SKShapeNode()
     var linha2Div = SKShapeNode()
-
+    
+    let voltar = SKSpriteNode(imageNamed: "voltar")
     
     override func didMoveToView(view: SKView) {
         backgroundColor = SKColor.whiteColor()
         
         // notificationCenter para verificar quando voltar para a view anterior ele para o jogo
         var notification:NSNotificationCenter = NSNotificationCenter.defaultCenter()
-        notification.addObserver(self, selector: "pause", name: "pauseView", object: nil)
+        notification.addObserver(self, selector: "pause", name: "pauseTutorial", object: nil)
         
         // adiciona a imagem do toque
         imgToque.position = CGPointMake(size.width - 100, size.height - 200)
@@ -72,9 +70,9 @@ class TutorialGameScene: SKScene {
         bg.size = CGSize(width: size.width, height: size.height)
         addChild(bg)
         
-        // adicionando o "botao" voltar
-        voltar.position = CGPoint(x: 100, y: size.height-50)
-        voltar.size = CGSize(width: 100, height: 100)
+        // "botao" voltar
+        voltar.position = CGPoint(x: 53.5, y: size.height - 65.6)
+        voltar.size = CGSize(width: 75, height: 75)
         addChild(voltar)
         
         // label mostrando a conta do exercicio

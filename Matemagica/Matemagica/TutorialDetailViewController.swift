@@ -22,13 +22,13 @@ class TutorialDetailViewController: UIViewController {
         self.view.addSubview(skView)
         scene.scaleMode = .AspectFill
         skView.presentScene(scene)
-
     }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
     func voltar(){
         self.dismissViewControllerAnimated(true, completion: nil)
     }
