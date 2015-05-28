@@ -37,7 +37,7 @@ class PlayerViewController: UIViewController, UIImagePickerControllerDelegate, U
         
         notificacao.addObserver(self, selector: "mudarView:", name: "mudarView", object: nil)
         add.setTitle("+", forState: UIControlState.Normal)
-
+        cancelar.alpha = 0.0
 
         imagePicker.delegate = self
         imagePicker.allowsEditing = true
@@ -73,8 +73,8 @@ class PlayerViewController: UIViewController, UIImagePickerControllerDelegate, U
     
     @IBAction func adicionarPlayer(sender: AnyObject) {
         
-        if add.tag == 1{
-            
+        if add.tag == 1 {
+            cancelar.alpha = 1.0
             nome.text = ""
             foto.image = UIImage(named: "imgdefault")
             
@@ -83,9 +83,10 @@ class PlayerViewController: UIViewController, UIImagePickerControllerDelegate, U
             tableView.allowsSelection = false
             add.tag = 0
             add.setTitle("Salvar", forState: UIControlState.Normal)
+
             
         }
-        else if add.tag == 0{
+        else if add.tag == 0 {
             
             if nome.text == "" {
                 let alerta: UIAlertController = UIAlertController(title: "Atenção", message: "Digite um nome", preferredStyle:.Alert)
@@ -119,6 +120,9 @@ class PlayerViewController: UIViewController, UIImagePickerControllerDelegate, U
                     self.presentViewController(alerta, animated: true, completion: nil)
                 }
                 else {
+                    cancelar.alpha = 0.0
+                    add.tag = 1
+                    add.setTitle("+", forState: UIControlState.Normal)
                     PlayerManager.sharedInstance.salvarBanco(nome.text, foto: foto.image!)
                     players = PlayerManager.sharedInstance.buscarPlayers()
                     self.tableView.reloadData()
@@ -139,10 +143,7 @@ class PlayerViewController: UIViewController, UIImagePickerControllerDelegate, U
                     self.navigationItem.setRightBarButtonItem(UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Add, target: self, action: "adicionarPlayer:"), animated: true)
                 }
             }
-            add.tag = 1
-            add.setTitle("+", forState: UIControlState.Normal)
         }
-
     }
     
     @IBAction func cancelar(sender: AnyObject){
@@ -154,6 +155,8 @@ class PlayerViewController: UIViewController, UIImagePickerControllerDelegate, U
         tableView.allowsSelection = true
         add.tag = 1
         add.setTitle("+", forState: UIControlState.Normal)
+        cancelar.alpha = 0.0
+
 
     }
     
