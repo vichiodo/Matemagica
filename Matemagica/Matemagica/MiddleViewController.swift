@@ -17,6 +17,7 @@ class MiddleViewController: UIViewController {
         let scene = MultiGameScene(size: view.bounds.size)
         scene.scaleMode = .ResizeFill
         let skView:SKView = SKView(frame: self.view.frame)
+        scene.vC = self
         self.view.addSubview(skView)
         skView.presentScene(scene)
 

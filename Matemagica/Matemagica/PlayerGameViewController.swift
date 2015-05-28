@@ -50,6 +50,8 @@ class PlayerGameViewController: UIViewController, UITableViewDelegate, UITableVi
         
         cell.nome.text = players[indexPath.row].nomePlayer
         cell.foto.image = UIImage(data:players[indexPath.row].fotoPlayer)
+        cell.score.text = "Vitórias: \(players[indexPath.row].scorePlayer)"
+        cell.nivel.text = "Nível: \(players[indexPath.row].nivelPlayer)"
         
         return cell
     }

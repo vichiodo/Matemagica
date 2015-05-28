@@ -15,7 +15,7 @@ class TutorialDetailViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        let scene = Tutorial(size: view.bounds.size)
+        let scene = TutorialGameScene(size: view.bounds.size)
         scene.tag = buttonTag
         let skView:SKView = SKView(frame: self.view.frame)
         scene.vC = self

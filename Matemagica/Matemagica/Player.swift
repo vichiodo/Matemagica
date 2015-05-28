@@ -12,8 +12,8 @@ import CoreData
 class Player: NSManagedObject {
 
     @NSManaged var fotoPlayer: NSData
-    @NSManaged var nivelPlayer: NSNumber
+    @NSManaged var nivelPlayer: String
     @NSManaged var nomePlayer: String
-    @NSManaged var scorePlayer: NSNumber
+    @NSManaged var scorePlayer: String
 
 }

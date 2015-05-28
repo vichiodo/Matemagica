@@ -74,13 +74,14 @@ class PlayerManager{
         
     }
     
-    func salvarBanco(nome: String, foto: UIImage){
+    func salvarNovoPlayer(nome: String, foto: UIImage){
         let player = novoPlayer()
         let imagem = UIImageJPEGRepresentation(foto, 1)
         
         player.setValue(nome, forKey: "nomePlayer")
         player.setValue(imagem, forKey: "fotoPlayer")
-        
+        player.setValue("0", forKey: "nivelPlayer")
+        player.setValue("0", forKey: "scorePlayer")
         salvarPlayer()
     }
 

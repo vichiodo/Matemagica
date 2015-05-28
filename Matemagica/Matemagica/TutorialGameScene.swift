@@ -9,7 +9,7 @@
 
 import SpriteKit
 
-class Tutorial: SKScene {
+class TutorialGameScene: SKScene {
     
     // tag para verificar qual a operacao que foi clicada na tela anterior
     var tag:Int!
@@ -171,6 +171,10 @@ class Tutorial: SKScene {
             numero2Img.texture = SKTexture(imageNamed: "2")
             numero3Img.texture = SKTexture(imageNamed: "2")
             sinal.texture = SKTexture(imageNamed: "subtracao")
+            bg.texture = SKTexture(imageNamed: "xadrez")
+            
+            quadroNegro.position = CGPoint(x: size.width * 0.50, y: size.height * 0.40)
+            quadroNegro.size = CGSize(width: size.width * 0.95, height: size.height * 0.80)
             
             CGPathMoveToPoint(ref2, nil, size.width * 0.5, size.height * 0.75)
             CGPathAddLineToPoint(ref2, nil, size.width * 0.5, size.height * 0.55)
@@ -371,7 +375,7 @@ class Tutorial: SKScene {
                         linha2Div.runAction(SKAction.sequence([fadeIn]))
 
                         
-                        let zoomIn = SKAction.scaleTo(1.5, duration: 1.5)
+                        let zoomIn = SKAction.scaleTo(1.2, duration: 1.5)
                         let zoomOut = SKAction.scaleTo(1.0, duration: 1.5)
                         
                         self.enumerateChildNodesWithName("pizza2") {

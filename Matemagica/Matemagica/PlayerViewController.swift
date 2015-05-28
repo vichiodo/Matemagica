@@ -119,7 +119,7 @@ class PlayerViewController: UIViewController, UIImagePickerControllerDelegate, U
                     self.presentViewController(alerta, animated: true, completion: nil)
                 }
                 else {
-                    PlayerManager.sharedInstance.salvarBanco(nome.text, foto: foto.image!)
+                    PlayerManager.sharedInstance.salvarNovoPlayer(nome.text, foto: foto.image!)
                     players = PlayerManager.sharedInstance.buscarPlayers()
                     self.tableView.reloadData()
                     
@@ -170,6 +170,8 @@ class PlayerViewController: UIViewController, UIImagePickerControllerDelegate, U
         
         cell.nome.text = players[indexPath.row].nomePlayer
         cell.foto.image = UIImage(data:players[indexPath.row].fotoPlayer)
+        cell.score.text = "Vitórias: \(players[indexPath.row].scorePlayer)"
+        cell.nivel.text = "Nível: \(players[indexPath.row].nivelPlayer)"
         
         return cell
     }
