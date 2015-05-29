@@ -27,6 +27,7 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         logoM1.alpha = 0.0
         logoA1.alpha = 0.0
         logoT.alpha = 0.0
