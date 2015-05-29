@@ -79,6 +79,7 @@ class PlayerViewController: UIViewController, UIImagePickerControllerDelegate, U
             nome.userInteractionEnabled = true
             foto.userInteractionEnabled = true
             tableView.allowsSelection = false
+            nome.becomeFirstResponder()
             add.tag = 0
             add.setTitle("Salvar", forState: UIControlState.Normal)
 

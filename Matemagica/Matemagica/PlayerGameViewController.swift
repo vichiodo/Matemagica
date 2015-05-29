@@ -26,6 +26,15 @@ class PlayerGameViewController: UIViewController, UITableViewDelegate, UITableVi
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        var gradiente: CAGradientLayer = CAGradientLayer()
+        var cor1: UIColor = UIColor(red: 33/255, green: 73/255, blue: 150/255, alpha: 1)
+        var cor2: UIColor = UIColor(red: 33, green: 73, blue: 150, alpha: 1)
+
+        gradiente.colors = [cor1.CGColor, cor2.CGColor]
+        gradiente.frame = view.bounds
+        view.layer.insertSublayer(gradiente, atIndex: 0)
+        
     }
     
     override func didReceiveMemoryWarning() {
@@ -36,6 +45,10 @@ class PlayerGameViewController: UIViewController, UITableViewDelegate, UITableVi
     override func viewWillAppear(animated: Bool) {
         userDef.setObject("-1", forKey: "jogador1")
         userDef.setObject("-1", forKey: "jogador2")
+        jogador1.text = "Jogador 1"
+        jogador2.text = "Jogador 2"
+        img1.image = UIImage(named:"imgdefault")
+        img2.image = UIImage(named:"imgdefault")
     }
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
@@ -68,7 +81,8 @@ class PlayerGameViewController: UIViewController, UITableViewDelegate, UITableVi
                     img1.image = UIImage(data: playerSelecionado.fotoPlayer)
                 }
                 else {
-                    lblSelecione.text = "Jogador nao pode ser igual!"
+                    lblSelecione.text = "Jogador não pode ser igual!"
+                    lblSelecione.textColor = UIColor.redColor()
                 }
             }
             else {
@@ -85,7 +99,8 @@ class PlayerGameViewController: UIViewController, UITableViewDelegate, UITableVi
                     img2.image = UIImage(data: playerSelecionado.fotoPlayer)
                 }
                 else {
-                    lblSelecione.text = "Jogador nao pode ser igual!"
+                    lblSelecione.text = "Jogador não pode ser igual!"
+                    lblSelecione.textColor = UIColor.redColor()
                 }
             }
             else {
@@ -94,6 +109,11 @@ class PlayerGameViewController: UIViewController, UITableViewDelegate, UITableVi
                 img2.image = UIImage(data: playerSelecionado.fotoPlayer)
             }
         }
+        if jogador1.text != "Jogador 1" && jogador2.text != "Jogador 2" {
+            lblSelecione.text = "Vamos jogar?"
+            lblSelecione.textColor = UIColor.blueColor()
+        }
+
     }
     
     override func touchesBegan(touches: Set<NSObject>, withEvent event: UIEvent) {
@@ -104,11 +124,13 @@ class PlayerGameViewController: UIViewController, UITableViewDelegate, UITableVi
             let obstacleViewFrame = self.view.convertRect(obstacleView.frame, toView: obstacleView.superview)
             if (CGRectContainsPoint(obstacleViewFrame, touchLocation)) {
                 if obstacleView.tag == 1 {
-                    lblSelecione.text = "Selecione o primeiro jogador na tabela"
+                    lblSelecione.text = "Escolha o primeiro jogador"
+                    lblSelecione.textColor = UIColor.blackColor()
                     usuarioSelecionado = 1
                 }
                 if obstacleView.tag == 2 {
-                    lblSelecione.text = "Selecione o segundo jogador na tabela"
+                    lblSelecione.text = "Escolha o segundo jogador"
+                    lblSelecione.textColor = UIColor.blackColor()
                     usuarioSelecionado = 2
                 }
             }
@@ -125,13 +147,20 @@ class PlayerGameViewController: UIViewController, UITableViewDelegate, UITableVi
                 return true
             }
             else {
-                let alerta: UIAlertController = UIAlertController(title: "Atenção", message: "Selecione os jogadores", preferredStyle:.Alert)
-                let al1: UIAlertAction = UIAlertAction(title: "OK", style: .Default, handler: nil)
-                // adiciona a ação no alertController
-                [alerta.addAction(al1)]
                 
-                // adiciona o alertController na view
-                self.presentViewController(alerta, animated: true, completion: nil)
+                var alertview = JSSAlertView().show(self, title: "Escolha dois jogadores", buttonText: "OK", color: UIColorFromHex(0x33cc33, alpha: 1))
+                alertview.setTextTheme(.Light)
+
+                
+                
+                
+//                let alerta: UIAlertController = UIAlertController(title: "Atenção", message: "Selecione os jogadores", preferredStyle:.Alert)
+//                let al1: UIAlertAction = UIAlertAction(title: "OK", style: .Default, handler: nil)
+//                // adiciona a ação no alertController
+//                [alerta.addAction(al1)]
+//                
+//                // adiciona o alertController na view
+//                self.presentViewController(alerta, animated: true, completion: nil)
                 return false
             }
         }
