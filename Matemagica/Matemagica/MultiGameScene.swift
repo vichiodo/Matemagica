@@ -12,7 +12,6 @@ import SpriteKit
 class MultiGameScene: SKScene {
     var vC: MiddleViewController!
     var userDef: NSUserDefaults = NSUserDefaults.standardUserDefaults()
-    
     var ref = CGPathCreateMutable()
     var line = SKShapeNode()
     var resposta: Int = 0
@@ -165,7 +164,7 @@ class MultiGameScene: SKScene {
         lblVitoriasJogador2.fontSize = 60
         lblVitoriasJogador2.fontColor = SKColor.blackColor()
         lblVitoriasJogador2.text = "\(vitoriasJogador2)"
-        addChild(lblVitoriasJogador2)        
+        addChild(lblVitoriasJogador2)
     }
     
     override func touchesBegan(touches: Set<NSObject>, withEvent event: UIEvent) {
@@ -176,8 +175,9 @@ class MultiGameScene: SKScene {
         if voltar.containsPoint(touchLocation){
             vC.voltar()
         }
+        
         if scoreGamer1 < 10 && scoreGamer2 < 10 {
-            if alternativaTocada.name == "certa1" {
+            if alternativaTocada.name == "certo1" || alternativaTocada.name == "certo2" || alternativaTocada.name == "certo3" || alternativaTocada.name == "certo4" {
                 scoreGamer1++
                 lblPontuacaoJogador1.text = "\(scoreGamer1)"
                 if scoreGamer1 == 10 {
@@ -196,34 +196,22 @@ class MultiGameScene: SKScene {
                     lblVitoriasJogador1.text = "\(vitoriasJogador1)"
                     players[index1].scorePlayer = String(vitoriasJogador1)
                     
-                    let alerta: UIAlertController = UIAlertController(title: "", message: "Deseja jogar novamente?", preferredStyle:.Alert)
-                    let al1: UIAlertAction = UIAlertAction(title: "NÃO", style: .Default, handler: nil)
-                    // adiciona a ação no alertController
-                    [alerta.addAction(al1)]
                     
-                    let al2: UIAlertAction = UIAlertAction(title: "SIM", style: .Default, handler: { (ACTION) -> Void in
-                        self.lblResultadoJogador1.hidden = true
-                        self.lblResultadoJogador2.hidden = true
-                        self.scoreGamer1 = 0
-                        self.scoreGamer2 = 0
-                        self.lblPontuacaoJogador1.text = "\(self.scoreGamer1)"
-                        self.lblPontuacaoJogador2.text = "\(self.scoreGamer2)"
-                        self.addOperacao()
-                        self.addContasGamer1()
-                        self.addContasGamer2()
-                    })
-                    [alerta.addAction(al2)]
-                    vC.presentViewController(alerta, animated: true, completion: nil)
+                    var alertview = JSSAlertView().show(vC, title: "Quer jogar de novo?", buttonText: "Sim!", cancelButtonText: "Não", color: UIColorFromHex(0x3498db, alpha: 1))
+                    alertview.addAction(alertAction)
+                    alertview.setTextTheme(.Light)
+                    
+                    
                 }
                 else {
                     addContasGamer1()
                     println("Gamer1: \(scoreGamer1)")
                 }
             }
-                //            else if alternativaTocada.name == "errado1" {
-                //                println("errooooouuuu primeiro")
-                //            }
-            else if alternativaTocada.name == "certa2" {
+            else if alternativaTocada.name == "errado1" || alternativaTocada.name == "errado2" || alternativaTocada.name == "errado3" || alternativaTocada.name == "errado4" {
+                println("jogador 1 errou")
+            }
+            else if alternativaTocada.name == "certo5" || alternativaTocada.name == "certo6" || alternativaTocada.name == "certo7" || alternativaTocada.name == "certo8" {
                 scoreGamer2++
                 lblPontuacaoJogador2.text = "\(scoreGamer2)"
                 if scoreGamer2 == 10 {
@@ -242,33 +230,41 @@ class MultiGameScene: SKScene {
                     lblVitoriasJogador2.text = "\(vitoriasJogador2)"
                     players[index2].scorePlayer = String(vitoriasJogador2)
                     
-                    let alerta: UIAlertController = UIAlertController(title: "", message: "Deseja jogar novamente?", preferredStyle:.Alert)
-                    let al1: UIAlertAction = UIAlertAction(title: "NÃO", style: .Default, handler: nil)
-                    // adiciona a ação no alertController
-                    [alerta.addAction(al1)]
-                    
-                    let al2: UIAlertAction = UIAlertAction(title: "SIM", style: .Default, handler: { (ACTION) -> Void in
-                        self.lblResultadoJogador1.hidden = true
-                        self.lblResultadoJogador2.hidden = true
-                        self.scoreGamer1 = 0
-                        self.scoreGamer2 = 0
-                        self.lblPontuacaoJogador1.text = "\(self.scoreGamer1)"
-                        self.lblPontuacaoJogador2.text = "\(self.scoreGamer2)"
-                        
-                        self.addOperacao()
-                        self.addContasGamer1()
-                        self.addContasGamer2()
-                    })
-                    [alerta.addAction(al2)]
-                    vC.presentViewController(alerta, animated: true, completion: nil)
+                    var alertview = JSSAlertView().show(vC, title: "Quer jogar de novo?", buttonText: "Sim!", cancelButtonText: "Não", color: UIColorFromHex(0x3498db, alpha: 1))
+                    alertview.addAction(alertAction)
+                    alertview.setTextTheme(.Light)
                 }
                 else {
                     addContasGamer2()
                     println("Gamer2: \(scoreGamer2)")
                 }
             }
+            else if alternativaTocada.name == "errado5" || alternativaTocada.name == "errado6" || alternativaTocada.name == "errado7" || alternativaTocada.name == "errado8" {
+                println("jogador 2 errou")
+            }
+            
         }
         PlayerManager.sharedInstance.salvarPlayer()
+    }
+    
+    //    override func touchesEnded(touches: Set<NSObject>, withEvent event: UIEvent) {
+    //        let touch = (touches as NSSet).allObjects[0] as! UITouch
+    //        println("habilita toque")
+    //        touch.view.userInteractionEnabled = true
+    //
+    //    }
+    
+    func alertAction() {
+        lblResultadoJogador1.hidden = true
+        lblResultadoJogador2.hidden = true
+        scoreGamer1 = 0
+        scoreGamer2 = 0
+        lblPontuacaoJogador1.text = "\(self.scoreGamer1)"
+        lblPontuacaoJogador2.text = "\(self.scoreGamer2)"
+        
+        addOperacao()
+        addContasGamer1()
+        addContasGamer2()
     }
     
     func addOperacao(){
@@ -315,9 +311,16 @@ class MultiGameScene: SKScene {
     func addAlternativasGame1(){
         posicao = random(0, 3)
         alternativa11.name = "errado1"
-        alternativa12.name = "errado1"
-        alternativa13.name = "errado1"
-        alternativa14.name = "errado1"
+        alternativa12.name = "errado2"
+        alternativa13.name = "errado3"
+        alternativa14.name = "errado4"
+        
+        for var i = 1; i < 5; i++ {
+            self.enumerateChildNodesWithName("certo\(i)") {
+                node, stop in
+                node.name = "errado\(i)"
+            }
+        }
         
         // inserir valores nas labels
         switch posicao {
@@ -327,10 +330,9 @@ class MultiGameScene: SKScene {
             alternativa13.text = "\(contasArray[scoreGamer1].alternativa2)"
             alternativa14.text = "\(contasArray[scoreGamer1].alternativa2)"
             
-            alternativa11.name = "certa1"
-            self.enumerateChildNodesWithName("bloco1") {
+            self.enumerateChildNodesWithName("errado1") {
                 node, stop in
-                node.name = "certa1"
+                node.name = "certo1"
             }
             
         case 1: //nuvem2
@@ -339,10 +341,9 @@ class MultiGameScene: SKScene {
             alternativa13.text = "\(contasArray[scoreGamer1].alternativa2)"
             alternativa14.text = "\(contasArray[scoreGamer1].alternativa3)"
             
-            alternativa12.name = "certa1"
-            self.enumerateChildNodesWithName("bloco2") {
+            self.enumerateChildNodesWithName("errado2") {
                 node, stop in
-                node.name = "certa1"
+                node.name = "certo2"
             }
         case 2: // nuvem3
             alternativa11.text = "\(contasArray[scoreGamer1].alternativa1)"
@@ -350,10 +351,9 @@ class MultiGameScene: SKScene {
             alternativa13.text = "\(contasArray[scoreGamer1].resposta)"
             alternativa14.text = "\(contasArray[scoreGamer1].alternativa3)"
             
-            alternativa13.name = "certa1"
-            self.enumerateChildNodesWithName("bloco3") {
+            self.enumerateChildNodesWithName("errado3") {
                 node, stop in
-                node.name = "certa1"
+                node.name = "certo3"
             }
         default:
             alternativa11.text = "\(contasArray[scoreGamer1].alternativa1)"
@@ -361,10 +361,9 @@ class MultiGameScene: SKScene {
             alternativa13.text = "\(contasArray[scoreGamer1].alternativa3)"
             alternativa14.text = "\(contasArray[scoreGamer1].resposta)"
             
-            alternativa14.name = "certa1"
-            self.enumerateChildNodesWithName("bloco4") {
+            self.enumerateChildNodesWithName("errado4") {
                 node, stop in
-                node.name = "certa1"
+                node.name = "certo4"
             }
         }
     }
@@ -372,10 +371,18 @@ class MultiGameScene: SKScene {
     func addAlternativasGame2(){
         posicao = random(0, 3)
         
-        alternativa21.name = "errado2"
-        alternativa22.name = "errado2"
-        alternativa23.name = "errado2"
-        alternativa24.name = "errado2"
+        alternativa21.name = "errado5"
+        alternativa22.name = "errado6"
+        alternativa23.name = "errado7"
+        alternativa24.name = "errado8"
+        
+        for var i = 5; i < 9; i++ {
+            self.enumerateChildNodesWithName("certo\(i)") {
+                node, stop in
+                node.name = "errado\(i)"
+            }
+        }
+        
         
         // inserir valores nas labels
         switch posicao {
@@ -385,10 +392,9 @@ class MultiGameScene: SKScene {
             alternativa23.text = "\(contasArray[scoreGamer2].alternativa2)"
             alternativa24.text = "\(contasArray[scoreGamer2].alternativa2)"
             
-            alternativa21.name = "certa2"
-            self.enumerateChildNodesWithName("bloco5") {
+            self.enumerateChildNodesWithName("errado5") {
                 node, stop in
-                node.name = "certa2"
+                node.name = "certo5"
             }
         case 1: //nuvem2
             alternativa21.text = "\(contasArray[scoreGamer2].alternativa1)"
@@ -396,10 +402,9 @@ class MultiGameScene: SKScene {
             alternativa23.text = "\(contasArray[scoreGamer2].alternativa2)"
             alternativa24.text = "\(contasArray[scoreGamer2].alternativa3)"
             
-            alternativa22.name = "certa2"
-            self.enumerateChildNodesWithName("bloco6") {
+            self.enumerateChildNodesWithName("errado6") {
                 node, stop in
-                node.name = "certa2"
+                node.name = "certo6"
             }
         case 2: // nuvem3
             alternativa21.text = "\(contasArray[scoreGamer2].alternativa1)"
@@ -407,10 +412,9 @@ class MultiGameScene: SKScene {
             alternativa23.text = "\(contasArray[scoreGamer2].resposta)"
             alternativa24.text = "\(contasArray[scoreGamer2].alternativa3)"
             
-            alternativa23.name = "certa2"
-            self.enumerateChildNodesWithName("bloco7") {
+            self.enumerateChildNodesWithName("errado7") {
                 node, stop in
-                node.name = "certa2"
+                node.name = "certo7"
             }
         default:
             alternativa21.text = "\(contasArray[scoreGamer2].alternativa1)"
@@ -418,10 +422,9 @@ class MultiGameScene: SKScene {
             alternativa23.text = "\(contasArray[scoreGamer2].alternativa3)"
             alternativa24.text = "\(contasArray[scoreGamer2].resposta)"
             
-            alternativa24.name = "certa2"
-            self.enumerateChildNodesWithName("bloco8") {
+            self.enumerateChildNodesWithName("errado8") {
                 node, stop in
-                node.name = "certa2"
+                node.name = "certo8"
             }
         }
     }
@@ -501,8 +504,9 @@ class MultiGameScene: SKScene {
             if i == 7 {
                 bloco.position = CGPoint(x: alternativa24.position.x, y: alternativa24.position.y+20)
             }
-            
-            bloco.name = "bloco\(i+1)"
+            bloco.physicsBody = SKPhysicsBody(rectangleOfSize: bloco.size)
+            bloco.physicsBody?.dynamic = false
+            bloco.name = "errado\(i+1)"
             bloco.size = CGSize(width: 300, height: 80)
             bloco.zPosition = -100
             addChild(bloco)
@@ -513,5 +517,4 @@ class MultiGameScene: SKScene {
     func pause() {
         self.view?.paused = true
     }
-    
 }

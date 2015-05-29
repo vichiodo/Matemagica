@@ -11,6 +11,7 @@
 		8C4599401B065A9400EFB872 /* TutorialDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C45993F1B065A9400EFB872 /* TutorialDetailViewController.swift */; };
 		8C6779611B17A37000A76F67 /* SingleGameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C6779601B17A37000A76F67 /* SingleGameViewController.swift */; };
 		8C75D13D1B1634B600C4CCFE /* PlayerGameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C75D13C1B1634B600C4CCFE /* PlayerGameViewController.swift */; };
+		8C89952B1B180B6A00CD68A9 /* JSSAlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C89952A1B180B6A00CD68A9 /* JSSAlertView.swift */; };
 		8CEB90F71B0BB17F004AB1BF /* TutorialGameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CEB90F61B0BB17F004AB1BF /* TutorialGameScene.swift */; };
 		B32414EA1B051B6600C1378B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B32414E91B051B6600C1378B /* AppDelegate.swift */; };
 		B32414ED1B051B6600C1378B /* Matemagica.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = B32414EB1B051B6600C1378B /* Matemagica.xcdatamodeld */; };
@@ -46,6 +47,7 @@
 		8C45993F1B065A9400EFB872 /* TutorialDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TutorialDetailViewController.swift; sourceTree = "<group>"; };
 		8C6779601B17A37000A76F67 /* SingleGameViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SingleGameViewController.swift; sourceTree = "<group>"; };
 		8C75D13C1B1634B600C4CCFE /* PlayerGameViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayerGameViewController.swift; sourceTree = "<group>"; };
+		8C89952A1B180B6A00CD68A9 /* JSSAlertView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSSAlertView.swift; sourceTree = "<group>"; };
 		8CEB90F61B0BB17F004AB1BF /* TutorialGameScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TutorialGameScene.swift; sourceTree = "<group>"; };
 		B32414E41B051B6600C1378B /* Matemagica.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Matemagica.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B32414E81B051B6600C1378B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -109,6 +111,7 @@
 		B32414E61B051B6600C1378B /* Matemagica */ = {
 			isa = PBXGroup;
 			children = (
+				8C89952A1B180B6A00CD68A9 /* JSSAlertView.swift */,
 				6A393C131B163A2D00219EF9 /* Contas.swift */,
 				B32414E91B051B6600C1378B /* AppDelegate.swift */,
 				B32414EE1B051B6600C1378B /* ViewController.swift */,
@@ -261,6 +264,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8C89952B1B180B6A00CD68A9 /* JSSAlertView.swift in Sources */,
 				8C6779611B17A37000A76F67 /* SingleGameViewController.swift in Sources */,
 				B37736351B07C84B00C74E88 /* Player.swift in Sources */,
 				8CEB90F71B0BB17F004AB1BF /* TutorialGameScene.swift in Sources */,

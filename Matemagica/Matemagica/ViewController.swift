@@ -25,6 +25,10 @@ class ViewController: UIViewController {
     @IBOutlet weak var logoC: UIImageView!
     @IBOutlet weak var logoA3: UIImageView!
     
+    let blurEffect = UIBlurEffect(style: UIBlurEffectStyle.Dark)
+    var blurEffectView: UIVisualEffectView = UIVisualEffectView()
+    var flag: Bool = true
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -39,18 +43,19 @@ class ViewController: UIViewController {
         logoC.alpha = 0.0
         logoA3.alpha = 0.0
         
+        
         let delayTime3 = dispatch_time(DISPATCH_TIME_NOW, Int64(0.5 * Double(NSEC_PER_SEC)))
         dispatch_after(delayTime3, dispatch_get_main_queue()) {
             UIView.animateWithDuration(1.5, animations: { () -> Void in
-                self.logoM1.transform = CGAffineTransformMakeTranslation(0, 280)
+                self.logoM1.transform = CGAffineTransformMakeTranslation(0, 250)
                 self.logoM1.alpha = 1.0
                 }, completion: { finished in
                     UIView.animateWithDuration(1.5, animations: { () -> Void in
-                        self.logoA1.transform = CGAffineTransformMakeTranslation(0, 280)
+                        self.logoA1.transform = CGAffineTransformMakeTranslation(0, 250)
                         self.logoA1.alpha = 1.0
                         }, completion: { finished in
                             UIView.animateWithDuration(1.5, animations: { () -> Void in
-                                self.logoT.transform = CGAffineTransformMakeTranslation(0, 280)
+                                self.logoT.transform = CGAffineTransformMakeTranslation(0, 250)
                                 self.logoT.alpha = 1.0
                             })
                     })
@@ -60,15 +65,15 @@ class ViewController: UIViewController {
         let delayTime2 = dispatch_time(DISPATCH_TIME_NOW, Int64(1.0 * Double(NSEC_PER_SEC)))
         dispatch_after(delayTime2, dispatch_get_main_queue()) {
             UIView.animateWithDuration(1.5, animations: { () -> Void in
-                self.logoM2.transform = CGAffineTransformMakeTranslation(0, 280)
+                self.logoM2.transform = CGAffineTransformMakeTranslation(0, 250)
                 self.logoM2.alpha = 1.0
                 }, completion: { finished in
                     UIView.animateWithDuration(1.5, animations: { () -> Void in
-                        self.logoA3.transform = CGAffineTransformMakeTranslation(0, 280)
+                        self.logoA3.transform = CGAffineTransformMakeTranslation(0, 250)
                         self.logoA3.alpha = 1.0
                         }, completion: { finished in
                             UIView.animateWithDuration(1.5, animations: { () -> Void in
-                                self.logoG.transform = CGAffineTransformMakeTranslation(0, 280)
+                                self.logoG.transform = CGAffineTransformMakeTranslation(0, 250)
                                 self.logoG.alpha = 1.0
                             })
                     })
@@ -78,15 +83,15 @@ class ViewController: UIViewController {
         let delayTime1 = dispatch_time(DISPATCH_TIME_NOW, Int64(1.5 * Double(NSEC_PER_SEC)))
         dispatch_after(delayTime1, dispatch_get_main_queue()) {
             UIView.animateWithDuration(1.5, animations: { () -> Void in
-                self.logoE.transform = CGAffineTransformMakeTranslation(0, 280)
+                self.logoE.transform = CGAffineTransformMakeTranslation(0, 250)
                 self.logoE.alpha = 1.0
                 }, completion: { finished in
                     UIView.animateWithDuration(1.5, animations: { () -> Void in
-                        self.logoC.transform = CGAffineTransformMakeTranslation(0, 280)
+                        self.logoC.transform = CGAffineTransformMakeTranslation(0, 250)
                         self.logoC.alpha = 1.0
                         }, completion: { finished in
                             UIView.animateWithDuration(1.5, animations: { () -> Void in
-                                self.logoI.transform = CGAffineTransformMakeTranslation(0, 280)
+                                self.logoI.transform = CGAffineTransformMakeTranslation(0, 250)
                                 self.logoI.alpha = 1.0
                                 }, completion: { finished in
                                     UIView.animateWithDuration(1.0, animations: { () -> Void in
@@ -103,6 +108,25 @@ class ViewController: UIViewController {
             })
         }
     }
+    
+//    override func touchesBegan(touches: Set<NSObject>, withEvent event: UIEvent) {
+//        if flag {
+//            makeBlur()
+//            flag = false
+//        }
+//        else {
+//            removeBlur()
+//            flag = true
+//        }
+//    }
+
+//    func makeBlur() {
+//        view.addSubview(blurEffectView)
+//    }
+//    
+//    func removeBlur() {
+//        blurEffectView.removeFromSuperview()
+//    }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
