@@ -133,6 +133,7 @@ class SingleGameScene: SKScene {
         //chama o método para criar uma nova scene
         novoJogo()
         
+        //notificação para retornar a pagina inicial de Jogos
         var notification:NSNotificationCenter = NSNotificationCenter.defaultCenter()
         notification.addObserver(self, selector: "pause", name: "pauseSingle", object: nil)
     }
@@ -383,6 +384,7 @@ class SingleGameScene: SKScene {
                 addChild(nuvem3)
             }
         }
+        
         // instanciação e posicionamento da label nivel
         labelNivel = SKLabelNode(fontNamed: "Marker Felt Wide")
         labelNivel.position = CGPoint(x: 400, y: 390)
@@ -571,9 +573,7 @@ class SingleGameScene: SKScene {
             }else {
                 self.represa.position.y = 320
             }
-            
         })
-        
     }
     
     //caso erre a operação

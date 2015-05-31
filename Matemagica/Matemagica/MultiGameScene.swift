@@ -12,6 +12,7 @@ import SpriteKit
 class MultiGameScene: SKScene {
     var vC: MultiGameViewController!
     var userDef: NSUserDefaults = NSUserDefaults.standardUserDefaults()
+    
     var ref = CGPathCreateMutable()
     var line = SKShapeNode()
     var randomPosition: Int = 0
@@ -33,9 +34,9 @@ class MultiGameScene: SKScene {
     
     var alternativeTouched: SKNode!
     
+    //declaraçao de váriaveis necessarias
     var index1: Int = -1
     var index2: Int = -1
-    
     var scoreGamer1: Int = 0
     var scoreGamer2: Int = 0
     
@@ -75,6 +76,7 @@ class MultiGameScene: SKScene {
         CGPathMoveToPoint(ref, nil, 0, size.height/2)
         CGPathAddLineToPoint(ref, nil, size.width, size.height/2)
         
+        //posicionamento da linha que dividirá um jogador do outro
         line.path = ref
         line.lineWidth = 4
         line.fillColor = UIColor.blackColor()
@@ -82,14 +84,18 @@ class MultiGameScene: SKScene {
         
         self.addChild(line)
         
+        //chama o método que monta a scene
         posicaoAlternativas()
+        //chama o método que cria as operações
         addOperacao()
+        //chama os métodos que carrega as alternativas na tela
         addContasGamer1()
         addContasGamer2()
         
         addChild(calculation1)
         addChild(calculation2)
         
+        //busca no userDefault o nivel de cada jogador
         index1 = userDef.objectForKey("jogador1") as! Int
         index2 = userDef.objectForKey("jogador2") as! Int
         
@@ -167,6 +173,8 @@ class MultiGameScene: SKScene {
     }
     
     override func touchesBegan(touches: Set<NSObject>, withEvent event: UIEvent) {
+        
+        //pega o primeiro toque na tela
         let touch = (touches as NSSet).allObjects[0] as! UITouch
         let touchLocation = touch.locationInNode(self)
         alternativeTouched = self.nodeAtPoint(touchLocation)
@@ -175,6 +183,7 @@ class MultiGameScene: SKScene {
             vC.voltar()
         }
         
+        //caso os dois jogadores ainda não atingiram 10 vitórias
         if scoreGamer1 < 10 && scoreGamer2 < 10 {
             if alternativeTouched.name == "certo1" || alternativeTouched.name == "certo2" || alternativeTouched.name == "certo3" || alternativeTouched.name == "certo4" {
                 scoreGamer1++
@@ -195,14 +204,13 @@ class MultiGameScene: SKScene {
                     lblVictoriesPlayer1.text = "\(victoriesPlayer1)"
                     players[index1].scorePlayer = String(victoriesPlayer1)
                     
-                    
+                    //alerta personalizado perguntando aos jogadores se desejam continuar a jogar ou não
                     var alertview = JSSAlertView().show(vC, title: "Quer jogar de novo?", buttonText: "Sim!", cancelButtonText: "Não", color: UIColorFromHex(0x3498db, alpha: 1))
                     alertview.addAction(alertAction)
                     alertview.setTextTheme(.Light)
-                    
-                    
                 }
-                else {
+                else {//caso ainda não tenham atingido 10 vitórias
+                    //cria novas contas para o jogador 1
                     addContasGamer1()
                     println("Gamer1: \(scoreGamer1)")
                 }
@@ -229,11 +237,13 @@ class MultiGameScene: SKScene {
                     lblVictoriesPlayer2.text = "\(victoriesPlayer2)"
                     players[index2].scorePlayer = String(victoriesPlayer2)
                     
+                    //alerta personalizado perguntando aos jogadores se desejam continuar a jogar ou não
                     var alertview = JSSAlertView().show(vC, title: "Quer jogar de novo?", buttonText: "Sim!", cancelButtonText: "Não", color: UIColorFromHex(0x3498db, alpha: 1))
                     alertview.addAction(alertAction)
                     alertview.setTextTheme(.Light)
                 }
-                else {
+                else {//caso ainda não tenham atingido 10 vitórias
+                    //cria novas contas para o jogador 2
                     addContasGamer2()
                     println("Gamer2: \(scoreGamer2)")
                 }
@@ -258,13 +268,7 @@ class MultiGameScene: SKScene {
         PlayerManager.sharedInstance.salvarPlayer()
     }
     
-    //    override func touchesEnded(touches: Set<NSObject>, withEvent event: UIEvent) {
-    //        let touch = (touches as NSSet).allObjects[0] as! UITouch
-    //        println("habilita toque")
-    //        touch.view.userInteractionEnabled = true
-    //
-    //    }
-    
+    //animação caso clique na alternativa errada
     func animateWrong(animate: SKLabelNode) {
         let amplitudeX:CGFloat = 20;
         let numberOfShakes = 2;
@@ -289,41 +293,8 @@ class MultiGameScene: SKScene {
         actionsArray.append(back)
         let actionSeq = SKAction.sequence(actionsArray)
         animate.runAction(actionSeq)
-        
-        
-        //        var shake:CABasicAnimation = CABasicAnimation(keyPath: "position.x")
-        //        shake.duration = 0.1
-        //        shake.repeatCount = 2
-        //        shake.autoreverses = true
-        //
-        //        var from_point:CGPoint = CGPointMake(animate.position.x - 5, animate.position.y)
-        //        var from_value:NSValue = NSValue(CGPoint: from_point)
-        //
-        //        var to_point:CGPoint = CGPointMake(animate.position.x + 5, animate.position.y)
-        //        var to_value:NSValue = NSValue(CGPoint: to_point)
-        //
-        //        shake.fromValue = from_value
-        //        shake.toValue = to_value
-        //        animate.animationDidStart(shake)
-        //        animate.
-        //        animate.runAction(SKAction.animationDidStart(CABasicAnimation(keyPath: position)))
-        //        iv.layer.addAnimation(shake, forKey: "position")
-        //        CATransaction.commit()
-        //
-        //
-        //
-        //        let valor = 5
-        //
-        //        CABasicAnimation *shake = [CABasicAnimation animationWithKeyPath:@"position.x"];
-        //        [shake setDuration:0.06];
-        //        [shake setRepeatCount:2];
-        //        [shake setAutoreverses:YES];
-        //        [shake setFromValue:[NSNumber numberWithFloat:busca.center.x - valor]];
-        //        [shake setToValue:[NSNumber numberWithFloat:busca.center.x + valor]];
-        //
-        //        [busca.layer addAnimation:shake forKey:@"shake"];
-        
     }
+    
     
     func alertAction() {
         lblResultPlayer1.hidden = true
@@ -338,6 +309,7 @@ class MultiGameScene: SKScene {
         addContasGamer2()
     }
     
+    //metodo para escolha da operação
     func addOperacao() {
         
         let blurEffect = UIBlurEffect(style: UIBlurEffectStyle.Dark)
@@ -436,6 +408,7 @@ class MultiGameScene: SKScene {
         }
     }
     
+    //método que posiciona a operação do jogador1
     func addContasGamer1() {
         calculation1.position = CGPoint(x: size.width/2, y: size.height/2+120)
         calculation1.fontColor = UIColor.blackColor()
@@ -446,6 +419,7 @@ class MultiGameScene: SKScene {
         addAlternativasGame1()
     }
     
+    //método que posiciona a operação do jogador2
     func addContasGamer2(){
         calculation2.position = CGPoint(x: size.width/2, y: size.height/2-120)
         calculation2.fontColor = UIColor.blackColor()
@@ -455,6 +429,7 @@ class MultiGameScene: SKScene {
         addAlternativasGame2()
     }
     
+    //método que posiciona as alternativas do jogador1
     func addAlternativasGame1(){
         randomPosition = random(0, 3)
         alternative11.name = "errado1"
@@ -515,6 +490,7 @@ class MultiGameScene: SKScene {
         }
     }
     
+    //método que posiciona as alternativas do jogador2
     func addAlternativasGame2(){
         randomPosition = random(0, 3)
         
@@ -576,6 +552,7 @@ class MultiGameScene: SKScene {
         }
     }
     
+    
     func posicaoAlternativas(){
         ////////////// cabeça pra baixo
         alternative11.position = CGPoint(x: size.width/2+200, y: size.height/2+400)
@@ -623,7 +600,7 @@ class MultiGameScene: SKScene {
         alternative23.fontSize = 50
         addChild(alternative23)
         
-        
+        //declaração e instanciação dos blocos das alternativas
         for var i = 0; i < 8; ++i {
             let block = SKSpriteNode(imageNamed: "bloco")
             
