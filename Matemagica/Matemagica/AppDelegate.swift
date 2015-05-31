@@ -16,7 +16,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-        // Override point for customization after application launch.
+        // verificacao: se for a primeira vez que abriu o app, guarda o valor -1 (sem usuario selecionado) no user default
+        var userDef: NSUserDefaults = NSUserDefaults.standardUserDefaults()
+        if userDef.boolForKey("firstTime") {
+            // app already launched
+        }
+        else {
+            userDef.setBool(true, forKey: "firstTime")
+            userDef.setObject(-1, forKey: "index")
+            // This is the first launch ever
+        }
+
+        
         return true
     }
 

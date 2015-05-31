@@ -8,12 +8,8 @@
 
 import UIKit
 
-class ViewController: UIViewController {
-    
-    @IBOutlet weak var jogar: UIButton!
-    @IBOutlet weak var tutorial: UIButton!
-    @IBOutlet weak var diy: UIButton!
-    
+class MasterViewController: UIViewController {
+        
     @IBOutlet weak var logoM1: UIImageView!
     @IBOutlet weak var logoA1: UIImageView!
     @IBOutlet weak var logoT: UIImageView!
@@ -25,13 +21,10 @@ class ViewController: UIViewController {
     @IBOutlet weak var logoC: UIImageView!
     @IBOutlet weak var logoA3: UIImageView!
     
-    let blurEffect = UIBlurEffect(style: UIBlurEffectStyle.Dark)
-    var blurEffectView: UIVisualEffectView = UIVisualEffectView()
-    var flag: Bool = true
-
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // inicializa todas as letras como transparente
         logoM1.alpha = 0.0
         logoA1.alpha = 0.0
         logoT.alpha = 0.0
@@ -43,7 +36,7 @@ class ViewController: UIViewController {
         logoC.alpha = 0.0
         logoA3.alpha = 0.0
         
-        
+        // faz a animação das letras uma por uma atravez de um 3 dispatch controlados por tempo
         let delayTime3 = dispatch_time(DISPATCH_TIME_NOW, Int64(0.5 * Double(NSEC_PER_SEC)))
         dispatch_after(delayTime3, dispatch_get_main_queue()) {
             UIView.animateWithDuration(1.5, animations: { () -> Void in
@@ -108,25 +101,6 @@ class ViewController: UIViewController {
             })
         }
     }
-    
-//    override func touchesBegan(touches: Set<NSObject>, withEvent event: UIEvent) {
-//        if flag {
-//            makeBlur()
-//            flag = false
-//        }
-//        else {
-//            removeBlur()
-//            flag = true
-//        }
-//    }
-
-//    func makeBlur() {
-//        view.addSubview(blurEffectView)
-//    }
-//    
-//    func removeBlur() {
-//        blurEffectView.removeFromSuperview()
-//    }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

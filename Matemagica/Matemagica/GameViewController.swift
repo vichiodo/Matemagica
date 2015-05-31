@@ -11,8 +11,6 @@ import SpriteKit
 
 class GameViewController: UIViewController {
     
-    let notificacao:NSNotificationCenter = NSNotificationCenter.defaultCenter()
-
     override func viewDidLoad() {
         super.viewDidLoad()
     }
@@ -23,18 +21,15 @@ class GameViewController: UIViewController {
         notification.postNotificationName("pauseSingle", object: self)
     }
     
-    override func prefersStatusBarHidden() -> Bool {
-        return true
-    }
-    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
 
-    @IBAction func voltar(sender: AnyObject) {
+    @IBAction func back(sender: AnyObject) {
         self.dismissViewControllerAnimated(true, completion: nil)
     }
     
+    // so realiza a passagem para o jogo single player se ja tiver um player selecionado na tabela
     override func shouldPerformSegueWithIdentifier(identifier: String?, sender: AnyObject?) -> Bool {
         if identifier == "singleGame" {
             var userDef: NSUserDefaults = NSUserDefaults.standardUserDefaults()
@@ -44,18 +39,16 @@ class GameViewController: UIViewController {
                 return true
             }
             else {
-                let alerta: UIAlertController = UIAlertController(title: "Atenção", message: "Cadastre ou selecione um jogador", preferredStyle:.Alert)
-                let al1: UIAlertAction = UIAlertAction(title: "OK", style: .Default, handler: { (ACTION) -> Void in
-                    let playerVC: UIViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("playerView") as! UIViewController
-                    self.presentViewController(playerVC, animated: true, completion: nil)
-                })
-                // adiciona a ação no alertController
-                [alerta.addAction(al1)]
-                // adiciona o alertController na view
-                self.presentViewController(alerta, animated: true, completion: nil)
+                var alertview = JSSAlertView().show(self, title: "Cadastre ou selecione um jogador", buttonText: "OK")
+                alertview.addAction(alertAction)                
                 return false
             }
         }
         return true
+    }
+    
+    func alertAction() {
+        let playerVC: UIViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("playerView") as! UIViewController
+        self.presentViewController(playerVC, animated: true, completion: nil)
     }
 }

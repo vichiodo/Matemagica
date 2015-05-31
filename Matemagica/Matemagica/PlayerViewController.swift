@@ -11,39 +11,37 @@ import UIKit
 class PlayerViewController: UIViewController, UIImagePickerControllerDelegate, UITableViewDataSource, UITableViewDelegate, UINavigationControllerDelegate {
     
     @IBOutlet weak var tableView: UITableView!
-    @IBOutlet weak var nome: UITextField!
-    @IBOutlet weak var foto: UIImageView!
-    @IBOutlet weak var add: UIButton!
-    @IBOutlet weak var cancelar: UIButton!
-    
-    let notificacao:NSNotificationCenter = NSNotificationCenter.defaultCenter()
-
-    
-    var tipoView: Int!
+    @IBOutlet weak var txtNamePlayer: UITextField!
+    @IBOutlet weak var imgPlayer: UIImageView!
+    @IBOutlet weak var btnAdd: UIButton!
+    @IBOutlet weak var btnCancel: UIButton!
     
     let imagePicker:UIImagePickerController = UIImagePickerController()
     var userDef: NSUserDefaults = NSUserDefaults.standardUserDefaults()
     
+    // carrega o vetor de usuarios cadastrados no CoreData
     lazy var players:Array<Player> = {
         return PlayerManager.sharedInstance.buscarPlayers()
         }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        nome.userInteractionEnabled = false
-        foto.userInteractionEnabled = false
+        // desabilita o toque
+        txtNamePlayer.userInteractionEnabled = false
+        imgPlayer.userInteractionEnabled = false
         
-        notificacao.addObserver(self, selector: "mudarView:", name: "mudarView", object: nil)
-        add.setTitle("+", forState: UIControlState.Normal)
-        cancelar.alpha = 0.0
-
+        btnCancel.alpha = 0.0
+        
+        // delegate para o imagePicker
         imagePicker.delegate = self
         imagePicker.allowsEditing = true
+        
+        // se ja tiver algum jogador selecionado, carrega as informações
         if userDef.objectForKey("index") != nil && userDef.objectForKey("index") as! Int != -1 {
-            var playerSelecionado = players[userDef.integerForKey("index")]
-            
-            nome.text = playerSelecionado.nomePlayer
-            foto.image = UIImage(data: playerSelecionado.fotoPlayer)
+            var selectedPlayer = players[userDef.integerForKey("index")]
+            txtNamePlayer.text = selectedPlayer.nomePlayer
+            txtNamePlayer.borderStyle = UITextBorderStyle.None
+            imgPlayer.image = UIImage(data: selectedPlayer.fotoPlayer)
         }
     }
     
@@ -60,47 +58,32 @@ class PlayerViewController: UIViewController, UIImagePickerControllerDelegate, U
         super.didReceiveMemoryWarning()
     }
     
-    func mudarView(n: NSNotification){
-        let info = n.userInfo as! Dictionary<String, AnyObject>
-        
-        let msg: AnyObject? = info ["mensagem"]
-        
-        tipoView = msg as! Int
-        
-    }
-    
-    @IBAction func adicionarPlayer(sender: AnyObject) {
-        
-        if add.tag == 1 {
-            cancelar.alpha = 1.0
-            nome.text = ""
-            foto.image = UIImage(named: "imgdefault")
+    @IBAction func addNewPlayer(sender: AnyObject) {
+        // quando clicado, habilita a edição
+        if btnAdd.tag == 1 {
+            btnCancel.alpha = 1.0
+            txtNamePlayer.text = ""
+            txtNamePlayer.borderStyle = UITextBorderStyle.RoundedRect
+            imgPlayer.image = UIImage(named: "imgdefault")
             
-            nome.userInteractionEnabled = true
-            foto.userInteractionEnabled = true
+            txtNamePlayer.userInteractionEnabled = true
+            imgPlayer.userInteractionEnabled = true
             tableView.allowsSelection = false
-            nome.becomeFirstResponder()
-            add.tag = 0
-            add.setTitle("Salvar", forState: UIControlState.Normal)
-
-            
+            txtNamePlayer.becomeFirstResponder()
+            btnAdd.tag = 0
         }
-        else if add.tag == 0 {
             
-            if nome.text == "" {
-                let alerta: UIAlertController = UIAlertController(title: "Atenção", message: "Digite um nome", preferredStyle:.Alert)
-                let al1: UIAlertAction = UIAlertAction(title: "OK", style: .Default, handler: nil)
-                // adiciona a ação no alertController
-                [alerta.addAction(al1)]
-                
-                // adiciona o alertController na view
-                self.presentViewController(alerta, animated: true, completion: nil)
+        else if btnAdd.tag == 0 {
+            // só salva player novo no CoreData se tiver cadastrado nome e imagem
+            if txtNamePlayer.text == "" {
+                var alertview = JSSAlertView().show(self, title: "Digite um nome", buttonText: "OK")
+                txtNamePlayer.becomeFirstResponder()
             }
             else {
-                if foto.image == UIImage(named: "imgdefault") {
+                if imgPlayer.image == UIImage(named: "imgdefault") {
                     let alerta: UIAlertController = UIAlertController(title: "Escolha uma foto", message: nil, preferredStyle: .ActionSheet)
                     alerta.popoverPresentationController?.sourceView = self.view
-                    alerta.popoverPresentationController?.sourceRect = CGRectMake(self.view.frame.width / 2, self.view.frame.height / 2, 0, 0)
+                    alerta.popoverPresentationController?.sourceRect = CGRectMake(self.view.frame.width / 2, self.view.frame.height * 0.3, 0, 0)
                     let camera:UIAlertAction = UIAlertAction(title: "Tirar foto", style: .Default, handler: { (ACTION) -> Void in
                         let imagePicker:UIImagePickerController = UIImagePickerController()
                         if UIImagePickerController.isSourceTypeAvailable(.Camera) {
@@ -118,47 +101,52 @@ class PlayerViewController: UIViewController, UIImagePickerControllerDelegate, U
                     
                     self.presentViewController(alerta, animated: true, completion: nil)
                 }
-                else {
-                    cancelar.alpha = 0.0
-                    add.tag = 1
-                    add.setTitle("+", forState: UIControlState.Normal)
-                    PlayerManager.sharedInstance.salvarNovoPlayer(nome.text, foto: foto.image!)
+                else { // se estiver com nome e foto, salva os dados
+                    btnCancel.alpha = 0.0
+                    btnAdd.tag = 1
+                    PlayerManager.sharedInstance.salvarNovoPlayer(txtNamePlayer.text, foto: imgPlayer.image!)
                     players = PlayerManager.sharedInstance.buscarPlayers()
                     self.tableView.reloadData()
                     
-                    nome.userInteractionEnabled = false
-                    foto.userInteractionEnabled = false
+                    txtNamePlayer.userInteractionEnabled = false
+                    imgPlayer.userInteractionEnabled = false
                     tableView.allowsSelection = true
                     
                     var index = players.count - 1
                     var playerSelecionado = players[index]
                     userDef.setObject(index, forKey: "index")
                     
-                    nome.text = playerSelecionado.nomePlayer
-                    foto.image = UIImage(data: playerSelecionado.fotoPlayer)
+                    txtNamePlayer.text = playerSelecionado.nomePlayer
+                    txtNamePlayer.borderStyle = UITextBorderStyle.None
+                    imgPlayer.image = UIImage(data: playerSelecionado.fotoPlayer)
                     let rowToSelect:NSIndexPath = NSIndexPath(forRow: index, inSection: 0)
                     tableView.selectRowAtIndexPath(rowToSelect, animated: true, scrollPosition: UITableViewScrollPosition.None)
-                    
-                    self.navigationItem.setRightBarButtonItem(UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Add, target: self, action: "adicionarPlayer:"), animated: true)
                 }
             }
         }
     }
     
-    @IBAction func cancelar(sender: AnyObject){
-        nome.text = ""
-        foto.image = UIImage(named: "imgdefault")
+    @IBAction func cancel(sender: AnyObject) {
+        if userDef.objectForKey("index") != nil && userDef.objectForKey("index") as! Int != -1 {
+            var selectedPlayer = players[userDef.integerForKey("index")]
+            txtNamePlayer.text = selectedPlayer.nomePlayer
+            imgPlayer.image = UIImage(data: selectedPlayer.fotoPlayer)
+        }
+        else {
+            txtNamePlayer.text = ""
+            imgPlayer.image = UIImage(named: "imgdefault")
+        }
         
-        nome.userInteractionEnabled = false
-        foto.userInteractionEnabled = false
+        txtNamePlayer.userInteractionEnabled = false
+        txtNamePlayer.borderStyle = UITextBorderStyle.None
+        imgPlayer.userInteractionEnabled = false
         tableView.allowsSelection = true
-        add.tag = 1
-        add.setTitle("+", forState: UIControlState.Normal)
-        cancelar.alpha = 0.0
-
-
+        btnAdd.tag = 1
+        btnCancel.alpha = 0.0
     }
     
+    // MARK: - TableView
+
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 1
     }
@@ -200,6 +188,15 @@ class PlayerViewController: UIViewController, UIImagePickerControllerDelegate, U
             tableView.selectRowAtIndexPath(indexPath, animated: true, scrollPosition: UITableViewScrollPosition.None)
         }
         
+        if userDef.objectForKey("index") != nil && userDef.objectForKey("index") as! Int != -1 {
+            var selectedPlayer = players[userDef.integerForKey("index")]
+            txtNamePlayer.text = selectedPlayer.nomePlayer
+            imgPlayer.image = UIImage(data: selectedPlayer.fotoPlayer)
+        }
+        else {
+            txtNamePlayer.text = ""
+            imgPlayer.image = UIImage(named: "imgdefault")
+        }
         
         self.tableView.reloadData()
     }
@@ -212,7 +209,7 @@ class PlayerViewController: UIViewController, UIImagePickerControllerDelegate, U
             let pontoFrame = self.view.convertRect(ponto.frame, toView: ponto.superview)
             if CGRectContainsPoint(pontoFrame, touchLocation){
                 if ponto.tag == 1 {
-                    if foto.userInteractionEnabled {
+                    if imgPlayer.userInteractionEnabled {
                         let alerta: UIAlertController = UIAlertController(title: nil, message: nil, preferredStyle: .ActionSheet)
                         alerta.popoverPresentationController?.sourceView = self.view
                         alerta.popoverPresentationController?.sourceRect = CGRectMake(touchLocation.x, touchLocation.y, 0, 0)
@@ -239,7 +236,7 @@ class PlayerViewController: UIViewController, UIImagePickerControllerDelegate, U
     
     func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [NSObject : AnyObject]) {
         var imagem:UIImage = info[UIImagePickerControllerOriginalImage] as! UIImage
-        foto.image = imagem
+        imgPlayer.image = imagem
         
         self.dismissViewControllerAnimated(true, completion: nil)
     }
@@ -248,11 +245,12 @@ class PlayerViewController: UIViewController, UIImagePickerControllerDelegate, U
         var playerSelecionado = players[indexPath.row]
         userDef.setObject(indexPath.row, forKey: "index")
         
-        nome.text = playerSelecionado.nomePlayer
-        foto.image = UIImage(data: playerSelecionado.fotoPlayer)
+        txtNamePlayer.text = playerSelecionado.nomePlayer
+        imgPlayer.image = UIImage(data: playerSelecionado.fotoPlayer)
         
     }
-    @IBAction func voltar(sender: AnyObject) {
+    
+    @IBAction func back(sender: AnyObject) {
         self.dismissViewControllerAnimated(true, completion: nil)
     }
 }

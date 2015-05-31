@@ -151,16 +151,6 @@ class PlayerGameViewController: UIViewController, UITableViewDelegate, UITableVi
                 var alertview = JSSAlertView().show(self, title: "Escolha dois jogadores", buttonText: "OK", color: UIColorFromHex(0x33cc33, alpha: 1))
                 alertview.setTextTheme(.Light)
 
-                
-                
-                
-//                let alerta: UIAlertController = UIAlertController(title: "Atenção", message: "Selecione os jogadores", preferredStyle:.Alert)
-//                let al1: UIAlertAction = UIAlertAction(title: "OK", style: .Default, handler: nil)
-//                // adiciona a ação no alertController
-//                [alerta.addAction(al1)]
-//                
-//                // adiciona o alertController na view
-//                self.presentViewController(alerta, animated: true, completion: nil)
                 return false
             }
         }

@@ -29,7 +29,7 @@ class TutorialDetailViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    func voltar(){
+    func back() {
         self.dismissViewControllerAnimated(true, completion: nil)
     }
     

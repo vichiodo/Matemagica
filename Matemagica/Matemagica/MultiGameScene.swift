@@ -10,7 +10,7 @@ import Foundation
 import SpriteKit
 
 class MultiGameScene: SKScene {
-    var vC: MiddleViewController!
+    var vC: MultiGameViewController!
     var userDef: NSUserDefaults = NSUserDefaults.standardUserDefaults()
     var ref = CGPathCreateMutable()
     var line = SKShapeNode()
@@ -241,6 +241,18 @@ class MultiGameScene: SKScene {
             }
             else if alternativaTocada.name == "errado5" || alternativaTocada.name == "errado6" || alternativaTocada.name == "errado7" || alternativaTocada.name == "errado8" {
                 println("jogador 2 errou")
+                
+                for var i = 5; i < 9; i++ {
+                    self.enumerateChildNodesWithName("errado\(i)") {
+                        node, stop in
+                        node.userInteractionEnabled = false
+                    }
+                }
+
+
+                animateWrong(conta2)
+                
+                
             }
             
         }
@@ -253,6 +265,67 @@ class MultiGameScene: SKScene {
     //        touch.view.userInteractionEnabled = true
     //
     //    }
+    
+    func animateWrong(animate: SKLabelNode) {
+        
+        
+        let amplitudeX:CGFloat = 20;
+        let numberOfShakes = 2;
+        var actionsArray:[SKAction] = [];
+        for index in 1...Int(numberOfShakes) {
+            // build a new random shake and add it to the list
+            let posX1 = CGFloat(animate.position.x) + amplitudeX
+            let shake1: SKAction = SKAction.moveTo(CGPoint(x: posX1, y: animate.position.y), duration: 0.05)
+            shake1.timingMode = SKActionTimingMode.EaseOut
+            actionsArray.append(shake1)
+            actionsArray.append(shake1.reversedAction())
+            
+            let posX2 = CGFloat(animate.position.x) - amplitudeX
+            let shake2: SKAction = SKAction.moveTo(CGPoint(x: posX2, y: animate.position.y), duration: 0.05)
+            shake2.timingMode = SKActionTimingMode.EaseOut
+            actionsArray.append(shake2)
+            actionsArray.append(shake2.reversedAction())
+
+        }
+        let back: SKAction = SKAction.moveTo(CGPoint(x: animate.position.x, y: animate.position.y), duration: 0.05)
+        actionsArray.append(back)
+        let actionSeq = SKAction.sequence(actionsArray)
+        animate.runAction(actionSeq)
+        
+        
+        //        var shake:CABasicAnimation = CABasicAnimation(keyPath: "position.x")
+        //        shake.duration = 0.1
+        //        shake.repeatCount = 2
+        //        shake.autoreverses = true
+        //
+        //        var from_point:CGPoint = CGPointMake(animate.position.x - 5, animate.position.y)
+        //        var from_value:NSValue = NSValue(CGPoint: from_point)
+        //
+        //        var to_point:CGPoint = CGPointMake(animate.position.x + 5, animate.position.y)
+        //        var to_value:NSValue = NSValue(CGPoint: to_point)
+        //
+        //        shake.fromValue = from_value
+        //        shake.toValue = to_value
+        //        animate.animationDidStart(shake)
+        //        animate.
+        //        animate.runAction(SKAction.animationDidStart(CABasicAnimation(keyPath: position)))
+        //        iv.layer.addAnimation(shake, forKey: "position")
+        //        CATransaction.commit()
+        //
+        //
+        //
+        //        let valor = 5
+        //
+        //        CABasicAnimation *shake = [CABasicAnimation animationWithKeyPath:@"position.x"];
+        //        [shake setDuration:0.06];
+        //        [shake setRepeatCount:2];
+        //        [shake setAutoreverses:YES];
+        //        [shake setFromValue:[NSNumber numberWithFloat:busca.center.x - valor]];
+        //        [shake setToValue:[NSNumber numberWithFloat:busca.center.x + valor]];
+        //
+        //        [busca.layer addAnimation:shake forKey:@"shake"];
+        
+    }
     
     func alertAction() {
         lblResultadoJogador1.hidden = true
@@ -267,7 +340,90 @@ class MultiGameScene: SKScene {
         addContasGamer2()
     }
     
-    func addOperacao(){
+    func addOperacao() {
+        
+        let blurEffect = UIBlurEffect(style: UIBlurEffectStyle.Dark)
+        var blurEffectView: UIVisualEffectView = UIVisualEffectView()
+        // Blur Effect
+        blurEffectView = UIVisualEffectView(effect: blurEffect)
+        blurEffectView.frame = vC.view.bounds
+        
+        // Vibrancy Effect
+        var vibrancyEffect = UIVibrancyEffect(forBlurEffect: blurEffect)
+        var vibrancyEffectView = UIVisualEffectView(effect: vibrancyEffect)
+        vibrancyEffectView.frame = vC.view.bounds
+        
+        // Label for vibrant text
+        var vibrantLabel1 = UILabel()
+        vibrantLabel1.text = "Quem acertar 10 contas primeiro ganha!"
+        vibrantLabel1.font = UIFont.systemFontOfSize(30.0)
+        vibrantLabel1.sizeToFit()
+        vibrantLabel1.center = vC.view.center
+        
+        var vibrantLabel2 = UILabel()
+        vibrantLabel2.text = "3"
+        vibrantLabel2.font = UIFont.systemFontOfSize(72.0)
+        vibrantLabel2.sizeToFit()
+        vibrantLabel2.center = vC.view.center
+        
+        var vibrantLabel3 = UILabel()
+        vibrantLabel3.text = "2"
+        vibrantLabel3.font = UIFont.systemFontOfSize(72.0)
+        vibrantLabel3.sizeToFit()
+        vibrantLabel3.center = vC.view.center
+        
+        var vibrantLabel4 = UILabel()
+        vibrantLabel4.text = "1"
+        vibrantLabel4.font = UIFont.systemFontOfSize(72.0)
+        vibrantLabel4.sizeToFit()
+        vibrantLabel4.center = vC.view.center
+        
+        var vibrantLabel5 = UILabel()
+        vibrantLabel5.text = "Vai!"
+        vibrantLabel5.font = UIFont.systemFontOfSize(72.0)
+        vibrantLabel5.sizeToFit()
+        vibrantLabel5.center = vC.view.center
+        
+        blurEffectView.contentView.addSubview(vibrancyEffectView)
+        vC.view.addSubview(blurEffectView)
+        
+        let delayTime5 = dispatch_time(DISPATCH_TIME_NOW, Int64(1 * Double(NSEC_PER_SEC)))
+        dispatch_after(delayTime5, dispatch_get_main_queue()) {
+            vibrancyEffectView.contentView.addSubview(vibrantLabel1)
+            
+            let delayTime4 = dispatch_time(DISPATCH_TIME_NOW, Int64(2.5 * Double(NSEC_PER_SEC)))
+            dispatch_after(delayTime4, dispatch_get_main_queue()) {
+                vibrantLabel1.removeFromSuperview()
+                vibrancyEffectView.contentView.addSubview(vibrantLabel2)
+                let delayTime3 = dispatch_time(DISPATCH_TIME_NOW, Int64(1 * Double(NSEC_PER_SEC)))
+                dispatch_after(delayTime3, dispatch_get_main_queue()) {
+                    vibrantLabel2.removeFromSuperview()
+                    vibrancyEffectView.contentView.addSubview(vibrantLabel3)
+                    let delayTime2 = dispatch_time(DISPATCH_TIME_NOW, Int64(1 * Double(NSEC_PER_SEC)))
+                    dispatch_after(delayTime2, dispatch_get_main_queue()) {
+                        vibrantLabel3.removeFromSuperview()
+                        vibrancyEffectView.contentView.addSubview(vibrantLabel4)
+                        let delayTime1 = dispatch_time(DISPATCH_TIME_NOW, Int64(1 * Double(NSEC_PER_SEC)))
+                        dispatch_after(delayTime1, dispatch_get_main_queue()) {
+                            vibrantLabel4.removeFromSuperview()
+                            vibrancyEffectView.contentView.addSubview(vibrantLabel5)
+                            let delayTime0 = dispatch_time(DISPATCH_TIME_NOW, Int64(1 * Double(NSEC_PER_SEC)))
+                            dispatch_after(delayTime0, dispatch_get_main_queue()) {
+                                vibrantLabel5.removeFromSuperview()
+                                blurEffectView.removeFromSuperview()
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        
+        //        let view: UIView = UIView(frame: CGRect(x: 200, y: 500, width: 200, height: 500))
+        //        view.backgroundColor = UIColor.blackColor()
+        //        vC.view.addSubview(view)
+        //
+        //        view.removeFromSuperview()
+        
         var op: String!
         contasArray.removeAll(keepCapacity: true)
         

@@ -18,10 +18,10 @@
                         <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Nome da criança" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Q7S-EH-HkV">
-                                <rect key="frame" x="186" y="125" width="396" height="30"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="words"/>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Nome da criança" textAlignment="center" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="Q7S-EH-HkV">
+                                <rect key="frame" x="186" y="125" width="396" height="56"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="words" enablesReturnKeyAutomatically="YES"/>
                             </textField>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="98" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="771-ex-soq">
                                 <rect key="frame" x="0.0" y="543" width="768" height="481"/>
@@ -108,7 +108,7 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="voltar:" destination="d0Q-qb-8LC" eventType="touchUpInside" id="xHF-pY-5Iw"/>
+                                    <action selector="back:" destination="d0Q-qb-8LC" eventType="touchUpInside" id="78J-7v-4RF"/>
                                 </connections>
                             </button>
                             <button opaque="NO" tag="1" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kBL-GP-3bp">
@@ -117,7 +117,7 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="adicionarPlayer:" destination="d0Q-qb-8LC" eventType="touchUpInside" id="TxE-GH-g9d"/>
+                                    <action selector="addNewPlayer:" destination="d0Q-qb-8LC" eventType="touchUpInside" id="z0V-BZ-KWL"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="c8Y-iW-c5w">
@@ -127,7 +127,7 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="cancelar:" destination="d0Q-qb-8LC" eventType="touchUpInside" id="aSi-Jn-712"/>
+                                    <action selector="cancel:" destination="d0Q-qb-8LC" eventType="touchUpInside" id="I9e-ip-uSq"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -140,11 +140,11 @@
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="iPad"/>
                     <connections>
-                        <outlet property="add" destination="kBL-GP-3bp" id="Wa6-4I-JpQ"/>
-                        <outlet property="cancelar" destination="c8Y-iW-c5w" id="2Ea-Ur-s0H"/>
-                        <outlet property="foto" destination="iav-l0-RjE" id="eGc-GW-M6u"/>
-                        <outlet property="nome" destination="Q7S-EH-HkV" id="MJL-iD-Ycj"/>
+                        <outlet property="btnAdd" destination="kBL-GP-3bp" id="pjC-fS-A41"/>
+                        <outlet property="btnCancel" destination="c8Y-iW-c5w" id="rPk-zo-WV6"/>
+                        <outlet property="imgPlayer" destination="iav-l0-RjE" id="r5d-TE-pJ8"/>
                         <outlet property="tableView" destination="771-ex-soq" id="3LZ-kA-gBk"/>
+                        <outlet property="txtNamePlayer" destination="Q7S-EH-HkV" id="7zz-Tt-Npw"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="AT1-15-lvR" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -186,7 +186,7 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="voltar:" destination="Nwf-ld-bDv" eventType="touchUpInside" id="nyV-NA-GyP"/>
+                                    <action selector="back:" destination="Nwf-ld-bDv" eventType="touchUpInside" id="KMr-CC-jHv"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kkp-pl-1tl">
@@ -222,10 +222,10 @@
             </objects>
             <point key="canvasLocation" x="495" y="2194"/>
         </scene>
-        <!--Middle View Controller-->
+        <!--Multi Game View Controller-->
         <scene sceneID="EhL-OI-I7q">
             <objects>
-                <viewController id="9fK-my-khX" customClass="MiddleViewController" customModule="Matemagica" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="9fK-my-khX" customClass="MultiGameViewController" customModule="Matemagica" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="JhB-hb-EEH"/>
                         <viewControllerLayoutGuide type="bottom" id="pEW-1X-PUu"/>
@@ -241,10 +241,10 @@
             </objects>
             <point key="canvasLocation" x="495" y="4779"/>
         </scene>
-        <!--View Controller-->
+        <!--Master View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="Matemagica" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="MasterViewController" customModule="Matemagica" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -409,8 +409,6 @@
                     <navigationItem key="navigationItem" id="Bax-UQ-U74"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="iPad"/>
                     <connections>
-                        <outlet property="diy" destination="6pH-Rm-1bO" id="SJH-Ms-huF"/>
-                        <outlet property="jogar" destination="KeW-y4-zlc" id="2Es-RC-8PC"/>
                         <outlet property="logoA1" destination="eFl-Bn-XUh" id="Bdb-oU-E1c"/>
                         <outlet property="logoA2" destination="k4m-dJ-veX" id="upa-j9-i8Z"/>
                         <outlet property="logoA3" destination="V4U-8a-ZKt" id="Thm-Zz-34d"/>
@@ -421,7 +419,6 @@
                         <outlet property="logoM1" destination="A8z-DN-r2T" id="gbG-Vd-YpE"/>
                         <outlet property="logoM2" destination="q7Q-5b-tNg" id="ZL3-5J-zIb"/>
                         <outlet property="logoT" destination="mVE-1f-oZ0" id="nVl-gu-Ieg"/>
-                        <outlet property="tutorial" destination="hFQ-6W-cPu" id="rhw-sN-mCj"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -581,7 +578,7 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="voltar:" destination="kY1-2w-9Dq" eventType="touchUpInside" id="vZT-fp-NXL"/>
+                                    <action selector="back:" destination="kY1-2w-9Dq" eventType="touchUpInside" id="X1B-91-vUd"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -598,12 +595,6 @@
                         </constraints>
                     </view>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="iPad"/>
-                    <connections>
-                        <outlet property="adicao" destination="DYU-IM-WHB" id="cV5-hI-q0J"/>
-                        <outlet property="divisao" destination="AYV-RE-NPZ" id="HbF-nW-Jl5"/>
-                        <outlet property="multiplicacao" destination="AYe-5y-vd4" id="4fM-Sz-BQO"/>
-                        <outlet property="subtracao" destination="fnX-6V-DDd" id="Gar-qe-40D"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="TqS-fO-9e1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -685,12 +676,12 @@
                             </button>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="98" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="kWq-yY-Zlh">
                                 <rect key="frame" x="0.0" y="543" width="768" height="481"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" red="0.43577818499999998" green="0.52097716959999996" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <prototypes>
                                     <tableViewCell opaque="NO" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="player" rowHeight="98" id="jdB-gY-jnS" customClass="PlayerTableViewCell" customModule="Matemagica" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="768" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" alpha="0.89999999999999991" contentMode="center" tableViewCell="jdB-gY-jnS" id="CtM-Tc-5d1">
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="jdB-gY-jnS" id="CtM-Tc-5d1">
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Nome" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="geE-Fq-ct4">
@@ -721,7 +712,7 @@
                                                     <rect key="frame" x="6" y="9" width="77" height="80"/>
                                                 </imageView>
                                             </subviews>
-                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                            <color key="backgroundColor" red="0.43577818499999998" green="0.52097716959999996" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                             <constraints>
                                                 <constraint firstAttribute="trailingMargin" secondItem="nM9-aB-Qe8" secondAttribute="trailing" constant="29" id="0bH-PG-Tjp"/>
                                                 <constraint firstItem="geE-Fq-ct4" firstAttribute="leading" secondItem="CtM-Tc-5d1" secondAttribute="leading" constant="102" id="Bet-zA-ALV"/>
@@ -747,6 +738,7 @@
                                                 </mask>
                                             </variation>
                                         </tableViewCellContentView>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <connections>
                                             <outlet property="foto" destination="8T4-5P-Zm2" id="rmE-45-zvs"/>
                                             <outlet property="nivel" destination="p6I-w3-zFg" id="DGg-cm-PWU"/>

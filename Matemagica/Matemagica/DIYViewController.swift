@@ -33,8 +33,6 @@ class DIYViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDat
         
         pickerData = ["+", "-", "×", "÷"]
         
-//        self.navigationItem.leftBarButtonItem
-//        self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "< Voltar", style:.Plain, target:self, action:"voltar")
     }
     func voltar() {
         navigationController?.popViewControllerAnimated(true)

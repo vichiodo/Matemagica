@@ -9,11 +9,6 @@
 import UIKit
 
 class TutorialViewController: UIViewController {
-
-    @IBOutlet weak var adicao: UIButton!
-    @IBOutlet weak var subtracao: UIButton!
-    @IBOutlet weak var multiplicacao: UIButton!
-    @IBOutlet weak var divisao: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,6 +23,7 @@ class TutorialViewController: UIViewController {
         notification.postNotificationName("pauseTutorial", object: self)
     }
 
+    // passa por Segue qual o botao que ele clicou para carregar as infos
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if (segue.identifier == "adicaoIdentifier") {
             var tutorialVC : TutorialDetailViewController = segue.destinationViewController as! TutorialDetailViewController
@@ -50,7 +46,7 @@ class TutorialViewController: UIViewController {
         }
     }
     
-    @IBAction func voltar(sender: AnyObject) {
+    @IBAction func back(sender: AnyObject) {
         self.dismissViewControllerAnimated(true, completion: nil)
     }
    

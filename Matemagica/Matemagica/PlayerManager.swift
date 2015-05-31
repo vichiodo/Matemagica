@@ -9,8 +9,8 @@
 import CoreData
 import UIKit
 
-
-class PlayerManager{
+class PlayerManager {
+    
     static let sharedInstance = PlayerManager()
     static let entityName: String = "Player"
     
@@ -25,8 +25,6 @@ class PlayerManager{
     func novoPlayer() ->Player {
         return NSEntityDescription.insertNewObjectForEntityForName(PlayerManager.entityName, inManagedObjectContext: managedContext) as! Player
     }
-    
-    
     
     func buscarPlayers() ->Array<Player> {
         let buscaRequest = NSFetchRequest(entityName: PlayerManager.entityName)
