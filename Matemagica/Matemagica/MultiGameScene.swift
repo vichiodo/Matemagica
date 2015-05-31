@@ -85,12 +85,12 @@ class MultiGameScene: SKScene {
         self.addChild(line)
         
         //chama o método que monta a scene
-        posicaoAlternativas()
+        alternativesPosition()
         //chama o método que cria as operações
-        addOperacao()
+        addOperation()
         //chama os métodos que carrega as alternativas na tela
-        addContasGamer1()
-        addContasGamer2()
+        addCalculationGamer1()
+        addCalculationGamer2()
         
         addChild(calculation1)
         addChild(calculation2)
@@ -180,7 +180,7 @@ class MultiGameScene: SKScene {
         alternativeTouched = self.nodeAtPoint(touchLocation)
         
         if back.containsPoint(touchLocation){
-            vC.voltar()
+            vC.back()
         }
         
         //caso os dois jogadores ainda não atingiram 10 vitórias
@@ -211,7 +211,7 @@ class MultiGameScene: SKScene {
                 }
                 else {//caso ainda não tenham atingido 10 vitórias
                     //cria novas contas para o jogador 1
-                    addContasGamer1()
+                    addCalculationGamer1()
                     println("Gamer1: \(scoreGamer1)")
                 }
             }
@@ -244,7 +244,7 @@ class MultiGameScene: SKScene {
                 }
                 else {//caso ainda não tenham atingido 10 vitórias
                     //cria novas contas para o jogador 2
-                    addContasGamer2()
+                    addCalculationGamer2()
                     println("Gamer2: \(scoreGamer2)")
                 }
             }
@@ -304,13 +304,13 @@ class MultiGameScene: SKScene {
         lblScorePlayer1.text = "\(self.scoreGamer1)"
         lblScorePlayer2.text = "\(self.scoreGamer2)"
         
-        addOperacao()
-        addContasGamer1()
-        addContasGamer2()
+        addOperation()
+        addCalculationGamer1()
+        addCalculationGamer2()
     }
     
     //metodo para escolha da operação
-    func addOperacao() {
+    func addOperation() {
         
         let blurEffect = UIBlurEffect(style: UIBlurEffectStyle.Dark)
         var blurEffectView: UIVisualEffectView = UIVisualEffectView()
@@ -326,31 +326,31 @@ class MultiGameScene: SKScene {
         // Label for vibrant text
         var vibrantLabel1 = UILabel()
         vibrantLabel1.text = "Quem acertar 10 contas primeiro ganha!"
-        vibrantLabel1.font = UIFont.systemFontOfSize(30.0)
+        vibrantLabel1.font = UIFont.systemFontOfSize(40.0)
         vibrantLabel1.sizeToFit()
         vibrantLabel1.center = vC.view.center
         
         var vibrantLabel2 = UILabel()
         vibrantLabel2.text = "3"
-        vibrantLabel2.font = UIFont.systemFontOfSize(72.0)
+        vibrantLabel2.font = UIFont.systemFontOfSize(90.0)
         vibrantLabel2.sizeToFit()
         vibrantLabel2.center = vC.view.center
         
         var vibrantLabel3 = UILabel()
         vibrantLabel3.text = "2"
-        vibrantLabel3.font = UIFont.systemFontOfSize(72.0)
+        vibrantLabel3.font = UIFont.systemFontOfSize(90.0)
         vibrantLabel3.sizeToFit()
         vibrantLabel3.center = vC.view.center
         
         var vibrantLabel4 = UILabel()
         vibrantLabel4.text = "1"
-        vibrantLabel4.font = UIFont.systemFontOfSize(72.0)
+        vibrantLabel4.font = UIFont.systemFontOfSize(90.0)
         vibrantLabel4.sizeToFit()
         vibrantLabel4.center = vC.view.center
         
         var vibrantLabel5 = UILabel()
         vibrantLabel5.text = "Vai!"
-        vibrantLabel5.font = UIFont.systemFontOfSize(72.0)
+        vibrantLabel5.font = UIFont.systemFontOfSize(90.0)
         vibrantLabel5.sizeToFit()
         vibrantLabel5.center = vC.view.center
         
@@ -387,6 +387,7 @@ class MultiGameScene: SKScene {
                 }
             }
         }
+        
         var op: String!
         arrayCalculations.removeAll(keepCapacity: true)
         
@@ -409,28 +410,28 @@ class MultiGameScene: SKScene {
     }
     
     //método que posiciona a operação do jogador1
-    func addContasGamer1() {
+    func addCalculationGamer1() {
         calculation1.position = CGPoint(x: size.width/2, y: size.height/2+120)
         calculation1.fontColor = UIColor.blackColor()
         calculation1.zRotation = CGFloat(M_1_PI*9.85)
         calculation1.fontSize = 120
         calculation1.name = "conta1"
         calculation1.text = "\(arrayCalculations[scoreGamer1].conta)"
-        addAlternativasGame1()
+        addAlternativesGame1()
     }
     
     //método que posiciona a operação do jogador2
-    func addContasGamer2(){
+    func addCalculationGamer2(){
         calculation2.position = CGPoint(x: size.width/2, y: size.height/2-120)
         calculation2.fontColor = UIColor.blackColor()
         calculation2.fontSize = 120
         calculation2.name = "conta2"
         calculation2.text = "\(arrayCalculations[scoreGamer2].conta)"
-        addAlternativasGame2()
+        addAlternativesGame2()
     }
     
     //método que posiciona as alternativas do jogador1
-    func addAlternativasGame1(){
+    func addAlternativesGame1(){
         randomPosition = random(0, 3)
         alternative11.name = "errado1"
         alternative12.name = "errado2"
@@ -491,7 +492,7 @@ class MultiGameScene: SKScene {
     }
     
     //método que posiciona as alternativas do jogador2
-    func addAlternativasGame2(){
+    func addAlternativesGame2(){
         randomPosition = random(0, 3)
         
         alternative21.name = "errado5"
@@ -509,7 +510,7 @@ class MultiGameScene: SKScene {
         
         // inserir valores nas labels
         switch randomPosition {
-        case 0: //nuvem1
+        case 0: //alternativa21
             alternative21.text = "\(arrayCalculations[scoreGamer2].resposta)"
             alternative22.text = "\(arrayCalculations[scoreGamer2].alternativa1)"
             alternative23.text = "\(arrayCalculations[scoreGamer2].alternativa2)"
@@ -519,7 +520,7 @@ class MultiGameScene: SKScene {
                 node, stop in
                 node.name = "certo5"
             }
-        case 1: //nuvem2
+        case 1: //alternativa22
             alternative21.text = "\(arrayCalculations[scoreGamer2].alternativa1)"
             alternative22.text = "\(arrayCalculations[scoreGamer2].resposta)"
             alternative23.text = "\(arrayCalculations[scoreGamer2].alternativa2)"
@@ -529,7 +530,7 @@ class MultiGameScene: SKScene {
                 node, stop in
                 node.name = "certo6"
             }
-        case 2: // nuvem3
+        case 2: //alternativa23
             alternative21.text = "\(arrayCalculations[scoreGamer2].alternativa1)"
             alternative22.text = "\(arrayCalculations[scoreGamer2].alternativa2)"
             alternative23.text = "\(arrayCalculations[scoreGamer2].resposta)"
@@ -539,7 +540,7 @@ class MultiGameScene: SKScene {
                 node, stop in
                 node.name = "certo7"
             }
-        default:
+        default://alternativa24
             alternative21.text = "\(arrayCalculations[scoreGamer2].alternativa1)"
             alternative22.text = "\(arrayCalculations[scoreGamer2].alternativa2)"
             alternative23.text = "\(arrayCalculations[scoreGamer2].alternativa3)"
@@ -553,7 +554,7 @@ class MultiGameScene: SKScene {
     }
     
     
-    func posicaoAlternativas(){
+    func alternativesPosition(){
         ////////////// cabeça pra baixo
         alternative11.position = CGPoint(x: size.width/2+200, y: size.height/2+400)
         alternative11.fontColor = UIColor.blackColor()
