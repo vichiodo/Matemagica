@@ -12,6 +12,7 @@ import SpriteKit
 class MultiGameScene: SKScene {
     var vC: MultiGameViewController!
     var userDef: NSUserDefaults = NSUserDefaults.standardUserDefaults()
+    
     var ref = CGPathCreateMutable()
     var line = SKShapeNode()
     var resposta: Int = 0
@@ -23,6 +24,7 @@ class MultiGameScene: SKScene {
         return PlayerManager.sharedInstance.buscarPlayers()
         }()
     
+    //declaração das labels das alternativas
     var alternativa11 = SKLabelNode()
     var alternativa12 = SKLabelNode()
     var alternativa13 = SKLabelNode()
@@ -32,26 +34,24 @@ class MultiGameScene: SKScene {
     var alternativa23 = SKLabelNode()
     var alternativa24 = SKLabelNode()
     
+    //declaração da label da alternativa que será selecionada
     var alternativaTocada: SKNode!
     
+    //declaraçao de váriaveis necessarias
     var index1: Int = -1
     var index2: Int = -1
-    
     var scoreGamer1: Int = 0
     var scoreGamer2: Int = 0
-    
     var vitoriasJogador1: Int = 0
     var vitoriasJogador2: Int = 0
     
+    //declaração das labels dos nomes, vitórias, pontuações e resultados dos jogadores
     let lblVitoriasJogador1 = SKLabelNode(fontNamed: "ChalkboardSE-Light")
     let lblVitoriasJogador2 = SKLabelNode(fontNamed: "ChalkboardSE-Light")
-    
     let lblResultadoJogador1 = SKLabelNode(fontNamed: "ChalkboardSE-Bold")
     let lblResultadoJogador2 = SKLabelNode(fontNamed: "ChalkboardSE-Bold")
-    
     let lblPontuacaoJogador1 = SKLabelNode(fontNamed: "ChalkboardSE-Light")
     let lblPontuacaoJogador2 = SKLabelNode(fontNamed: "ChalkboardSE-Light")
-    
     let lblNomeJogador1 = SKLabelNode(fontNamed: "ChalkboardSE-Light")
     let lblNomeJogador2 = SKLabelNode(fontNamed: "ChalkboardSE-Light")
     
@@ -60,6 +60,7 @@ class MultiGameScene: SKScene {
     //animação
     let aparecer = SKAction.fadeInWithDuration(0.5)
     
+    //array que armazenará as contas geradas a cada 10 partidas
     var contasArray: Array<Contas> = Array<Contas>()
     
     override func didMoveToView(view: SKView) {
@@ -76,6 +77,7 @@ class MultiGameScene: SKScene {
         CGPathMoveToPoint(ref, nil, 0, size.height/2)
         CGPathAddLineToPoint(ref, nil, size.width, size.height/2)
         
+        //posicionamento da linha que dividirá um jogador do outro
         line.path = ref
         line.lineWidth = 4
         line.fillColor = UIColor.blackColor()
@@ -83,14 +85,18 @@ class MultiGameScene: SKScene {
         
         self.addChild(line)
         
+        //chama o método que monta a scene
         posicaoAlternativas()
+        //chama o método que cria as operações
         addOperacao()
+        //chama os métodos que carrega as alternativas na tela
         addContasGamer1()
         addContasGamer2()
         
         addChild(conta1)
         addChild(conta2)
         
+        //busca no userDefault o nivel de cada jogador
         index1 = userDef.objectForKey("jogador1") as! Int
         index2 = userDef.objectForKey("jogador2") as! Int
         
@@ -168,18 +174,27 @@ class MultiGameScene: SKScene {
     }
     
     override func touchesBegan(touches: Set<NSObject>, withEvent event: UIEvent) {
+        
+        //pega o primeiro toque na tela
         let touch = (touches as NSSet).allObjects[0] as! UITouch
         let touchLocation = touch.locationInNode(self)
+        
+        //descobre qual opção foi tocada
         alternativaTocada = self.nodeAtPoint(touchLocation)
         
         if voltar.containsPoint(touchLocation){
             vC.voltar()
         }
         
+        //caso os dois jogadores ainda não atingiram 10 vitórias
         if scoreGamer1 < 10 && scoreGamer2 < 10 {
+            //analisa se o node tocado pertence ao jogador 1
             if alternativaTocada.name == "certo1" || alternativaTocada.name == "certo2" || alternativaTocada.name == "certo3" || alternativaTocada.name == "certo4" {
+                //aumenta 1 vitoria ao jogador1
                 scoreGamer1++
                 lblPontuacaoJogador1.text = "\(scoreGamer1)"
+                
+               // quando o jogador 1 chega a 10 vitorias apresenta aos jogadores quem foi o vencedor
                 if scoreGamer1 == 10 {
                     lblResultadoJogador1.hidden = false
                     lblResultadoJogador2.hidden = false
@@ -188,32 +203,36 @@ class MultiGameScene: SKScene {
                     lblResultadoJogador2.text = "PERDEU"
                     lblResultadoJogador2.fontColor = SKColor.redColor()
                     
+                    //animação
                     let sequencia = SKAction.sequence([aparecer])
                     lblResultadoJogador1.runAction(sequencia)
                     lblResultadoJogador2.runAction(sequencia)
                     
+                    //atualiza no CoreDate
                     vitoriasJogador1++
                     lblVitoriasJogador1.text = "\(vitoriasJogador1)"
                     players[index1].scorePlayer = String(vitoriasJogador1)
                     
-                    
+                    //alerta personalizado perguntando aos jogadores se desejam continuar a jogar ou não
                     var alertview = JSSAlertView().show(vC, title: "Quer jogar de novo?", buttonText: "Sim!", cancelButtonText: "Não", color: UIColorFromHex(0x3498db, alpha: 1))
                     alertview.addAction(alertAction)
                     alertview.setTextTheme(.Light)
-                    
-                    
                 }
-                else {
+                else {//caso ainda não tenham atingido 10 vitórias
+                    //cria novas contas para o jogador 1
                     addContasGamer1()
                     println("Gamer1: \(scoreGamer1)")
                 }
-            }
+            }//analisa se o node tocado pertence ao jogador 1, porem esse node não é o que contem a altenativa correta
             else if alternativaTocada.name == "errado1" || alternativaTocada.name == "errado2" || alternativaTocada.name == "errado3" || alternativaTocada.name == "errado4" {
                 println("jogador 1 errou")
-            }
+            } //analisa se o node tocado pertence ao jogador 2
             else if alternativaTocada.name == "certo5" || alternativaTocada.name == "certo6" || alternativaTocada.name == "certo7" || alternativaTocada.name == "certo8" {
+                //aumenta 1 ao score do jogador 2
                 scoreGamer2++
                 lblPontuacaoJogador2.text = "\(scoreGamer2)"
+                
+                //quando o jogador 2 chega a 10 vitorias apresenta aos jogadores quem foi o vencedor
                 if scoreGamer2 == 10 {
                     lblResultadoJogador1.hidden = false
                     lblResultadoJogador2.hidden = false
@@ -222,23 +241,27 @@ class MultiGameScene: SKScene {
                     lblResultadoJogador2.text = "VENCEU"
                     lblResultadoJogador2.fontColor = SKColor.blueColor()
                     
+                    //animação
                     let sequencia = SKAction.sequence([aparecer])
                     lblResultadoJogador1.runAction(sequencia)
                     lblResultadoJogador2.runAction(sequencia)
                     
+                    //atualiza no CoreData
                     vitoriasJogador2++
                     lblVitoriasJogador2.text = "\(vitoriasJogador2)"
                     players[index2].scorePlayer = String(vitoriasJogador2)
                     
+                    //alerta personalizado perguntando aos jogadores se desejam continuar a jogar ou não
                     var alertview = JSSAlertView().show(vC, title: "Quer jogar de novo?", buttonText: "Sim!", cancelButtonText: "Não", color: UIColorFromHex(0x3498db, alpha: 1))
                     alertview.addAction(alertAction)
                     alertview.setTextTheme(.Light)
                 }
-                else {
+                else {//caso ainda não tenham atingido 10 vitórias
+                    //cria novas contas para o jogador 2
                     addContasGamer2()
                     println("Gamer2: \(scoreGamer2)")
                 }
-            }
+            }//analisa se o node tocado pertence ao jogador 1, porem esse node não é o que contem a altenativa correta
             else if alternativaTocada.name == "errado5" || alternativaTocada.name == "errado6" || alternativaTocada.name == "errado7" || alternativaTocada.name == "errado8" {
                 println("jogador 2 errou")
                 
@@ -259,13 +282,7 @@ class MultiGameScene: SKScene {
         PlayerManager.sharedInstance.salvarPlayer()
     }
     
-    //    override func touchesEnded(touches: Set<NSObject>, withEvent event: UIEvent) {
-    //        let touch = (touches as NSSet).allObjects[0] as! UITouch
-    //        println("habilita toque")
-    //        touch.view.userInteractionEnabled = true
-    //
-    //    }
-    
+    //animação caso clique na alternativa errada
     func animateWrong(animate: SKLabelNode) {
         
         
@@ -291,41 +308,8 @@ class MultiGameScene: SKScene {
         actionsArray.append(back)
         let actionSeq = SKAction.sequence(actionsArray)
         animate.runAction(actionSeq)
-        
-        
-        //        var shake:CABasicAnimation = CABasicAnimation(keyPath: "position.x")
-        //        shake.duration = 0.1
-        //        shake.repeatCount = 2
-        //        shake.autoreverses = true
-        //
-        //        var from_point:CGPoint = CGPointMake(animate.position.x - 5, animate.position.y)
-        //        var from_value:NSValue = NSValue(CGPoint: from_point)
-        //
-        //        var to_point:CGPoint = CGPointMake(animate.position.x + 5, animate.position.y)
-        //        var to_value:NSValue = NSValue(CGPoint: to_point)
-        //
-        //        shake.fromValue = from_value
-        //        shake.toValue = to_value
-        //        animate.animationDidStart(shake)
-        //        animate.
-        //        animate.runAction(SKAction.animationDidStart(CABasicAnimation(keyPath: position)))
-        //        iv.layer.addAnimation(shake, forKey: "position")
-        //        CATransaction.commit()
-        //
-        //
-        //
-        //        let valor = 5
-        //
-        //        CABasicAnimation *shake = [CABasicAnimation animationWithKeyPath:@"position.x"];
-        //        [shake setDuration:0.06];
-        //        [shake setRepeatCount:2];
-        //        [shake setAutoreverses:YES];
-        //        [shake setFromValue:[NSNumber numberWithFloat:busca.center.x - valor]];
-        //        [shake setToValue:[NSNumber numberWithFloat:busca.center.x + valor]];
-        //
-        //        [busca.layer addAnimation:shake forKey:@"shake"];
-        
     }
+    
     
     func alertAction() {
         lblResultadoJogador1.hidden = true
@@ -340,6 +324,7 @@ class MultiGameScene: SKScene {
         addContasGamer2()
     }
     
+    //metodo para escolha da operação
     func addOperacao() {
         
         let blurEffect = UIBlurEffect(style: UIBlurEffectStyle.Dark)
@@ -418,15 +403,9 @@ class MultiGameScene: SKScene {
             }
         }
         
-        //        let view: UIView = UIView(frame: CGRect(x: 200, y: 500, width: 200, height: 500))
-        //        view.backgroundColor = UIColor.blackColor()
-        //        vC.view.addSubview(view)
-        //
-        //        view.removeFromSuperview()
         
         var op: String!
         contasArray.removeAll(keepCapacity: true)
-        
         for i in 0...10 {
             var operacao = random(0, 3)
             switch operacao {
@@ -440,11 +419,14 @@ class MultiGameScene: SKScene {
                 op = "/"
             }
             
+            //instanciação de um objeto do tipo Contas passando como parametro a operação
             var fazConta = Contas(operacao: op)
+            //armazena no array o objeto Contas
             contasArray.append(fazConta)
         }
     }
     
+    //método que posiciona a operação do jogador1
     func addContasGamer1() {
         conta1.position = CGPoint(x: size.width/2, y: size.height/2+120)
         conta1.fontColor = UIColor.blackColor()
@@ -455,6 +437,7 @@ class MultiGameScene: SKScene {
         addAlternativasGame1()
     }
     
+    //método que posiciona a operação do jogador2
     func addContasGamer2(){
         conta2.position = CGPoint(x: size.width/2, y: size.height/2-120)
         conta2.fontColor = UIColor.blackColor()
@@ -464,6 +447,7 @@ class MultiGameScene: SKScene {
         addAlternativasGame2()
     }
     
+    //método que posiciona as alternativas do jogador1
     func addAlternativasGame1(){
         posicao = random(0, 3)
         alternativa11.name = "errado1"
@@ -480,7 +464,7 @@ class MultiGameScene: SKScene {
         
         // inserir valores nas labels
         switch posicao {
-        case 0: //nuvem1
+        case 0:
             alternativa11.text = "\(contasArray[scoreGamer1].resposta)"
             alternativa12.text = "\(contasArray[scoreGamer1].alternativa1)"
             alternativa13.text = "\(contasArray[scoreGamer1].alternativa2)"
@@ -491,7 +475,7 @@ class MultiGameScene: SKScene {
                 node.name = "certo1"
             }
             
-        case 1: //nuvem2
+        case 1:
             alternativa11.text = "\(contasArray[scoreGamer1].alternativa1)"
             alternativa12.text = "\(contasArray[scoreGamer1].resposta)"
             alternativa13.text = "\(contasArray[scoreGamer1].alternativa2)"
@@ -501,7 +485,7 @@ class MultiGameScene: SKScene {
                 node, stop in
                 node.name = "certo2"
             }
-        case 2: // nuvem3
+        case 2:
             alternativa11.text = "\(contasArray[scoreGamer1].alternativa1)"
             alternativa12.text = "\(contasArray[scoreGamer1].alternativa2)"
             alternativa13.text = "\(contasArray[scoreGamer1].resposta)"
@@ -524,6 +508,7 @@ class MultiGameScene: SKScene {
         }
     }
     
+    //método que posiciona as alternativas do jogador2
     func addAlternativasGame2(){
         posicao = random(0, 3)
         
@@ -542,7 +527,7 @@ class MultiGameScene: SKScene {
         
         // inserir valores nas labels
         switch posicao {
-        case 0: //nuvem1
+        case 0:
             alternativa21.text = "\(contasArray[scoreGamer2].resposta)"
             alternativa22.text = "\(contasArray[scoreGamer2].alternativa1)"
             alternativa23.text = "\(contasArray[scoreGamer2].alternativa2)"
@@ -552,7 +537,7 @@ class MultiGameScene: SKScene {
                 node, stop in
                 node.name = "certo5"
             }
-        case 1: //nuvem2
+        case 1:
             alternativa21.text = "\(contasArray[scoreGamer2].alternativa1)"
             alternativa22.text = "\(contasArray[scoreGamer2].resposta)"
             alternativa23.text = "\(contasArray[scoreGamer2].alternativa2)"
@@ -562,7 +547,7 @@ class MultiGameScene: SKScene {
                 node, stop in
                 node.name = "certo6"
             }
-        case 2: // nuvem3
+        case 2:
             alternativa21.text = "\(contasArray[scoreGamer2].alternativa1)"
             alternativa22.text = "\(contasArray[scoreGamer2].alternativa2)"
             alternativa23.text = "\(contasArray[scoreGamer2].resposta)"
@@ -584,6 +569,7 @@ class MultiGameScene: SKScene {
             }
         }
     }
+    
     
     func posicaoAlternativas(){
         ////////////// cabeça pra baixo
@@ -632,7 +618,7 @@ class MultiGameScene: SKScene {
         alternativa23.fontSize = 50
         addChild(alternativa23)
         
-        
+        //declaração e instanciação dos blocos das alternativas
         for var i = 0; i < 8; ++i {
             let bloco = SKSpriteNode(imageNamed: "bloco")
             
