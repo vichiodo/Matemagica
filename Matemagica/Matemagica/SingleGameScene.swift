@@ -62,15 +62,6 @@ extension CGPoint {
     }
 }
 
-struct PhysicsCategory {
-    static let None         : UInt32 = 0
-    static let All          : UInt32 = UInt32.max
-    static let SuperDente   : UInt32 = 0b10       // 2
-    static let Dinheiro     : UInt32 = 0b11    //3
-    static let DentePodre   : UInt32 = 0b110   //4
-    static let Moeda        : UInt32 = 0b1      // 1
-}
-
 func random(lo: Int, hi : Int) -> Int {
     return lo + Int(arc4random_uniform(UInt32(hi - lo + 1)))
 }
@@ -84,54 +75,54 @@ class SingleGameScene: SKScene {
         }()
 
     //respostas
-    var num1: Int = 0
-    var num2: Int = 0
-    var num3: Int = 0
+    var number1: Int = 0
+    var number2: Int = 0
+    var number3: Int = 0
     
     //declaração dos SpriteKit
-    var nuvem1: SKSpriteNode!
-    var nuvem2: SKSpriteNode!
-    var nuvem3: SKSpriteNode!
+    var cloud1: SKSpriteNode!
+    var cloud2: SKSpriteNode!
+    var cloud3: SKSpriteNode!
     
     //declaração das labels resposta, pergunta e nível
-    var labelResposta1: SKLabelNode!
-    var labelResposta2: SKLabelNode!
-    var labelResposta3: SKLabelNode!
-    var labelPergunta: SKLabelNode!
+    var labelAnswer1: SKLabelNode!
+    var labelAnswer2: SKLabelNode!
+    var labelAnswer3: SKLabelNode!
+    var labelQuestion: SKLabelNode!
     var labelNivel: SKLabelNode!
     
     //declaração do background
     var background: SKSpriteNode!
     
     //declaração de outros nodes necessario
-    var represa: SKSpriteNode!
-    var nuvemTocada: SKNode!
-    var solSaindo: SKSpriteNode!
-    var bloco: SKSpriteNode!
+    var river: SKSpriteNode!
+    var cloudPlayed: SKNode!
+    var sunPlayed: SKSpriteNode!
+    var block: SKSpriteNode!
     
     //declaração de outras variáveis necessárias
-    var posicao: Int = 0
-    var numeros: Array<Int> = [1,2,3,4,5,6,7,8,9,10]
-    var nivel: Int = 1
+    var positionn: Int = 0
+    var numbers: Array<Int> = [1,2,3,4,5,6,7,8,9,10]
+    var level: Int = 1
     var index: Int = -1
     
-    let voltar = SKSpriteNode(imageNamed: "voltar")
+    let back = SKSpriteNode(imageNamed: "voltar")
     
     override func didMoveToView(view: SKView) {
         index = userDef.objectForKey("index") as! Int
-        nivel = players[index].nivelPlayer.toInt()!
+        level = players[index].nivelPlayer.toInt()!
         
-        // "botao" voltar
-        voltar.position = CGPoint(x: 53.5, y: size.height - 65.6)
-        voltar.size = CGSize(width: 75, height: 75)
-        voltar.zPosition = 100
-        addChild(voltar)
+        // "botao" back
+        back.position = CGPoint(x: 53.5, y: size.height - 65.6)
+        back.size = CGSize(width: 75, height: 75)
+        back.zPosition = 100
+        addChild(back)
 
         //chama método para montar a scene
-        montarScene()
+        mountScene()
         
         //chama o método para criar uma nova scene
-        novoJogo()
+        newGame()
         
         //notificação para retornar a pagina inicial de Jogos
         var notification:NSNotificationCenter = NSNotificationCenter.defaultCenter()
@@ -143,21 +134,21 @@ class SingleGameScene: SKScene {
         let touch = touches.first as! UITouch
         let touchLocation = touch.locationInNode(self)
 
-        if voltar.containsPoint(touchLocation){
+        if back.containsPoint(touchLocation){
             PlayerManager.sharedInstance.salvarPlayer()
             vC.voltar()
         }
         
         //descobre qual opção foi tocado
-        nuvemTocada = self.nodeAtPoint(touchLocation)
+        cloudPlayed = self.nodeAtPoint(touchLocation)
 
         //desabilita as labels
-        nuvem1.userInteractionEnabled = true
-        nuvem2.userInteractionEnabled = true
-        nuvem3.userInteractionEnabled = true
-        labelResposta1.userInteractionEnabled = true
-        labelResposta2.userInteractionEnabled = true
-        labelResposta3.userInteractionEnabled = true
+        cloud1.userInteractionEnabled = true
+        cloud2.userInteractionEnabled = true
+        cloud3.userInteractionEnabled = true
+        labelAnswer1.userInteractionEnabled = true
+        labelAnswer2.userInteractionEnabled = true
+        labelAnswer3.userInteractionEnabled = true
         
         //cria e posiciona label que aparece o texto (feedback ao usuário)
         var labelWin = SKLabelNode(fontNamed: "Macker Felt Wide")
@@ -166,56 +157,56 @@ class SingleGameScene: SKScene {
         labelWin.fontColor = SKColor(red: 238/255, green: 130/25, blue: 238/255, alpha: 1)
         
         //tirar os textos da página
-        labelPergunta.text = " "
-        bloco.hidden = true
+        labelQuestion.text = " "
+        block.hidden = true
         
         //adicionar na label o texto que será mostrado
-        if nuvemTocada.name == "certa" {
-            fazerChover()
+        if cloudPlayed.name == "certa" {
+            rain()
             labelWin.text = "PARABÉNS!!"
-            nivel++
-            players[index].nivelPlayer = String(nivel)
-        }else if nuvemTocada.name == "errado" {
-            sairSol()
+            level++
+            players[index].nivelPlayer = String(level)
+        }else if cloudPlayed.name == "errado" {
+            sun()
             labelWin.text = "Você errou!"
         }
         
         
         //animação do sol aparecendo
-        let aparecer = SKAction.fadeInWithDuration(0.5)
-        let esperar = SKAction.waitForDuration(1.5)
-        let desaparecer = SKAction.fadeOutWithDuration(1.5)
+        let appear = SKAction.fadeInWithDuration(0.5)
+        let wait = SKAction.waitForDuration(1.5)
+        let desappear = SKAction.fadeOutWithDuration(1.5)
         
         //ação da label
-        let sequencia = SKAction.sequence([aparecer, esperar, desaparecer])
+        let sequence = SKAction.sequence([appear, wait, desappear])
         
         //adicionar a label na tela
         labelWin.alpha = 0
         addChild(labelWin)
         
-        labelWin.runAction(sequencia, completion: { () -> Void in
+        labelWin.runAction(sequence, completion: { () -> Void in
             //chama novo nível
-            self.novoJogo()
+            self.newGame()
         })
         PlayerManager.sharedInstance.salvarPlayer()
     }
     
     //obtem as operações de acordo com a String passada e retorna o resultado da operação
-    func obterOperacoes(operador: String) -> Int {
+    func getOperations(operador: String) -> Int {
         var n1: Int = 0
         var n2: Int = 0
         
         //randons de acordo com os níveis
-        if (nivel >= 1 && nivel <= 2) {
+        if (level >= 1 && level <= 2) {
             n1 = random(0, 10)
             n2 = random(0, 10)
-        }else if(nivel > 2 && nivel <= 5) {
+        }else if(level > 2 && level <= 5) {
             n1 = random(0, 20)
             n2 = random(0, 20)
-        }else if(nivel > 5 && nivel <= 10) {
+        }else if(level > 5 && level <= 10) {
             n1 = random(0, 30)
             n2 = random(0, 30)
-        }else if(nivel > 10 && nivel <= 25) {
+        }else if(level > 10 && level <= 25) {
             n1 = random(0, 50)
             n2 = random(0, 50)
         }else {
@@ -223,82 +214,82 @@ class SingleGameScene: SKScene {
             n2 = random(0, 100)
         }
         
-        var operacao: String = ""
+        var operation: String = ""
         
         //imprime na tela as operações
         if(operador == "+"){
-            operacao = " \(n1) + \(n2)"
+            operation = " \(n1) + \(n2)"
             
         }else if operador == "-"{
             if n1 > n2{
-                operacao = " \(n1) - \(n2)"
+                operation = " \(n1) - \(n2)"
             }else {
-                operacao = " \(n2) - \(n1)"
+                operation = " \(n2) - \(n1)"
             }
             
         }else if operador == "*" {
             n1 = random(1, 10)
             n2 = random(1, 10)
-            operacao = " \(n1) × \(n2)"
+            operation = " \(n1) × \(n2)"
             
         }else if operador == "/" {
             
             var array = random(0, 9)
-            n2 = numeros[array]
+            n2 = numbers[array]
             
             do{
                 n1 = random(n2, 20)
             }while n1 % n2 != 0
             
-            operacao = "\(n1) ÷ \(n2)"
+            operation = "\(n1) ÷ \(n2)"
         }
         
-        self.labelPergunta.text = operacao
-        return resolveOperacao(n1, n2: n2, op: operador)
+        self.labelQuestion.text = operation
+        return solveOperation(n1, n2: n2, op: operador)
     }
     
     //resolve as operações
-    func resolveOperacao(n1: Int, n2: Int, op: String) -> Int{
-        var resultado: Int = 0
+    func solveOperation(n1: Int, n2: Int, op: String) -> Int{
+        var result: Int = 0
         if op == "+" {
-            resultado = n1 + n2
+            result = n1 + n2
         }else if op == "-" {
             if n1 > n2 {
-                resultado = n1 - n2
+                result = n1 - n2
             }else{
-                resultado = n2 - n1
+                result = n2 - n1
             }
         }else if op == "*" {
-            resultado = n1 * n2
+            result = n1 * n2
         }else if op == "/" {
-            resultado = n1 / n2
+            result = n1 / n2
         }
-        return resultado
+        return result
     }
     
     //monta a scene
-    func montarScene() {
+    func mountScene() {
         //instanciação dos SKSpriteNode
-        nuvem1 = SKSpriteNode(imageNamed: "nuvem")
-        nuvem2 = SKSpriteNode(imageNamed: "nuvem")
-        nuvem3 = SKSpriteNode(imageNamed: "nuvem")
+        cloud1 = SKSpriteNode(imageNamed: "nuvem")
+        cloud2 = SKSpriteNode(imageNamed: "nuvem")
+        cloud3 = SKSpriteNode(imageNamed: "nuvem")
         
         //faz o node ficar no primeiro plano
-        nuvem1.zPosition = 1
-        nuvem2.zPosition = 1
-        nuvem3.zPosition = 1
+        cloud1.zPosition = 1
+        cloud2.zPosition = 1
+        cloud3.zPosition = 1
         
         //instanciação das labels resposta e pergunta
-        labelResposta1 = SKLabelNode(fontNamed:"Macker Felt Wide")
-        labelResposta2 = SKLabelNode(fontNamed:"Macker Felt Wide")
-        labelResposta3 = SKLabelNode(fontNamed:"Macker Felt Wide")
-        labelPergunta = SKLabelNode(fontNamed:"Macker Felt Wide")
+        labelAnswer1 = SKLabelNode(fontNamed:"Macker Felt Wide")
+        labelAnswer2 = SKLabelNode(fontNamed:"Macker Felt Wide")
+        labelAnswer3 = SKLabelNode(fontNamed:"Macker Felt Wide")
+        labelQuestion = SKLabelNode(fontNamed:"Macker Felt Wide")
         
         //faz a label ficar no primeiro plano
-        labelResposta1.zPosition = 1
-        labelResposta2.zPosition = 1
-        labelResposta3.zPosition = 1
-        labelPergunta.zPosition = 1
+        labelAnswer1.zPosition = 1
+        labelAnswer2.zPosition = 1
+        labelAnswer3.zPosition = 1
+        labelQuestion.zPosition = 1
         
         //instanciação e posicionamento do background
         background = SKSpriteNode(imageNamed: "backgroundSingleGame")
@@ -311,303 +302,303 @@ class SingleGameScene: SKScene {
         playBackgroundMusic("")
         
         //posiciona os sprite na scene
-        nuvem1.position = CGPoint(x: size.width * 0.75, y: size.width * 1.1)
-        nuvem2.position = CGPoint(x: size.width * 0.5, y: size.width * 0.8)
-        nuvem3.position = CGPoint(x: size.width * 0.25, y: size.width * 1.1)
+        cloud1.position = CGPoint(x: size.width * 0.75, y: size.width * 1.1)
+        cloud2.position = CGPoint(x: size.width * 0.5, y: size.width * 0.8)
+        cloud3.position = CGPoint(x: size.width * 0.25, y: size.width * 1.1)
         
         //adiciona os sprites na scene
-        addChild(nuvem1)
-        addChild(nuvem2)
-        addChild(nuvem3)
+        addChild(cloud1)
+        addChild(cloud2)
+        addChild(cloud3)
         
         //posiciona as labels
-        labelResposta1.position = nuvem1.position
-        labelResposta1.fontColor = SKColor.blackColor()
-        labelResposta1.fontSize = 80
+        labelAnswer1.position = cloud1.position
+        labelAnswer1.fontColor = SKColor.blackColor()
+        labelAnswer1.fontSize = 80
         
-        labelResposta2.position = nuvem2.position
-        labelResposta2.fontColor = SKColor.blackColor()
-        labelResposta2.fontSize = 80
+        labelAnswer2.position = cloud2.position
+        labelAnswer2.fontColor = SKColor.blackColor()
+        labelAnswer2.fontSize = 80
         
-        labelResposta3.position = nuvem3.position
-        labelResposta3.fontColor = SKColor.blackColor()
-        labelResposta3.fontSize = 80
+        labelAnswer3.position = cloud3.position
+        labelAnswer3.fontColor = SKColor.blackColor()
+        labelAnswer3.fontSize = 80
         
-        labelPergunta.position = CGPoint(x: nuvem2.size.width * 1.2, y: nuvem3.size.width * 1)
-        labelPergunta.fontColor = SKColor.blackColor()
-        labelPergunta.fontSize = 80
+        labelQuestion.position = CGPoint(x: cloud2.size.width * 1.2, y: cloud3.size.width * 1)
+        labelQuestion.fontColor = SKColor.blackColor()
+        labelQuestion.fontSize = 80
         
         //adiciona as labels na scene
-        addChild(labelResposta1)
-        addChild(labelResposta2)
-        addChild(labelResposta3)
-        addChild(labelPergunta)
+        addChild(labelAnswer1)
+        addChild(labelAnswer2)
+        addChild(labelAnswer3)
+        addChild(labelQuestion)
         
-        //instanciação e posicionamento da sprite represa
-        represa = SKSpriteNode(imageNamed: "represa")
-        represa.position = CGPointMake(384, 320)
-        represa.size = CGSizeMake(UIScreen.mainScreen().bounds.size.width, UIScreen.mainScreen().bounds.size.height)
-        addChild(represa)
+        //instanciação e posicionamento da sprite river
+        river = SKSpriteNode(imageNamed: "represa")
+        river.position = CGPointMake(384, 320)
+        river.size = CGSizeMake(UIScreen.mainScreen().bounds.size.width, UIScreen.mainScreen().bounds.size.height)
+        addChild(river)
         
         //instanciação e posicionamento do retangulo da label pergunta
-        bloco = SKSpriteNode(imageNamed: "bloco")
-        bloco.size = CGSize(width: 300, height: 100)
-        bloco.position = CGPoint(x: nuvem2.size.width * 1.2, y: nuvem3.size.width * 1.09)
-        bloco.zPosition = 0
-        addChild(bloco)
+        block = SKSpriteNode(imageNamed: "bloco")
+        block.size = CGSize(width: 300, height: 100)
+        block.position = CGPoint(x: cloud2.size.width * 1.2, y: cloud3.size.width * 1.09)
+        block.zPosition = 0
+        addChild(block)
     }
     
     //metodo que cria um novo jogo
-    func novoJogo() {
+    func newGame() {
         
-        bloco.hidden = false
+        block.hidden = false
         
-        //caso exista solSaindo
-        if solSaindo != nil {
-            if solSaindo.name == "saiu1" {
-                nuvem1.position = solSaindo.position
-                solSaindo.removeFromParent()
-                solSaindo = nil
-                nuvem1.zPosition = 0
-                addChild(nuvem1)
-            }else if solSaindo.name == "saiu2" {
-                nuvem2.position = solSaindo.position
-                solSaindo.removeFromParent()
-                solSaindo = nil
-                nuvem2.zPosition = 0
-                addChild(nuvem2)
-            }else if solSaindo.name == "saiu3" {
-                nuvem3.position = solSaindo.position
-                solSaindo.removeFromParent()
-                solSaindo = nil
-                nuvem3.zPosition = 0
-                addChild(nuvem3)
+        //caso exista sunPlayed
+        if sunPlayed != nil {
+            if sunPlayed.name == "saiu1" {
+                cloud1.position = sunPlayed.position
+                sunPlayed.removeFromParent()
+                sunPlayed = nil
+                cloud1.zPosition = 0
+                addChild(cloud1)
+            }else if sunPlayed.name == "saiu2" {
+                cloud2.position = sunPlayed.position
+                sunPlayed.removeFromParent()
+                sunPlayed = nil
+                cloud2.zPosition = 0
+                addChild(cloud2)
+            }else if sunPlayed.name == "saiu3" {
+                cloud3.position = sunPlayed.position
+                sunPlayed.removeFromParent()
+                sunPlayed = nil
+                cloud3.zPosition = 0
+                addChild(cloud3)
             }
         }
         
-        // instanciação e posicionamento da label nivel
+        // instanciação e posicionamento da label level
         labelNivel = SKLabelNode(fontNamed: "Marker Felt Wide")
         labelNivel.position = CGPoint(x: 400, y: 390)
         labelNivel.fontSize = 140
         labelNivel.fontColor = SKColor(red: 238/255, green: 130/255, blue: 238/255, alpha: 1)
-        labelNivel.text = "NIVEL \(nivel)"
+        labelNivel.text = "NIVEL \(level)"
         
         //animação para mudança de nível
-        let aparecer = SKAction.fadeInWithDuration(0.5)
-        let esperar = SKAction.waitForDuration(1.5)
-        let desaparecer = SKAction.fadeOutWithDuration(0.5)
-        let sequencia = SKAction.sequence([aparecer, esperar, desaparecer])
+        let appear = SKAction.fadeInWithDuration(0.5)
+        let wait = SKAction.waitForDuration(1.5)
+        let desappear = SKAction.fadeOutWithDuration(0.5)
+        let sequence = SKAction.sequence([appear, wait, desappear])
         
-        //adiciona a label nivel na tela
+        //adiciona a label level na tela
         labelNivel.alpha = 0
         addChild(labelNivel)
         
         //inicia a animação
-        labelNivel.runAction(sequencia)
+        labelNivel.runAction(sequence)
         
         //random para escolha da nuvem
-        posicao = random(0, 2)
-        var num1 = 0
-        var num2 = 0
-        var num3 = 0
+        positionn = random(0, 2)
+        var number1 = 0
+        var number2 = 0
+        var number3 = 0
         var resposta: Int = 0
         
-        labelResposta1.text = "\(num1)"
-        labelResposta2.text = "\(num2)"
-        labelResposta3.text = "\(num3)"
+        labelAnswer1.text = "\(number1)"
+        labelAnswer2.text = "\(number2)"
+        labelAnswer3.text = "\(number3)"
         
         //nomeia os nodes nuvem e labelResposta para "errado"
-        nuvem1.name = "errado"
-        nuvem2.name = "errado"
-        nuvem3.name = "errado"
-        labelResposta1.name = "errado"
-        labelResposta2.name = "errado"
-        labelResposta3.name = "errado"
+        cloud1.name = "errado"
+        cloud2.name = "errado"
+        cloud3.name = "errado"
+        labelAnswer1.name = "errado"
+        labelAnswer2.name = "errado"
+        labelAnswer3.name = "errado"
         
-        //verifica o nível e filtra as operações para cada bloco de níveis
-        if (nivel >= 0 && nivel <= 10){ //niveis de 0 a 10 operações de + e -
-            var operacao = random(0, 1)
+        //verifica o nível e filtra as operações para cada block de níveis
+        if (level >= 0 && level <= 10){ //niveis de 0 a 10 operações de + e -
+            var operation = random(0, 1)
             
-            switch operacao {
+            switch operation {
             case 0: //operacao +
-                resposta = obterOperacoes("+")
+                resposta = getOperations("+")
             default: //operacao -
-                resposta = obterOperacoes("-")
+                resposta = getOperations("-")
             }
-        }else if (nivel > 10 && nivel <= 20){ //níveis de 11 a 20 operações de +, - e *
-            var operacao = random(0, 2)
+        }else if (level > 10 && level <= 20){ //níveis de 11 a 20 operações de +, - e *
+            var operation = random(0, 2)
             
-            switch operacao {
+            switch operation {
             case 0: // operação +
-                resposta = obterOperacoes("+")
+                resposta = getOperations("+")
             case 1: // operação -
-                resposta = obterOperacoes("-")
+                resposta = getOperations("-")
             default: // operação *
-                resposta = obterOperacoes("*")
+                resposta = getOperations("*")
             }
-        }else if nivel > 20 { // niveis a partir do 21 operações de +, -, *, /
-            var operacao = random(0, 3)
+        }else if level > 20 { // niveis a partir do 21 operações de +, -, *, /
+            var operation = random(0, 3)
             
-            switch operacao {
+            switch operation {
             case 0: // operação +
-                resposta = obterOperacoes("+")
+                resposta = getOperations("+")
             case 1: // operação -
-                resposta = obterOperacoes("-")
+                resposta = getOperations("-")
             case 2: // operação *
-                resposta = obterOperacoes("*")
+                resposta = getOperations("*")
             default: // operação /
-                resposta = obterOperacoes("/")
+                resposta = getOperations("/")
             }
         }
         
         // inserir valores nas labels
-        switch posicao {
-        case 0: //nuvem1
-            num2 = random(resposta - 20, resposta - 1)
-            if num2 < 0 {
-                num2 = (num2) * (-1) + 2
+        switch positionn {
+        case 0: //cloud1
+            number2 = random(resposta - 20, resposta - 1)
+            if number2 < 0 {
+                number2 = (number2) * (-1) + 2
             }
-            num3 = random(resposta + 1, resposta + 20)
+            number3 = random(resposta + 1, resposta + 20)
             
-            if num2 == resposta || num2 == num3 {
-                num2++
+            if number2 == resposta || number2 == number3 {
+                number2++
             }
-            if num3 == resposta || num3 == num2 {
-                num3++
-            }
-            
-            labelResposta1.text = "\(resposta)"
-            labelResposta2.text = "\(num2)"
-            labelResposta3.text = "\(num3)"
-            nuvem1.name = "certa"
-            labelResposta1.name = "certa"
-        case 1: //nuvem2
-            num1 = random(resposta - 20, resposta)
-            if num1 < 0 {
-                num1 = (num1 + num1) * (-1) + 2
+            if number3 == resposta || number3 == number2 {
+                number3++
             }
             
-            num3 = random(resposta, resposta + 20)
-            
-            if num1 == resposta || num1 == num3 {
-                num1++
-            }
-            if num3 == resposta || num1 == num3{
-                num3++
-            }
-            
-            labelResposta1.text = "\(num1)"
-            labelResposta2.text = "\(resposta)"
-            labelResposta3.text = "\(num3)"
-            nuvem2.name = "certa"
-            labelResposta2.name = "certa"
-        default: // nuvem3
-            num1 = random(resposta - 20, resposta)
-            if num1 < 0 {
-                num1 = (num1 - num1) * (-1) + 2
+            labelAnswer1.text = "\(resposta)"
+            labelAnswer2.text = "\(number2)"
+            labelAnswer3.text = "\(number3)"
+            cloud1.name = "certa"
+            labelAnswer1.name = "certa"
+        case 1: //cloud2
+            number1 = random(resposta - 20, resposta)
+            if number1 < 0 {
+                number1 = (number1 + number1) * (-1) + 2
             }
             
-            num2 = random(resposta, resposta + 20)
+            number3 = random(resposta, resposta + 20)
             
-            if num1 == resposta || num1 == num2{
-                num1++
+            if number1 == resposta || number1 == number3 {
+                number1++
             }
-            if num2 == resposta || num1 == num2 {
-                num2++
+            if number3 == resposta || number1 == number3{
+                number3++
             }
             
-            labelResposta1.text = "\(num1)"
-            labelResposta2.text = "\(num2)"
-            labelResposta3.text = "\(resposta)"
-            nuvem3.name = "certa"
-            labelResposta3.name = "certa"
+            labelAnswer1.text = "\(number1)"
+            labelAnswer2.text = "\(resposta)"
+            labelAnswer3.text = "\(number3)"
+            cloud2.name = "certa"
+            labelAnswer2.name = "certa"
+        default: // cloud3
+            number1 = random(resposta - 20, resposta)
+            if number1 < 0 {
+                number1 = (number1 - number1) * (-1) + 2
+            }
+            
+            number2 = random(resposta, resposta + 20)
+            
+            if number1 == resposta || number1 == number2{
+                number1++
+            }
+            if number2 == resposta || number1 == number2 {
+                number2++
+            }
+            
+            labelAnswer1.text = "\(number1)"
+            labelAnswer2.text = "\(number2)"
+            labelAnswer3.text = "\(resposta)"
+            cloud3.name = "certa"
+            labelAnswer3.name = "certa"
         }
-        println("\(resposta) e \(num1) e \(num2) e \(posicao)")
+        println("\(resposta) e \(number1) e \(number2) e \(positionn)")
         
         //habilita as labels
-        nuvem1.userInteractionEnabled = false
-        nuvem2.userInteractionEnabled = false
-        nuvem3.userInteractionEnabled = false
-        labelResposta1.userInteractionEnabled = false
-        labelResposta2.userInteractionEnabled = false
-        labelResposta3.userInteractionEnabled = false
+        cloud1.userInteractionEnabled = false
+        cloud2.userInteractionEnabled = false
+        cloud3.userInteractionEnabled = false
+        labelAnswer1.userInteractionEnabled = false
+        labelAnswer2.userInteractionEnabled = false
+        labelAnswer3.userInteractionEnabled = false
     }
     
     //faz chover quando acerta a resposta
-    func fazerChover() {
-        let nuvemChovendo: SKSpriteNode!
+    func rain() {
+        let raining: SKSpriteNode!
         
-        switch posicao {
+        switch positionn {
         case 0:
-            nuvemChovendo = nuvem1
+            raining = cloud1
         case 1:
-            nuvemChovendo = nuvem2
+            raining = cloud2
         default:
-            nuvemChovendo = nuvem3
+            raining = cloud3
         }
         
         //instanciação do node chuva
-        let chuva: SKNode = SKNode()
+        let rain: SKNode = SKNode()
         
         //conjunto de gotas forma uma chuva
         for var i = 0; i < random(10, 20); i++ {
-            let gota: SKSpriteNode = SKSpriteNode(imageNamed: "gota")
-            let posicaoX = random(Int(nuvemChovendo.position.x - nuvemChovendo.size.width / 3), Int(nuvemChovendo.position.x + nuvemChovendo.size.width / 3))
-            let posicaoY = random(Int(nuvemChovendo.position.y - 80), Int((nuvemChovendo.position.y + nuvemChovendo.size.height / 2) - 20))
-            gota.position = CGPointMake(CGFloat(posicaoX), CGFloat(posicaoY))
-            gota.xScale = 0.75
-            gota.yScale = 0.75
-            chuva.addChild(gota)
+            let drop: SKSpriteNode = SKSpriteNode(imageNamed: "gota")
+            let posicaoX = random(Int(raining.position.x - raining.size.width / 3), Int(raining.position.x + raining.size.width / 3))
+            let posicaoY = random(Int(raining.position.y - 80), Int((raining.position.y + raining.size.height / 2) - 20))
+            drop.position = CGPointMake(CGFloat(posicaoX), CGFloat(posicaoY))
+            drop.xScale = 0.75
+            drop.yScale = 0.75
+            rain.addChild(drop)
         }
         
         //adiciona a chuva na scene
-        addChild(chuva)
+        addChild(rain)
         
         //animação de fazer chover
-        let chover: SKAction = SKAction.moveTo(CGPointMake(chuva.position.x, UIScreen.mainScreen().bounds.height * -1), duration: 2.0)
-        chuva.runAction(chover, completion: { () -> Void in
-            chuva.removeFromParent()
-            //fazer a represa subir
-            if self.represa.position.y != 500 {
-                self.represa.position.y = self.represa.position.y + 10
+        let animatesRain: SKAction = SKAction.moveTo(CGPointMake(rain.position.x, UIScreen.mainScreen().bounds.height * -1), duration: 2.0)
+        rain.runAction(animatesRain, completion: { () -> Void in
+            rain.removeFromParent()
+            //fazer a river subir
+            if self.river.position.y != 500 {
+                self.river.position.y = self.river.position.y + 10
             }else {
-                self.represa.position.y = 320
+                self.river.position.y = 320
             }
         })
     }
     
     //caso erre a operação
-    func sairSol() {
-        solSaindo = SKSpriteNode(imageNamed: "sol")
-        switch posicao {
+    func sun() {
+        sunPlayed = SKSpriteNode(imageNamed: "sol")
+        switch positionn {
         case 0:
-            solSaindo.position = nuvem1.position
-            solSaindo.name = "saiu1"
-            nuvem1.removeFromParent()
+            sunPlayed.position = cloud1.position
+            sunPlayed.name = "saiu1"
+            cloud1.removeFromParent()
         case 1:
-            solSaindo.position = nuvem2.position
-            solSaindo.name = "saiu2"
-            nuvem2.removeFromParent()
+            sunPlayed.position = cloud2.position
+            sunPlayed.name = "saiu2"
+            cloud2.removeFromParent()
         default:
-            solSaindo.position = nuvem3.position
-            solSaindo.name = "saiu3"
-            nuvem3.removeFromParent()
+            sunPlayed.position = cloud3.position
+            sunPlayed.name = "saiu3"
+            cloud3.removeFromParent()
         }
         
         //animação para o sol aparecer
-        let aparecer = SKAction.fadeInWithDuration(0.5)
-        solSaindo.runAction(aparecer)
-        solSaindo.alpha = 0
-        addChild(solSaindo)
+        let appear = SKAction.fadeInWithDuration(0.5)
+        sunPlayed.runAction(appear)
+        sunPlayed.alpha = 0
+        addChild(sunPlayed)
         
-        //diminui a represa
-        if represa.position.y != 320 {
-            represa.position.y = 320
+        //diminui a river
+        if river.position.y != 320 {
+            river.position.y = 320
         }
         
         //zera o nível
-        nivel = 1
-        players[index].nivelPlayer = String(nivel)
+        level = 1
+        players[index].nivelPlayer = String(level)
     }
     
     // pausa o jogo
