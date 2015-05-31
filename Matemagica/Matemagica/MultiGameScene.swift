@@ -416,7 +416,7 @@ class MultiGameScene: SKScene {
         calculation1.zRotation = CGFloat(M_1_PI*9.85)
         calculation1.fontSize = 120
         calculation1.name = "conta1"
-        calculation1.text = "\(arrayCalculations[scoreGamer1].conta)"
+        calculation1.text = "\(arrayCalculations[scoreGamer1].account)"
         addAlternativesGame1()
     }
     
@@ -426,7 +426,7 @@ class MultiGameScene: SKScene {
         calculation2.fontColor = UIColor.blackColor()
         calculation2.fontSize = 120
         calculation2.name = "conta2"
-        calculation2.text = "\(arrayCalculations[scoreGamer2].conta)"
+        calculation2.text = "\(arrayCalculations[scoreGamer2].account)"
         addAlternativesGame2()
     }
     
@@ -448,10 +448,10 @@ class MultiGameScene: SKScene {
         // inserir valores nas labels
         switch randomPosition {
         case 0: //nuvem1
-            alternative11.text = "\(arrayCalculations[scoreGamer1].resposta)"
-            alternative12.text = "\(arrayCalculations[scoreGamer1].alternativa1)"
-            alternative13.text = "\(arrayCalculations[scoreGamer1].alternativa2)"
-            alternative14.text = "\(arrayCalculations[scoreGamer1].alternativa2)"
+            alternative11.text = "\(arrayCalculations[scoreGamer1].answer)"
+            alternative12.text = "\(arrayCalculations[scoreGamer1].alternative1)"
+            alternative13.text = "\(arrayCalculations[scoreGamer1].alternative2)"
+            alternative14.text = "\(arrayCalculations[scoreGamer1].alternative2)"
             
             self.enumerateChildNodesWithName("errado1") {
                 node, stop in
@@ -459,30 +459,30 @@ class MultiGameScene: SKScene {
             }
             
         case 1: //nuvem2
-            alternative11.text = "\(arrayCalculations[scoreGamer1].alternativa1)"
-            alternative12.text = "\(arrayCalculations[scoreGamer1].resposta)"
-            alternative13.text = "\(arrayCalculations[scoreGamer1].alternativa2)"
-            alternative14.text = "\(arrayCalculations[scoreGamer1].alternativa3)"
+            alternative11.text = "\(arrayCalculations[scoreGamer1].alternative1)"
+            alternative12.text = "\(arrayCalculations[scoreGamer1].answer)"
+            alternative13.text = "\(arrayCalculations[scoreGamer1].alternative2)"
+            alternative14.text = "\(arrayCalculations[scoreGamer1].alternative3)"
             
             self.enumerateChildNodesWithName("errado2") {
                 node, stop in
                 node.name = "certo2"
             }
         case 2: // nuvem3
-            alternative11.text = "\(arrayCalculations[scoreGamer1].alternativa1)"
-            alternative12.text = "\(arrayCalculations[scoreGamer1].alternativa2)"
-            alternative13.text = "\(arrayCalculations[scoreGamer1].resposta)"
-            alternative14.text = "\(arrayCalculations[scoreGamer1].alternativa3)"
+            alternative11.text = "\(arrayCalculations[scoreGamer1].alternative1)"
+            alternative12.text = "\(arrayCalculations[scoreGamer1].alternative2)"
+            alternative13.text = "\(arrayCalculations[scoreGamer1].answer)"
+            alternative14.text = "\(arrayCalculations[scoreGamer1].alternative3)"
             
             self.enumerateChildNodesWithName("errado3") {
                 node, stop in
                 node.name = "certo3"
             }
         default:
-            alternative11.text = "\(arrayCalculations[scoreGamer1].alternativa1)"
-            alternative12.text = "\(arrayCalculations[scoreGamer1].alternativa2)"
-            alternative13.text = "\(arrayCalculations[scoreGamer1].alternativa3)"
-            alternative14.text = "\(arrayCalculations[scoreGamer1].resposta)"
+            alternative11.text = "\(arrayCalculations[scoreGamer1].alternative1)"
+            alternative12.text = "\(arrayCalculations[scoreGamer1].alternative2)"
+            alternative13.text = "\(arrayCalculations[scoreGamer1].alternative3)"
+            alternative14.text = "\(arrayCalculations[scoreGamer1].answer)"
             
             self.enumerateChildNodesWithName("errado4") {
                 node, stop in
@@ -511,40 +511,40 @@ class MultiGameScene: SKScene {
         // inserir valores nas labels
         switch randomPosition {
         case 0: //alternativa21
-            alternative21.text = "\(arrayCalculations[scoreGamer2].resposta)"
-            alternative22.text = "\(arrayCalculations[scoreGamer2].alternativa1)"
-            alternative23.text = "\(arrayCalculations[scoreGamer2].alternativa2)"
-            alternative24.text = "\(arrayCalculations[scoreGamer2].alternativa2)"
+            alternative21.text = "\(arrayCalculations[scoreGamer2].answer)"
+            alternative22.text = "\(arrayCalculations[scoreGamer2].alternative1)"
+            alternative23.text = "\(arrayCalculations[scoreGamer2].alternative2)"
+            alternative24.text = "\(arrayCalculations[scoreGamer2].alternative3)"
             
             self.enumerateChildNodesWithName("errado5") {
                 node, stop in
                 node.name = "certo5"
             }
         case 1: //alternativa22
-            alternative21.text = "\(arrayCalculations[scoreGamer2].alternativa1)"
-            alternative22.text = "\(arrayCalculations[scoreGamer2].resposta)"
-            alternative23.text = "\(arrayCalculations[scoreGamer2].alternativa2)"
-            alternative24.text = "\(arrayCalculations[scoreGamer2].alternativa3)"
+            alternative21.text = "\(arrayCalculations[scoreGamer2].alternative1)"
+            alternative22.text = "\(arrayCalculations[scoreGamer2].answer)"
+            alternative23.text = "\(arrayCalculations[scoreGamer2].alternative2)"
+            alternative24.text = "\(arrayCalculations[scoreGamer2].alternative3)"
             
             self.enumerateChildNodesWithName("errado6") {
                 node, stop in
                 node.name = "certo6"
             }
         case 2: //alternativa23
-            alternative21.text = "\(arrayCalculations[scoreGamer2].alternativa1)"
-            alternative22.text = "\(arrayCalculations[scoreGamer2].alternativa2)"
-            alternative23.text = "\(arrayCalculations[scoreGamer2].resposta)"
-            alternative24.text = "\(arrayCalculations[scoreGamer2].alternativa3)"
+            alternative21.text = "\(arrayCalculations[scoreGamer2].alternative1)"
+            alternative22.text = "\(arrayCalculations[scoreGamer2].alternative2)"
+            alternative23.text = "\(arrayCalculations[scoreGamer2].answer)"
+            alternative24.text = "\(arrayCalculations[scoreGamer2].alternative3)"
             
             self.enumerateChildNodesWithName("errado7") {
                 node, stop in
                 node.name = "certo7"
             }
         default://alternativa24
-            alternative21.text = "\(arrayCalculations[scoreGamer2].alternativa1)"
-            alternative22.text = "\(arrayCalculations[scoreGamer2].alternativa2)"
-            alternative23.text = "\(arrayCalculations[scoreGamer2].alternativa3)"
-            alternative24.text = "\(arrayCalculations[scoreGamer2].resposta)"
+            alternative21.text = "\(arrayCalculations[scoreGamer2].alternative1)"
+            alternative22.text = "\(arrayCalculations[scoreGamer2].alternative2)"
+            alternative23.text = "\(arrayCalculations[scoreGamer2].alternative3)"
+            alternative24.text = "\(arrayCalculations[scoreGamer2].answer)"
             
             self.enumerateChildNodesWithName("errado8") {
                 node, stop in
