@@ -15,60 +15,59 @@ class MultiGameScene: SKScene {
     
     var ref = CGPathCreateMutable()
     var line = SKShapeNode()
-    var resposta: Int = 0
-    var posicao: Int = 0
-    var conta1 = SKLabelNode()
-    var conta2 = SKLabelNode()
+    var randomPosition: Int = 0
+    var calculation1 = SKLabelNode()
+    var calculation2 = SKLabelNode()
     
     lazy var players:Array<Player> = {
         return PlayerManager.sharedInstance.buscarPlayers()
         }()
     
-    //declaração das labels das alternativas
-    var alternativa11 = SKLabelNode()
-    var alternativa12 = SKLabelNode()
-    var alternativa13 = SKLabelNode()
-    var alternativa14 = SKLabelNode()
-    var alternativa21 = SKLabelNode()
-    var alternativa22 = SKLabelNode()
-    var alternativa23 = SKLabelNode()
-    var alternativa24 = SKLabelNode()
+    var alternative11 = SKLabelNode()
+    var alternative12 = SKLabelNode()
+    var alternative13 = SKLabelNode()
+    var alternative14 = SKLabelNode()
+    var alternative21 = SKLabelNode()
+    var alternative22 = SKLabelNode()
+    var alternative23 = SKLabelNode()
+    var alternative24 = SKLabelNode()
     
-    //declaração da label da alternativa que será selecionada
-    var alternativaTocada: SKNode!
+    var alternativeTouched: SKNode!
     
     //declaraçao de váriaveis necessarias
     var index1: Int = -1
     var index2: Int = -1
     var scoreGamer1: Int = 0
     var scoreGamer2: Int = 0
-    var vitoriasJogador1: Int = 0
-    var vitoriasJogador2: Int = 0
     
-    //declaração das labels dos nomes, vitórias, pontuações e resultados dos jogadores
-    let lblVitoriasJogador1 = SKLabelNode(fontNamed: "ChalkboardSE-Light")
-    let lblVitoriasJogador2 = SKLabelNode(fontNamed: "ChalkboardSE-Light")
-    let lblResultadoJogador1 = SKLabelNode(fontNamed: "ChalkboardSE-Bold")
-    let lblResultadoJogador2 = SKLabelNode(fontNamed: "ChalkboardSE-Bold")
-    let lblPontuacaoJogador1 = SKLabelNode(fontNamed: "ChalkboardSE-Light")
-    let lblPontuacaoJogador2 = SKLabelNode(fontNamed: "ChalkboardSE-Light")
-    let lblNomeJogador1 = SKLabelNode(fontNamed: "ChalkboardSE-Light")
-    let lblNomeJogador2 = SKLabelNode(fontNamed: "ChalkboardSE-Light")
+    var victoriesPlayer1: Int = 0
+    var victoriesPlayer2: Int = 0
     
-    let voltar = SKSpriteNode(imageNamed: "voltar")
+    let lblVictoriesPlayer1 = SKLabelNode(fontNamed: "ChalkboardSE-Light")
+    let lblVictoriesPlayer2 = SKLabelNode(fontNamed: "ChalkboardSE-Light")
+    
+    let lblResultPlayer1 = SKLabelNode(fontNamed: "ChalkboardSE-Bold")
+    let lblResultPlayer2 = SKLabelNode(fontNamed: "ChalkboardSE-Bold")
+    
+    let lblScorePlayer1 = SKLabelNode(fontNamed: "ChalkboardSE-Light")
+    let lblScorePlayer2 = SKLabelNode(fontNamed: "ChalkboardSE-Light")
+    
+    let lblNamePlayer1 = SKLabelNode(fontNamed: "ChalkboardSE-Light")
+    let lblNamePlayer2 = SKLabelNode(fontNamed: "ChalkboardSE-Light")
+    
+    let back = SKSpriteNode(imageNamed: "voltar")
     
     //animação
-    let aparecer = SKAction.fadeInWithDuration(0.5)
+    let show = SKAction.fadeInWithDuration(0.5)
     
-    //array que armazenará as contas geradas a cada 10 partidas
-    var contasArray: Array<Contas> = Array<Contas>()
+    var arrayCalculations: Array<Contas> = Array<Contas>()
     
     override func didMoveToView(view: SKView) {
         backgroundColor = SKColor.whiteColor()
         // "botao" voltar
-        voltar.position = CGPoint(x: 53.5, y: size.height - 65.6)
-        voltar.size = CGSize(width: 75, height: 75)
-        addChild(voltar)
+        back.position = CGPoint(x: 53.5, y: size.height - 65.6)
+        back.size = CGSize(width: 75, height: 75)
+        addChild(back)
         
         // notificationCenter para verificar quando voltar para a view anterior ele para o jogo
         var notification:NSNotificationCenter = NSNotificationCenter.defaultCenter()
@@ -86,91 +85,91 @@ class MultiGameScene: SKScene {
         self.addChild(line)
         
         //chama o método que monta a scene
-        posicaoAlternativas()
+        alternativesPosition()
         //chama o método que cria as operações
-        addOperacao()
+        addOperation()
         //chama os métodos que carrega as alternativas na tela
-        addContasGamer1()
-        addContasGamer2()
+        addCalculationGamer1()
+        addCalculationGamer2()
         
-        addChild(conta1)
-        addChild(conta2)
+        addChild(calculation1)
+        addChild(calculation2)
         
         //busca no userDefault o nivel de cada jogador
         index1 = userDef.objectForKey("jogador1") as! Int
         index2 = userDef.objectForKey("jogador2") as! Int
         
         // instanciação e posicionamento da label do jogador 1
-        lblResultadoJogador1.position = CGPoint(x: size.width/2, y: size.height * 0.825)
-        lblResultadoJogador1.fontSize = 150
-        lblResultadoJogador1.zRotation = CGFloat(M_1_PI*9.85)
-        lblResultadoJogador1.alpha = 0
-        addChild(lblResultadoJogador1)
+        lblResultPlayer1.position = CGPoint(x: size.width/2, y: size.height * 0.825)
+        lblResultPlayer1.fontSize = 150
+        lblResultPlayer1.zRotation = CGFloat(M_1_PI*9.85)
+        lblResultPlayer1.alpha = 0
+        addChild(lblResultPlayer1)
         
         // instanciação e posicionamento da label do jogador 2
-        lblResultadoJogador2.position = CGPoint(x: size.width/2, y: size.height * 0.175)
-        lblResultadoJogador2.fontSize = 150
-        lblResultadoJogador2.alpha = 0
-        addChild(lblResultadoJogador2)
+        lblResultPlayer2.position = CGPoint(x: size.width/2, y: size.height * 0.175)
+        lblResultPlayer2.fontSize = 150
+        lblResultPlayer2.alpha = 0
+        addChild(lblResultPlayer2)
         
         // instanciação e posicionamento da label do jogador 1
-        let lblTextPontuacao1 = SKLabelNode(fontNamed: "ChalkboardSE-Light")
-        lblTextPontuacao1.position = CGPoint(x: size.width * 0.1, y: size.height * 0.55)
-        lblTextPontuacao1.fontSize = 30
-        lblTextPontuacao1.zRotation = CGFloat(M_1_PI*9.85)
-        lblTextPontuacao1.fontColor = SKColor.blackColor()
-        lblTextPontuacao1.text = "Pontuação"
-        addChild(lblTextPontuacao1)
+        let lblTextScore1 = SKLabelNode(fontNamed: "ChalkboardSE-Light")
+        lblTextScore1.position = CGPoint(x: size.width * 0.1, y: size.height * 0.55)
+        lblTextScore1.fontSize = 30
+        lblTextScore1.zRotation = CGFloat(M_1_PI*9.85)
+        lblTextScore1.fontColor = SKColor.blackColor()
+        lblTextScore1.text = "Pontuação"
+        addChild(lblTextScore1)
         
-        lblPontuacaoJogador1.position = CGPoint(x: size.width * 0.1, y: size.height * 0.6)
-        lblPontuacaoJogador1.fontSize = 60
-        lblPontuacaoJogador1.zRotation = CGFloat(M_1_PI*9.85)
-        lblPontuacaoJogador1.fontColor = SKColor.blackColor()
-        lblPontuacaoJogador1.text = "\(scoreGamer1)"
-        addChild(lblPontuacaoJogador1)
+        lblScorePlayer1.position = CGPoint(x: size.width * 0.1, y: size.height * 0.6)
+        lblScorePlayer1.fontSize = 60
+        lblScorePlayer1.zRotation = CGFloat(M_1_PI*9.85)
+        lblScorePlayer1.fontColor = SKColor.blackColor()
+        lblScorePlayer1.text = "\(scoreGamer1)"
+        addChild(lblScorePlayer1)
         
-        lblNomeJogador1.position = CGPoint(x: size.width * 0.9, y: size.height * 0.55)
-        lblNomeJogador1.fontSize = 30
-        lblNomeJogador1.zRotation = CGFloat(M_1_PI*9.85)
-        lblNomeJogador1.fontColor = SKColor.blackColor()
-        lblNomeJogador1.text = "\(players[index1].nomePlayer)"
-        addChild(lblNomeJogador1)
+        lblNamePlayer1.position = CGPoint(x: size.width * 0.9, y: size.height * 0.55)
+        lblNamePlayer1.fontSize = 30
+        lblNamePlayer1.zRotation = CGFloat(M_1_PI*9.85)
+        lblNamePlayer1.fontColor = SKColor.blackColor()
+        lblNamePlayer1.text = "\(players[index1].nomePlayer)"
+        addChild(lblNamePlayer1)
         
-        vitoriasJogador1 = (players[index1].scorePlayer).toInt()!
-        lblVitoriasJogador1.position = CGPoint(x: size.width * 0.9, y: size.height * 0.6)
-        lblVitoriasJogador1.fontSize = 60
-        lblVitoriasJogador1.zRotation = CGFloat(M_1_PI*9.85)
-        lblVitoriasJogador1.fontColor = SKColor.blackColor()
-        lblVitoriasJogador1.text = "\(vitoriasJogador1)"
-        addChild(lblVitoriasJogador1)
+        victoriesPlayer1 = (players[index1].scorePlayer).toInt()!
+        lblVictoriesPlayer1.position = CGPoint(x: size.width * 0.9, y: size.height * 0.6)
+        lblVictoriesPlayer1.fontSize = 60
+        lblVictoriesPlayer1.zRotation = CGFloat(M_1_PI*9.85)
+        lblVictoriesPlayer1.fontColor = SKColor.blackColor()
+        lblVictoriesPlayer1.text = "\(victoriesPlayer1)"
+        addChild(lblVictoriesPlayer1)
         
         
         // instanciação e posicionamento da label do jogador 2
-        let lblTextPontuacao2 = SKLabelNode(fontNamed: "ChalkboardSE-Light")
-        lblTextPontuacao2.position = CGPoint(x: size.width * 0.9, y: size.height * 0.45)
-        lblTextPontuacao2.fontSize = 30
-        lblTextPontuacao2.fontColor = SKColor.blackColor()
-        lblTextPontuacao2.text = "Pontuação"
-        addChild(lblTextPontuacao2)
+        let lblTextScore2 = SKLabelNode(fontNamed: "ChalkboardSE-Light")
+        lblTextScore2.position = CGPoint(x: size.width * 0.9, y: size.height * 0.45)
+        lblTextScore2.fontSize = 30
+        lblTextScore2.fontColor = SKColor.blackColor()
+        lblTextScore2.text = "Pontuação"
+        addChild(lblTextScore2)
         
-        lblPontuacaoJogador2.position = CGPoint(x: size.width * 0.9, y: size.height * 0.4)
-        lblPontuacaoJogador2.fontSize = 60
-        lblPontuacaoJogador2.fontColor = SKColor.blackColor()
-        lblPontuacaoJogador2.text = "\(scoreGamer2)"
-        addChild(lblPontuacaoJogador2)
+        lblScorePlayer2.position = CGPoint(x: size.width * 0.9, y: size.height * 0.4)
+        lblScorePlayer2.fontSize = 60
+        lblScorePlayer2.fontColor = SKColor.blackColor()
+        lblScorePlayer2.text = "\(scoreGamer2)"
+        addChild(lblScorePlayer2)
         
-        lblNomeJogador2.position = CGPoint(x: size.width * 0.1, y: size.height * 0.45)
-        lblNomeJogador2.fontSize = 30
-        lblNomeJogador2.fontColor = SKColor.blackColor()
-        lblNomeJogador2.text = "\(players[index2].nomePlayer)"
-        addChild(lblNomeJogador2)
+        lblNamePlayer2.position = CGPoint(x: size.width * 0.1, y: size.height * 0.45)
+        lblNamePlayer2.fontSize = 30
+        lblNamePlayer2.fontColor = SKColor.blackColor()
+        lblNamePlayer2.text = "\(players[index2].nomePlayer)"
+        addChild(lblNamePlayer2)
         
-        vitoriasJogador2 = (players[index2].scorePlayer).toInt()!
-        lblVitoriasJogador2.position = CGPoint(x: size.width * 0.1, y: size.height * 0.4)
-        lblVitoriasJogador2.fontSize = 60
-        lblVitoriasJogador2.fontColor = SKColor.blackColor()
-        lblVitoriasJogador2.text = "\(vitoriasJogador2)"
-        addChild(lblVitoriasJogador2)
+        victoriesPlayer2 = (players[index2].scorePlayer).toInt()!
+        lblVictoriesPlayer2.position = CGPoint(x: size.width * 0.1, y: size.height * 0.4)
+        lblVictoriesPlayer2.fontSize = 60
+        lblVictoriesPlayer2.fontColor = SKColor.blackColor()
+        lblVictoriesPlayer2.text = "\(victoriesPlayer2)"
+        addChild(lblVictoriesPlayer2)
     }
     
     override func touchesBegan(touches: Set<NSObject>, withEvent event: UIEvent) {
@@ -178,40 +177,32 @@ class MultiGameScene: SKScene {
         //pega o primeiro toque na tela
         let touch = (touches as NSSet).allObjects[0] as! UITouch
         let touchLocation = touch.locationInNode(self)
+        alternativeTouched = self.nodeAtPoint(touchLocation)
         
-        //descobre qual opção foi tocada
-        alternativaTocada = self.nodeAtPoint(touchLocation)
-        
-        if voltar.containsPoint(touchLocation){
-            vC.voltar()
+        if back.containsPoint(touchLocation){
+            vC.back()
         }
         
         //caso os dois jogadores ainda não atingiram 10 vitórias
         if scoreGamer1 < 10 && scoreGamer2 < 10 {
-            //analisa se o node tocado pertence ao jogador 1
-            if alternativaTocada.name == "certo1" || alternativaTocada.name == "certo2" || alternativaTocada.name == "certo3" || alternativaTocada.name == "certo4" {
-                //aumenta 1 vitoria ao jogador1
+            if alternativeTouched.name == "certo1" || alternativeTouched.name == "certo2" || alternativeTouched.name == "certo3" || alternativeTouched.name == "certo4" {
                 scoreGamer1++
-                lblPontuacaoJogador1.text = "\(scoreGamer1)"
-                
-               // quando o jogador 1 chega a 10 vitorias apresenta aos jogadores quem foi o vencedor
+                lblScorePlayer1.text = "\(scoreGamer1)"
                 if scoreGamer1 == 10 {
-                    lblResultadoJogador1.hidden = false
-                    lblResultadoJogador2.hidden = false
-                    lblResultadoJogador1.text = "VENCEU"
-                    lblResultadoJogador1.fontColor = SKColor.blueColor()
-                    lblResultadoJogador2.text = "PERDEU"
-                    lblResultadoJogador2.fontColor = SKColor.redColor()
+                    lblResultPlayer1.hidden = false
+                    lblResultPlayer2.hidden = false
+                    lblResultPlayer1.text = "VENCEU"
+                    lblResultPlayer1.fontColor = SKColor.blueColor()
+                    lblResultPlayer2.text = "PERDEU"
+                    lblResultPlayer2.fontColor = SKColor.redColor()
                     
-                    //animação
-                    let sequencia = SKAction.sequence([aparecer])
-                    lblResultadoJogador1.runAction(sequencia)
-                    lblResultadoJogador2.runAction(sequencia)
+                    let sequence = SKAction.sequence([show])
+                    lblResultPlayer1.runAction(sequence)
+                    lblResultPlayer2.runAction(sequence)
                     
-                    //atualiza no CoreDate
-                    vitoriasJogador1++
-                    lblVitoriasJogador1.text = "\(vitoriasJogador1)"
-                    players[index1].scorePlayer = String(vitoriasJogador1)
+                    victoriesPlayer1++
+                    lblVictoriesPlayer1.text = "\(victoriesPlayer1)"
+                    players[index1].scorePlayer = String(victoriesPlayer1)
                     
                     //alerta personalizado perguntando aos jogadores se desejam continuar a jogar ou não
                     var alertview = JSSAlertView().show(vC, title: "Quer jogar de novo?", buttonText: "Sim!", cancelButtonText: "Não", color: UIColorFromHex(0x3498db, alpha: 1))
@@ -220,36 +211,31 @@ class MultiGameScene: SKScene {
                 }
                 else {//caso ainda não tenham atingido 10 vitórias
                     //cria novas contas para o jogador 1
-                    addContasGamer1()
+                    addCalculationGamer1()
                     println("Gamer1: \(scoreGamer1)")
                 }
-            }//analisa se o node tocado pertence ao jogador 1, porem esse node não é o que contem a altenativa correta
-            else if alternativaTocada.name == "errado1" || alternativaTocada.name == "errado2" || alternativaTocada.name == "errado3" || alternativaTocada.name == "errado4" {
+            }
+            else if alternativeTouched.name == "errado1" || alternativeTouched.name == "errado2" || alternativeTouched.name == "errado3" || alternativeTouched.name == "errado4" {
                 println("jogador 1 errou")
-            } //analisa se o node tocado pertence ao jogador 2
-            else if alternativaTocada.name == "certo5" || alternativaTocada.name == "certo6" || alternativaTocada.name == "certo7" || alternativaTocada.name == "certo8" {
-                //aumenta 1 ao score do jogador 2
+            }
+            else if alternativeTouched.name == "certo5" || alternativeTouched.name == "certo6" || alternativeTouched.name == "certo7" || alternativeTouched.name == "certo8" {
                 scoreGamer2++
-                lblPontuacaoJogador2.text = "\(scoreGamer2)"
-                
-                //quando o jogador 2 chega a 10 vitorias apresenta aos jogadores quem foi o vencedor
+                lblScorePlayer2.text = "\(scoreGamer2)"
                 if scoreGamer2 == 10 {
-                    lblResultadoJogador1.hidden = false
-                    lblResultadoJogador2.hidden = false
-                    lblResultadoJogador1.text = "PERDEU"
-                    lblResultadoJogador1.fontColor = SKColor.redColor()
-                    lblResultadoJogador2.text = "VENCEU"
-                    lblResultadoJogador2.fontColor = SKColor.blueColor()
+                    lblResultPlayer1.hidden = false
+                    lblResultPlayer2.hidden = false
+                    lblResultPlayer1.text = "PERDEU"
+                    lblResultPlayer1.fontColor = SKColor.redColor()
+                    lblResultPlayer2.text = "VENCEU"
+                    lblResultPlayer2.fontColor = SKColor.blueColor()
                     
-                    //animação
-                    let sequencia = SKAction.sequence([aparecer])
-                    lblResultadoJogador1.runAction(sequencia)
-                    lblResultadoJogador2.runAction(sequencia)
+                    let sequence = SKAction.sequence([show])
+                    lblResultPlayer1.runAction(sequence)
+                    lblResultPlayer2.runAction(sequence)
                     
-                    //atualiza no CoreData
-                    vitoriasJogador2++
-                    lblVitoriasJogador2.text = "\(vitoriasJogador2)"
-                    players[index2].scorePlayer = String(vitoriasJogador2)
+                    victoriesPlayer2++
+                    lblVictoriesPlayer2.text = "\(victoriesPlayer2)"
+                    players[index2].scorePlayer = String(victoriesPlayer2)
                     
                     //alerta personalizado perguntando aos jogadores se desejam continuar a jogar ou não
                     var alertview = JSSAlertView().show(vC, title: "Quer jogar de novo?", buttonText: "Sim!", cancelButtonText: "Não", color: UIColorFromHex(0x3498db, alpha: 1))
@@ -258,11 +244,11 @@ class MultiGameScene: SKScene {
                 }
                 else {//caso ainda não tenham atingido 10 vitórias
                     //cria novas contas para o jogador 2
-                    addContasGamer2()
+                    addCalculationGamer2()
                     println("Gamer2: \(scoreGamer2)")
                 }
-            }//analisa se o node tocado pertence ao jogador 1, porem esse node não é o que contem a altenativa correta
-            else if alternativaTocada.name == "errado5" || alternativaTocada.name == "errado6" || alternativaTocada.name == "errado7" || alternativaTocada.name == "errado8" {
+            }
+            else if alternativeTouched.name == "errado5" || alternativeTouched.name == "errado6" || alternativeTouched.name == "errado7" || alternativeTouched.name == "errado8" {
                 println("jogador 2 errou")
                 
                 for var i = 5; i < 9; i++ {
@@ -273,7 +259,7 @@ class MultiGameScene: SKScene {
                 }
 
 
-                animateWrong(conta2)
+                animateWrong(calculation2)
                 
                 
             }
@@ -284,8 +270,6 @@ class MultiGameScene: SKScene {
     
     //animação caso clique na alternativa errada
     func animateWrong(animate: SKLabelNode) {
-        
-        
         let amplitudeX:CGFloat = 20;
         let numberOfShakes = 2;
         var actionsArray:[SKAction] = [];
@@ -304,6 +288,7 @@ class MultiGameScene: SKScene {
             actionsArray.append(shake2.reversedAction())
 
         }
+        
         let back: SKAction = SKAction.moveTo(CGPoint(x: animate.position.x, y: animate.position.y), duration: 0.05)
         actionsArray.append(back)
         let actionSeq = SKAction.sequence(actionsArray)
@@ -312,20 +297,20 @@ class MultiGameScene: SKScene {
     
     
     func alertAction() {
-        lblResultadoJogador1.hidden = true
-        lblResultadoJogador2.hidden = true
+        lblResultPlayer1.hidden = true
+        lblResultPlayer2.hidden = true
         scoreGamer1 = 0
         scoreGamer2 = 0
-        lblPontuacaoJogador1.text = "\(self.scoreGamer1)"
-        lblPontuacaoJogador2.text = "\(self.scoreGamer2)"
+        lblScorePlayer1.text = "\(self.scoreGamer1)"
+        lblScorePlayer2.text = "\(self.scoreGamer2)"
         
-        addOperacao()
-        addContasGamer1()
-        addContasGamer2()
+        addOperation()
+        addCalculationGamer1()
+        addCalculationGamer2()
     }
     
     //metodo para escolha da operação
-    func addOperacao() {
+    func addOperation() {
         
         let blurEffect = UIBlurEffect(style: UIBlurEffectStyle.Dark)
         var blurEffectView: UIVisualEffectView = UIVisualEffectView()
@@ -341,31 +326,31 @@ class MultiGameScene: SKScene {
         // Label for vibrant text
         var vibrantLabel1 = UILabel()
         vibrantLabel1.text = "Quem acertar 10 contas primeiro ganha!"
-        vibrantLabel1.font = UIFont.systemFontOfSize(30.0)
+        vibrantLabel1.font = UIFont.systemFontOfSize(40.0)
         vibrantLabel1.sizeToFit()
         vibrantLabel1.center = vC.view.center
         
         var vibrantLabel2 = UILabel()
         vibrantLabel2.text = "3"
-        vibrantLabel2.font = UIFont.systemFontOfSize(72.0)
+        vibrantLabel2.font = UIFont.systemFontOfSize(90.0)
         vibrantLabel2.sizeToFit()
         vibrantLabel2.center = vC.view.center
         
         var vibrantLabel3 = UILabel()
         vibrantLabel3.text = "2"
-        vibrantLabel3.font = UIFont.systemFontOfSize(72.0)
+        vibrantLabel3.font = UIFont.systemFontOfSize(90.0)
         vibrantLabel3.sizeToFit()
         vibrantLabel3.center = vC.view.center
         
         var vibrantLabel4 = UILabel()
         vibrantLabel4.text = "1"
-        vibrantLabel4.font = UIFont.systemFontOfSize(72.0)
+        vibrantLabel4.font = UIFont.systemFontOfSize(90.0)
         vibrantLabel4.sizeToFit()
         vibrantLabel4.center = vC.view.center
         
         var vibrantLabel5 = UILabel()
         vibrantLabel5.text = "Vai!"
-        vibrantLabel5.font = UIFont.systemFontOfSize(72.0)
+        vibrantLabel5.font = UIFont.systemFontOfSize(90.0)
         vibrantLabel5.sizeToFit()
         vibrantLabel5.center = vC.view.center
         
@@ -403,12 +388,12 @@ class MultiGameScene: SKScene {
             }
         }
         
-        
         var op: String!
-        contasArray.removeAll(keepCapacity: true)
+        arrayCalculations.removeAll(keepCapacity: true)
+        
         for i in 0...10 {
-            var operacao = random(0, 3)
-            switch operacao {
+            var operation = random(0, 3)
+            switch operation {
             case 0: // operação +
                 op = "+"
             case 1: // operação -
@@ -419,41 +404,39 @@ class MultiGameScene: SKScene {
                 op = "/"
             }
             
-            //instanciação de um objeto do tipo Contas passando como parametro a operação
-            var fazConta = Contas(operacao: op)
-            //armazena no array o objeto Contas
-            contasArray.append(fazConta)
+            var doCalculation = Contas(operacao: op)
+            arrayCalculations.append(doCalculation)
         }
     }
     
     //método que posiciona a operação do jogador1
-    func addContasGamer1() {
-        conta1.position = CGPoint(x: size.width/2, y: size.height/2+120)
-        conta1.fontColor = UIColor.blackColor()
-        conta1.zRotation = CGFloat(M_1_PI*9.85)
-        conta1.fontSize = 120
-        conta1.name = "conta1"
-        conta1.text = "\(contasArray[scoreGamer1].conta)"
-        addAlternativasGame1()
+    func addCalculationGamer1() {
+        calculation1.position = CGPoint(x: size.width/2, y: size.height/2+120)
+        calculation1.fontColor = UIColor.blackColor()
+        calculation1.zRotation = CGFloat(M_1_PI*9.85)
+        calculation1.fontSize = 120
+        calculation1.name = "conta1"
+        calculation1.text = "\(arrayCalculations[scoreGamer1].conta)"
+        addAlternativesGame1()
     }
     
     //método que posiciona a operação do jogador2
-    func addContasGamer2(){
-        conta2.position = CGPoint(x: size.width/2, y: size.height/2-120)
-        conta2.fontColor = UIColor.blackColor()
-        conta2.fontSize = 120
-        conta2.name = "conta2"
-        conta2.text = "\(contasArray[scoreGamer2].conta)"
-        addAlternativasGame2()
+    func addCalculationGamer2(){
+        calculation2.position = CGPoint(x: size.width/2, y: size.height/2-120)
+        calculation2.fontColor = UIColor.blackColor()
+        calculation2.fontSize = 120
+        calculation2.name = "conta2"
+        calculation2.text = "\(arrayCalculations[scoreGamer2].conta)"
+        addAlternativesGame2()
     }
     
     //método que posiciona as alternativas do jogador1
-    func addAlternativasGame1(){
-        posicao = random(0, 3)
-        alternativa11.name = "errado1"
-        alternativa12.name = "errado2"
-        alternativa13.name = "errado3"
-        alternativa14.name = "errado4"
+    func addAlternativesGame1(){
+        randomPosition = random(0, 3)
+        alternative11.name = "errado1"
+        alternative12.name = "errado2"
+        alternative13.name = "errado3"
+        alternative14.name = "errado4"
         
         for var i = 1; i < 5; i++ {
             self.enumerateChildNodesWithName("certo\(i)") {
@@ -463,43 +446,43 @@ class MultiGameScene: SKScene {
         }
         
         // inserir valores nas labels
-        switch posicao {
-        case 0:
-            alternativa11.text = "\(contasArray[scoreGamer1].resposta)"
-            alternativa12.text = "\(contasArray[scoreGamer1].alternativa1)"
-            alternativa13.text = "\(contasArray[scoreGamer1].alternativa2)"
-            alternativa14.text = "\(contasArray[scoreGamer1].alternativa2)"
+        switch randomPosition {
+        case 0: //nuvem1
+            alternative11.text = "\(arrayCalculations[scoreGamer1].resposta)"
+            alternative12.text = "\(arrayCalculations[scoreGamer1].alternativa1)"
+            alternative13.text = "\(arrayCalculations[scoreGamer1].alternativa2)"
+            alternative14.text = "\(arrayCalculations[scoreGamer1].alternativa2)"
             
             self.enumerateChildNodesWithName("errado1") {
                 node, stop in
                 node.name = "certo1"
             }
             
-        case 1:
-            alternativa11.text = "\(contasArray[scoreGamer1].alternativa1)"
-            alternativa12.text = "\(contasArray[scoreGamer1].resposta)"
-            alternativa13.text = "\(contasArray[scoreGamer1].alternativa2)"
-            alternativa14.text = "\(contasArray[scoreGamer1].alternativa3)"
+        case 1: //nuvem2
+            alternative11.text = "\(arrayCalculations[scoreGamer1].alternativa1)"
+            alternative12.text = "\(arrayCalculations[scoreGamer1].resposta)"
+            alternative13.text = "\(arrayCalculations[scoreGamer1].alternativa2)"
+            alternative14.text = "\(arrayCalculations[scoreGamer1].alternativa3)"
             
             self.enumerateChildNodesWithName("errado2") {
                 node, stop in
                 node.name = "certo2"
             }
-        case 2:
-            alternativa11.text = "\(contasArray[scoreGamer1].alternativa1)"
-            alternativa12.text = "\(contasArray[scoreGamer1].alternativa2)"
-            alternativa13.text = "\(contasArray[scoreGamer1].resposta)"
-            alternativa14.text = "\(contasArray[scoreGamer1].alternativa3)"
+        case 2: // nuvem3
+            alternative11.text = "\(arrayCalculations[scoreGamer1].alternativa1)"
+            alternative12.text = "\(arrayCalculations[scoreGamer1].alternativa2)"
+            alternative13.text = "\(arrayCalculations[scoreGamer1].resposta)"
+            alternative14.text = "\(arrayCalculations[scoreGamer1].alternativa3)"
             
             self.enumerateChildNodesWithName("errado3") {
                 node, stop in
                 node.name = "certo3"
             }
         default:
-            alternativa11.text = "\(contasArray[scoreGamer1].alternativa1)"
-            alternativa12.text = "\(contasArray[scoreGamer1].alternativa2)"
-            alternativa13.text = "\(contasArray[scoreGamer1].alternativa3)"
-            alternativa14.text = "\(contasArray[scoreGamer1].resposta)"
+            alternative11.text = "\(arrayCalculations[scoreGamer1].alternativa1)"
+            alternative12.text = "\(arrayCalculations[scoreGamer1].alternativa2)"
+            alternative13.text = "\(arrayCalculations[scoreGamer1].alternativa3)"
+            alternative14.text = "\(arrayCalculations[scoreGamer1].resposta)"
             
             self.enumerateChildNodesWithName("errado4") {
                 node, stop in
@@ -509,13 +492,13 @@ class MultiGameScene: SKScene {
     }
     
     //método que posiciona as alternativas do jogador2
-    func addAlternativasGame2(){
-        posicao = random(0, 3)
+    func addAlternativesGame2(){
+        randomPosition = random(0, 3)
         
-        alternativa21.name = "errado5"
-        alternativa22.name = "errado6"
-        alternativa23.name = "errado7"
-        alternativa24.name = "errado8"
+        alternative21.name = "errado5"
+        alternative22.name = "errado6"
+        alternative23.name = "errado7"
+        alternative24.name = "errado8"
         
         for var i = 5; i < 9; i++ {
             self.enumerateChildNodesWithName("certo\(i)") {
@@ -526,42 +509,42 @@ class MultiGameScene: SKScene {
         
         
         // inserir valores nas labels
-        switch posicao {
-        case 0:
-            alternativa21.text = "\(contasArray[scoreGamer2].resposta)"
-            alternativa22.text = "\(contasArray[scoreGamer2].alternativa1)"
-            alternativa23.text = "\(contasArray[scoreGamer2].alternativa2)"
-            alternativa24.text = "\(contasArray[scoreGamer2].alternativa2)"
+        switch randomPosition {
+        case 0: //alternativa21
+            alternative21.text = "\(arrayCalculations[scoreGamer2].resposta)"
+            alternative22.text = "\(arrayCalculations[scoreGamer2].alternativa1)"
+            alternative23.text = "\(arrayCalculations[scoreGamer2].alternativa2)"
+            alternative24.text = "\(arrayCalculations[scoreGamer2].alternativa2)"
             
             self.enumerateChildNodesWithName("errado5") {
                 node, stop in
                 node.name = "certo5"
             }
-        case 1:
-            alternativa21.text = "\(contasArray[scoreGamer2].alternativa1)"
-            alternativa22.text = "\(contasArray[scoreGamer2].resposta)"
-            alternativa23.text = "\(contasArray[scoreGamer2].alternativa2)"
-            alternativa24.text = "\(contasArray[scoreGamer2].alternativa3)"
+        case 1: //alternativa22
+            alternative21.text = "\(arrayCalculations[scoreGamer2].alternativa1)"
+            alternative22.text = "\(arrayCalculations[scoreGamer2].resposta)"
+            alternative23.text = "\(arrayCalculations[scoreGamer2].alternativa2)"
+            alternative24.text = "\(arrayCalculations[scoreGamer2].alternativa3)"
             
             self.enumerateChildNodesWithName("errado6") {
                 node, stop in
                 node.name = "certo6"
             }
-        case 2:
-            alternativa21.text = "\(contasArray[scoreGamer2].alternativa1)"
-            alternativa22.text = "\(contasArray[scoreGamer2].alternativa2)"
-            alternativa23.text = "\(contasArray[scoreGamer2].resposta)"
-            alternativa24.text = "\(contasArray[scoreGamer2].alternativa3)"
+        case 2: //alternativa23
+            alternative21.text = "\(arrayCalculations[scoreGamer2].alternativa1)"
+            alternative22.text = "\(arrayCalculations[scoreGamer2].alternativa2)"
+            alternative23.text = "\(arrayCalculations[scoreGamer2].resposta)"
+            alternative24.text = "\(arrayCalculations[scoreGamer2].alternativa3)"
             
             self.enumerateChildNodesWithName("errado7") {
                 node, stop in
                 node.name = "certo7"
             }
-        default:
-            alternativa21.text = "\(contasArray[scoreGamer2].alternativa1)"
-            alternativa22.text = "\(contasArray[scoreGamer2].alternativa2)"
-            alternativa23.text = "\(contasArray[scoreGamer2].alternativa3)"
-            alternativa24.text = "\(contasArray[scoreGamer2].resposta)"
+        default://alternativa24
+            alternative21.text = "\(arrayCalculations[scoreGamer2].alternativa1)"
+            alternative22.text = "\(arrayCalculations[scoreGamer2].alternativa2)"
+            alternative23.text = "\(arrayCalculations[scoreGamer2].alternativa3)"
+            alternative24.text = "\(arrayCalculations[scoreGamer2].resposta)"
             
             self.enumerateChildNodesWithName("errado8") {
                 node, stop in
@@ -571,87 +554,87 @@ class MultiGameScene: SKScene {
     }
     
     
-    func posicaoAlternativas(){
+    func alternativesPosition(){
         ////////////// cabeça pra baixo
-        alternativa11.position = CGPoint(x: size.width/2+200, y: size.height/2+400)
-        alternativa11.fontColor = UIColor.blackColor()
-        alternativa11.zRotation = CGFloat(M_1_PI*9.85)
-        alternativa11.fontSize = 50
-        addChild(alternativa11)
+        alternative11.position = CGPoint(x: size.width/2+200, y: size.height/2+400)
+        alternative11.fontColor = UIColor.blackColor()
+        alternative11.zRotation = CGFloat(M_1_PI*9.85)
+        alternative11.fontSize = 50
+        addChild(alternative11)
         
-        alternativa12.position = CGPoint(x: size.width/2-200, y: size.height/2+400)
-        alternativa12.fontColor = UIColor.blackColor()
-        alternativa12.zRotation = CGFloat(M_1_PI*9.85)
-        alternativa12.fontSize = 50
-        addChild(alternativa12)
+        alternative12.position = CGPoint(x: size.width/2-200, y: size.height/2+400)
+        alternative12.fontColor = UIColor.blackColor()
+        alternative12.zRotation = CGFloat(M_1_PI*9.85)
+        alternative12.fontSize = 50
+        addChild(alternative12)
         
-        alternativa14.position = CGPoint(x: size.width/2+200, y: size.height/2+250)
-        alternativa14.fontColor = UIColor.blackColor()
-        alternativa14.zRotation = CGFloat(M_1_PI*9.85)
-        alternativa14.fontSize = 50
-        addChild(alternativa14)
+        alternative14.position = CGPoint(x: size.width/2+200, y: size.height/2+250)
+        alternative14.fontColor = UIColor.blackColor()
+        alternative14.zRotation = CGFloat(M_1_PI*9.85)
+        alternative14.fontSize = 50
+        addChild(alternative14)
         
-        alternativa13.position = CGPoint(x: size.width/2-200, y: size.height/2+250)
-        alternativa13.fontColor = UIColor.blackColor()
-        alternativa13.zRotation = CGFloat(M_1_PI*9.85)
-        alternativa13.fontSize = 50
-        addChild(alternativa13)
+        alternative13.position = CGPoint(x: size.width/2-200, y: size.height/2+250)
+        alternative13.fontColor = UIColor.blackColor()
+        alternative13.zRotation = CGFloat(M_1_PI*9.85)
+        alternative13.fontSize = 50
+        addChild(alternative13)
         
         /////////////////////////////certo
-        alternativa21.position = CGPoint(x: size.width/2+200, y: size.height/2-400)
-        alternativa21.fontColor = UIColor.blackColor()
-        alternativa21.fontSize = 50
-        addChild(alternativa21)
+        alternative21.position = CGPoint(x: size.width/2+200, y: size.height/2-400)
+        alternative21.fontColor = UIColor.blackColor()
+        alternative21.fontSize = 50
+        addChild(alternative21)
         
-        alternativa22.position = CGPoint(x: size.width/2-200, y: size.height/2-400)
-        alternativa22.fontColor = UIColor.blackColor()
-        alternativa22.fontSize = 50
-        addChild(alternativa22)
+        alternative22.position = CGPoint(x: size.width/2-200, y: size.height/2-400)
+        alternative22.fontColor = UIColor.blackColor()
+        alternative22.fontSize = 50
+        addChild(alternative22)
         
-        alternativa24.position = CGPoint(x: size.width/2+200, y: size.height/2-250)
-        alternativa24.fontColor = UIColor.blackColor()
-        alternativa24.fontSize = 50
-        addChild(alternativa24)
+        alternative24.position = CGPoint(x: size.width/2+200, y: size.height/2-250)
+        alternative24.fontColor = UIColor.blackColor()
+        alternative24.fontSize = 50
+        addChild(alternative24)
         
-        alternativa23.position = CGPoint(x: size.width/2-200, y: size.height/2-250)
-        alternativa23.fontColor = UIColor.blackColor()
-        alternativa23.fontSize = 50
-        addChild(alternativa23)
+        alternative23.position = CGPoint(x: size.width/2-200, y: size.height/2-250)
+        alternative23.fontColor = UIColor.blackColor()
+        alternative23.fontSize = 50
+        addChild(alternative23)
         
         //declaração e instanciação dos blocos das alternativas
         for var i = 0; i < 8; ++i {
-            let bloco = SKSpriteNode(imageNamed: "bloco")
+            let block = SKSpriteNode(imageNamed: "bloco")
             
             if i == 0 {
-                bloco.position = CGPoint(x: alternativa11.position.x, y: alternativa11.position.y-20)
+                block.position = CGPoint(x: alternative11.position.x, y: alternative11.position.y-20)
             }
             if i == 1 {
-                bloco.position = CGPoint(x: alternativa12.position.x, y: alternativa12.position.y-20)
+                block.position = CGPoint(x: alternative12.position.x, y: alternative12.position.y-20)
             }
             if i == 2 {
-                bloco.position = CGPoint(x: alternativa13.position.x, y: alternativa13.position.y-20)
+                block.position = CGPoint(x: alternative13.position.x, y: alternative13.position.y-20)
             }
             if i == 3 {
-                bloco.position = CGPoint(x: alternativa14.position.x, y: alternativa14.position.y-20)
+                block.position = CGPoint(x: alternative14.position.x, y: alternative14.position.y-20)
             }
             if i == 4 {
-                bloco.position = CGPoint(x: alternativa21.position.x, y: alternativa21.position.y+20)
+                block.position = CGPoint(x: alternative21.position.x, y: alternative21.position.y+20)
             }
             if i == 5 {
-                bloco.position = CGPoint(x: alternativa22.position.x, y: alternativa22.position.y+20)
+                block.position = CGPoint(x: alternative22.position.x, y: alternative22.position.y+20)
             }
             if i == 6 {
-                bloco.position = CGPoint(x: alternativa23.position.x, y: alternativa23.position.y+20)
+                block.position = CGPoint(x: alternative23.position.x, y: alternative23.position.y+20)
             }
             if i == 7 {
-                bloco.position = CGPoint(x: alternativa24.position.x, y: alternativa24.position.y+20)
+                block.position = CGPoint(x: alternative24.position.x, y: alternative24.position.y+20)
             }
-            bloco.physicsBody = SKPhysicsBody(rectangleOfSize: bloco.size)
-            bloco.physicsBody?.dynamic = false
-            bloco.name = "errado\(i+1)"
-            bloco.size = CGSize(width: 300, height: 80)
-            bloco.zPosition = -100
-            addChild(bloco)
+            block.physicsBody = SKPhysicsBody(rectangleOfSize: block.size)
+            block.physicsBody?.dynamic = false
+            block.name = "errado\(i+1)"
+            block.size = CGSize(width: 300, height: 80)
+            block.zPosition = -100
+            addChild(block)
         }
     }
     

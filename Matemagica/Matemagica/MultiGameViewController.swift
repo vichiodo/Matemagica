@@ -29,7 +29,7 @@ class MultiGameViewController: UIViewController {
         return true
     }
     
-    func voltar() {
+    func back() {
         self.dismissViewControllerAnimated(true, completion: nil)
     }
     
