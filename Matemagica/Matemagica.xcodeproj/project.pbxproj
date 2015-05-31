@@ -148,12 +148,12 @@
 			name = Sounds;
 			sourceTree = "<group>";
 		};
-		8CBF56741B1A8F7E00509EF2 /* Classes */ = {
+		8CBF56741B1A8F7E00509EF2 /* Modelos */ = {
 			isa = PBXGroup;
 			children = (
 				6A393C131B163A2D00219EF9 /* Contas.swift */,
 			);
-			name = Classes;
+			name = Modelos;
 			sourceTree = "<group>";
 		};
 		8CBF56751B1A8F9500509EF2 /* Alerta personalizado */ = {
@@ -218,7 +218,7 @@
 				8C5EC02C1B1B84B90064E40E /* Sounds */,
 				8CBF56751B1A8F9500509EF2 /* Alerta personalizado */,
 				8CBF56A51B1AE8BB00509EF2 /* CoreData */,
-				8CBF56741B1A8F7E00509EF2 /* Classes */,
+				8CBF56741B1A8F7E00509EF2 /* Modelos */,
 				8CBF56A41B1AE89500509EF2 /* ViewControllers */,
 				B32414F01B051B6600C1378B /* Main.storyboard */,
 				B32414F31B051B6600C1378B /* Images.xcassets */,
