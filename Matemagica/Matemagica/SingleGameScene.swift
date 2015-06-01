@@ -109,7 +109,6 @@ class SingleGameScene: SKScene {
     let back = SKSpriteNode(imageNamed: "voltar")
     
     override func didMoveToView(view: SKView) {
-        playBackgroundMusic("matemagicabg.m4a")
         index = userDef.objectForKey("index") as! Int
         level = players[index].nivelPlayer.toInt()!
 
@@ -301,7 +300,7 @@ class SingleGameScene: SKScene {
         scene!.addChild(background)
         
         //musica do app
-        playBackgroundMusic("")
+        playBackgroundMusic("matemagicabg.m4a")
         
         //posiciona os sprite na scene
         cloud1.position = CGPoint(x: size.width * 0.75, y: size.width * 1.1)
