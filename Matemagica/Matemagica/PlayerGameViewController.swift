@@ -10,10 +10,10 @@ import UIKit
 
 class PlayerGameViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
-    @IBOutlet weak var player1: UILabel!
-    @IBOutlet weak var player2: UILabel!
-    @IBOutlet weak var img1: UIImageView!
-    @IBOutlet weak var img2: UIImageView!
+    @IBOutlet weak var namePlayer1: UILabel!
+    @IBOutlet weak var namePlayer2: UILabel!
+    @IBOutlet weak var imgPlayer1: UIImageView!
+    @IBOutlet weak var imgPlayer2: UIImageView!
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var lblSelected: UILabel!
     
@@ -26,15 +26,6 @@ class PlayerGameViewController: UIViewController, UITableViewDelegate, UITableVi
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-//        var gradiente: CAGradientLayer = CAGradientLayer()
-//        var cor1: UIColor = UIColor(red: 33/255, green: 73/255, blue: 150/255, alpha: 1)
-//        var cor2: UIColor = UIColor(red: 33, green: 73, blue: 150, alpha: 1)
-//
-//        gradiente.colors = [cor1.CGColor, cor2.CGColor]
-//        gradiente.frame = view.bounds
-//        view.layer.insertSublayer(gradiente, atIndex: 0)
-//        
     }
     
     override func didReceiveMemoryWarning() {
@@ -45,10 +36,12 @@ class PlayerGameViewController: UIViewController, UITableViewDelegate, UITableVi
     override func viewWillAppear(animated: Bool) {
         userDef.setObject("-1", forKey: "jogador1")
         userDef.setObject("-1", forKey: "jogador2")
-        player1.text = "Jogador 1"
-        player2.text = "Jogador 2"
-        img1.image = UIImage(named:"imgdefault")
-        img2.image = UIImage(named:"imgdefault")
+        namePlayer1.text = "Jogador 1"
+        namePlayer2.text = "Jogador 2"
+        imgPlayer1.image = UIImage(named:"imgdefault")
+        imgPlayer2.image = UIImage(named:"imgdefault")
+        
+        tableView.reloadData()
     }
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
@@ -74,11 +67,11 @@ class PlayerGameViewController: UIViewController, UITableViewDelegate, UITableVi
         var playerSelecionado = players[indexPath.row]
         
         if userSelected == 1 {
-            if player2.text != "Jogador 2" {
+            if namePlayer2.text != "Jogador 2" {
                 if indexPath.row != userDef.objectForKey("jogador2") as! Int {
                     userDef.setObject(indexPath.row, forKey: "jogador1")
-                    player1.text = playerSelecionado.nomePlayer
-                    img1.image = UIImage(data: playerSelecionado.fotoPlayer)
+                    namePlayer1.text = playerSelecionado.nomePlayer
+                    imgPlayer1.image = UIImage(data: playerSelecionado.fotoPlayer)
                 }
                 else {
                     lblSelected.text = "Jogador não pode ser igual!"
@@ -87,16 +80,16 @@ class PlayerGameViewController: UIViewController, UITableViewDelegate, UITableVi
             }
             else {
                 userDef.setObject(indexPath.row, forKey: "jogador1")
-                player1.text = playerSelecionado.nomePlayer
-                img1.image = UIImage(data: playerSelecionado.fotoPlayer)
+                namePlayer1.text = playerSelecionado.nomePlayer
+                imgPlayer1.image = UIImage(data: playerSelecionado.fotoPlayer)
             }
         }
         else if userSelected == 2 {
-            if player1.text != "Jogador 1" {
+            if namePlayer1.text != "Jogador 1" {
                 if indexPath.row != userDef.objectForKey("jogador1") as! Int {
                     userDef.setObject(indexPath.row, forKey: "jogador2")
-                    player2.text = playerSelecionado.nomePlayer
-                    img2.image = UIImage(data: playerSelecionado.fotoPlayer)
+                    namePlayer2.text = playerSelecionado.nomePlayer
+                    imgPlayer2.image = UIImage(data: playerSelecionado.fotoPlayer)
                 }
                 else {
                     lblSelected.text = "Jogador não pode ser igual!"
@@ -105,11 +98,11 @@ class PlayerGameViewController: UIViewController, UITableViewDelegate, UITableVi
             }
             else {
                 userDef.setObject(indexPath.row, forKey: "jogador2")
-                player2.text = playerSelecionado.nomePlayer
-                img2.image = UIImage(data: playerSelecionado.fotoPlayer)
+                namePlayer2.text = playerSelecionado.nomePlayer
+                imgPlayer2.image = UIImage(data: playerSelecionado.fotoPlayer)
             }
         }
-        if player1.text != "Jogador 1" && player2.text != "Jogador 2" {
+        if namePlayer1.text != "Jogador 1" && namePlayer2.text != "Jogador 2" {
             lblSelected.text = "Vamos jogar?"
             lblSelected.textColor = UIColor.blueColor()
         }
@@ -143,7 +136,7 @@ class PlayerGameViewController: UIViewController, UITableViewDelegate, UITableVi
     
     override func shouldPerformSegueWithIdentifier(identifier: String?, sender: AnyObject?) -> Bool {
         if identifier == "jogar" {
-            if player1.text != "Jogador 1" && player2.text != "Jogador 2" {
+            if namePlayer1.text != "Jogador 1" && namePlayer2.text != "Jogador 2" {
                 return true
             }
             else {
