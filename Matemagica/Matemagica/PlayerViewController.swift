@@ -29,7 +29,8 @@ class PlayerViewController: UIViewController, UIImagePickerControllerDelegate, U
         // desabilita o toque
         txtNamePlayer.userInteractionEnabled = false
         imgPlayer.userInteractionEnabled = false
-        
+        btnAdd.setImage(UIImage(named: "adicao"), forState: .Normal)
+
         btnCancel.alpha = 0.0
         
         // delegate para o imagePicker
@@ -62,6 +63,8 @@ class PlayerViewController: UIViewController, UIImagePickerControllerDelegate, U
         // quando clicado, habilita a edição
         if btnAdd.tag == 1 {
             btnCancel.alpha = 1.0
+            btnAdd.setImage(UIImage(named: "salvar"), forState: .Normal)
+            btnAdd.frame = CGRect(x: 671, y: 483, width: btnAdd.frame.size.width+20, height: btnAdd.frame.size.height+10)
             txtNamePlayer.text = ""
             txtNamePlayer.borderStyle = UITextBorderStyle.RoundedRect
             imgPlayer.image = UIImage(named: "imgdefault")
@@ -121,7 +124,11 @@ class PlayerViewController: UIViewController, UIImagePickerControllerDelegate, U
                     imgPlayer.image = UIImage(data: playerSelecionado.fotoPlayer)
                     let rowToSelect:NSIndexPath = NSIndexPath(forRow: index, inSection: 0)
                     tableView.selectRowAtIndexPath(rowToSelect, animated: true, scrollPosition: UITableViewScrollPosition.None)
+                    
+
                 }
+                btnAdd.frame = CGRect(x: 691, y: 483, width: btnAdd.frame.size.width, height: btnAdd.frame.size.height)
+                btnAdd.setImage(UIImage(named: "adicao"), forState: .Normal)
             }
         }
     }
@@ -143,6 +150,8 @@ class PlayerViewController: UIViewController, UIImagePickerControllerDelegate, U
         tableView.allowsSelection = true
         btnAdd.tag = 1
         btnCancel.alpha = 0.0
+        btnAdd.frame = CGRect(x: 691, y: 483, width: btnAdd.frame.size.width, height: btnAdd.frame.size.height)
+        btnAdd.setImage(UIImage(named: "adicao"), forState: .Normal)
     }
     
     // MARK: - TableView
