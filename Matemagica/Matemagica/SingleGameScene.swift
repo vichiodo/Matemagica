@@ -109,9 +109,10 @@ class SingleGameScene: SKScene {
     let back = SKSpriteNode(imageNamed: "voltar")
     
     override func didMoveToView(view: SKView) {
+        playBackgroundMusic("matemagicabg.m4a")
         index = userDef.objectForKey("index") as! Int
         level = players[index].nivelPlayer.toInt()!
-        
+
         // "botao" back
         back.position = CGPoint(x: 53.5, y: size.height - 65.6)
         back.size = CGSize(width: 75, height: 75)
@@ -162,15 +163,16 @@ class SingleGameScene: SKScene {
         
         //adicionar na label o texto que será mostrado
         if cloudPlayed.name == "certa" {
+            runAction(SKAction.playSoundFileNamed("acertou.mp3", waitForCompletion: true))
             rain()
             labelWin.text = "PARABÉNS!!"
             level++
             players[index].nivelPlayer = String(level)
-        }else if cloudPlayed.name == "errado" {
+        } else if cloudPlayed.name == "errado" {
+            runAction(SKAction.playSoundFileNamed("errou.mp3", waitForCompletion: true))
             sun()
             labelWin.text = "Você errou!"
         }
-        
         
         //animação do sol aparecendo
         let appear = SKAction.fadeInWithDuration(0.5)
@@ -603,6 +605,8 @@ class SingleGameScene: SKScene {
     
     // pausa o jogo
     func pause() {
+        backgroundMusicPlayer.stop()
+        
         self.view?.paused = true
     }
 }
