@@ -10,38 +10,33 @@ import UIKit
 
 class DIYViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource, UINavigationControllerDelegate {
     
-    @IBOutlet weak var operacoes: UIPickerView!
-    @IBOutlet weak var operando1: UITextField!
-    @IBOutlet weak var operando2: UITextField!
-    @IBOutlet weak var resultadoUsuario: UITextField!
+    @IBOutlet weak var operations: UIPickerView!
+    @IBOutlet weak var operating1: UITextField!
+    @IBOutlet weak var operating2: UITextField!
+    @IBOutlet weak var userResult: UITextField!
     
-    @IBOutlet weak var quocienteDivisao: UITextField!
-    @IBOutlet weak var restoDivisao: UITextField!
+    @IBOutlet weak var quotient: UITextField!
+    @IBOutlet weak var rest: UITextField!
     
-    @IBOutlet weak var resultado: UILabel!
+    @IBOutlet weak var result: UILabel!
     var pickerData: NSArray = NSArray()
-    var operacaoSelecionada: Int! = 0
+    var operationSelectd: Int! = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        operacoes.delegate = self
-        operacoes.dataSource = self
+        operations.delegate = self
+        operations.dataSource = self
         
-        resultadoUsuario.hidden = false
-        quocienteDivisao.hidden = true
-        restoDivisao.hidden = true
+        userResult.hidden = false
+        quotient.hidden = true
+        rest.hidden = true
         
         pickerData = ["+", "-", "×", "÷"]
         
     }
-    func voltar() {
-        navigationController?.popViewControllerAnimated(true)
-    }
-    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
-    
     
     //MARK: - Delegates and data sources
     //MARK: Data Sources
@@ -62,32 +57,33 @@ class DIYViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDat
     }
     
     func pickerView(pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        resultadoUsuario.text = ""
-        quocienteDivisao.text = ""
-        restoDivisao.text = ""
-        resultado.text = "Resposta"
+        userResult.text = ""
+        quotient.text = ""
+        rest.text = ""
+        result.text = "Resultado"
+        result.textColor = UIColor.blackColor()
         
         switch (row) {
         case 0:
-            operacaoSelecionada = 0
-            resultadoUsuario.hidden = false
-            quocienteDivisao.hidden = true
-            restoDivisao.hidden = true
+            operationSelectd = 0
+            userResult.hidden = false
+            quotient.hidden = true
+            rest.hidden = true
         case 1:
-            operacaoSelecionada = 1
-            resultadoUsuario.hidden = false
-            quocienteDivisao.hidden = true
-            restoDivisao.hidden = true
+            operationSelectd = 1
+            userResult.hidden = false
+            quotient.hidden = true
+            rest.hidden = true
         case 2:
-            operacaoSelecionada = 2
-            resultadoUsuario.hidden = false
-            quocienteDivisao.hidden = true
-            restoDivisao.hidden = true
+            operationSelectd = 2
+            userResult.hidden = false
+            quotient.hidden = true
+            rest.hidden = true
         case 3:
-            operacaoSelecionada = 3
-            resultadoUsuario.hidden = true
-            quocienteDivisao.hidden = false
-            restoDivisao.hidden = false
+            operationSelectd = 3
+            userResult.hidden = true
+            quotient.hidden = false
+            rest.hidden = false
             
         default:
             break;
@@ -95,17 +91,17 @@ class DIYViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDat
     }
     
     @IBAction func verificacao(sender: AnyObject) {
-        var n1 = operando1.text.toInt()
-        var n2 = operando2.text.toInt()
-        var respUsuario = resultadoUsuario.text.toInt()
-        var respUsuarioQuociente = quocienteDivisao.text.toInt()
-        var respUsuarioResto = restoDivisao.text.toInt()
+        var n1 = operating1.text.toInt()
+        var n2 = operating2.text.toInt()
+        var respUsuario = userResult.text.toInt()
+        var respUsuarioQuociente = quotient.text.toInt()
+        var respUsuarioResto = rest.text.toInt()
         
         var respConta:Int!
         var respResto:Int!
         
         if n1 != nil && n2 != nil && (respUsuario != nil ||  (respUsuarioResto != nil && respUsuarioQuociente != nil)) {
-            switch (operacaoSelecionada) {
+            switch (operationSelectd) {
             case 0:
                 respConta = n1! + n2!
                 break;
@@ -123,26 +119,26 @@ class DIYViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDat
                 break;
             }
             
-            if operacaoSelecionada == 3 {
+            if operationSelectd == 3 {
                 if respUsuarioQuociente == respConta && respUsuarioResto == respResto {
-                    resultado.text = "Correto! 😄"
-                    resultado.textColor = UIColor.greenColor()
+                    result.text = "Acertou! 😄"
+                    result.textColor = UIColor.greenColor()
                 }
                 else {
-                    resultado.text = "Errado. O certo é \(respConta) resto \(respResto)"
-                    resultado.adjustsFontSizeToFitWidth = true
-                    resultado.textColor = UIColor.redColor()
+                    result.text = "Errado. O certo é \(respConta) resto \(respResto)"
+                    result.adjustsFontSizeToFitWidth = true
+                    result.textColor = UIColor.redColor()
                 }
             }
             else {
                 if respUsuario == respConta {
-                    resultado.text = "Correto! 😄"
-                    resultado.textColor = UIColor.greenColor()
+                    result.text = "Acertou! 😄"
+                    result.textColor = UIColor.greenColor()
                 }
                 else {
-                    resultado.text = "Errado. O certo é \(respConta)"
-                    resultado.adjustsFontSizeToFitWidth = true
-                    resultado.textColor = UIColor.redColor()
+                    result.text = "Errado. O certo é \(respConta)"
+                    result.adjustsFontSizeToFitWidth = true
+                    result.textColor = UIColor.redColor()
                 }
             }
         }
@@ -154,7 +150,7 @@ class DIYViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDat
             if n2 == nil {
                 txtAlert += " - Segundo número\n"
             }
-            if operacaoSelecionada == 3 {
+            if operationSelectd == 3 {
                 if respUsuarioQuociente == nil {
                     txtAlert += " - Resposta do quociente\n"
                 }

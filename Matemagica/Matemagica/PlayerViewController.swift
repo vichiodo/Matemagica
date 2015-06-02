@@ -29,7 +29,7 @@ class PlayerViewController: UIViewController, UIImagePickerControllerDelegate, U
         // desabilita o toque
         txtNamePlayer.userInteractionEnabled = false
         imgPlayer.userInteractionEnabled = false
-        btnAdd.setImage(UIImage(named: "adicao"), forState: .Normal)
+        btnAdd.setImage(UIImage(named: "add"), forState: .Normal)
 
         btnCancel.alpha = 0.0
         
@@ -128,7 +128,7 @@ class PlayerViewController: UIViewController, UIImagePickerControllerDelegate, U
 
                 }
                 btnAdd.frame = CGRect(x: 691, y: 483, width: btnAdd.frame.size.width, height: btnAdd.frame.size.height)
-                btnAdd.setImage(UIImage(named: "adicao"), forState: .Normal)
+                btnAdd.setImage(UIImage(named: "add"), forState: .Normal)
             }
         }
     }
@@ -151,7 +151,7 @@ class PlayerViewController: UIViewController, UIImagePickerControllerDelegate, U
         btnAdd.tag = 1
         btnCancel.alpha = 0.0
         btnAdd.frame = CGRect(x: 691, y: 483, width: btnAdd.frame.size.width, height: btnAdd.frame.size.height)
-        btnAdd.setImage(UIImage(named: "adicao"), forState: .Normal)
+        btnAdd.setImage(UIImage(named: "add"), forState: .Normal)
     }
     
     // MARK: - TableView
