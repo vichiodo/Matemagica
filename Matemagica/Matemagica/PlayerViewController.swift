@@ -84,26 +84,7 @@ class PlayerViewController: UIViewController, UIImagePickerControllerDelegate, U
             }
             else {
                 if imgPlayer.image == UIImage(named: "imgdefault") {
-                    let alerta: UIAlertController = UIAlertController(title: "Escolha uma foto", message: nil, preferredStyle: .ActionSheet)
-                    alerta.popoverPresentationController?.sourceView = self.view
-                    alerta.popoverPresentationController?.sourceRect = CGRectMake(self.view.frame.width / 2, self.view.frame.height * 0.3, 0, 0)
-                    let camera:UIAlertAction = UIAlertAction(title: "Tirar foto", style: .Default, handler: { (ACTION) -> Void in
-                        let imagePicker:UIImagePickerController = UIImagePickerController()
-                        if UIImagePickerController.isSourceTypeAvailable(.Camera) {
-                            self.imagePicker.sourceType = .Camera
-                            self.presentViewController(self.imagePicker, animated: true, completion: nil)
-                        }
-                    })
-                    [alerta.addAction(camera)]
-                    
-                    let galeria:UIAlertAction = UIAlertAction(title: "Escolher da galeria", style: .Default, handler: { (ACTION) -> Void in
-                        self.imagePicker.sourceType = .PhotoLibrary
-                        self.presentViewController(self.imagePicker, animated: true, completion: nil)
-                    })
-                    [alerta.addAction(galeria)]
-                    
-                    self.presentViewController(alerta, animated: true, completion: nil)
-                }
+                 }
                 else { // se estiver com nome e foto, salva os dados
                     btnCancel.alpha = 0.0
                     btnAdd.tag = 1
