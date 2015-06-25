@@ -128,7 +128,7 @@ class TutorialGameScene: SKScene {
             number1Img.texture = SKTexture(imageNamed: "4")
             number2Img.texture = SKTexture(imageNamed: "5")
             number3Img.texture = SKTexture(imageNamed: "9")
-            sign.texture = SKTexture(imageNamed: "adicao")
+            sign.texture = SKTexture(imageNamed: "add")
             
             bg.texture = SKTexture(imageNamed: "fazenda")
             
@@ -141,7 +141,7 @@ class TutorialGameScene: SKScene {
             number1Img.texture = SKTexture(imageNamed: "8")
             number2Img.texture = SKTexture(imageNamed: "3")
             number3Img.texture = SKTexture(imageNamed: "5")
-            sign.texture = SKTexture(imageNamed: "subtracao")
+            sign.texture = SKTexture(imageNamed: "subtracao2")
             
             bg.texture = SKTexture(imageNamed: "fazenda")
             
@@ -154,7 +154,7 @@ class TutorialGameScene: SKScene {
             number1Img.texture = SKTexture(imageNamed: "2")
             number2Img.texture = SKTexture(imageNamed: "3")
             number3Img.texture = SKTexture(imageNamed: "6")
-            sign.texture = SKTexture(imageNamed: "multiplicacao")
+            sign.texture = SKTexture(imageNamed: "multiplicacao2")
             
             bg.texture = SKTexture(imageNamed: "bgchocolate")
             
@@ -166,7 +166,7 @@ class TutorialGameScene: SKScene {
             number1Img.texture = SKTexture(imageNamed: "4")
             number2Img.texture = SKTexture(imageNamed: "2")
             number3Img.texture = SKTexture(imageNamed: "2")
-            sign.texture = SKTexture(imageNamed: "subtracao")
+            sign.texture = SKTexture(imageNamed: "subtracao2")
             bg.texture = SKTexture(imageNamed: "xadrez")
             
             blackBoard.position = CGPoint(x: size.width * 0.50, y: size.height * 0.40)
