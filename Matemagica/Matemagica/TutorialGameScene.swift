@@ -85,7 +85,7 @@ class TutorialGameScene: SKScene {
         blackBoard.size = CGSize(width: size.width * 0.40, height: size.height * 0.7)
         blackBoard.texture = SKTexture(imageNamed: "quadro")
         addChild(blackBoard)
-
+        
         // imagem do primeiro numero da conta
         number1Img.position = CGPoint(x: size.width * 0.25, y: size.height * 0.65)
         number1Img.size = CGSize(width: size.width * 0.1, height: size.height * 0.15)
@@ -113,7 +113,7 @@ class TutorialGameScene: SKScene {
         sign.size = CGSize(width: size.width * 0.1, height: size.height * 0.1)
         sign.alpha = 0.0
         addChild(sign)
-
+        
         // imagem do terceiro numero (resultado)
         number3Img.position = CGPoint(x: size.width * 0.25, y: size.height * 0.20)
         number3Img.size = CGSize(width: size.width * 0.1, height: size.height * 0.15)
@@ -212,7 +212,7 @@ class TutorialGameScene: SKScene {
                     imgTouch.hidden = true
                     self.userInteractionEnabled = false
                     number1Img.runAction(SKAction.sequence([fadeIn]))
-                    runAction(SKAction.playSoundFileNamed("4.mp3", waitForCompletion: false))
+                    runAction(SKAction.playSoundFileNamed("adicao1.mp3", waitForCompletion: false))
                     addImg1(number1Img, name: "vaca1")
                     self.enumerateChildNodesWithName("vaca1") {
                         node, stop in
@@ -229,12 +229,12 @@ class TutorialGameScene: SKScene {
                         lineResult.runAction(SKAction.sequence([fadeIn]))
                         sign.runAction(SKAction.sequence([fadeIn]))
                         
-                        runAction(SKAction.playSoundFileNamed("adicao.mp3", waitForCompletion: true), completion: { () -> Void in
-                            self.runAction(SKAction.playSoundFileNamed("5.mp3", waitForCompletion: true), completion: { () -> Void in
-                                self.runAction(SKAction.playSoundFileNamed("igual.mp3", waitForCompletion: true))
+                        runAction(SKAction.playSoundFileNamed("adicao2.mp3", waitForCompletion: true), completion: { () -> Void in
+                            self.runAction(SKAction.playSoundFileNamed("adicao3.mp3", waitForCompletion: true), completion: { () -> Void in
+                                self.runAction(SKAction.playSoundFileNamed("adicao4.mp3", waitForCompletion: true))
                             })
                         })
-
+                        
                         addImg2(number2Img, name: "vaca2")
                         self.enumerateChildNodesWithName("vaca2") {
                             node, stop in
@@ -248,7 +248,7 @@ class TutorialGameScene: SKScene {
                             imgTouch.hidden = true
                             self.userInteractionEnabled = false
                             number3Img.runAction(SKAction.sequence([fadeIn]))
-                            runAction(SKAction.playSoundFileNamed("9.mp3", waitForCompletion: false))
+                            runAction(SKAction.playSoundFileNamed("adicao5.mp3", waitForCompletion: false))
                             
                             self.enumerateChildNodesWithName("vaca1") {
                                 node, stop in
@@ -272,7 +272,7 @@ class TutorialGameScene: SKScene {
                     imgTouch.hidden = true
                     self.userInteractionEnabled = false
                     number1Img.runAction(SKAction.sequence([fadeIn]))
-                    runAction(SKAction.playSoundFileNamed("8.mp3", waitForCompletion: true))
+                    runAction(SKAction.playSoundFileNamed("subtracao1.mp3", waitForCompletion: true))
                     addImg1(number1Img, name: "ovelha1")
                     addImg2(number2Img, name: "ovelha2")
                     self.enumerateChildNodesWithName("ovelha1") {
@@ -294,12 +294,12 @@ class TutorialGameScene: SKScene {
                         number2Img.runAction(SKAction.sequence([fadeIn]))
                         lineResult.runAction(SKAction.sequence([fadeIn]))
                         sign.runAction(SKAction.sequence([fadeIn]))
-                        runAction(SKAction.playSoundFileNamed("subtracao.mp3", waitForCompletion: true), completion: { () -> Void in
-                            self.runAction(SKAction.playSoundFileNamed("3.mp3", waitForCompletion: true), completion: { () -> Void in
-                                self.runAction(SKAction.playSoundFileNamed("igual.mp3", waitForCompletion: true))
+                        runAction(SKAction.playSoundFileNamed("subtracao2.mp3", waitForCompletion: true), completion: { () -> Void in
+                            self.runAction(SKAction.playSoundFileNamed("subtracao3.mp3", waitForCompletion: true), completion: { () -> Void in
+                                self.runAction(SKAction.playSoundFileNamed("subtracao4.mp3", waitForCompletion: true))
                             })
                         })
-
+                        
                         moveImg2("ovelha2")
                         touchNumber++
                     }
@@ -308,7 +308,7 @@ class TutorialGameScene: SKScene {
                             imgTouch.hidden = true
                             self.userInteractionEnabled = false
                             number3Img.runAction(SKAction.sequence([fadeIn]))
-                            runAction(SKAction.playSoundFileNamed("5.mp3", waitForCompletion: true))
+                            runAction(SKAction.playSoundFileNamed("subtracao5.mp3", waitForCompletion: true))
                             removeImg2("ovelha2")
                             self.enumerateChildNodesWithName("ovelha1") {
                                 node, stop in
@@ -326,7 +326,7 @@ class TutorialGameScene: SKScene {
                     imgTouch.hidden = true
                     self.userInteractionEnabled = false
                     number1Img.runAction(SKAction.sequence([fadeIn]))
-                    runAction(SKAction.playSoundFileNamed("2.mp3", waitForCompletion: true))
+                    runAction(SKAction.playSoundFileNamed("multiplicacao1.mp3", waitForCompletion: true))
                     addImg1Multiplication(number1Img, name: "chocolate")
                     touchNumber++
                 }
@@ -337,12 +337,12 @@ class TutorialGameScene: SKScene {
                         number2Img.runAction(SKAction.sequence([fadeIn]))
                         lineResult.runAction(SKAction.sequence([fadeIn]))
                         sign.runAction(SKAction.sequence([fadeIn]))
-                        runAction(SKAction.playSoundFileNamed("multiplicacao.mp3", waitForCompletion: true), completion: { () -> Void in
-                            self.runAction(SKAction.playSoundFileNamed("3.mp3", waitForCompletion: true), completion: { () -> Void in
-                                self.runAction(SKAction.playSoundFileNamed("igual.mp3", waitForCompletion: true))
+                        runAction(SKAction.playSoundFileNamed("multiplicacao2.mp3", waitForCompletion: true), completion: { () -> Void in
+                            self.runAction(SKAction.playSoundFileNamed("multiplicacao3.mp3", waitForCompletion: true), completion: { () -> Void in
+                                self.runAction(SKAction.playSoundFileNamed("multiplicacao4.mp3", waitForCompletion: true))
                             })
                         })
-
+                        
                         self.enumerateChildNodesWithName("chocolate") {
                             node, stop in
                             var no: SKNode = node
@@ -355,7 +355,7 @@ class TutorialGameScene: SKScene {
                             imgTouch.hidden = true
                             self.userInteractionEnabled = false
                             number3Img.runAction(SKAction.sequence([fadeIn]))
-                            runAction(SKAction.playSoundFileNamed("6.mp3", waitForCompletion: true))
+                            runAction(SKAction.playSoundFileNamed("multiplicacao5.mp3", waitForCompletion: true))
                             self.enumerateChildNodesWithName("chocolate") {
                                 node, stop in
                                 let actionMove = SKAction.moveBy(CGVector(dx: 0.0, dy: -self.size.height * 0.40), duration: 2.0)
@@ -381,7 +381,7 @@ class TutorialGameScene: SKScene {
                     imgTouch.hidden = true
                     self.userInteractionEnabled = false
                     number1Img.runAction(SKAction.sequence([fadeIn]))
-                    runAction(SKAction.playSoundFileNamed("4.mp3", waitForCompletion: true))
+                    runAction(SKAction.playSoundFileNamed("divisao1.mp3", waitForCompletion: true))
                     addImgDivision()
                     touchNumber++
                 }
@@ -391,16 +391,11 @@ class TutorialGameScene: SKScene {
                         self.userInteractionEnabled = false
                         number2Img.runAction(SKAction.sequence([fadeIn]))
                         
-                        runAction(SKAction.playSoundFileNamed("divisao.mp3", waitForCompletion: true), completion: { () -> Void in
-                            self.runAction(SKAction.playSoundFileNamed("2.mp3", waitForCompletion: true), completion: { () -> Void in
-                                self.runAction(SKAction.playSoundFileNamed("da.mp3", waitForCompletion: true))
-                            })
-                        })
-
+                        runAction(SKAction.playSoundFileNamed("divisao2.mp3", waitForCompletion: true))
                         
                         lineDivision1.runAction(SKAction.sequence([fadeIn]))
                         lineDivision2.runAction(SKAction.sequence([fadeIn]))
-
+                        
                         let zoomIn = SKAction.scaleTo(1.2, duration: 1.5)
                         let zoomOut = SKAction.scaleTo(1.0, duration: 1.5)
                         
@@ -428,7 +423,7 @@ class TutorialGameScene: SKScene {
                             imgTouch.hidden = true
                             self.userInteractionEnabled = false
                             number3Img.runAction(SKAction.sequence([fadeIn]))
-                            runAction(SKAction.playSoundFileNamed("2.mp3", waitForCompletion: true))
+                            runAction(SKAction.playSoundFileNamed("divisao3.mp3", waitForCompletion: true))
                             let actionMove = SKAction.moveBy(CGVector(dx: -self.size.width * 0.10, dy: 0.0), duration: 2.0)
                             let waitSomeTime1 = SKAction.waitForDuration(2)
                             let waitSomeTime2 = SKAction.waitForDuration(2)
@@ -441,35 +436,15 @@ class TutorialGameScene: SKScene {
                                 node, stop in
                                 node.runAction(SKAction.sequence([actionMove, waitSomeTime1]), completion: { () -> Void in
                                     self.addSubtractDivision()
-                                    self.runAction(SKAction.playSoundFileNamed("2.mp3", waitForCompletion: true), completion: { () -> Void in
-                                        self.runAction(SKAction.playSoundFileNamed("multiplicacao.mp3", waitForCompletion: true), completion: { () -> Void in
-                                            self.runAction(SKAction.playSoundFileNamed("2.mp3", waitForCompletion: true), completion: { () -> Void in
-                                                self.runAction(SKAction.playSoundFileNamed("da.mp3", waitForCompletion: true), completion: { () -> Void in
-                                                    self.runAction(SKAction.playSoundFileNamed("4.mp3", waitForCompletion: true), completion: { () -> Void in
-                                                        self.runAction(SKAction.playSoundFileNamed("4.mp3", waitForCompletion: true), completion: { () -> Void in
-                                                            self.runAction(SKAction.playSoundFileNamed("subtracao.mp3", waitForCompletion: true), completion: { () -> Void in
-                                                                self.runAction(SKAction.playSoundFileNamed("4.mp3", waitForCompletion: true), completion: { () -> Void in
-                                                                    self.runAction(SKAction.playSoundFileNamed("da.mp3", waitForCompletion: true), completion: { () -> Void in
-                                                                        self.runAction(SKAction.playSoundFileNamed("0.mp3", waitForCompletion: true), completion: { () -> Void in
-                                                                            self.runAction(SKAction.playSoundFileNamed("portanto.mp3", waitForCompletion: true))
-                                                                        })
-                                                                    })
-                                                                })
-                                                            })
-                                                        })
-                                                    })
-                                                })
-                                            })
-                                        })
-                                    })
-
+                                    self.runAction(SKAction.playSoundFileNamed("divisao4.mp3", waitForCompletion: true))
+                                    
                                     self.lineResult.runAction(SKAction.sequence([self.fadeIn]))
                                     self.sign.runAction(SKAction.sequence([self.fadeIn]))
                                     self.enumerateChildNodesWithName("subtraction") {
                                         node, stop in
                                         node.runAction(SKAction.sequence([self.fadeIn, waitSomeTime2]), completion: { () -> Void in
                                             self.addRestDivision()
-
+                                            
                                             self.enumerateChildNodesWithName("rest") {
                                                 node, stop in
                                                 node.runAction(SKAction.sequence([self.fadeIn]), completion: { () -> Void in

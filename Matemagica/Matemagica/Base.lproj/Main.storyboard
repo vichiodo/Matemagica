@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
         <capability name="Alignment constraints to the first baseline" minToolsVersion="6.0"/>
@@ -113,9 +113,9 @@
                                     <action selector="back:" destination="d0Q-qb-8LC" eventType="touchUpInside" id="78J-7v-4RF"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" tag="1" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kBL-GP-3bp">
-                                <rect key="frame" x="580" y="458" width="159" height="70"/>
-                                <state key="normal" title="+">
+                            <button opaque="NO" tag="1" contentMode="scaleAspectFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kBL-GP-3bp">
+                                <rect key="frame" x="554" y="451" width="198" height="84"/>
+                                <state key="normal" image="salvar">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
@@ -131,6 +131,15 @@
                                     <action selector="cancel:" destination="d0Q-qb-8LC" eventType="touchUpInside" id="I9e-ip-uSq"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" tag="1" contentMode="scaleAspectFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="a3i-a7-h4M">
+                                <rect key="frame" x="613" y="451" width="84" height="84"/>
+                                <state key="normal" image="add">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="addNewPlayer:" destination="d0Q-qb-8LC" eventType="touchUpInside" id="75c-6M-Msk"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.89411764709999997" green="0.94509803920000002" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
@@ -141,8 +150,9 @@
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="iPad"/>
                     <connections>
-                        <outlet property="btnAdd" destination="kBL-GP-3bp" id="pjC-fS-A41"/>
+                        <outlet property="btnAdd" destination="a3i-a7-h4M" id="Cf9-99-ZJE"/>
                         <outlet property="btnCancel" destination="c8Y-iW-c5w" id="rPk-zo-WV6"/>
+                        <outlet property="btnSave" destination="kBL-GP-3bp" id="uKs-5w-KhZ"/>
                         <outlet property="imgPlayer" destination="iav-l0-RjE" id="r5d-TE-pJ8"/>
                         <outlet property="tableView" destination="771-ex-soq" id="3LZ-kA-gBk"/>
                         <outlet property="txtNamePlayer" destination="Q7S-EH-HkV" id="7zz-Tt-Npw"/>
@@ -845,6 +855,7 @@
         <image name="M2" width="1000" height="300"/>
         <image name="T" width="1000" height="300"/>
         <image name="acertei" width="608" height="154"/>
+        <image name="add" width="128" height="128"/>
         <image name="adicao" width="213" height="213"/>
         <image name="cancelar" width="659" height="197"/>
         <image name="divisao" width="216" height="220"/>
@@ -855,6 +866,7 @@
         <image name="multiplayer" width="645" height="263"/>
         <image name="multiplicacao" width="270" height="270"/>
         <image name="perfil" width="579" height="192"/>
+        <image name="salvar" width="481" height="165"/>
         <image name="single" width="960" height="720"/>
         <image name="subtracao" width="178" height="178"/>
         <image name="tutoriais" width="783" height="206"/>

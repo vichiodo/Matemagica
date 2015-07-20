@@ -14,6 +14,7 @@ class PlayerViewController: UIViewController, UIImagePickerControllerDelegate, U
     @IBOutlet weak var txtNamePlayer: UITextField!
     @IBOutlet weak var imgPlayer: UIImageView!
     @IBOutlet weak var btnAdd: UIButton!
+    @IBOutlet weak var btnSave: UIButton!
     @IBOutlet weak var btnCancel: UIButton!
     
     let imagePicker:UIImagePickerController = UIImagePickerController()
@@ -29,9 +30,9 @@ class PlayerViewController: UIViewController, UIImagePickerControllerDelegate, U
         // desabilita o toque
         txtNamePlayer.userInteractionEnabled = false
         imgPlayer.userInteractionEnabled = false
-        btnAdd.setImage(UIImage(named: "add"), forState: .Normal)
-
-        btnCancel.alpha = 0.0
+        btnAdd.hidden = false
+        btnSave.hidden = true
+        btnCancel.hidden = true
         
         // delegate para o imagePicker
         imagePicker.delegate = self
@@ -62,9 +63,10 @@ class PlayerViewController: UIViewController, UIImagePickerControllerDelegate, U
     @IBAction func addNewPlayer(sender: AnyObject) {
         // quando clicado, habilita a edição
         if btnAdd.tag == 1 {
-            btnCancel.alpha = 1.0
-            btnAdd.setImage(UIImage(named: "salvar"), forState: .Normal)
-            btnAdd.frame = CGRect(x: 671, y: 483, width: btnAdd.frame.size.width+20, height: btnAdd.frame.size.height+10)
+            btnCancel.hidden = false
+            btnAdd.hidden = true
+            btnSave.hidden = false
+            
             txtNamePlayer.text = ""
             txtNamePlayer.borderStyle = UITextBorderStyle.RoundedRect
             imgPlayer.image = UIImage(named: "imgdefault")
@@ -86,7 +88,7 @@ class PlayerViewController: UIViewController, UIImagePickerControllerDelegate, U
                 if imgPlayer.image == UIImage(named: "imgdefault") {
                  }
                 else { // se estiver com nome e foto, salva os dados
-                    btnCancel.alpha = 0.0
+                    btnCancel.hidden = true
                     btnAdd.tag = 1
                     PlayerManager.sharedInstance.salvarNovoPlayer(txtNamePlayer.text, foto: imgPlayer.image!)
                     players = PlayerManager.sharedInstance.buscarPlayers()
@@ -108,8 +110,9 @@ class PlayerViewController: UIViewController, UIImagePickerControllerDelegate, U
                     
 
                 }
-                btnAdd.frame = CGRect(x: 691, y: 483, width: btnAdd.frame.size.width, height: btnAdd.frame.size.height)
-                btnAdd.setImage(UIImage(named: "add"), forState: .Normal)
+                btnAdd.hidden = false
+                btnSave.hidden = true
+
             }
         }
     }
@@ -130,9 +133,10 @@ class PlayerViewController: UIViewController, UIImagePickerControllerDelegate, U
         imgPlayer.userInteractionEnabled = false
         tableView.allowsSelection = true
         btnAdd.tag = 1
-        btnCancel.alpha = 0.0
-        btnAdd.frame = CGRect(x: 691, y: 483, width: btnAdd.frame.size.width, height: btnAdd.frame.size.height)
-        btnAdd.setImage(UIImage(named: "add"), forState: .Normal)
+        btnCancel.hidden = true
+        btnAdd.hidden = false
+        btnSave.hidden = true
+
     }
     
     // MARK: - TableView
