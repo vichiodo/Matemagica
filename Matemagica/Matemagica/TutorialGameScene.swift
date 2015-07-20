@@ -425,8 +425,8 @@ class TutorialGameScene: SKScene {
                             number3Img.runAction(SKAction.sequence([fadeIn]))
                             runAction(SKAction.playSoundFileNamed("divisao3.mp3", waitForCompletion: true))
                             let actionMove = SKAction.moveBy(CGVector(dx: -self.size.width * 0.10, dy: 0.0), duration: 2.0)
-                            let waitSomeTime1 = SKAction.waitForDuration(2)
-                            let waitSomeTime2 = SKAction.waitForDuration(2)
+                            let waitSomeTime1 = SKAction.waitForDuration(1)
+                            let waitSomeTime2 = SKAction.waitForDuration(0.5)
                             
                             self.enumerateChildNodesWithName("pizza2") {
                                 node, stop in
@@ -442,12 +442,12 @@ class TutorialGameScene: SKScene {
                                     self.sign.runAction(SKAction.sequence([self.fadeIn]))
                                     self.enumerateChildNodesWithName("subtraction") {
                                         node, stop in
-                                        node.runAction(SKAction.sequence([self.fadeIn, waitSomeTime2]), completion: { () -> Void in
+                                        node.runAction(SKAction.sequence([SKAction.fadeInWithDuration(0.5), waitSomeTime2]), completion: { () -> Void in
                                             self.addRestDivision()
                                             
                                             self.enumerateChildNodesWithName("rest") {
                                                 node, stop in
-                                                node.runAction(SKAction.sequence([self.fadeIn]), completion: { () -> Void in
+                                                node.runAction(SKAction.sequence([SKAction.fadeInWithDuration(0.5)]), completion: { () -> Void in
                                                     self.userInteractionEnabled = true
                                                 })
                                             }
