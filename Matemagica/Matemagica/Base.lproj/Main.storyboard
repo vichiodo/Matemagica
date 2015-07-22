@@ -528,8 +528,12 @@
                                     <action selector="verificacao:" destination="Cyb-PC-TSL" eventType="touchUpInside" id="ABm-sJ-9bN"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="75I-Ex-8iT">
-                                <rect key="frame" x="109" y="109" width="127" height="106"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="75I-Ex-8iT" userLabel="btnAdicao">
+                                <rect key="frame" x="88" y="447" width="127" height="106"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="127" id="QG4-XD-Oa5"/>
+                                    <constraint firstAttribute="height" constant="106" id="XIc-5I-Jsm"/>
+                                </constraints>
                                 <state key="normal" image="sinalAdicao">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -537,14 +541,8 @@
                                     <action selector="adicao:" destination="Cyb-PC-TSL" eventType="touchUpInside" id="whW-qs-J44"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ol1-Dd-l9Q">
-                                <rect key="frame" x="244" y="108" width="115" height="106"/>
-                                <state key="normal" image="sinalSubtracao">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LcK-qR-FQ1">
-                                <rect key="frame" x="367" y="108" width="119" height="107"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LcK-qR-FQ1" userLabel="btnMultiplicacao">
+                                <rect key="frame" x="367" y="447" width="119" height="107"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="107" id="FVr-Y1-2XW"/>
                                     <constraint firstAttribute="width" constant="119" id="T08-sz-bgJ"/>
@@ -556,22 +554,30 @@
                                     <action selector="multiplicacao:" destination="Cyb-PC-TSL" eventType="touchUpInside" id="4h1-W7-LOW"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nuJ-eu-6bV">
-                                <rect key="frame" x="494" y="108" width="134" height="106"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ol1-Dd-l9Q" userLabel="btnSubtracao">
+                                <rect key="frame" x="223" y="447" width="115" height="106"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="115" id="Ivt-Gq-dXe"/>
+                                    <constraint firstAttribute="height" constant="106" id="Snm-oi-PdG"/>
+                                </constraints>
+                                <state key="normal" image="sinalSubtracao">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="subtracao:" destination="Cyb-PC-TSL" eventType="touchUpInside" id="T9S-on-fgF"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nuJ-eu-6bV" userLabel="btnDivisao">
+                                <rect key="frame" x="494" y="447" width="134" height="106"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="134" id="S3G-11-93u"/>
+                                    <constraint firstAttribute="height" constant="106" id="ghM-6K-jdp"/>
+                                </constraints>
                                 <state key="normal" image="sinalDivisao">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
                                     <action selector="divisao:" destination="Cyb-PC-TSL" eventType="touchUpInside" id="mPe-tY-3eS"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Sbc-Fe-Kzd">
-                                <rect key="frame" x="244" y="108" width="115" height="106"/>
-                                <state key="normal" image="sinalSubtracao">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="subtracao:" destination="Cyb-PC-TSL" eventType="touchUpInside" id="wfz-Lh-0F5"/>
                                 </connections>
                             </button>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="barra" translatesAutoresizingMaskIntoConstraints="NO" id="eaI-le-jrD">
@@ -611,8 +617,9 @@
                                 <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                             </textField>
                         </subviews>
-                        <color key="backgroundColor" red="0.94509803921568625" green="0.66274509803921566" blue="0.62745098039215685" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" red="1" green="0.80097184513636366" blue="0.91041797513842526" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
+                            <constraint firstItem="Ol1-Dd-l9Q" firstAttribute="top" secondItem="Vsz-tK-srx" secondAttribute="topMargin" constant="447" id="1Wq-bW-Fln"/>
                             <constraint firstItem="YcU-eM-skE" firstAttribute="top" secondItem="5pd-rT-klt" secondAttribute="bottom" constant="25" id="3eJ-bb-Ihe"/>
                             <constraint firstItem="IwU-20-LEr" firstAttribute="leading" secondItem="g5U-iE-gam" secondAttribute="trailing" constant="103" id="4eh-5u-FlL"/>
                             <constraint firstItem="LcK-qR-FQ1" firstAttribute="leading" secondItem="Vsz-tK-srx" secondAttribute="leadingMargin" constant="351" id="4iv-Ae-trG"/>
@@ -631,18 +638,24 @@
                             <constraint firstItem="Hba-E8-eE1" firstAttribute="top" secondItem="Vsz-tK-srx" secondAttribute="topMargin" constant="352" id="H2E-bY-aVY"/>
                             <constraint firstItem="8az-XQ-gkc" firstAttribute="top" secondItem="Vsz-tK-srx" secondAttribute="topMargin" constant="170" id="HYR-5i-3iU"/>
                             <constraint firstItem="5pd-rT-klt" firstAttribute="leading" secondItem="Vsz-tK-srx" secondAttribute="leadingMargin" constant="287" id="Jq9-Av-TkI"/>
+                            <constraint firstItem="LcK-qR-FQ1" firstAttribute="top" secondItem="Vsz-tK-srx" secondAttribute="topMargin" constant="447" id="K9S-LK-OW0"/>
                             <constraint firstItem="jiw-Ns-Pqv" firstAttribute="top" secondItem="YcU-eM-skE" secondAttribute="bottom" constant="74" id="KIT-S2-jmP"/>
                             <constraint firstItem="eaI-le-jrD" firstAttribute="top" secondItem="YcU-eM-skE" secondAttribute="bottom" constant="8" id="NgV-hR-WyO"/>
+                            <constraint firstItem="nuJ-eu-6bV" firstAttribute="top" secondItem="Vsz-tK-srx" secondAttribute="topMargin" constant="447" id="NvP-5T-cYA"/>
                             <constraint firstItem="IwU-20-LEr" firstAttribute="top" secondItem="t1b-HB-hoc" secondAttribute="bottom" constant="47" id="PbM-eY-rLs"/>
                             <constraint firstItem="5pd-rT-klt" firstAttribute="leading" secondItem="Hba-E8-eE1" secondAttribute="trailing" constant="50" id="QXl-fo-sEi"/>
+                            <constraint firstItem="75I-Ex-8iT" firstAttribute="leading" secondItem="Vsz-tK-srx" secondAttribute="leadingMargin" constant="72" id="SH3-OI-U3A"/>
                             <constraint firstItem="eaI-le-jrD" firstAttribute="top" secondItem="5pd-rT-klt" secondAttribute="bottom" constant="153" id="Sgh-03-PJL"/>
                             <constraint firstItem="jiw-Ns-Pqv" firstAttribute="top" secondItem="YcU-eM-skE" secondAttribute="bottom" constant="40" id="Tss-GV-sd7"/>
                             <constraint firstItem="YcU-eM-skE" firstAttribute="top" secondItem="5pd-rT-klt" secondAttribute="bottom" constant="47" id="XSG-ET-Slq"/>
                             <constraint firstItem="jiw-Ns-Pqv" firstAttribute="leading" secondItem="Vsz-tK-srx" secondAttribute="leadingMargin" constant="287" id="XtU-fb-pBr"/>
                             <constraint firstItem="BjT-Eb-Lvz" firstAttribute="top" secondItem="Vsz-tK-srx" secondAttribute="topMargin" constant="352" id="ayd-RA-uow"/>
+                            <constraint firstItem="75I-Ex-8iT" firstAttribute="top" secondItem="Vsz-tK-srx" secondAttribute="topMargin" constant="447" id="caf-B7-KwE"/>
                             <constraint firstItem="g5U-iE-gam" firstAttribute="top" secondItem="W1u-Ur-QBa" secondAttribute="bottom" constant="47" id="dUo-UL-cCl"/>
                             <constraint firstItem="g5U-iE-gam" firstAttribute="leading" secondItem="Vsz-tK-srx" secondAttribute="leadingMargin" constant="124" id="gFt-oR-KPG"/>
+                            <constraint firstItem="Ol1-Dd-l9Q" firstAttribute="leading" secondItem="75I-Ex-8iT" secondAttribute="trailing" constant="8" id="gTf-Jq-FpD"/>
                             <constraint firstItem="Hba-E8-eE1" firstAttribute="leading" secondItem="Vsz-tK-srx" secondAttribute="leadingMargin" constant="106" id="gfk-HU-Xu2"/>
+                            <constraint firstItem="nuJ-eu-6bV" firstAttribute="leading" secondItem="LcK-qR-FQ1" secondAttribute="trailing" constant="8" id="iRr-Nq-MNd"/>
                             <constraint firstItem="BjT-Eb-Lvz" firstAttribute="leading" secondItem="Vsz-tK-srx" secondAttribute="leadingMargin" constant="106" id="jqG-PZ-S8M"/>
                             <constraint firstItem="g5U-iE-gam" firstAttribute="leading" secondItem="Vsz-tK-srx" secondAttribute="leadingMargin" constant="149" id="p4N-88-01s"/>
                             <constraint firstItem="t1b-HB-hoc" firstAttribute="leading" secondItem="W1u-Ur-QBa" secondAttribute="trailing" constant="103" id="pBZ-VC-gpU"/>
@@ -661,6 +674,7 @@
                                 <exclude reference="p4N-88-01s"/>
                                 <exclude reference="NgV-hR-WyO"/>
                                 <exclude reference="KIT-S2-jmP"/>
+                                <exclude reference="61O-Qr-ij8"/>
                                 <exclude reference="4eh-5u-FlL"/>
                                 <exclude reference="B0e-SG-dkH"/>
                                 <exclude reference="Bof-8h-yoB"/>
@@ -671,13 +685,19 @@
                     <connections>
                         <outlet property="barra1" destination="eaI-le-jrD" id="sA2-2O-G4N"/>
                         <outlet property="barraDivisao" destination="8az-XQ-gkc" id="8i0-IA-Gne"/>
+                        <outlet property="btnAdicao" destination="75I-Ex-8iT" id="WgE-5X-6ef"/>
+                        <outlet property="btnDivisao" destination="nuJ-eu-6bV" id="WzP-IG-fZt"/>
+                        <outlet property="btnMultiplicacao" destination="LcK-qR-FQ1" id="lBx-Db-ds8"/>
+                        <outlet property="btnSubtracao" destination="Ol1-Dd-l9Q" id="Tcp-V8-g28"/>
                         <outlet property="dividendo" destination="t1b-HB-hoc" id="5kd-1A-woo"/>
                         <outlet property="divisor" destination="W1u-Ur-QBa" id="xEk-De-kkC"/>
                         <outlet property="operating1" destination="5pd-rT-klt" id="Glc-1N-MNj"/>
                         <outlet property="operating2" destination="YcU-eM-skE" id="A7F-xc-g0l"/>
+                        <outlet property="perguntaAcertei" destination="G1e-XZ-0Mg" id="Ils-fH-KjI"/>
                         <outlet property="quotient" destination="IwU-20-LEr" id="bcW-fd-kAG"/>
                         <outlet property="rest" destination="g5U-iE-gam" id="NZY-hV-yRX"/>
                         <outlet property="result" destination="8tB-s6-qR8" id="aXr-Y2-IeY"/>
+                        <outlet property="resultadoAcertei" destination="8tB-s6-qR8" id="pLZ-S1-PCq"/>
                         <outlet property="sinalAdicao" destination="5qk-kI-WPf" id="0i8-Ut-Bgz"/>
                         <outlet property="sinalMultiplicacao" destination="Hba-E8-eE1" id="bup-aC-iKE"/>
                         <outlet property="sinalSubtracao" destination="BjT-Eb-Lvz" id="Qdc-5d-nzX"/>

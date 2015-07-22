@@ -31,6 +31,14 @@ class DIYViewController: UIViewController, UINavigationControllerDelegate {
     @IBOutlet weak var result: UILabel!
     var operationSelectd: Int! = 0
     
+    @IBOutlet weak var perguntaAcertei: UIButton!
+    @IBOutlet weak var resultadoAcertei: UILabel!
+    
+    @IBOutlet weak var btnAdicao: UIButton!
+    @IBOutlet weak var btnMultiplicacao: UIButton!
+    @IBOutlet weak var btnSubtracao: UIButton!
+    @IBOutlet weak var btnDivisao: UIButton!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -49,11 +57,20 @@ class DIYViewController: UIViewController, UINavigationControllerDelegate {
         barraDivisao.hidden = true
         barra1.hidden = true
         
+        perguntaAcertei.hidden = true
+        resultadoAcertei.hidden = true
+        
+        self.becomeFirstResponder()
     }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
     
+    override func touchesBegan(touches: Set<NSObject>, withEvent event: UIEvent) {
+        view.endEditing(true)
+        super.touchesBegan(touches, withEvent: event)
+    }
     @IBAction func verificacao(sender: AnyObject) {
         var n1 = operating1.text.toInt()
         var n2 = operating2.text.toInt()
@@ -144,6 +161,29 @@ class DIYViewController: UIViewController, UINavigationControllerDelegate {
     }
 
     @IBAction func adicao(sender: AnyObject) {
+        
+        if btnAdicao.layer.position.y == 500 {
+            UIView.animateWithDuration(1, animations: { () -> Void in
+                self.btnAdicao.transform = CGAffineTransformMakeTranslation(0, -350)
+                self.btnSubtracao.transform = CGAffineTransformMakeTranslation(0, -350)
+                self.btnMultiplicacao.transform = CGAffineTransformMakeTranslation(0, -350)
+                self.btnDivisao.transform = CGAffineTransformMakeTranslation(0, -350)
+            })
+        }
+
+        operating1.text = ""
+        operating2.text = ""
+        userResult.text = ""
+        result.text = "Resultado"
+        result.textColor = UIColor.blackColor()
+        operating1.placeholder = "Numero 1"
+        operating2.placeholder = "Numero 2"
+        userResult.placeholder = "Sua Resposta"
+        
+        operationSelectd = 0
+        
+        perguntaAcertei.hidden = false
+        resultadoAcertei.hidden = false
         operating1.hidden = false
         operating2.hidden = false
         userResult.hidden = false
@@ -156,9 +196,32 @@ class DIYViewController: UIViewController, UINavigationControllerDelegate {
         barraDivisao.hidden = true
         quotient.hidden = true
         rest.hidden = true
+        
     }
     
     @IBAction func subtracao(sender: AnyObject) {
+        
+        if btnAdicao.layer.position.y == 500 {
+            UIView.animateWithDuration(1, animations: { () -> Void in
+                self.btnAdicao.transform = CGAffineTransformMakeTranslation(0, -350)
+                self.btnSubtracao.transform = CGAffineTransformMakeTranslation(0, -350)
+                self.btnMultiplicacao.transform = CGAffineTransformMakeTranslation(0, -350)
+                self.btnDivisao.transform = CGAffineTransformMakeTranslation(0, -350)
+            })
+        }
+        operating1.text = ""
+        operating2.text = ""
+        userResult.text = ""
+        result.text = "Resultado"
+        result.textColor = UIColor.blackColor()
+        operating1.placeholder = "Numero 1"
+        operating2.placeholder = "Numero 2"
+        userResult.placeholder = "Sua Resposta"
+
+        operationSelectd = 1
+        
+        perguntaAcertei.hidden = false
+        resultadoAcertei.hidden = false
         operating1.hidden = false
         operating2.hidden = false
         userResult.hidden = false
@@ -174,6 +237,28 @@ class DIYViewController: UIViewController, UINavigationControllerDelegate {
     }
     
     @IBAction func multiplicacao(sender: AnyObject) {
+        if btnAdicao.layer.position.y == 500 {
+            UIView.animateWithDuration(1, animations: { () -> Void in
+                self.btnAdicao.transform = CGAffineTransformMakeTranslation(0, -350)
+                self.btnSubtracao.transform = CGAffineTransformMakeTranslation(0, -350)
+                self.btnMultiplicacao.transform = CGAffineTransformMakeTranslation(0, -350)
+                self.btnDivisao.transform = CGAffineTransformMakeTranslation(0, -350)
+            })
+        }
+        
+        operating1.text = ""
+        operating2.text = ""
+        userResult.text = ""
+        result.text = "Resultado"
+        result.textColor = UIColor.blackColor()
+        operating1.placeholder = "Numero 1"
+        operating2.placeholder = "Numero 2"
+        userResult.placeholder = "Sua Resposta"
+
+        operationSelectd = 2
+        
+        perguntaAcertei.hidden = false
+        resultadoAcertei.hidden = false
         operating1.hidden = false
         operating2.hidden = false
         userResult.hidden = false
@@ -189,6 +274,30 @@ class DIYViewController: UIViewController, UINavigationControllerDelegate {
     }
     
     @IBAction func divisao(sender: AnyObject) {
+        if btnAdicao.layer.position.y == 500 {
+            UIView.animateWithDuration(1, animations: { () -> Void in
+                self.btnAdicao.transform = CGAffineTransformMakeTranslation(0, -350)
+                self.btnSubtracao.transform = CGAffineTransformMakeTranslation(0, -350)
+                self.btnMultiplicacao.transform = CGAffineTransformMakeTranslation(0, -350)
+                self.btnDivisao.transform = CGAffineTransformMakeTranslation(0, -350)
+            })
+        }
+        
+        divisor.text = ""
+        dividendo.text = ""
+        quotient.text = ""
+        rest.text = ""
+        result.text = "Resultado"
+        result.textColor = UIColor.blackColor()
+        divisor.placeholder = "Divisor"
+        dividendo.placeholder = "Dividendo"
+        quotient.placeholder = "Quociente"
+        rest.placeholder = "Resto"
+        
+        operationSelectd = 3
+        
+        perguntaAcertei.hidden = false
+        resultadoAcertei.hidden = false
         divisor.hidden = false
         dividendo.hidden = false
         quotient.hidden = false
