@@ -8,7 +8,7 @@
 
 import UIKit
 
-class DIYViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource, UINavigationControllerDelegate {
+class DIYViewController: UIViewController, UINavigationControllerDelegate {
     
     @IBOutlet weak var operations: UIPickerView!
     @IBOutlet weak var operating1: UITextField!
@@ -18,76 +18,40 @@ class DIYViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDat
     @IBOutlet weak var quotient: UITextField!
     @IBOutlet weak var rest: UITextField!
     
+    @IBOutlet weak var sinalAdicao: UIImageView!
+    @IBOutlet weak var sinalSubtracao: UIImageView!
+    @IBOutlet weak var sinalMultiplicacao: UIImageView!
+    
+    @IBOutlet weak var divisor: UITextField!
+    @IBOutlet weak var dividendo: UITextField!
+    
+    @IBOutlet weak var barra1: UIImageView!
+    @IBOutlet weak var barraDivisao: UIImageView!
+    
     @IBOutlet weak var result: UILabel!
-    var pickerData: NSArray = NSArray()
     var operationSelectd: Int! = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        operations.delegate = self
-        operations.dataSource = self
         
-        userResult.hidden = false
+        operating1.hidden = true
+        operating2.hidden = true
+        userResult.hidden = true
         quotient.hidden = true
         rest.hidden = true
         
-        pickerData = ["+", "-", "×", "÷"]
+        sinalAdicao.hidden = true
+        sinalMultiplicacao.hidden = true
+        sinalSubtracao.hidden = true
+        
+        dividendo.hidden = true
+        divisor.hidden = true
+        barraDivisao.hidden = true
+        barra1.hidden = true
         
     }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-    }
-    
-    //MARK: - Delegates and data sources
-    //MARK: Data Sources
-    func numberOfComponentsInPickerView(pickerView: UIPickerView) -> Int {
-        return 1
-    }
-    func pickerView(pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return pickerData.count
-    }
-    
-    //MARK: Delegates
-    func pickerView(pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String! {
-        return pickerData[row] as! String
-    }
-    
-    func pickerView(pickerView: UIPickerView, rowHeightForComponent component: Int) -> CGFloat {
-        return 50
-    }
-    
-    func pickerView(pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        userResult.text = ""
-        quotient.text = ""
-        rest.text = ""
-        result.text = "Resultado"
-        result.textColor = UIColor.blackColor()
-        
-        switch (row) {
-        case 0:
-            operationSelectd = 0
-            userResult.hidden = false
-            quotient.hidden = true
-            rest.hidden = true
-        case 1:
-            operationSelectd = 1
-            userResult.hidden = false
-            quotient.hidden = true
-            rest.hidden = true
-        case 2:
-            operationSelectd = 2
-            userResult.hidden = false
-            quotient.hidden = true
-            rest.hidden = true
-        case 3:
-            operationSelectd = 3
-            userResult.hidden = true
-            quotient.hidden = false
-            rest.hidden = false
-            
-        default:
-            break;
-        }
     }
     
     @IBAction func verificacao(sender: AnyObject) {
@@ -112,6 +76,8 @@ class DIYViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDat
                 respConta = n1! * n2!
                 break;
             case 3:
+                n1 = divisor.text.toInt()
+                n2 = dividendo.text.toInt()
                 respConta = n1! / n2!
                 respResto = n1! % n2!
                 break;
@@ -177,5 +143,63 @@ class DIYViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDat
         self.dismissViewControllerAnimated(true, completion: nil)
     }
 
+    @IBAction func adicao(sender: AnyObject) {
+        operating1.hidden = false
+        operating2.hidden = false
+        userResult.hidden = false
+        sinalAdicao.hidden = false
+        barra1.hidden = false
+        sinalSubtracao.hidden = true
+        sinalMultiplicacao.hidden = true
+        divisor.hidden = true
+        dividendo.hidden = true
+        barraDivisao.hidden = true
+        quotient.hidden = true
+        rest.hidden = true
+    }
     
+    @IBAction func subtracao(sender: AnyObject) {
+        operating1.hidden = false
+        operating2.hidden = false
+        userResult.hidden = false
+        sinalSubtracao.hidden = false
+        barra1.hidden = false
+        sinalAdicao.hidden = true
+        sinalMultiplicacao.hidden = true
+        divisor.hidden = true
+        dividendo.hidden = true
+        barraDivisao.hidden = true
+        quotient.hidden = true
+        rest.hidden = true
+    }
+    
+    @IBAction func multiplicacao(sender: AnyObject) {
+        operating1.hidden = false
+        operating2.hidden = false
+        userResult.hidden = false
+        sinalMultiplicacao.hidden = false
+        barra1.hidden = false
+        sinalAdicao.hidden = true
+        sinalSubtracao.hidden = true
+        divisor.hidden = true
+        dividendo.hidden = true
+        barraDivisao.hidden = true
+        quotient.hidden = true
+        rest.hidden = true
+    }
+    
+    @IBAction func divisao(sender: AnyObject) {
+        divisor.hidden = false
+        dividendo.hidden = false
+        quotient.hidden = false
+        rest.hidden = false
+        barraDivisao.hidden = false
+        operating1.hidden = true
+        operating2.hidden = true
+        sinalAdicao.hidden = true
+        sinalMultiplicacao.hidden = true
+        sinalSubtracao.hidden = true
+        userResult.hidden = true
+        barra1.hidden = true
+    }
 }
