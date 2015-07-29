@@ -170,6 +170,7 @@ class MultiGameScene: SKScene {
         lblVictoriesPlayer2.fontColor = SKColor.blackColor()
         lblVictoriesPlayer2.text = "\(victoriesPlayer2)"
         addChild(lblVictoriesPlayer2)
+        
     }
     
     override func touchesBegan(touches: Set<NSObject>, withEvent event: UIEvent) {
@@ -216,8 +217,12 @@ class MultiGameScene: SKScene {
                 }
             }
             else if alternativeTouched.name == "errado1" || alternativeTouched.name == "errado2" || alternativeTouched.name == "errado3" || alternativeTouched.name == "errado4" {
-                println("jogador 1 errou")
+                
+                addPauseImage1()
+                animateWrong(calculation1)
+                
             }
+                
             else if alternativeTouched.name == "certo5" || alternativeTouched.name == "certo6" || alternativeTouched.name == "certo7" || alternativeTouched.name == "certo8" {
                 scoreGamer2++
                 lblScorePlayer2.text = "\(scoreGamer2)"
@@ -257,13 +262,9 @@ class MultiGameScene: SKScene {
                         node.userInteractionEnabled = false
                     }
                 }
-
-
+                addPauseImage2()
                 animateWrong(calculation2)
-                
-                
             }
-            
         }
         PlayerManager.sharedInstance.salvarPlayer()
     }
@@ -641,5 +642,35 @@ class MultiGameScene: SKScene {
     // pausa o jogo
     func pause() {
         self.view?.paused = true
+    }
+    
+    func addPauseImage1() {
+        var bg = SKSpriteNode(imageNamed: "bgmulti")
+        bg.size = CGSizeMake(self.frame.height, self.frame.width / 2)
+        bg.position = CGPoint(x: frame.size.width / 2, y: frame.size.height * 0.75)
+        bg.alpha = 0.0
+        
+        addChild(bg)
+        
+        let wait = SKAction.waitForDuration(0.5)
+        let sequence = SKAction.sequence([wait])
+        runAction(sequence, completion: { () -> Void in
+            bg.removeFromParent()
+        })
+    }
+
+    func addPauseImage2() {
+        var bg = SKSpriteNode(imageNamed: "bgmulti")
+        bg.size = CGSizeMake(self.frame.height, self.frame.width / 2)
+        bg.position = CGPoint(x: frame.size.width / 2, y: frame.size.height * 0.25)
+        bg.alpha = 0.0
+        
+        addChild(bg)
+        
+        let wait = SKAction.waitForDuration(0.5)
+        let sequence = SKAction.sequence([wait])
+        runAction(sequence, completion: { () -> Void in
+            bg.removeFromParent()
+        })
     }
 }
