@@ -61,6 +61,7 @@ class DIYViewController: UIViewController, UINavigationControllerDelegate {
         resultadoAcertei.hidden = true
         
         self.becomeFirstResponder()
+        
     }
     
     override func didReceiveMemoryWarning() {
@@ -180,6 +181,14 @@ class DIYViewController: UIViewController, UINavigationControllerDelegate {
         operating2.placeholder = "Numero 2"
         userResult.placeholder = "Sua Resposta"
         
+        operating1.background = UIImage(named: "fundoAdi")
+        operating2.background = UIImage(named: "fundoAdi")
+        userResult.background = UIImage(named: "fundoAdi")
+        
+        operating1.textColor = UIColor(red: 170/255, green: 30/255, blue: 30/255, alpha: 1)
+        operating2.textColor = UIColor(red: 170/255, green: 30/255, blue: 30/255, alpha: 1)
+        userResult.textColor = UIColor(red: 170/255, green: 30/255, blue: 30/255, alpha: 1)
+        
         operationSelectd = 0
         
         perguntaAcertei.hidden = false
@@ -217,6 +226,14 @@ class DIYViewController: UIViewController, UINavigationControllerDelegate {
         operating1.placeholder = "Numero 1"
         operating2.placeholder = "Numero 2"
         userResult.placeholder = "Sua Resposta"
+        
+        operating1.background = UIImage(named: "fundoSub")
+        operating2.background = UIImage(named: "fundoSub")
+        userResult.background = UIImage(named: "fundoSub")
+        
+        operating1.textColor = UIColor(red: 0, green: 168/255, blue: 255/255, alpha: 1)
+        operating2.textColor = UIColor(red: 0, green: 168/255, blue: 255/255, alpha: 1)
+        userResult.textColor = UIColor(red: 0, green: 168/255, blue: 255/255, alpha: 1)
 
         operationSelectd = 1
         
@@ -254,6 +271,14 @@ class DIYViewController: UIViewController, UINavigationControllerDelegate {
         operating1.placeholder = "Numero 1"
         operating2.placeholder = "Numero 2"
         userResult.placeholder = "Sua Resposta"
+        
+        operating1.background = UIImage(named: "fundoMulti")
+        operating2.background = UIImage(named: "fundoMulti")
+        userResult.background = UIImage(named: "fundoMulti")
+        
+        operating1.textColor = UIColor(red: 244/255, green: 48/255, blue: 165/255, alpha: 1)
+        operating2.textColor = UIColor(red: 244/255, green: 48/255, blue: 165/255, alpha: 1)
+        userResult.textColor = UIColor(red: 244/255, green: 48/255, blue: 165/255, alpha: 1)
 
         operationSelectd = 2
         

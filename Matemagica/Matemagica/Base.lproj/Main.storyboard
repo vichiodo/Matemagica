@@ -448,7 +448,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="Número 1" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="5pd-rT-klt">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Número 1" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="5pd-rT-klt">
                                 <rect key="frame" x="27" y="209" width="163" height="140"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="140" id="YNV-Sx-Yc2"/>
@@ -456,26 +456,22 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="90"/>
                                 <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                             </textField>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="barraDivisao" translatesAutoresizingMaskIntoConstraints="NO" id="8az-XQ-gkc">
-                                <rect key="frame" x="366" y="170" width="339" height="314"/>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Dividendo" textAlignment="center" minimumFontSize="17" background="fundoDiv" translatesAutoresizingMaskIntoConstraints="NO" id="t1b-HB-hoc">
+                                <rect key="frame" x="461" y="245" width="200" height="200"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="314" id="0Co-Ot-8q2"/>
-                                    <constraint firstAttribute="width" constant="339" id="9Ru-hB-vxK"/>
+                                    <constraint firstAttribute="width" constant="200" id="O1E-MA-bq3"/>
+                                    <constraint firstAttribute="height" constant="200" id="YXb-n5-WLR"/>
                                 </constraints>
-                            </imageView>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="Dividendo" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="t1b-HB-hoc">
-                                <rect key="frame" x="406" y="245" width="163" height="140"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="140" id="YXb-n5-WLR"/>
-                                </constraints>
+                                <color key="textColor" red="0.7198999411" green="0.42052264499999997" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="90"/>
                                 <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                             </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="Divisor" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="W1u-Ur-QBa">
-                                <rect key="frame" x="140" y="245" width="162.5" height="140"/>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Divisor" textAlignment="center" minimumFontSize="17" background="fundoDiv" translatesAutoresizingMaskIntoConstraints="NO" id="W1u-Ur-QBa">
+                                <rect key="frame" x="140" y="245" width="218" height="200"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="140" id="peb-Mt-iXn"/>
+                                    <constraint firstAttribute="height" constant="200" id="peb-Mt-iXn"/>
                                 </constraints>
+                                <color key="textColor" red="0.7198999411" green="0.42052264499999997" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="90"/>
                                 <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                             </textField>
@@ -485,7 +481,7 @@
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="Número 2" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="YcU-eM-skE">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Número 2" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="YcU-eM-skE">
                                 <rect key="frame" x="5" y="357" width="163" height="140"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="140" id="ia8-Hm-H0J"/>
@@ -493,7 +489,7 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="90"/>
                                 <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                             </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="Sua resposta" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="jiw-Ns-Pqv">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Sua resposta" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="jiw-Ns-Pqv">
                                 <rect key="frame" x="52" y="561" width="163" height="140"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="140" id="LVL-2p-lvg"/>
@@ -501,12 +497,13 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="90"/>
                                 <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                             </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="Quociente" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="IwU-20-LEr">
-                                <rect key="frame" x="406" y="432" width="163" height="140"/>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Quociente" textAlignment="center" minimumFontSize="17" background="fundoDiv" translatesAutoresizingMaskIntoConstraints="NO" id="IwU-20-LEr">
+                                <rect key="frame" x="443" y="492" width="200" height="200"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="163" id="buE-6l-Wkc"/>
-                                    <constraint firstAttribute="height" constant="140" id="rZz-Jh-nmV"/>
+                                    <constraint firstAttribute="width" constant="200" id="buE-6l-Wkc"/>
+                                    <constraint firstAttribute="height" constant="200" id="rZz-Jh-nmV"/>
                                 </constraints>
+                                <color key="textColor" red="0.7198999411" green="0.42052264499999997" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="90"/>
                                 <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                             </textField>
@@ -607,15 +604,31 @@
                                     <constraint firstAttribute="width" constant="130" id="uyl-Xl-l9O"/>
                                 </constraints>
                             </imageView>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="Resto" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="g5U-iE-gam">
-                                <rect key="frame" x="140" y="432" width="163" height="140"/>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Resto" textAlignment="center" minimumFontSize="17" background="fundoDiv" translatesAutoresizingMaskIntoConstraints="NO" id="g5U-iE-gam">
+                                <rect key="frame" x="140" y="492" width="200" height="200"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="163" id="D4g-vt-hP3"/>
-                                    <constraint firstAttribute="height" constant="140" id="bAi-QB-SBf"/>
+                                    <constraint firstAttribute="width" constant="200" id="D4g-vt-hP3"/>
+                                    <constraint firstAttribute="height" constant="200" id="bAi-QB-SBf"/>
                                 </constraints>
+                                <color key="textColor" red="0.7198999411" green="0.42052264499999997" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="90"/>
                                 <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                             </textField>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="barraDivisao" translatesAutoresizingMaskIntoConstraints="NO" id="8az-XQ-gkc">
+                                <rect key="frame" x="424" y="203" width="339" height="314"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="314" id="0Co-Ot-8q2"/>
+                                    <constraint firstAttribute="width" constant="339" id="9Ru-hB-vxK"/>
+                                    <constraint firstAttribute="height" constant="314" id="EZD-3T-RVe"/>
+                                    <constraint firstAttribute="width" constant="339" id="SMc-Tm-nGp"/>
+                                </constraints>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="0Co-Ot-8q2"/>
+                                        <exclude reference="9Ru-hB-vxK"/>
+                                    </mask>
+                                </variation>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="0.80097184513636366" blue="0.91041797513842526" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
@@ -623,6 +636,7 @@
                             <constraint firstItem="YcU-eM-skE" firstAttribute="top" secondItem="5pd-rT-klt" secondAttribute="bottom" constant="25" id="3eJ-bb-Ihe"/>
                             <constraint firstItem="IwU-20-LEr" firstAttribute="leading" secondItem="g5U-iE-gam" secondAttribute="trailing" constant="103" id="4eh-5u-FlL"/>
                             <constraint firstItem="LcK-qR-FQ1" firstAttribute="leading" secondItem="Vsz-tK-srx" secondAttribute="leadingMargin" constant="351" id="4iv-Ae-trG"/>
+                            <constraint firstItem="8az-XQ-gkc" firstAttribute="top" secondItem="Vsz-tK-srx" secondAttribute="topMargin" constant="200" id="4xr-9E-AKP"/>
                             <constraint firstAttribute="trailingMargin" secondItem="jiw-Ns-Pqv" secondAttribute="trailing" constant="286" id="51f-Z5-0c2"/>
                             <constraint firstItem="LcK-qR-FQ1" firstAttribute="top" secondItem="Vsz-tK-srx" secondAttribute="topMargin" constant="108" id="61O-Qr-ij8"/>
                             <constraint firstAttribute="trailingMargin" secondItem="5pd-rT-klt" secondAttribute="trailing" constant="286" id="73n-Wv-a7u"/>
@@ -636,7 +650,6 @@
                             <constraint firstItem="W1u-Ur-QBa" firstAttribute="top" secondItem="Vsz-tK-srx" secondAttribute="topMargin" constant="245" id="G0U-3P-wj8"/>
                             <constraint firstItem="5qk-kI-WPf" firstAttribute="top" secondItem="Vsz-tK-srx" secondAttribute="topMargin" constant="352" id="GrY-Yj-l6m"/>
                             <constraint firstItem="Hba-E8-eE1" firstAttribute="top" secondItem="Vsz-tK-srx" secondAttribute="topMargin" constant="352" id="H2E-bY-aVY"/>
-                            <constraint firstItem="8az-XQ-gkc" firstAttribute="top" secondItem="Vsz-tK-srx" secondAttribute="topMargin" constant="170" id="HYR-5i-3iU"/>
                             <constraint firstItem="5pd-rT-klt" firstAttribute="leading" secondItem="Vsz-tK-srx" secondAttribute="leadingMargin" constant="287" id="Jq9-Av-TkI"/>
                             <constraint firstItem="LcK-qR-FQ1" firstAttribute="top" secondItem="Vsz-tK-srx" secondAttribute="topMargin" constant="447" id="K9S-LK-OW0"/>
                             <constraint firstItem="jiw-Ns-Pqv" firstAttribute="top" secondItem="YcU-eM-skE" secondAttribute="bottom" constant="74" id="KIT-S2-jmP"/>
@@ -650,6 +663,7 @@
                             <constraint firstItem="YcU-eM-skE" firstAttribute="top" secondItem="5pd-rT-klt" secondAttribute="bottom" constant="47" id="XSG-ET-Slq"/>
                             <constraint firstItem="jiw-Ns-Pqv" firstAttribute="leading" secondItem="Vsz-tK-srx" secondAttribute="leadingMargin" constant="287" id="XtU-fb-pBr"/>
                             <constraint firstItem="BjT-Eb-Lvz" firstAttribute="top" secondItem="Vsz-tK-srx" secondAttribute="topMargin" constant="352" id="ayd-RA-uow"/>
+                            <constraint firstItem="8az-XQ-gkc" firstAttribute="leading" secondItem="Vsz-tK-srx" secondAttribute="leadingMargin" constant="408" id="c0H-YW-b9n"/>
                             <constraint firstItem="75I-Ex-8iT" firstAttribute="top" secondItem="Vsz-tK-srx" secondAttribute="topMargin" constant="447" id="caf-B7-KwE"/>
                             <constraint firstItem="g5U-iE-gam" firstAttribute="top" secondItem="W1u-Ur-QBa" secondAttribute="bottom" constant="47" id="dUo-UL-cCl"/>
                             <constraint firstItem="g5U-iE-gam" firstAttribute="leading" secondItem="Vsz-tK-srx" secondAttribute="leadingMargin" constant="124" id="gFt-oR-KPG"/>
@@ -664,6 +678,7 @@
                             <constraint firstItem="5pd-rT-klt" firstAttribute="top" secondItem="Vsz-tK-srx" secondAttribute="topMargin" constant="243" id="upD-pR-1NS"/>
                             <constraint firstItem="5pd-rT-klt" firstAttribute="top" secondItem="LcK-qR-FQ1" secondAttribute="bottom" constant="-215" id="x0b-Nl-tiQ"/>
                             <constraint firstItem="5qk-kI-WPf" firstAttribute="leading" secondItem="Vsz-tK-srx" secondAttribute="leadingMargin" constant="106" id="yyS-JG-CdH"/>
+                            <constraint firstItem="8az-XQ-gkc" firstAttribute="top" secondItem="Vsz-tK-srx" secondAttribute="topMargin" constant="203" id="zTc-Av-238"/>
                             <constraint firstItem="t1b-HB-hoc" firstAttribute="top" secondItem="Vsz-tK-srx" secondAttribute="topMargin" constant="245" id="zha-LF-du0"/>
                         </constraints>
                         <variation key="default">
@@ -671,8 +686,10 @@
                                 <exclude reference="QXl-fo-sEi"/>
                                 <exclude reference="x0b-Nl-tiQ"/>
                                 <exclude reference="XSG-ET-Slq"/>
-                                <exclude reference="p4N-88-01s"/>
+                                <exclude reference="4xr-9E-AKP"/>
+                                <exclude reference="CJN-On-vwI"/>
                                 <exclude reference="NgV-hR-WyO"/>
+                                <exclude reference="p4N-88-01s"/>
                                 <exclude reference="KIT-S2-jmP"/>
                                 <exclude reference="61O-Qr-ij8"/>
                                 <exclude reference="4eh-5u-FlL"/>
@@ -1052,6 +1069,7 @@
         <image name="cancelar" width="659" height="197"/>
         <image name="divisao" width="216" height="220"/>
         <image name="faca" width="692" height="653"/>
+        <image name="fundoDiv" width="492" height="288"/>
         <image name="imgdefault" width="1024" height="1024"/>
         <image name="jogar" width="489" height="199"/>
         <image name="jogos" width="597" height="211"/>
